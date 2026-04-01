@@ -7,7 +7,7 @@ export default function AlertDialog({
   onClose,
   title,
   description,
-  confirmLabel = "확인",
+  confirmLabel = "Confirm",
   onConfirm,
   tone = "primary",
   ...props

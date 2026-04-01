@@ -199,6 +199,111 @@ function InteractivePaginationPreview() {
   return <Pagination page={page} totalPages={9} onPageChange={setPage} />;
 }
 
+function InteractiveSelectPreview() {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <Select
+      label="Region"
+      value={value}
+      placeholder="Choose region"
+      onChange={(event) => setValue(event.target.value)}
+      validationState={value ? "success" : "error"}
+      validationMessage={value ? "Region selected." : "Select a region before continuing."}
+    >
+      <option value="kr">Korea</option>
+      <option value="jp">Japan</option>
+      <option value="us">United States</option>
+    </Select>
+  );
+}
+
+function InteractiveAccordionPreview() {
+  return (
+    <Accordion>
+      <AccordionItem title="What is Ripple UI?" description="Short answer for product teams." defaultOpen>
+        <Text variant="body">A self-authored design library focused on calm, structured product surfaces.</Text>
+      </AccordionItem>
+      <AccordionItem title="Why route-based docs?" description="Direct links for review and component inspection.">
+        <Text variant="body">Routes make sections and individual components linkable and easier to review.</Text>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+
+function InteractiveTooltipPreview() {
+  const [bottomOpen, setBottomOpen] = React.useState(false);
+
+  return (
+    <Inline gap={12}>
+      <Tooltip content="Helpful hint">
+        <Button variant="ghost">Hover me</Button>
+      </Tooltip>
+      <Tooltip content="Shown below" position="bottom">
+        <button
+          type="button"
+          className="demo-tooltip-trigger"
+          onClick={() => setBottomOpen((prev) => !prev)}
+        >
+          Bottom
+        </button>
+      </Tooltip>
+    </Inline>
+  );
+}
+
+function InteractiveSnackbarPreview() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="docs-inline-surface">
+      <Button size="medium" onClick={() => setOpen(true)}>Open snackbar</Button>
+      <Snackbar
+        open={open}
+        align="left"
+        tone="default"
+        message="Draft saved successfully."
+        action={<Button variant="ghost" onClick={() => setOpen(false)}>Dismiss</Button>}
+      />
+    </div>
+  );
+}
+
+function InteractiveTablePreview() {
+  const [sortKey, setSortKey] = React.useState("name");
+
+  const rows = React.useMemo(() => {
+    const base = [
+      { name: "Payments", status: "Live", users: 12 },
+      { name: "Growth", status: "Draft", users: 4 },
+      { name: "Operations", status: "Review", users: 8 },
+    ];
+
+    return [...base].sort((a, b) => {
+      if (sortKey === "users") return b.users - a.users;
+      return String(a[sortKey]).localeCompare(String(b[sortKey]));
+    });
+  }, [sortKey]);
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        <Button size="small" variant={sortKey === "name" ? "weak" : "ghost"} onClick={() => setSortKey("name")}>Sort by name</Button>
+        <Button size="small" variant={sortKey === "status" ? "weak" : "ghost"} onClick={() => setSortKey("status")}>Sort by status</Button>
+        <Button size="small" variant={sortKey === "users" ? "weak" : "ghost"} onClick={() => setSortKey("users")}>Sort by users</Button>
+      </Inline>
+      <Table
+        columns={[
+          { key: "name", title: "Name" },
+          { key: "status", title: "Status" },
+          { key: "users", title: "Users", align: "right" },
+        ]}
+        rows={rows}
+      />
+    </Stack>
+  );
+}
+
 function PropTable({ props }) {
   return (
     <div className="docs-props-table">
@@ -458,16 +563,7 @@ const docs = [
           { name: "content", type: "ReactNode", defaultValue: "-", description: "Tooltip body." },
           { name: "position", type: `"top" | "bottom"`, defaultValue: `"top"`, description: "Placement relative to trigger." },
         ],
-        preview: () => (
-          <Inline gap={12}>
-            <Tooltip content="Helpful hint">
-              <Button variant="ghost">Hover me</Button>
-            </Tooltip>
-            <Tooltip content="Shown below" position="bottom">
-              <Chip tone="neutral">Bottom</Chip>
-            </Tooltip>
-          </Inline>
-        ),
+        preview: () => <InteractiveTooltipPreview />,
       },
     ],
   },
@@ -593,13 +689,7 @@ const docs = [
           { name: "placeholder", type: "string", defaultValue: "-", description: "Optional placeholder option text." },
           { name: "validationState / validationMessage", type: "state + message", defaultValue: "-", description: "Semantic validation feedback." },
         ],
-        preview: () => (
-          <Select label="Region" defaultValue="" placeholder="Choose region" validationState="error" validationMessage="Select a region before continuing.">
-            <option value="kr">Korea</option>
-            <option value="jp">Japan</option>
-            <option value="us">United States</option>
-          </Select>
-        ),
+        preview: () => <InteractiveSelectPreview />,
       },
       {
         name: "DatePicker",
@@ -706,7 +796,7 @@ const docs = [
           { name: "message", type: "ReactNode", defaultValue: "-", description: "Primary message." },
           { name: "align", type: "\"center\" | \"left\"", defaultValue: "\"center\"", description: "Horizontal anchor position." },
         ],
-        preview: () => <div className="docs-inline-surface"><Snackbar open align="left" tone="default" message="Draft saved successfully." /></div>,
+        preview: () => <InteractiveSnackbarPreview />,
       },
       {
         name: "NoticeBanner / Banner",
@@ -754,7 +844,7 @@ const docs = [
         description: "Single CTA dialog for acknowledgement flows.",
         props: [
           { name: "open", type: "boolean", defaultValue: "false", description: "Visibility state." },
-          { name: "confirmLabel", type: "string", defaultValue: `"확인"`, description: "Primary CTA label." },
+          { name: "confirmLabel", type: "string", defaultValue: `"Confirm"`, description: "Primary CTA label." },
         ],
         preview: () => <InteractiveAlertDialogPreview />,
       },
@@ -801,13 +891,7 @@ const docs = [
           { name: "description", type: "ReactNode", defaultValue: "-", description: "Secondary item copy." },
           { name: "defaultOpen", type: "boolean", defaultValue: "false", description: "Initial open state." },
         ],
-        preview: () => (
-          <Accordion>
-            <AccordionItem title="What is Ripple UI?" description="Short answer for product teams." defaultOpen>
-              <Text variant="body">A self-authored design library focused on calm, structured product surfaces.</Text>
-            </AccordionItem>
-          </Accordion>
-        ),
+        preview: () => <InteractiveAccordionPreview />,
       },
       {
         name: "Stepper",
@@ -911,19 +995,7 @@ const docs = [
           { name: "rows", type: "Array<object>", defaultValue: "[]", description: "Row records." },
           { name: "dense", type: "boolean", defaultValue: "false", description: "Compact row spacing." },
         ],
-        preview: () => (
-          <Table
-            columns={[
-              { key: "name", title: "Name" },
-              { key: "status", title: "Status" },
-              { key: "users", title: "Users", align: "right" },
-            ]}
-            rows={[
-              { name: "Payments", status: "Live", users: "12" },
-              { name: "Growth", status: "Draft", users: "4" },
-            ]}
-          />
-        ),
+        preview: () => <InteractiveTablePreview />,
       },
       {
         name: "Pagination",

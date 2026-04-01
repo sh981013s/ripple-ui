@@ -69,7 +69,7 @@ function Input({
                 aria-label={revealed ? hideLabel : revealLabel}
                 onClick={onToggleReveal}
               >
-                {revealed ? "숨김" : "표시"}
+                {revealed ? "Hide" : "Show"}
               </button>
             ) : null}
             {actionLabel ? (

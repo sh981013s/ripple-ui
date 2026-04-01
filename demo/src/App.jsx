@@ -232,7 +232,7 @@ function DocsShell() {
   const navigate = useNavigate();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(true);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
 
