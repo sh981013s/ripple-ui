@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 import {
+  Banner,
   BottomSheet,
   Button,
   Chip,
@@ -44,7 +45,12 @@ export default function App() {
           <div className="demo-hero-copy">
             <span className="demo-hero-eyebrow">Component Library</span>
             <h1 className="demo-hero-title">Ripple UI</h1>
-            <p className="demo-hero-description">A self-authored mobile product UI kit tuned toward calm, dense, TDS-like app surfaces.</p>
+            <p className="demo-hero-description">A product-focused component library tuned toward calm, dense mobile surfaces.</p>
+            <Inline gap={8} wrap>
+              <Chip tone="accent">Core</Chip>
+              <Chip tone="neutral">Prop-driven</Chip>
+              <Chip tone="success">Demo docs</Chip>
+            </Inline>
           </div>
           <div className="demo-hero-actions">
             <Button size="large" onClick={() => setDialogOpen(true)}>Open Dialog</Button>
@@ -52,12 +58,24 @@ export default function App() {
           </div>
         </section>
 
+        <Banner
+          tone="neutral"
+          compact
+          eyebrow="overview"
+          title="Designed for calm product surfaces"
+          description="The demo page is organized to inspect component density, state changes, and documentation readability together."
+        />
+
         <div className="demo-layout">
           <aside className="demo-sidebar">
             <div className="demo-sidebar-card">
               <Stack gap={14}>
-                <SectionHeader eyebrow="docs" title="Sections" description="Generated from metadata." />
+                <SectionHeader eyebrow="docs" title="Sections" description="Generated from component metadata." />
                 <nav className="demo-nav">{nav}</nav>
+                <div className="demo-sidebar-meta">
+                  <span className="demo-sidebar-meta-label">Status</span>
+                  <strong className="demo-sidebar-meta-value">In active refinement</strong>
+                </div>
                 <Inline gap={10} wrap>
                   <Button variant="ghost" size="large" onClick={() => setDialogOpen(true)}>Dialog</Button>
                   <Button variant="weak" size="large" onClick={() => setSheetOpen(true)}>Sheet</Button>
@@ -70,9 +88,9 @@ export default function App() {
             {catalog.map((section) => (
               <section key={section.id} id={section.id} className="demo-section">
                 <SectionHeader
-                  eyebrow="category"
+                  eyebrow="component set"
                   title={section.label}
-                  description={`${section.components.length} components documented in this group.`}
+                  description={`${section.components.length} components in this group.`}
                 />
                 <div className="docs-card-grid">
                   {section.components.map((component) => (
