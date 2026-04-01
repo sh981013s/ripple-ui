@@ -1,0 +1,115 @@
+{
+  "library": "Ripple UI",
+  "patterns": [
+    {
+      "id": "settings-list-page",
+      "title": "Settings list page",
+      "best_for": ["account settings", "workspace preferences", "notification options"],
+      "structure": ["TopBar", "SectionHeader", "List", "ListRow", "Switch", "Button"],
+      "rules": [
+        "Use one grouped list per section.",
+        "Place destructive action at the bottom, separated from toggles.",
+        "Use Switch for binary settings only."
+      ]
+    },
+    {
+      "id": "detail-summary-page",
+      "title": "Detail summary page",
+      "best_for": ["workspace detail", "project detail", "transaction detail"],
+      "structure": ["TopBar", "SectionHeader", "Card", "InfoRow", "ListRow", "Banner"],
+      "rules": [
+        "Lead with one summary block.",
+        "Use ListRow for actions, InfoRow for facts.",
+        "Do not stack more than two large cards before a list."
+      ]
+    },
+    {
+      "id": "search-results-page",
+      "title": "Search results page",
+      "best_for": ["component search", "entity lookup", "content search"],
+      "structure": ["TopBar", "SearchBar", "Banner", "List", "ListRow", "Pagination"],
+      "rules": [
+        "Search belongs near the top.",
+        "Use Pagination only when result counts justify it.",
+        "Prefer empty state over a blank list."
+      ]
+    },
+    {
+      "id": "metrics-dashboard",
+      "title": "Metrics dashboard",
+      "best_for": ["operations dashboards", "revenue summary", "analytics overview"],
+      "structure": ["TopBar", "Tabs", "SectionHeader", "Card", "TableRow", "Table", "Snackbar"],
+      "rules": [
+        "Use one tab bar only.",
+        "Keep metric cards compact.",
+        "Tables should follow a summary, not precede it."
+      ]
+    },
+    {
+      "id": "form-with-validation",
+      "title": "Form with validation",
+      "best_for": ["create forms", "edit forms", "submission flows"],
+      "structure": ["TopBar", "SectionHeader", "Input", "TextArea", "Select", "DatePicker", "Button"],
+      "rules": [
+        "Use validationState and validationMessage consistently.",
+        "One field should show one state at a time.",
+        "Keep the primary CTA at the bottom."
+      ]
+    },
+    {
+      "id": "bottom-sheet-picker",
+      "title": "Bottom sheet picker",
+      "best_for": ["mobile option picking", "date picking", "secondary tasks"],
+      "structure": ["BottomSheet", "SectionHeader", "Select or DatePicker", "Button"],
+      "rules": [
+        "Use BottomSheet instead of Dialog for mobile-first pickers.",
+        "Keep content focused on one decision.",
+        "Primary CTA should be full-width."
+      ]
+    },
+    {
+      "id": "destructive-confirmation",
+      "title": "Destructive confirmation",
+      "best_for": ["delete", "reset", "archive", "disconnect"],
+      "structure": ["ConfirmDialog"],
+      "rules": [
+        "Use ConfirmDialog for destructive actions.",
+        "Do not place long explanatory content inside the dialog.",
+        "The destructive action should be explicit and final."
+      ]
+    },
+    {
+      "id": "command-launcher",
+      "title": "Command launcher",
+      "best_for": ["power user shortcuts", "multi-action apps", "docs search"],
+      "structure": ["TopBar", "CommandPalette", "Snackbar"],
+      "rules": [
+        "Use CommandPalette for command search, not generic content search.",
+        "Commands should have short titles.",
+        "Shortcuts are optional but preferred."
+      ]
+    },
+    {
+      "id": "notification-center",
+      "title": "Notification center",
+      "best_for": ["alerts", "system notices", "activity feeds"],
+      "structure": ["TopBar", "Tabs", "Banner", "List", "ListRow", "Badge"],
+      "rules": [
+        "Use Badge for counts or status only.",
+        "Use Banner for one high-priority notice.",
+        "Separate feed categories with Tabs if needed."
+      ]
+    },
+    {
+      "id": "empty-to-first-action",
+      "title": "Empty to first action",
+      "best_for": ["first-run states", "no-content states", "no-results states"],
+      "structure": ["TopBar", "EmptyState", "Button"],
+      "rules": [
+        "Use one clear CTA.",
+        "Keep description short and instructive.",
+        "Avoid secondary clutter in the empty state."
+      ]
+    }
+  ]
+}

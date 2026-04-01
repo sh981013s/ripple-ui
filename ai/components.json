@@ -1,0 +1,318 @@
+{
+  "library": "Ripple UI",
+  "package": "@ripple-ui/core",
+  "version": "0.1.0",
+  "purpose": "Calm mobile-first component library for product surfaces.",
+  "principles": [
+    "neutral-first surfaces",
+    "single strong accent color",
+    "compact but breathable spacing",
+    "structured information density",
+    "small directional motion",
+    "simple hierarchy"
+  ],
+  "components": [
+    {
+      "name": "Surface",
+      "category": "layout",
+      "when_to_use": ["background block", "soft grouping surface"],
+      "avoid_when": ["you need built-in content padding or card semantics"],
+      "props": {
+        "tone": ["default", "muted", "accent", "success", "warning"],
+        "radius": ["sm", "md", "lg", "xl"]
+      },
+      "defaults": { "tone": "default", "radius": "lg" }
+    },
+    {
+      "name": "Card",
+      "category": "layout",
+      "when_to_use": ["bounded content", "summary block", "preview container"],
+      "avoid_when": ["you are nesting multiple elevated surfaces without reason"],
+      "defaults": {}
+    },
+    {
+      "name": "Stack",
+      "category": "layout",
+      "when_to_use": ["vertical layout", "section body", "form groups"],
+      "defaults": { "gap": 12 }
+    },
+    {
+      "name": "Inline",
+      "category": "layout",
+      "when_to_use": ["horizontal controls", "chips", "small layout rows"],
+      "defaults": { "gap": 12 }
+    },
+    {
+      "name": "SectionHeader",
+      "category": "content",
+      "when_to_use": ["section intro", "component heading", "page subsection"],
+      "avoid_when": ["tiny inline labels"],
+      "slots": ["eyebrow", "title", "description", "actions"]
+    },
+    {
+      "name": "TopBar",
+      "category": "navigation",
+      "when_to_use": ["page-level header", "detail header", "mobile top area"],
+      "slots": ["leading", "trailing"],
+      "props": {
+        "align": ["center", "left"],
+        "size": ["sm", "md", "lg"],
+        "variant": ["floating", "flat"]
+      },
+      "defaults": { "size": "md", "variant": "floating", "align": "center" }
+    },
+    {
+      "name": "Tabs",
+      "category": "navigation",
+      "when_to_use": ["view switching", "local route grouping"],
+      "avoid_when": ["binary toggle only"],
+      "defaults": { "stretch": false }
+    },
+    {
+      "name": "SegmentedControl",
+      "category": "navigation",
+      "when_to_use": ["compact mode switch", "binary or ternary mode selection"],
+      "avoid_when": ["many options or complex labels"]
+    },
+    {
+      "name": "Selector",
+      "category": "navigation",
+      "when_to_use": ["small local selection", "compact control chips"],
+      "props": { "type": ["underline", "arrow", "clear"] },
+      "defaults": { "type": "underline" }
+    },
+    {
+      "name": "IconButton",
+      "category": "action",
+      "when_to_use": ["single icon actions", "toolbar actions", "header actions"],
+      "avoid_when": ["main CTA"],
+      "props": {
+        "tone": ["default", "accent", "subtle"],
+        "size": ["sm", "md", "lg"]
+      },
+      "requirements": ["always provide aria-label"]
+    },
+    {
+      "name": "Button",
+      "category": "action",
+      "when_to_use": ["primary CTA", "footer CTA", "secondary actions"],
+      "props": {
+        "variant": ["primary", "weak", "ghost", "icon"],
+        "size": ["small", "medium", "large"]
+      },
+      "defaults": { "variant": "primary", "size": "medium" }
+    },
+    {
+      "name": "Chip",
+      "category": "action",
+      "when_to_use": ["small labels", "quick filters", "inline metadata"],
+      "avoid_when": ["primary actions"]
+    },
+    {
+      "name": "Badge",
+      "category": "content",
+      "when_to_use": ["count badge", "small status"],
+      "props": {
+        "tone": ["neutral", "accent", "success", "warning", "danger"],
+        "variant": ["soft", "solid"]
+      },
+      "defaults": { "tone": "neutral", "variant": "soft" }
+    },
+    {
+      "name": "Text",
+      "category": "content",
+      "when_to_use": ["typography primitive", "consistent hierarchy"],
+      "props": {
+        "variant": ["hero", "title", "body", "label", "caption"]
+      },
+      "defaults": { "variant": "body" }
+    },
+    {
+      "name": "Input",
+      "category": "forms",
+      "when_to_use": ["single line text", "validated entry", "inline field actions"],
+      "props": {
+        "variant": ["default", "filled", "quiet"],
+        "size": ["sm", "md", "lg"],
+        "validationState": ["default", "success", "warning", "error"]
+      },
+      "defaults": { "variant": "default", "size": "md", "validationState": "default" }
+    },
+    {
+      "name": "TextArea",
+      "category": "forms",
+      "when_to_use": ["multi-line notes", "descriptions", "messages"]
+    },
+    {
+      "name": "SearchBar",
+      "category": "forms",
+      "when_to_use": ["page-level search"],
+      "avoid_when": ["small local filtering"]
+    },
+    {
+      "name": "SearchField",
+      "category": "forms",
+      "when_to_use": ["local filtering", "picker search", "inline query input"]
+    },
+    {
+      "name": "Select",
+      "category": "forms",
+      "when_to_use": ["single choice from a list", "searchable selection"],
+      "props": { "searchable": [true, false] },
+      "defaults": { "searchable": true }
+    },
+    {
+      "name": "DatePicker",
+      "category": "forms",
+      "when_to_use": ["date entry", "mobile date selection"],
+      "style_model": "sheet-wheel"
+    },
+    {
+      "name": "Switch",
+      "category": "forms",
+      "when_to_use": ["binary setting"],
+      "avoid_when": ["irreversible destructive action"]
+    },
+    {
+      "name": "Checkbox",
+      "category": "forms",
+      "when_to_use": ["multi-select", "preference toggles"]
+    },
+    {
+      "name": "Radio",
+      "category": "forms",
+      "when_to_use": ["single-choice group"]
+    },
+    {
+      "name": "Loader",
+      "category": "feedback",
+      "when_to_use": ["small loading indicator"]
+    },
+    {
+      "name": "Skeleton",
+      "category": "feedback",
+      "when_to_use": ["placeholder while loading structured content"]
+    },
+    {
+      "name": "Toast",
+      "category": "feedback",
+      "when_to_use": ["inline transient status"]
+    },
+    {
+      "name": "Snackbar",
+      "category": "feedback",
+      "when_to_use": ["global transient confirmation"],
+      "defaults": { "align": "left", "tone": "default" }
+    },
+    {
+      "name": "Banner",
+      "category": "feedback",
+      "when_to_use": ["persistent page-level notice"],
+      "avoid_when": ["tiny inline notices"]
+    },
+    {
+      "name": "ProgressBar",
+      "category": "feedback",
+      "when_to_use": ["progress display", "completion metric"]
+    },
+    {
+      "name": "EmptyState",
+      "category": "feedback",
+      "when_to_use": ["blank state", "zero-results state"]
+    },
+    {
+      "name": "AlertDialog",
+      "category": "overlays",
+      "when_to_use": ["single acknowledgement"],
+      "avoid_when": ["destructive confirmation"]
+    },
+    {
+      "name": "ConfirmDialog",
+      "category": "overlays",
+      "when_to_use": ["destructive or irreversible confirmation"]
+    },
+    {
+      "name": "Dialog",
+      "category": "overlays",
+      "when_to_use": ["focused centered modal task"],
+      "props": { "size": ["sm", "md", "lg"] },
+      "defaults": { "size": "md" }
+    },
+    {
+      "name": "BottomSheet",
+      "category": "overlays",
+      "when_to_use": ["mobile secondary flow", "picker", "stacked actions"],
+      "props": {
+        "size": ["sm", "md", "lg", "full"],
+        "variant": ["floating", "flat"]
+      },
+      "defaults": { "size": "md", "variant": "floating" }
+    },
+    {
+      "name": "Accordion",
+      "category": "overlays",
+      "when_to_use": ["FAQ", "collapsible details", "progressive disclosure"]
+    },
+    {
+      "name": "CommandPalette",
+      "category": "overlays",
+      "when_to_use": ["searchable command launch", "power-user actions"]
+    },
+    {
+      "name": "Popover",
+      "category": "overlays",
+      "when_to_use": ["light contextual floating content"]
+    },
+    {
+      "name": "Menu",
+      "category": "overlays",
+      "when_to_use": ["anchored action list"]
+    },
+    {
+      "name": "Dropdown",
+      "category": "overlays",
+      "when_to_use": ["button-anchored selection list"]
+    },
+    {
+      "name": "List",
+      "category": "data",
+      "when_to_use": ["structured grouped rows", "settings list", "summary list"]
+    },
+    {
+      "name": "InfoRow",
+      "category": "data",
+      "when_to_use": ["simple label-value pairs"]
+    },
+    {
+      "name": "TableRow",
+      "category": "data",
+      "when_to_use": ["single metric row"]
+    },
+    {
+      "name": "ListRow",
+      "category": "data",
+      "when_to_use": ["navigation row", "item summary row", "actionable list item"],
+      "props": {
+        "variant": ["default", "muted", "accent"],
+        "size": ["sm", "md", "lg"]
+      },
+      "defaults": { "variant": "default", "size": "md" }
+    },
+    {
+      "name": "Table",
+      "category": "data",
+      "when_to_use": ["tabular information", "admin data", "sorted records"]
+    },
+    {
+      "name": "Pagination",
+      "category": "data",
+      "when_to_use": ["paged data sets", "docs pages", "result sets"]
+    },
+    {
+      "name": "Icon",
+      "category": "icons",
+      "when_to_use": ["navigation", "actions", "feedback", "status"]
+    }
+  ]
+}
+
