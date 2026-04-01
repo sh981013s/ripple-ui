@@ -52,6 +52,153 @@ import {
   Pagination,
 } from "@ripple-ui/core";
 
+function InteractiveTabsPreview() {
+  const [active, setActive] = React.useState("overview");
+
+  return (
+    <Tabs aria-label="views" stretch>
+      {[
+        ["overview", "Overview"],
+        ["traffic", "Traffic"],
+        ["alerts", "Alerts"],
+      ].map(([value, label]) => (
+        <Tab key={value} active={active === value} onClick={() => setActive(value)}>
+          {label}
+        </Tab>
+      ))}
+    </Tabs>
+  );
+}
+
+function InteractiveSegmentedPreview() {
+  const [value, setValue] = React.useState("week");
+
+  return (
+    <SegmentedControl
+      value={value}
+      onChange={setValue}
+      options={[
+        { label: "Day", value: "day" },
+        { label: "Week", value: "week" },
+        { label: "Month", value: "month" },
+      ]}
+    />
+  );
+}
+
+function InteractiveDialogPreview() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="docs-inline-surface">
+      <Button size="medium" onClick={() => setOpen(true)}>Open dialog</Button>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Review dialog"
+        description="Dialogs in the docs are interactive previews."
+        footer={<Button display="block" onClick={() => setOpen(false)}>Close</Button>}
+      >
+        <Text variant="body">Use this preview to inspect spacing, motion, and CTA density.</Text>
+      </Dialog>
+    </div>
+  );
+}
+
+function InteractiveSheetPreview() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="docs-inline-surface">
+      <Button size="medium" variant="weak" onClick={() => setOpen(true)}>Open sheet</Button>
+      <BottomSheet
+        open={open}
+        onClose={() => setOpen(false)}
+        header="Bottom sheet"
+        description="Preview the anchored mobile overlay."
+        footer={<Button display="block" onClick={() => setOpen(false)}>Done</Button>}
+      >
+        <Text variant="body">Bottom sheet previews are interactive and dismissible.</Text>
+      </BottomSheet>
+    </div>
+  );
+}
+
+function InteractiveAlertDialogPreview() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="docs-inline-surface">
+      <Button size="medium" onClick={() => setOpen(true)}>Open alert dialog</Button>
+      <AlertDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Session expired"
+        description="Please sign in again to continue."
+      />
+    </div>
+  );
+}
+
+function InteractiveConfirmDialogPreview() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="docs-inline-surface">
+      <Button color="danger" size="medium" onClick={() => setOpen(true)}>Open confirm dialog</Button>
+      <ConfirmDialog
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Delete workspace?"
+        description="This action cannot be undone."
+        tone="danger"
+      />
+    </div>
+  );
+}
+
+function InteractiveDatePickerPreview() {
+  const [value, setValue] = React.useState("2026-04-01");
+
+  return (
+    <DatePicker
+      label="Launch date"
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      validationState="success"
+      validationMessage="Date confirmed."
+    />
+  );
+}
+
+function InteractiveSwitchPreview() {
+  const [checked, setChecked] = React.useState(true);
+
+  return <Switch checked={checked} onChange={(event) => setChecked(event.target.checked)} label="Realtime alerts" description="Send status changes to connected channels." />;
+}
+
+function InteractiveCheckboxPreview() {
+  const [checked, setChecked] = React.useState(true);
+
+  return <Checkbox checked={checked} onChange={(event) => setChecked(event.target.checked)} label="Email notifications" description="Receive billing and release updates." />;
+}
+
+function InteractiveRadioPreview() {
+  const [value, setValue] = React.useState("pro");
+
+  return (
+    <Stack gap={12}>
+      <Radio checked={value === "starter"} onChange={() => setValue("starter")} name="plan" label="Starter plan" description="Basic usage for small teams." />
+      <Radio checked={value === "pro"} onChange={() => setValue("pro")} name="plan" label="Pro plan" description="Advanced analytics and shared access." />
+    </Stack>
+  );
+}
+
+function InteractivePaginationPreview() {
+  const [page, setPage] = React.useState(4);
+  return <Pagination page={page} totalPages={9} onPageChange={setPage} />;
+}
+
 function PropTable({ props }) {
   return (
     <div className="docs-props-table">
@@ -258,13 +405,7 @@ const docs = [
           { name: "aria-label", type: "string", defaultValue: "-", description: "Accessibility label for the tablist." },
           { name: "stretch", type: "boolean", defaultValue: "false", description: "Stretch items to full available width." },
         ],
-        preview: () => (
-          <Tabs aria-label="views" stretch>
-            <Tab active>Overview</Tab>
-            <Tab>Traffic</Tab>
-            <Tab>Alerts</Tab>
-          </Tabs>
-        ),
+        preview: () => <InteractiveTabsPreview />,
       },
       {
         name: "SegmentedControl",
@@ -275,16 +416,7 @@ const docs = [
           { name: "value", type: "string", defaultValue: "-", description: "Active option value." },
           { name: "onChange", type: "(value) => void", defaultValue: "-", description: "Selection change handler." },
         ],
-        preview: () => (
-          <SegmentedControl
-            value="week"
-            options={[
-              { label: "Day", value: "day" },
-              { label: "Week", value: "week" },
-              { label: "Month", value: "month" },
-            ]}
-          />
-        ),
+        preview: () => <InteractiveSegmentedPreview />,
       },
       {
         name: "Selector",
@@ -479,7 +611,7 @@ const docs = [
           { name: "variant", type: `"default" | "filled" | "quiet"`, defaultValue: `"default"`, description: "Visual treatment." },
           { name: "validationState / validationMessage", type: "state + message", defaultValue: "-", description: "Semantic validation feedback." },
         ],
-        preview: () => <DatePicker label="Launch date" defaultValue="2026-04-01" validationState="success" validationMessage="Date confirmed." />,
+        preview: () => <InteractiveDatePickerPreview />,
       },
       {
         name: "Switch",
@@ -490,7 +622,7 @@ const docs = [
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Track size." },
           { name: "tone", type: `"accent" | "success" | "warning"`, defaultValue: `"accent"`, description: "On-state color." },
         ],
-        preview: () => <Switch checked readOnly label="Realtime alerts" description="Send status changes to connected channels." />,
+        preview: () => <InteractiveSwitchPreview />,
       },
       {
         name: "Checkbox",
@@ -501,7 +633,7 @@ const docs = [
           { name: "label", type: "ReactNode", defaultValue: "-", description: "Primary label." },
           { name: "description", type: "ReactNode", defaultValue: "-", description: "Secondary copy." },
         ],
-        preview: () => <Checkbox checked readOnly label="Email notifications" description="Receive billing and release updates." />,
+        preview: () => <InteractiveCheckboxPreview />,
       },
       {
         name: "Radio",
@@ -511,7 +643,7 @@ const docs = [
           { name: "checked", type: "boolean", defaultValue: "false", description: "Checked state." },
           { name: "name", type: "string", defaultValue: "-", description: "Native radio group name." },
         ],
-        preview: () => <Radio checked readOnly name="plan" label="Pro plan" description="Advanced analytics and shared access." />,
+        preview: () => <InteractiveRadioPreview />,
       },
     ],
   },
@@ -624,15 +756,7 @@ const docs = [
           { name: "open", type: "boolean", defaultValue: "false", description: "Visibility state." },
           { name: "confirmLabel", type: "string", defaultValue: `"확인"`, description: "Primary CTA label." },
         ],
-        preview: () => (
-          <div className="docs-inline-surface">
-            <Stack gap={10}>
-              <Text variant="label">Alert pattern</Text>
-              <Text variant="caption">Single confirm CTA for blocking status or acknowledgement flows.</Text>
-              <Button size="medium">Open alert dialog</Button>
-            </Stack>
-          </div>
-        ),
+        preview: () => <InteractiveAlertDialogPreview />,
       },
       {
         name: "ConfirmDialog",
@@ -642,15 +766,7 @@ const docs = [
           { name: "open", type: "boolean", defaultValue: "false", description: "Visibility state." },
           { name: "confirmLabel / cancelLabel", type: "string", defaultValue: "-", description: "CTA labels." },
         ],
-        preview: () => (
-          <div className="docs-inline-surface">
-            <Stack gap={10}>
-              <Text variant="label">Confirm pattern</Text>
-              <Text variant="caption">Dual-action confirmation for destructive decisions.</Text>
-              <Button color="danger" size="medium">Open confirm dialog</Button>
-            </Stack>
-          </div>
-        ),
+        preview: () => <InteractiveConfirmDialogPreview />,
       },
       {
         name: "Dialog",
@@ -662,7 +778,7 @@ const docs = [
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Dialog width scale." },
           { name: "panelClassName", type: "string", defaultValue: "-", description: "Panel class hook." },
         ],
-        preview: () => <div className="docs-inline-surface"><Chip tone="neutral">Open via live demo controls</Chip></div>,
+        preview: () => <InteractiveDialogPreview />,
       },
       {
         name: "BottomSheet",
@@ -674,7 +790,7 @@ const docs = [
           { name: "variant", type: `"floating" | "flat"`, defaultValue: `"floating"`, description: "Surface treatment." },
           { name: "header / description / footer", type: "ReactNode", defaultValue: "-", description: "Structured header and CTA areas." },
         ],
-        preview: () => <div className="docs-inline-surface"><Chip tone="neutral">Open via live demo controls</Chip></div>,
+        preview: () => <InteractiveSheetPreview />,
       },
       {
         name: "Accordion / AccordionItem",
@@ -818,7 +934,7 @@ const docs = [
           { name: "totalPages", type: "number", defaultValue: "1", description: "Maximum page count." },
           { name: "onPageChange", type: "(page) => void", defaultValue: "-", description: "Page selection callback." },
         ],
-        preview: () => <Pagination page={4} totalPages={9} />,
+        preview: () => <InteractivePaginationPreview />,
       },
     ],
   },
