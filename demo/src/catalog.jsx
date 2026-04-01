@@ -2,12 +2,14 @@ import React from "react";
 import {
   Accordion,
   AccordionItem,
+  Avatar,
   Banner,
   BottomSheet,
   Button,
   Card,
   Checkbox,
   Chip,
+  DatePicker,
   Dialog,
   Divider,
   EmptyState,
@@ -20,19 +22,23 @@ import {
   ProgressBar,
   Radio,
   SearchBar,
+  SegmentedControl,
   SectionHeader,
   Select,
   Snackbar,
   Stack,
+  Stepper,
   Surface,
   Switch,
   Tab,
+  Table,
   Tabs,
   Text,
   TextArea,
   Toast,
   Tooltip,
   TopBar,
+  Pagination,
 } from "@ripple-ui/core";
 
 function PropTable({ props }) {
@@ -156,6 +162,25 @@ const docs = [
         preview: () => <SectionHeader eyebrow="overview" title="Header title" description="Description copy for the section." actions={<Chip tone="accent">Live</Chip>} />,
       },
       {
+        name: "Avatar",
+        eyebrow: "identity",
+        description: "Circular identity primitive with fallback initials and optional status.",
+        props: [
+          { name: "src", type: "string", defaultValue: "-", description: "Avatar image source." },
+          { name: "name", type: "string", defaultValue: "-", description: "Used to derive initials fallback." },
+          { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Avatar size scale." },
+          { name: "tone", type: `"default" | "accent" | "success" | "warning"`, defaultValue: `"default"`, description: "Fallback background tone." },
+          { name: "status", type: `"online" | "busy" | "away"`, defaultValue: "-", description: "Presence dot." },
+        ],
+        preview: () => (
+          <Inline gap={12} align="center">
+            <Avatar name="Ripple UI" size="sm" />
+            <Avatar name="Review Bot" tone="accent" status="online" />
+            <Avatar name="Design Team" size="lg" tone="success" />
+          </Inline>
+        ),
+      },
+      {
         name: "Text",
         eyebrow: "typography",
         description: "Shared typography primitive with five variants.",
@@ -207,6 +232,26 @@ const docs = [
             <Tab>Traffic</Tab>
             <Tab>Alerts</Tab>
           </Tabs>
+        ),
+      },
+      {
+        name: "SegmentedControl",
+        eyebrow: "navigation",
+        description: "Compact segmented switcher for local mode changes.",
+        props: [
+          { name: "options", type: "Array<{ label, value }>", defaultValue: "[]", description: "Segment options." },
+          { name: "value", type: "string", defaultValue: "-", description: "Active option value." },
+          { name: "onChange", type: "(value) => void", defaultValue: "-", description: "Selection change handler." },
+        ],
+        preview: () => (
+          <SegmentedControl
+            value="week"
+            options={[
+              { label: "Day", value: "day" },
+              { label: "Week", value: "week" },
+              { label: "Month", value: "month" },
+            ]}
+          />
         ),
       },
       {
@@ -336,6 +381,17 @@ const docs = [
             <option value="us">United States</option>
           </Select>
         ),
+      },
+      {
+        name: "DatePicker",
+        eyebrow: "form",
+        description: "Date input variant sharing the same input field system.",
+        props: [
+          { name: "label", type: "ReactNode", defaultValue: "-", description: "Field label." },
+          { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Field size." },
+          { name: "variant", type: `"default" | "filled" | "quiet"`, defaultValue: `"default"`, description: "Visual treatment." },
+        ],
+        preview: () => <DatePicker label="Launch date" defaultValue="2026-04-01" />,
       },
       {
         name: "Switch",
@@ -477,6 +533,26 @@ const docs = [
           </Accordion>
         ),
       },
+      {
+        name: "Stepper",
+        eyebrow: "overlay",
+        description: "Progress indicator for multistep flows.",
+        props: [
+          { name: "steps", type: "Array<{ label, description }>", defaultValue: "[]", description: "Ordered step metadata." },
+          { name: "current", type: "number", defaultValue: "0", description: "Current zero-based step index." },
+          { name: "orientation", type: `"horizontal" | "vertical"`, defaultValue: `"horizontal"`, description: "Layout direction." },
+        ],
+        preview: () => (
+          <Stepper
+            current={1}
+            steps={[
+              { label: "Draft", description: "Basic information" },
+              { label: "Review", description: "Team check" },
+              { label: "Publish", description: "Go live" },
+            ]}
+          />
+        ),
+      },
     ],
   },
   {
@@ -514,6 +590,40 @@ const docs = [
             trailing={<Text variant="caption">Open</Text>}
           />
         ),
+      },
+      {
+        name: "Table",
+        eyebrow: "data",
+        description: "Scrollable data table with simple column configuration.",
+        props: [
+          { name: "columns", type: "Array<{ key, title, align?, render? }>", defaultValue: "[]", description: "Column definitions." },
+          { name: "rows", type: "Array<object>", defaultValue: "[]", description: "Row records." },
+          { name: "dense", type: "boolean", defaultValue: "false", description: "Compact row spacing." },
+        ],
+        preview: () => (
+          <Table
+            columns={[
+              { key: "name", title: "Name" },
+              { key: "status", title: "Status" },
+              { key: "users", title: "Users", align: "right" },
+            ]}
+            rows={[
+              { name: "Payments", status: "Live", users: "12" },
+              { name: "Growth", status: "Draft", users: "4" },
+            ]}
+          />
+        ),
+      },
+      {
+        name: "Pagination",
+        eyebrow: "data",
+        description: "Simple page switcher with windowed page range.",
+        props: [
+          { name: "page", type: "number", defaultValue: "1", description: "Current page." },
+          { name: "totalPages", type: "number", defaultValue: "1", description: "Maximum page count." },
+          { name: "onPageChange", type: "(page) => void", defaultValue: "-", description: "Page selection callback." },
+        ],
+        preview: () => <Pagination page={4} totalPages={9} />,
       },
     ],
   },
