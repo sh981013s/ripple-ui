@@ -6,6 +6,8 @@ export default function ListRow({
   leading,
   title,
   description,
+  eyebrow,
+  meta,
   trailing,
   interactive = false,
   size = "md",
@@ -30,6 +32,11 @@ export default function ListRow({
     >
       {leading ? <div className="rpl-list-row-leading">{leading}</div> : null}
       <div className="rpl-list-row-copy">
+        {eyebrow ? (
+          <Text as="div" variant="label" className="rpl-list-row-eyebrow">
+            {eyebrow}
+          </Text>
+        ) : null}
         <Text as="div" variant="body" className="rpl-list-row-title">
           {title}
         </Text>
@@ -39,7 +46,16 @@ export default function ListRow({
           </Text>
         ) : null}
       </div>
-      {trailing ? <div className="rpl-list-row-trailing">{trailing}</div> : null}
+      {(meta || trailing) ? (
+        <div className="rpl-list-row-trailing">
+          {meta ? (
+            <Text as="div" variant="caption" className="rpl-list-row-meta">
+              {meta}
+            </Text>
+          ) : null}
+          {trailing}
+        </div>
+      ) : null}
     </Component>
   );
 }

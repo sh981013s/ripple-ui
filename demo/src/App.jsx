@@ -35,6 +35,7 @@ export default function App() {
           title="Ripple UI"
           subtitleTop="Design System"
           subtitleBottom="Generated component docs"
+          align="left"
           leading={<IconButton tone="subtle" aria-label="menu">≡</IconButton>}
           trailing={<Chip tone="accent">core</Chip>}
         />
@@ -100,13 +101,15 @@ export default function App() {
         open={sheetOpen}
         onClose={() => setSheetOpen(false)}
         size="lg"
-        header="Bottom sheet example"
-        description="Live overlay sample from the generated docs page."
-        footer={<Button display="block" onClick={() => setSheetOpen(false)}>Done</Button>}
       >
+        <BottomSheet.Header>Bottom sheet example</BottomSheet.Header>
+        <BottomSheet.HeaderDescription>Live overlay sample from the generated docs page.</BottomSheet.HeaderDescription>
         <Stack gap={16}>
           <p className="demo-overlay-copy">The sheet should feel anchored, breathable, and more action-oriented than the centered dialog.</p>
         </Stack>
+        <BottomSheet.Footer>
+          <Button display="block" onClick={() => setSheetOpen(false)}>Done</Button>
+        </BottomSheet.Footer>
       </BottomSheet>
 
       <Snackbar

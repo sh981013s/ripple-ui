@@ -16,6 +16,7 @@ export default function TopBar({
   rightVerticalAlign = "center",
   size = "md",
   variant = "floating",
+  align = "center",
   className = "",
 }) {
   const resolvedTrailing = right ?? trailing;
@@ -26,7 +27,7 @@ export default function TopBar({
     <header className={cx("rpl-top-bar", `rpl-top-bar-${size}`, `rpl-top-bar-${variant}`, className)}>
       <Inline align="center" justify="space-between" className="rpl-top-bar-inner">
         <div className="rpl-top-bar-leading">{leading}</div>
-        <div className="rpl-top-bar-copy">
+        <div className={cx("rpl-top-bar-copy", `is-${align}`)}>
           {resolvedSubtitleTop ? (
             <Text as="span" variant="caption" className="rpl-top-bar-subtitle-top">
               {resolvedSubtitleTop}

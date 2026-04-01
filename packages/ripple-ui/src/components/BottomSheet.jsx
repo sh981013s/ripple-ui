@@ -1,7 +1,23 @@
-import React, { useEffect } from "react";
+import React, { Children, isValidElement, useEffect } from "react";
 import { cx } from "../utils/cx.js";
 
-export default function BottomSheet({
+function SheetHeader({ children, className = "" }) {
+  return <div className={cx("rpl-sheet-header", className)}>{children}</div>;
+}
+
+function SheetHeaderDescription({ children, className = "" }) {
+  return <div className={cx("rpl-sheet-description", className)}>{children}</div>;
+}
+
+function SheetFooter({ children, className = "" }) {
+  return <div className={cx("rpl-sheet-footer", className)}>{children}</div>;
+}
+
+SheetHeader.displayName = "RippleBottomSheetHeader";
+SheetHeaderDescription.displayName = "RippleBottomSheetHeaderDescription";
+SheetFooter.displayName = "RippleBottomSheetFooter";
+
+function BottomSheet({
   open,
   onClose,
   closeOnBackdrop = true,
@@ -37,6 +53,35 @@ export default function BottomSheet({
     return null;
   }
 
+  let resolvedHeader = header ? <div className="rpl-sheet-title">{header}</div> : null;
+  let resolvedDescription = description;
+  let resolvedFooter = footer;
+  const contentNodes = [];
+
+  Children.forEach(children, (child) => {
+    if (!isValidElement(child)) {
+      contentNodes.push(child);
+      return;
+    }
+
+    if (child.type?.displayName === SheetHeader.displayName) {
+      resolvedHeader = child;
+      return;
+    }
+
+    if (child.type?.displayName === SheetHeaderDescription.displayName) {
+      resolvedDescription = child;
+      return;
+    }
+
+    if (child.type?.displayName === SheetFooter.displayName) {
+      resolvedFooter = child;
+      return;
+    }
+
+    contentNodes.push(child);
+  });
+
   return (
     <div
       className={cx("rpl-sheet-backdrop", className)}
@@ -50,15 +95,25 @@ export default function BottomSheet({
     >
       <div className={cx("rpl-sheet-panel", `rpl-sheet-panel-${size}`, `rpl-sheet-panel-${variant}`, panelClassName)}>
         <div className="rpl-sheet-handle" aria-hidden="true"></div>
-        {header || description ? (
-          <div className="rpl-sheet-header">
-            {header ? <div className="rpl-sheet-title">{header}</div> : null}
-            {description ? <div className="rpl-sheet-description">{description}</div> : null}
+        {resolvedHeader || resolvedDescription ? (
+          <div className="rpl-sheet-header-wrap">
+            {resolvedHeader}
+            {resolvedDescription ? (
+              isValidElement(resolvedDescription) ? resolvedDescription : <div className="rpl-sheet-description">{resolvedDescription}</div>
+            ) : null}
           </div>
         ) : null}
-        <div className="rpl-sheet-content">{children}</div>
-        {footer ? <div className="rpl-sheet-footer">{footer}</div> : null}
+        <div className="rpl-sheet-content">{contentNodes}</div>
+        {resolvedFooter ? (
+          isValidElement(resolvedFooter) && resolvedFooter.type?.displayName === SheetFooter.displayName ? resolvedFooter : <div className="rpl-sheet-footer">{resolvedFooter}</div>
+        ) : null}
       </div>
     </div>
   );
 }
+
+BottomSheet.Header = SheetHeader;
+BottomSheet.HeaderDescription = SheetHeaderDescription;
+BottomSheet.Footer = SheetFooter;
+
+export default BottomSheet;

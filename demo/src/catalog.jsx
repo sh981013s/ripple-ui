@@ -211,12 +211,13 @@ const docs = [
         props: [
           { name: "leading", type: "ReactNode", defaultValue: "-", description: "Left accessory." },
           { name: "title", type: "ReactNode", defaultValue: "-", description: "Primary title." },
-          { name: "subtitle", type: "ReactNode", defaultValue: "-", description: "Secondary title." },
-          { name: "trailing", type: "ReactNode", defaultValue: "-", description: "Right accessory." },
+          { name: "subtitleTop / subtitleBottom", type: "ReactNode", defaultValue: "-", description: "Upper and lower supporting copy." },
+          { name: "trailing / right", type: "ReactNode", defaultValue: "-", description: "Right accessory." },
+          { name: "align", type: "\"center\" | \"left\"", defaultValue: "\"center\"", description: "Copy alignment." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Bar height scale." },
           { name: "variant", type: `"floating" | "flat"`, defaultValue: `"floating"`, description: "Surface treatment." },
         ],
-        preview: () => <TopBar title="Project detail" subtitle="Review channel" leading={<IconButton aria-label="back">←</IconButton>} trailing={<IconButton tone="accent" aria-label="more">⋯</IconButton>} />,
+        preview: () => <TopBar title="Project detail" subtitleTop="Workspace" subtitleBottom="Review channel" align="left" leading={<IconButton aria-label="back">←</IconButton>} trailing={<IconButton tone="accent" aria-label="more">⋯</IconButton>} />,
       },
       {
         name: "Tabs / Tab",
@@ -342,10 +343,15 @@ const docs = [
           { name: "error", type: "ReactNode", defaultValue: "-", description: "Error text and style." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Field height scale." },
           { name: "variant", type: `"default" | "filled" | "quiet"`, defaultValue: `"default"`, description: "Visual treatment." },
-          { name: "leading", type: "ReactNode", defaultValue: "-", description: "Leading accessory." },
-          { name: "trailing", type: "ReactNode", defaultValue: "-", description: "Trailing accessory." },
+          { name: "before / after", type: "ReactNode", defaultValue: "-", description: "Primary field-side accessories." },
+          { name: "children", type: "Input.ClearButton | Input.PasswordToggle | Input.Button", defaultValue: "-", description: "Inline field controls." },
         ],
-        preview: () => <Input label="Workspace name" placeholder="Enter workspace name" />,
+        preview: () => (
+          <Input label="Workspace name" placeholder="Enter workspace name" hint="Use a clear, concise title.">
+            <Input.ClearButton ariaLabel="clear workspace" />
+            <Input.Button>Check</Input.Button>
+          </Input>
+        ),
       },
       {
         name: "TextArea",
@@ -462,6 +468,7 @@ const docs = [
         props: [
           { name: "tone", type: `"neutral" | "accent" | "success" | "warning" | "danger"`, defaultValue: `"neutral"`, description: "Notice tone." },
           { name: "action", type: "ReactNode", defaultValue: "-", description: "Action slot." },
+          { name: "compact", type: "boolean", defaultValue: "false", description: "Tighter banner density." },
         ],
         preview: () => <Banner tone="accent" title="Submission assets updated" description="The latest metadata set is ready for review." action={<Button variant="ghost">Open</Button>} />,
       },
@@ -513,6 +520,7 @@ const docs = [
           { name: "open", type: "boolean", defaultValue: "false", description: "Visibility state." },
           { name: "size", type: `"sm" | "md" | "lg" | "full"`, defaultValue: `"md"`, description: "Panel width/height scale." },
           { name: "variant", type: `"floating" | "flat"`, defaultValue: `"floating"`, description: "Surface treatment." },
+          { name: "BottomSheet.Header / HeaderDescription / Footer", type: "compound", defaultValue: "-", description: "Structured header and CTA areas inside children." },
         ],
         preview: () => <div className="docs-inline-surface"><Chip tone="neutral">Open via live demo controls</Chip></div>,
       },
@@ -575,6 +583,8 @@ const docs = [
         description: "Structured row for navigation lists or summary blocks.",
         props: [
           { name: "leading", type: "ReactNode", defaultValue: "-", description: "Leading slot." },
+          { name: "eyebrow", type: "ReactNode", defaultValue: "-", description: "Small supporting label above the title." },
+          { name: "meta", type: "ReactNode", defaultValue: "-", description: "Secondary value in trailing column." },
           { name: "trailing", type: "ReactNode", defaultValue: "-", description: "Trailing slot." },
           { name: "interactive", type: "boolean", defaultValue: "false", description: "Uses button semantics and hover behavior." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Padding scale." },
@@ -585,8 +595,10 @@ const docs = [
             interactive
             variant="accent"
             leading={<Chip tone="warning">!</Chip>}
+            eyebrow="submission"
             title="Review required"
             description="A manual approval is waiting in the queue."
+            meta="now"
             trailing={<Text variant="caption">Open</Text>}
           />
         ),
