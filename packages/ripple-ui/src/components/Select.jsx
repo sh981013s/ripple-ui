@@ -38,9 +38,11 @@ export default function Select({
   ...props
 }) {
   const rootRef = useRef(null);
+  const optionRefs = useRef([]);
   const controlled = value !== undefined;
   const [internalValue, setInternalValue] = useState(controlled ? value : defaultValue);
   const [open, setOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const options = useMemo(() => normalizeOptions(children), [children]);
 
   const currentValue = controlled ? value : internalValue;
@@ -72,6 +74,30 @@ export default function Select({
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const selectedIndex = options.findIndex((option) => option.value === currentValue && !option.disabled);
+    const firstEnabled = options.findIndex((option) => !option.disabled);
+    setHighlightedIndex(selectedIndex >= 0 ? selectedIndex : firstEnabled);
+  }, [open, options, currentValue]);
+
+  useEffect(() => {
+    if (!open || highlightedIndex < 0) return;
+    optionRefs.current[highlightedIndex]?.scrollIntoView({ block: "nearest" });
+  }, [open, highlightedIndex]);
+
+  const moveHighlight = (direction) => {
+    if (!options.length) return;
+    let nextIndex = highlightedIndex;
+    for (let count = 0; count < options.length; count += 1) {
+      nextIndex = (nextIndex + direction + options.length) % options.length;
+      if (!options[nextIndex]?.disabled) {
+        setHighlightedIndex(nextIndex);
+        return;
+      }
+    }
+  };
 
   const commitValue = (nextValue) => {
     if (!controlled) {
@@ -106,9 +132,48 @@ export default function Select({
         onClick={() => {
           if (!disabled) setOpen((prev) => !prev);
         }}
+        onKeyDown={(event) => {
+          if (disabled) return;
+
+          if (!open && ["ArrowDown", "ArrowUp", "Enter", " "].includes(event.key)) {
+            event.preventDefault();
+            setOpen(true);
+            return;
+          }
+
+          if (!open) return;
+
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            moveHighlight(1);
+          } else if (event.key === "ArrowUp") {
+            event.preventDefault();
+            moveHighlight(-1);
+          } else if (event.key === "Home") {
+            event.preventDefault();
+            setHighlightedIndex(options.findIndex((option) => !option.disabled));
+          } else if (event.key === "End") {
+            event.preventDefault();
+            for (let index = options.length - 1; index >= 0; index -= 1) {
+              if (!options[index]?.disabled) {
+                setHighlightedIndex(index);
+                break;
+              }
+            }
+          } else if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            const highlightedOption = options[highlightedIndex];
+            if (highlightedOption && !highlightedOption.disabled) {
+              commitValue(highlightedOption.value);
+            }
+          }
+        }}
         disabled={disabled}
         aria-haspopup="listbox"
         aria-expanded={open}
+        aria-activedescendant={
+          open && highlightedIndex >= 0 ? `${name || label || "select"}-option-${highlightedIndex}` : undefined
+        }
         {...props}
       >
         <span className={cx("rpl-select-value", !currentOption && "is-placeholder")}>
@@ -130,18 +195,24 @@ export default function Select({
       ) : null}
       {open ? (
         <div className="rpl-select-popover" role="listbox" aria-label={typeof label === "string" ? label : "Select options"}>
-          {options.map((option) => {
+          {options.map((option, index) => {
             const selected = option.value === currentValue;
+            const highlighted = index === highlightedIndex;
 
             return (
               <button
+                ref={(node) => {
+                  optionRefs.current[index] = node;
+                }}
+                id={`${name || label || "select"}-option-${index}`}
                 key={String(option.value)}
                 type="button"
                 role="option"
                 aria-selected={selected}
-                className={cx("rpl-select-option", selected && "is-selected")}
+                className={cx("rpl-select-option", selected && "is-selected", highlighted && "is-highlighted")}
                 disabled={option.disabled}
                 onClick={() => !option.disabled && commitValue(option.value)}
+                onMouseEnter={() => setHighlightedIndex(index)}
               >
                 <span>{option.label}</span>
                 {selected ? <span className="rpl-select-option-check">✓</span> : null}

@@ -255,8 +255,15 @@ textarea {
   padding: 14px;
 }
 
+.demo-code-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .demo-code-block {
   margin: 0;
+  flex: 1;
   padding: 12px 14px;
   border-radius: 14px;
   background: #0f1720;
@@ -264,6 +271,10 @@ textarea {
   font-size: 0.82rem;
   line-height: 1.45;
   overflow-x: auto;
+}
+
+.demo-copy-feedback {
+  color: var(--rpl-color-success-strong);
 }
 
 .demo-overview-links {

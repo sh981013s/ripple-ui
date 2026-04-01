@@ -91,6 +91,7 @@ export default function DatePicker({
   const [internalValue, setInternalValue] = useState(controlled ? value : defaultValue);
   const [open, setOpen] = useState(false);
   const [viewDate, setViewDate] = useState(initialDate ?? new Date());
+  const [focusedDate, setFocusedDate] = useState(initialDate ?? new Date());
   const rootRef = useRef(null);
 
   const currentValue = controlled ? value : internalValue;
@@ -103,8 +104,15 @@ export default function DatePicker({
   useEffect(() => {
     if (selectedDate) {
       setViewDate(selectedDate);
+      setFocusedDate(selectedDate);
     }
   }, [currentValue]);
+
+  useEffect(() => {
+    if (open) {
+      setFocusedDate(selectedDate ?? new Date(viewDate));
+    }
+  }, [open, selectedDate, viewDate]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -141,6 +149,15 @@ export default function DatePicker({
       currentTarget: { value: nextValue, name: props.name },
     });
     setOpen(false);
+  };
+
+  const moveFocusedDate = (days) => {
+    setFocusedDate((prev) => {
+      const next = new Date(prev);
+      next.setDate(next.getDate() + days);
+      setViewDate(new Date(next.getFullYear(), next.getMonth(), 1));
+      return next;
+    });
   };
 
   return (
@@ -189,7 +206,35 @@ export default function DatePicker({
         </Text>
       ) : null}
       {open ? (
-        <div className="rpl-datepicker-popover" role="dialog" aria-modal="false">
+        <div
+          className="rpl-datepicker-popover"
+          role="dialog"
+          aria-modal="false"
+          onKeyDown={(event) => {
+            if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              moveFocusedDate(-1);
+            } else if (event.key === "ArrowRight") {
+              event.preventDefault();
+              moveFocusedDate(1);
+            } else if (event.key === "ArrowUp") {
+              event.preventDefault();
+              moveFocusedDate(-7);
+            } else if (event.key === "ArrowDown") {
+              event.preventDefault();
+              moveFocusedDate(7);
+            } else if (event.key === "PageUp") {
+              event.preventDefault();
+              setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
+            } else if (event.key === "PageDown") {
+              event.preventDefault();
+              setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
+            } else if (event.key === "Enter") {
+              event.preventDefault();
+              commitDate(focusedDate);
+            }
+          }}
+        >
           <div className="rpl-datepicker-header">
             <button
               type="button"
@@ -223,6 +268,7 @@ export default function DatePicker({
               const dateValue = formatDate(date);
               const isSelected = currentValue === dateValue;
               const isToday = formatDate(new Date()) === dateValue;
+              const isFocused = formatDate(focusedDate) === dateValue;
 
               return (
                 <button
@@ -233,13 +279,41 @@ export default function DatePicker({
                     !inMonth && "is-muted",
                     isSelected && "is-selected",
                     isToday && "is-today",
+                    isFocused && "is-focused",
                   )}
-                  onClick={() => commitDate(date)}
+                  onClick={() => {
+                    setFocusedDate(date);
+                    commitDate(date);
+                  }}
+                  onMouseEnter={() => setFocusedDate(date)}
                 >
                   {date.getDate()}
                 </button>
               );
             })}
+          </div>
+          <div className="rpl-datepicker-footer">
+            <button type="button" className="rpl-datepicker-footer-button" onClick={() => commitDate(new Date())}>
+              Today
+            </button>
+            {currentValue ? (
+              <button
+                type="button"
+                className="rpl-datepicker-footer-button"
+                onClick={() => {
+                  if (!controlled) {
+                    setInternalValue("");
+                  }
+                  onChange?.({
+                    target: { value: "", name: props.name },
+                    currentTarget: { value: "", name: props.name },
+                  });
+                  setOpen(false);
+                }}
+              >
+                Clear
+              </button>
+            ) : null}
           </div>
         </div>
       ) : null}

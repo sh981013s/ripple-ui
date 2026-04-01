@@ -20,7 +20,6 @@ import {
   Inline,
   SearchField,
   SectionHeader,
-  Snackbar,
   Stack,
   Text,
   TopBar,
@@ -64,6 +63,17 @@ function SidebarNav() {
 
 function DocsOverviewPage() {
   const navigate = useNavigate();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyInstall = async () => {
+    try {
+      await navigator.clipboard.writeText("npm install @ripple-ui/core");
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1600);
+    } catch {
+      setCopied(false);
+    }
+  };
 
   return (
     <Stack gap={20}>
@@ -106,7 +116,13 @@ function DocsOverviewPage() {
           <Card className="demo-howto-card">
             <Stack gap={10}>
               <Text variant="label">Install</Text>
-              <pre className="demo-code-block">npm install @ripple-ui/core</pre>
+              <div className="demo-code-row">
+                <pre className="demo-code-block">npm install @ripple-ui/core</pre>
+                <Button size="small" variant="weak" onClick={handleCopyInstall}>
+                  Copy
+                </Button>
+              </div>
+              {copied ? <Text variant="caption" className="demo-copy-feedback">Copied to clipboard.</Text> : null}
             </Stack>
           </Card>
           <Card className="demo-howto-card">
@@ -232,7 +248,6 @@ function DocsShell() {
   const navigate = useNavigate();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
 
@@ -384,12 +399,6 @@ function DocsShell() {
         </Stack>
       </BottomSheet>
 
-      <Snackbar
-        open={snackbarOpen}
-        align="left"
-        message="Generated docs site loaded successfully."
-        action={<Button variant="ghost" onClick={() => setSnackbarOpen(false)}>Dismiss</Button>}
-      />
     </div>
   );
 }

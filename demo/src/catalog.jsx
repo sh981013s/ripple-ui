@@ -86,6 +86,24 @@ function InteractiveSegmentedPreview() {
   );
 }
 
+function InteractiveSelectorPreview() {
+  const [selected, setSelected] = React.useState("overview");
+
+  return (
+    <Inline gap={16} wrap align="center">
+      <Selector selected={selected === "overview"} onClick={() => setSelected("overview")}>
+        Overview
+      </Selector>
+      <Selector type="arrow" selected={selected === "status"} onClick={() => setSelected("status")}>
+        Status
+      </Selector>
+      <Selector type="clear" selected={selected === "filter"} onClick={() => setSelected("filter")}>
+        Filter
+      </Selector>
+    </Inline>
+  );
+}
+
 function InteractiveDialogPreview() {
   const [open, setOpen] = React.useState(false);
 
@@ -232,19 +250,13 @@ function InteractiveAccordionPreview() {
 }
 
 function InteractiveTooltipPreview() {
-  const [bottomOpen, setBottomOpen] = React.useState(false);
-
   return (
     <Inline gap={12}>
       <Tooltip content="Helpful hint">
         <Button variant="ghost">Hover me</Button>
       </Tooltip>
       <Tooltip content="Shown below" position="bottom">
-        <button
-          type="button"
-          className="demo-tooltip-trigger"
-          onClick={() => setBottomOpen((prev) => !prev)}
-        >
+        <button type="button" className="demo-tooltip-trigger">
           Bottom
         </button>
       </Tooltip>
@@ -531,13 +543,7 @@ const docs = [
           { name: "selected", type: "boolean", defaultValue: "false", description: "Selected state." },
           { name: "type", type: `"underline" | "arrow" | "clear"`, defaultValue: `"underline"`, description: "Visual selector style." },
         ],
-        preview: () => (
-          <Inline gap={16} wrap align="center">
-            <Selector selected>Overview</Selector>
-            <Selector type="arrow">Status</Selector>
-            <Selector type="clear">Filter</Selector>
-          </Inline>
-        ),
+        preview: () => <InteractiveSelectorPreview />,
       },
       {
         name: "IconButton",
@@ -682,7 +688,7 @@ const docs = [
       {
         name: "Select",
         eyebrow: "form",
-        description: "Native select control styled like other inputs.",
+        description: "Custom popover select styled like the shared field system.",
         props: [
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Field size." },
           { name: "variant", type: `"default" | "filled" | "quiet"`, defaultValue: `"default"`, description: "Visual treatment." },
