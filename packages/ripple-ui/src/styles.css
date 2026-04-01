@@ -273,9 +273,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
-  background: rgba(25, 31, 40, 0.34);
-  backdrop-filter: blur(10px);
+  padding: 16px;
+  background: rgba(25, 31, 40, 0.32);
+  backdrop-filter: blur(12px);
   animation: rpl-fade-in 180ms var(--rpl-ease-standard);
 }
 
@@ -286,7 +286,7 @@
   padding: 24px;
   background: #ffffff;
   border: 1px solid var(--rpl-color-line);
-  border-radius: 28px;
+  border-radius: 24px;
   box-shadow: var(--rpl-shadow-sheet);
   animation: rpl-dialog-in 220ms var(--rpl-ease-standard);
 }
@@ -314,12 +314,12 @@
 
 .rpl-top-bar-inner {
   min-height: 56px;
-  padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(229, 232, 235, 0.92);
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(229, 232, 235, 0.96);
   border-radius: 18px;
   box-shadow: var(--rpl-shadow-card);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(18px);
 }
 
 .rpl-top-bar-leading,
@@ -338,18 +338,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1px;
+  gap: 0;
   text-align: center;
 }
 
 .rpl-top-bar-title {
   color: var(--rpl-color-text-primary);
-  line-height: 1.15;
+  line-height: 1.12;
 }
 
 .rpl-top-bar-subtitle {
   color: var(--rpl-color-text-secondary);
-  line-height: 1.2;
+  line-height: 1.18;
 }
 
 .rpl-sheet-backdrop {
@@ -369,10 +369,10 @@
   width: min(720px, 100%);
   max-height: min(82dvh, 760px);
   overflow: auto;
-  padding: 14px 20px 24px;
+  padding: 12px 20px 24px;
   background: #ffffff;
   border: 1px solid var(--rpl-color-line);
-  border-radius: 28px 28px 0 0;
+  border-radius: 24px 24px 0 0;
   box-shadow: var(--rpl-shadow-sheet);
   animation: rpl-sheet-in 220ms var(--rpl-ease-standard);
 }
@@ -455,22 +455,22 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 52px;
+  min-height: 50px;
   padding: 0 16px;
   background: #ffffff;
   border: 1px solid var(--rpl-color-line);
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: var(--rpl-shadow-inset);
   transition: border-color 160ms var(--rpl-ease-standard), box-shadow 160ms var(--rpl-ease-standard), background-color 160ms var(--rpl-ease-standard);
 }
 
 .rpl-input-shell-sm {
-  min-height: 44px;
-  padding: 0 14px;
+  min-height: 42px;
+  padding: 0 13px;
 }
 
 .rpl-input-shell-lg {
-  min-height: 58px;
+  min-height: 56px;
   padding: 0 18px;
 }
 
@@ -491,7 +491,7 @@
 
 .rpl-input-shell:focus-within {
   border-color: #9fc2ff;
-  box-shadow: 0 0 0 4px rgba(49, 130, 246, 0.12);
+  box-shadow: 0 0 0 3px rgba(49, 130, 246, 0.12);
 }
 
 .rpl-input-shell-error {
@@ -810,9 +810,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 15px 16px;
   border: 1px solid var(--rpl-color-line);
-  border-radius: 18px;
+  border-radius: 16px;
   background: #ffffff;
   box-shadow: var(--rpl-shadow-inset);
   text-align: left;
@@ -820,11 +820,11 @@
 }
 
 .rpl-list-row-sm {
-  padding: 11px 14px;
+  padding: 12px 14px;
 }
 
 .rpl-list-row-lg {
-  padding: 17px 18px;
+  padding: 18px;
 }
 
 .rpl-list-row-muted {
@@ -843,8 +843,8 @@
 
 .rpl-list-row-interactive:hover {
   transform: translateY(0);
-  border-color: #d7dde4;
-  background: #fbfdff;
+  border-color: #dbe2ea;
+  background: #fcfdff;
 }
 
 .rpl-list-row-interactive:active {
@@ -861,7 +861,7 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .rpl-list-row-title {
@@ -871,7 +871,7 @@
 
 .rpl-list-row-description {
   color: var(--rpl-color-text-tertiary);
-  line-height: 1.35;
+  line-height: 1.32;
 }
 
 .rpl-stepper {
@@ -1157,9 +1157,9 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  padding: 16px 18px;
+  padding: 16px;
   border: 1px solid var(--rpl-color-line);
-  border-radius: 18px;
+  border-radius: 16px;
   box-shadow: var(--rpl-shadow-inset);
 }
 
@@ -1199,7 +1199,7 @@
 .rpl-notice-copy {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .rpl-notice-title {
@@ -1271,9 +1271,9 @@
 }
 
 .rpl-toast {
-  padding: 14px 16px;
+  padding: 13px 15px;
   border: 1px solid var(--rpl-color-line);
-  border-radius: 20px;
+  border-radius: 16px;
   background: #ffffff;
   box-shadow: var(--rpl-shadow-card), var(--rpl-shadow-inset);
 }
@@ -1371,10 +1371,10 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  min-height: 50px;
+  min-height: 48px;
   max-width: min(560px, calc(100% - 24px));
-  padding: 12px 16px;
-  border-radius: 16px;
+  padding: 11px 15px;
+  border-radius: 14px;
   transform: translateX(-50%);
   box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18);
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -1420,14 +1420,14 @@
 }
 
 .rpl-tab {
-  min-height: 36px;
-  padding: 0 13px;
+  min-height: 34px;
+  padding: 0 12px;
   border: 0;
   background: transparent;
   border-radius: 999px;
   color: var(--rpl-color-text-secondary);
   font: inherit;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   cursor: pointer;
@@ -1447,19 +1447,19 @@
   gap: 3px;
   padding: 3px;
   border: 1px solid #eceff3;
-  border-radius: 18px;
-  background: #f7fafc;
+  border-radius: 16px;
+  background: #f5f7fa;
 }
 
 .rpl-segmented-option {
-  min-height: 36px;
-  padding: 0 13px;
+  min-height: 34px;
+  padding: 0 12px;
   border: 0;
-  border-radius: 14px;
+  border-radius: 12px;
   background: transparent;
   color: var(--rpl-color-text-secondary);
   font: inherit;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 160ms var(--rpl-ease-standard), color 160ms var(--rpl-ease-standard), box-shadow 160ms var(--rpl-ease-standard), transform 160ms var(--rpl-ease-standard);

@@ -14,8 +14,8 @@ body {
   margin: 0;
   font-family: "Toss Product Sans", "Apple SD Gothic Neo", "SF Pro Display", "SF Pro KR", -apple-system, BlinkMacSystemFont, sans-serif;
   background:
-    radial-gradient(circle at top, rgba(49, 130, 246, 0.16), transparent 30%),
-    linear-gradient(180deg, #fbfdff 0%, #f3f7fb 44%, #edf3f8 100%);
+    radial-gradient(circle at top, rgba(49, 130, 246, 0.09), transparent 28%),
+    linear-gradient(180deg, #fbfcfe 0%, #f5f8fb 42%, #eff3f7 100%);
   color: var(--rpl-color-text-primary);
 }
 
@@ -28,14 +28,14 @@ textarea {
 
 .demo-app {
   min-height: 100vh;
-  padding: 28px 20px 56px;
+  padding: 24px 20px 56px;
 }
 
 .demo-shell {
-  width: min(1240px, 100%);
+  width: min(1200px, 100%);
   margin: 0 auto;
   display: grid;
-  gap: 24px;
+  gap: 20px;
 }
 
 .demo-hero {
@@ -43,18 +43,18 @@ textarea {
   align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  padding: 4px 4px 8px;
+  padding: 8px 4px 4px;
 }
 
 .demo-hero-copy {
   display: grid;
-  gap: 8px;
-  max-width: 720px;
+  gap: 10px;
+  max-width: 680px;
 }
 
 .demo-hero-eyebrow {
   color: var(--rpl-color-text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   text-transform: uppercase;
@@ -63,17 +63,17 @@ textarea {
 .demo-hero-title {
   margin: 0;
   color: var(--rpl-color-text-primary);
-  font-size: clamp(2.8rem, 5vw, 4.4rem);
-  line-height: 0.94;
-  letter-spacing: -0.06em;
+  font-size: clamp(2.6rem, 4.8vw, 4rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
 }
 
 .demo-hero-description {
   margin: 0;
-  max-width: 56ch;
+  max-width: 48ch;
   color: var(--rpl-color-text-secondary);
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 0.96rem;
+  line-height: 1.52;
 }
 
 .demo-hero-actions {
@@ -85,7 +85,7 @@ textarea {
 
 .demo-layout {
   display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
+  grid-template-columns: 240px minmax(0, 1fr);
   gap: 20px;
   align-items: start;
 }
@@ -98,19 +98,19 @@ textarea {
 .demo-sidebar-card {
   padding: 16px;
   border: 1px solid var(--rpl-color-line);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: var(--rpl-shadow-card);
-  backdrop-filter: blur(18px);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--rpl-shadow-card), var(--rpl-shadow-inset);
+  backdrop-filter: blur(16px);
 }
 
 .docs-card-grid {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .docs-card {
-  padding: 16px;
+  padding: 14px;
 }
 
 .demo-nav {
@@ -120,7 +120,7 @@ textarea {
 
 .demo-nav-link {
   display: block;
-  padding: 9px 12px;
+  padding: 8px 12px;
   border-radius: 12px;
   color: var(--rpl-color-text-secondary);
   text-decoration: none;
@@ -134,12 +134,12 @@ textarea {
 
 .demo-content {
   display: grid;
-  gap: 40px;
+  gap: 36px;
 }
 
 .demo-section {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   scroll-margin-top: 100px;
 }
 
@@ -150,10 +150,10 @@ textarea {
 }
 
 .docs-preview {
-  padding: 16px;
+  padding: 14px;
   border: 1px solid var(--rpl-color-line);
-  border-radius: 18px;
-  background: #fbfdff;
+  border-radius: 16px;
+  background: #fbfcfe;
 }
 
 .docs-inline-surface {
@@ -161,7 +161,7 @@ textarea {
   min-height: 80px;
   padding: 16px;
   border: 1px dashed #d7e2ee;
-  border-radius: 18px;
+  border-radius: 16px;
   overflow: hidden;
 }
 
@@ -172,17 +172,17 @@ textarea {
 
 .docs-props-table {
   border: 1px solid var(--rpl-color-line);
-  border-radius: 18px;
+  border-radius: 16px;
   overflow: hidden;
   background: #ffffff;
 }
 
 .docs-props-head {
-  padding: 12px 14px;
+  padding: 11px 14px;
   border-bottom: 1px solid var(--rpl-color-line);
-  background: #f7fafc;
+  background: #fafbfd;
   color: var(--rpl-color-text-secondary);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -193,11 +193,11 @@ textarea {
 }
 
 .docs-props-grid > div {
-  padding: 12px 14px;
+  padding: 11px 14px;
   border-top: 1px solid #eef2f6;
   min-width: 0;
-  font-size: 0.9rem;
-  line-height: 1.45;
+  font-size: 0.88rem;
+  line-height: 1.42;
 }
 
 .docs-prop-name {
@@ -209,7 +209,7 @@ textarea {
 .docs-prop-default {
   color: var(--rpl-color-text-secondary);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
 }
 
 .docs-prop-description {
@@ -219,7 +219,7 @@ textarea {
 .demo-overlay-copy {
   margin: 0;
   color: var(--rpl-color-text-secondary);
-  font-size: 0.96rem;
+  font-size: 0.94rem;
   line-height: 1.5;
 }
 

@@ -1,10 +1,10 @@
 :root {
   color-scheme: light;
 
-  --rpl-color-bg: #f2f4f6;
+  --rpl-color-bg: #f6f8fb;
   --rpl-color-surface: #ffffff;
-  --rpl-color-surface-muted: #f9fafb;
-  --rpl-color-surface-accent: #f0f6ff;
+  --rpl-color-surface-muted: #f9fafc;
+  --rpl-color-surface-accent: #eef5ff;
   --rpl-color-surface-success: #f3fbf6;
   --rpl-color-surface-warning: #fff7f0;
 
@@ -21,10 +21,10 @@
   --rpl-color-warning: #ff8a3d;
   --rpl-color-danger: #d14343;
 
-  --rpl-radius-sm: 12px;
-  --rpl-radius-md: 16px;
-  --rpl-radius-lg: 22px;
-  --rpl-radius-xl: 28px;
+  --rpl-radius-sm: 10px;
+  --rpl-radius-md: 14px;
+  --rpl-radius-lg: 20px;
+  --rpl-radius-xl: 26px;
 
   --rpl-space-1: 4px;
   --rpl-space-2: 8px;
@@ -34,8 +34,8 @@
   --rpl-space-6: 24px;
   --rpl-space-7: 32px;
 
-  --rpl-shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.04);
-  --rpl-shadow-sheet: 0 24px 60px rgba(15, 23, 42, 0.16);
+  --rpl-shadow-card: 0 1px 2px rgba(15, 23, 42, 0.03), 0 10px 24px rgba(15, 23, 42, 0.035);
+  --rpl-shadow-sheet: 0 20px 48px rgba(15, 23, 42, 0.14);
   --rpl-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.96);
   --rpl-ease-standard: cubic-bezier(0.2, 0, 0, 1);
 }
