@@ -5,6 +5,7 @@ export default function DatePicker({
   label,
   hint,
   error,
+  before = "📅",
   size = "md",
   variant = "default",
   className = "",
@@ -20,6 +21,7 @@ export default function DatePicker({
       size={size}
       variant={variant}
       className={className}
+      before={<span className="rpl-input-leading" aria-hidden="true">{before}</span>}
       inputClassName={`rpl-date-input ${inputClassName}`.trim()}
       {...props}
     />

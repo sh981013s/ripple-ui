@@ -573,6 +573,9 @@
 
 .rpl-searchbar .rpl-input-shell {
   border-radius: 999px;
+  background: #f4f6f8;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .rpl-searchbar-icon {
@@ -585,7 +588,7 @@
 }
 
 .rpl-date-input::-webkit-calendar-picker-indicator {
-  opacity: 0.72;
+  opacity: 0.54;
   cursor: pointer;
 }
 
@@ -642,11 +645,22 @@
   color: var(--rpl-color-text-primary);
 }
 
-.rpl-input-action-button.rpl-button {
+.rpl-input-inline-action {
   min-height: 32px;
   padding: 0 12px;
+  border: 0;
   border-radius: 10px;
-  font-size: 0.86rem;
+  background: #edf4ff;
+  color: var(--rpl-color-accent-strong);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 120ms var(--rpl-ease-standard), color 120ms var(--rpl-ease-standard);
+}
+
+.rpl-input-inline-action:hover {
+  background: #e3eeff;
 }
 
 .rpl-input-message {
@@ -1533,6 +1547,11 @@
   animation: rpl-snackbar-in 220ms var(--rpl-ease-standard);
 }
 
+.rpl-snackbar-left {
+  left: 20px;
+  transform: none;
+}
+
 .rpl-snackbar-default {
   background: #2f3945;
   color: #ffffff;
@@ -1571,6 +1590,11 @@
   border-radius: 999px;
 }
 
+.rpl-tabs-stretch {
+  display: flex;
+  width: 100%;
+}
+
 .rpl-tab {
   min-height: 34px;
   padding: 0 12px;
@@ -1585,6 +1609,10 @@
   cursor: pointer;
   transition: background-color 160ms var(--rpl-ease-standard), color 160ms var(--rpl-ease-standard), box-shadow 160ms var(--rpl-ease-standard), transform 160ms var(--rpl-ease-standard);
   -webkit-tap-highlight-color: transparent;
+}
+
+.rpl-tabs-stretch .rpl-tab {
+  flex: 1 1 0;
 }
 
 .rpl-tab-active {

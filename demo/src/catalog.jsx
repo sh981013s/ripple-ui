@@ -344,13 +344,10 @@ const docs = [
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Field height scale." },
           { name: "variant", type: `"default" | "filled" | "quiet"`, defaultValue: `"default"`, description: "Visual treatment." },
           { name: "before / after", type: "ReactNode", defaultValue: "-", description: "Primary field-side accessories." },
-          { name: "children", type: "Input.ClearButton | Input.PasswordToggle | Input.Button", defaultValue: "-", description: "Inline field controls." },
+          { name: "clearable / actionLabel / passwordToggle", type: "boolean | string", defaultValue: "-", description: "Built-in inline controls." },
         ],
         preview: () => (
-          <Input label="Workspace name" placeholder="Enter workspace name" hint="Use a clear, concise title.">
-            <Input.ClearButton ariaLabel="clear workspace" />
-            <Input.Button>Check</Input.Button>
-          </Input>
+          <Input label="Workspace name" placeholder="Enter workspace name" hint="Use a clear, concise title." clearable actionLabel="Check" />
         ),
       },
       {
@@ -520,7 +517,7 @@ const docs = [
           { name: "open", type: "boolean", defaultValue: "false", description: "Visibility state." },
           { name: "size", type: `"sm" | "md" | "lg" | "full"`, defaultValue: `"md"`, description: "Panel width/height scale." },
           { name: "variant", type: `"floating" | "flat"`, defaultValue: `"floating"`, description: "Surface treatment." },
-          { name: "BottomSheet.Header / HeaderDescription / Footer", type: "compound", defaultValue: "-", description: "Structured header and CTA areas inside children." },
+          { name: "header / description / footer", type: "ReactNode", defaultValue: "-", description: "Structured header and CTA areas." },
         ],
         preview: () => <div className="docs-inline-surface"><Chip tone="neutral">Open via live demo controls</Chip></div>,
       },

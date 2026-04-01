@@ -9,13 +9,13 @@ const toneClass = {
   danger: "rpl-snackbar-danger",
 };
 
-export default function Snackbar({ open, message, action, tone = "default", className = "" }) {
+export default function Snackbar({ open, message, action, tone = "default", align = "center", className = "" }) {
   if (!open) {
     return null;
   }
 
   return (
-    <div className={cx("rpl-snackbar", toneClass[tone] || toneClass.default, className)} role="status" aria-live="polite">
+    <div className={cx("rpl-snackbar", `rpl-snackbar-${align}`, toneClass[tone] || toneClass.default, className)} role="status" aria-live="polite">
       <Text as="span" variant="body" className="rpl-snackbar-message">
         {message}
       </Text>

@@ -6,7 +6,7 @@ export default function SearchBar({ className = "", leading = "⌕", ...props })
   return (
     <Input
       className={cx("rpl-searchbar", className)}
-      leading={<span className="rpl-searchbar-icon" aria-hidden="true">{leading}</span>}
+      before={<span className="rpl-searchbar-icon" aria-hidden="true">{leading}</span>}
       variant="filled"
       {...props}
     />

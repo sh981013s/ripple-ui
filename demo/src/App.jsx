@@ -101,19 +101,18 @@ export default function App() {
         open={sheetOpen}
         onClose={() => setSheetOpen(false)}
         size="lg"
+        header="Bottom sheet example"
+        description="Live overlay sample from the generated docs page."
+        footer={<Button display="block" onClick={() => setSheetOpen(false)}>Done</Button>}
       >
-        <BottomSheet.Header>Bottom sheet example</BottomSheet.Header>
-        <BottomSheet.HeaderDescription>Live overlay sample from the generated docs page.</BottomSheet.HeaderDescription>
         <Stack gap={16}>
           <p className="demo-overlay-copy">The sheet should feel anchored, breathable, and more action-oriented than the centered dialog.</p>
         </Stack>
-        <BottomSheet.Footer>
-          <Button display="block" onClick={() => setSheetOpen(false)}>Done</Button>
-        </BottomSheet.Footer>
       </BottomSheet>
 
       <Snackbar
         open={snackbarOpen}
+        align="left"
         message="Generated docs page loaded successfully."
         action={<Button variant="ghost" onClick={() => setSnackbarOpen(false)}>Dismiss</Button>}
       />

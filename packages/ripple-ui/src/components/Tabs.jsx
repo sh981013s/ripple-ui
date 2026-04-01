@@ -1,9 +1,9 @@
 import React from "react";
 import { cx } from "../utils/cx.js";
 
-export function Tabs({ className = "", children, ...props }) {
+export function Tabs({ className = "", stretch = false, children, ...props }) {
   return (
-    <div className={cx("rpl-tabs", className)} role="tablist" {...props}>
+    <div className={cx("rpl-tabs", stretch && "rpl-tabs-stretch", className)} role="tablist" {...props}>
       {children}
     </div>
   );
