@@ -1,0 +1,192 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Toss Product Sans", "Apple SD Gothic Neo", "SF Pro Display", "SF Pro KR", -apple-system, BlinkMacSystemFont, sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(49, 130, 246, 0.16), transparent 30%),
+    linear-gradient(180deg, #fbfdff 0%, #f3f7fb 44%, #edf3f8 100%);
+  color: var(--rpl-color-text-primary);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.demo-app {
+  min-height: 100vh;
+  padding: 28px 20px 56px;
+}
+
+.demo-shell {
+  width: min(1240px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 20px;
+}
+
+.demo-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.demo-sidebar {
+  position: sticky;
+  top: 96px;
+}
+
+.demo-sidebar-card {
+  padding: 18px;
+  border: 1px solid var(--rpl-color-line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: var(--rpl-shadow-card);
+  backdrop-filter: blur(18px);
+}
+
+.docs-card-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.docs-card {
+  padding: 18px;
+}
+
+.demo-nav {
+  display: grid;
+  gap: 8px;
+}
+
+.demo-nav-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: var(--rpl-color-text-secondary);
+  text-decoration: none;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.demo-nav-link:hover {
+  background: #f1f6fc;
+  color: var(--rpl-color-text-primary);
+}
+
+.demo-content {
+  display: grid;
+  gap: 36px;
+}
+
+.demo-section {
+  display: grid;
+  gap: 18px;
+  scroll-margin-top: 100px;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.docs-preview {
+  padding: 18px;
+  border: 1px solid var(--rpl-color-line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+}
+
+.docs-inline-surface {
+  position: relative;
+  min-height: 80px;
+  padding: 16px;
+  border: 1px dashed #d7e2ee;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.docs-surface-box {
+  min-width: 120px;
+  padding: 18px;
+}
+
+.docs-props-table {
+  border: 1px solid var(--rpl-color-line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.docs-props-head {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--rpl-color-line);
+  background: #f7fafc;
+  color: var(--rpl-color-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.docs-props-grid {
+  display: grid;
+  grid-template-columns: 140px 180px 110px minmax(0, 1fr);
+}
+
+.docs-props-grid > div {
+  padding: 12px 14px;
+  border-top: 1px solid #eef2f6;
+  min-width: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.docs-prop-name {
+  color: var(--rpl-color-text-primary);
+  font-weight: 700;
+}
+
+.docs-prop-type,
+.docs-prop-default {
+  color: var(--rpl-color-text-secondary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82rem;
+}
+
+.docs-prop-description {
+  color: var(--rpl-color-text-secondary);
+}
+
+@media (max-width: 980px) {
+  .demo-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 720px) {
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-props-grid {
+    grid-template-columns: 1fr;
+  }
+}
