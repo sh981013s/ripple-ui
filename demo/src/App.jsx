@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   BrowserRouter,
   Link,
@@ -17,8 +17,8 @@ import {
   Card,
   Chip,
   Dialog,
-  IconButton,
   Inline,
+  SearchField,
   SectionHeader,
   Snackbar,
   Stack,
@@ -32,6 +32,16 @@ import catalog, {
   getComponentDocs,
   getSectionDocs,
 } from "./catalog.jsx";
+
+function ScrollToTop() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [location.pathname]);
+
+  return null;
+}
 
 function SidebarNav() {
   return (
@@ -61,7 +71,7 @@ function DocsOverviewPage() {
         <div className="demo-hero-copy">
           <span className="demo-hero-eyebrow">Component Library</span>
           <h1 className="demo-hero-title">Ripple UI</h1>
-          <p className="demo-hero-description">A product-focused component library tuned toward calm, dense mobile surfaces.</p>
+          <p className="demo-hero-description">Calm product surfaces, mobile-first density, and Toss-inspired interaction patterns.</p>
           <Inline gap={8} wrap>
             <Chip tone="accent">Core</Chip>
             <Chip tone="neutral">Routing docs</Chip>
@@ -75,8 +85,38 @@ function DocsOverviewPage() {
         compact
         eyebrow="overview"
         title="Designed for calm product surfaces"
-        description="The docs site is now route-driven so sections and individual components can be linked directly."
+        description="The docs site is route-driven, searchable, and focused on real product composition instead of isolated snippets only."
       />
+
+      <section className="demo-section">
+        <SectionHeader
+          eyebrow="how to use"
+          title="Use Ripple UI in your product"
+          description="Install the package, review the docs routes, and adopt it where compact mobile-first product surfaces matter."
+        />
+        <div className="demo-howto-grid">
+          <Card className="demo-howto-card">
+            <Stack gap={10}>
+              <Text variant="label">GitHub</Text>
+              <a className="demo-inline-link" href="https://github.com/sh981013s/ripple-ui" target="_blank" rel="noreferrer">
+                github.com/sh981013s/ripple-ui
+              </a>
+            </Stack>
+          </Card>
+          <Card className="demo-howto-card">
+            <Stack gap={10}>
+              <Text variant="label">Install</Text>
+              <pre className="demo-code-block">npm install @ripple-ui/core</pre>
+            </Stack>
+          </Card>
+          <Card className="demo-howto-card">
+            <Stack gap={10}>
+              <Text variant="label">Best for</Text>
+              <Text variant="caption">Account, commerce, dashboard, fintech, workflow, and mobile-first internal product surfaces.</Text>
+            </Stack>
+          </Card>
+        </div>
+      </section>
 
       <section className="demo-section">
         <SectionHeader
@@ -189,11 +229,14 @@ function DocsContent() {
 
 function DocsShell() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
 
-  const totalComponents = useMemo(() => getAllDocEntries().length, []);
+  const entries = useMemo(() => getAllDocEntries(), []);
+  const totalComponents = entries.length;
   const routeLabel = useMemo(() => {
     if (location.pathname === "/") return "Overview";
     const componentMatch = docsCatalog
@@ -204,16 +247,58 @@ function DocsShell() {
     return sectionMatch?.label ?? "Docs";
   }, [location.pathname]);
 
+  const suggestions = useMemo(() => {
+    const q = searchValue.trim().toLowerCase();
+    if (!q) return [];
+    return entries
+      .filter((entry) =>
+        entry.name.toLowerCase().includes(q) ||
+        entry.sectionLabel.toLowerCase().includes(q) ||
+        entry.description.toLowerCase().includes(q),
+      )
+      .slice(0, 6);
+  }, [entries, searchValue]);
+
+  const handleSelectSuggestion = (path) => {
+    navigate(path);
+    setSearchValue("");
+  };
+
   return (
     <div className="demo-app">
+      <ScrollToTop />
       <div className="demo-shell">
         <TopBar
           title="Ripple UI"
           subtitleTop="Design System"
           subtitleBottom={routeLabel}
           align="left"
-          leading={<IconButton tone="subtle" aria-label="menu">≡</IconButton>}
-          trailing={<Chip tone="accent">core</Chip>}
+          trailing={
+            <div className="demo-topbar-search">
+              <SearchField
+                aria-label="Search components"
+                placeholder="Search components"
+                value={searchValue}
+                onChange={(event) => setSearchValue(event.target.value)}
+                onClear={() => setSearchValue("")}
+              />
+              {suggestions.length ? (
+                <div className="demo-search-suggestions">
+                  {suggestions.map((entry) => (
+                    <button
+                      key={entry.path}
+                      type="button"
+                      className="demo-search-suggestion"
+                      onClick={() => handleSelectSuggestion(entry.path)}
+                    >
+                      <span className="demo-search-suggestion-title">{entry.name}</span>
+                      <span className="demo-search-suggestion-meta">{entry.sectionLabel}</span>
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          }
         />
 
         <div className="demo-layout">
@@ -252,7 +337,7 @@ function DocsShell() {
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
         title="Review dialog"
-        description="Dialogs and sheets are still controlled as live examples."
+        description="Dialogs and sheets are controlled from the docs shell so examples do not hijack component pages."
         footer={<Button display="block" onClick={() => setDialogOpen(false)}>Close</Button>}
       >
         <Stack gap={16}>
@@ -265,7 +350,7 @@ function DocsShell() {
         onClose={() => setSheetOpen(false)}
         size="lg"
         header="Bottom sheet example"
-        description="Live overlay sample from the generated docs page."
+        description="Live overlay sample from the generated docs shell."
         footer={<Button display="block" onClick={() => setSheetOpen(false)}>Done</Button>}
       >
         <Stack gap={16}>

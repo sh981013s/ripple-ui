@@ -626,7 +626,11 @@ const docs = [
         ],
         preview: () => (
           <div className="docs-inline-surface">
-            <AlertDialog open title="Session expired" description="Please sign in again to continue." />
+            <Stack gap={10}>
+              <Text variant="label">Alert pattern</Text>
+              <Text variant="caption">Single confirm CTA for blocking status or acknowledgement flows.</Text>
+              <Button size="medium">Open alert dialog</Button>
+            </Stack>
           </div>
         ),
       },
@@ -640,7 +644,11 @@ const docs = [
         ],
         preview: () => (
           <div className="docs-inline-surface">
-            <ConfirmDialog open title="Delete workspace?" description="This action cannot be undone." tone="danger" />
+            <Stack gap={10}>
+              <Text variant="label">Confirm pattern</Text>
+              <Text variant="caption">Dual-action confirmation for destructive decisions.</Text>
+              <Button color="danger" size="medium">Open confirm dialog</Button>
+            </Stack>
           </div>
         ),
       },

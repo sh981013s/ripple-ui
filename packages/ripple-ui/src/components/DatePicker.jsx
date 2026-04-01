@@ -5,6 +5,8 @@ export default function DatePicker({
   label,
   hint,
   error,
+  validationState,
+  validationMessage,
   before = "📅",
   size = "md",
   variant = "default",
@@ -14,15 +16,19 @@ export default function DatePicker({
 }) {
   return (
     <Input
-      type="date"
+      type="text"
       label={label}
       hint={hint}
       error={error}
+      validationState={validationState}
+      validationMessage={validationMessage}
       size={size}
       variant={variant}
       className={className}
       before={<span className="rpl-input-leading" aria-hidden="true">{before}</span>}
       inputClassName={`rpl-date-input ${inputClassName}`.trim()}
+      inputMode="numeric"
+      placeholder={props.placeholder ?? "YYYY-MM-DD"}
       {...props}
     />
   );
