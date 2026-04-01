@@ -10,6 +10,7 @@ export { default as AlertDialog } from "./components/AlertDialog.jsx";
 export { default as ConfirmDialog } from "./components/ConfirmDialog.jsx";
 export { default as Chip } from "./components/Chip.jsx";
 export { default as Text } from "./components/Text.jsx";
+export { default as Icon, iconNames } from "./components/Icon.jsx";
 export { default as IconButton } from "./components/IconButton.jsx";
 export { Tabs, Tab } from "./components/Tabs.jsx";
 export { default as InfoRow } from "./components/InfoRow.jsx";

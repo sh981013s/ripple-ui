@@ -332,6 +332,26 @@ textarea {
   padding: 18px;
 }
 
+.docs-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.docs-icon-card {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 14px 10px;
+  border: 1px solid var(--rpl-color-line);
+  border-radius: 16px;
+  background: #fbfcfe;
+  color: var(--rpl-color-text-secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
 .docs-props-table {
   border: 1px solid var(--rpl-color-line);
   border-radius: 16px;

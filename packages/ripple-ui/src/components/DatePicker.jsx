@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { cx } from "../utils/cx.js";
+import Icon from "./Icon.jsx";
 import Text from "./Text.jsx";
 
 function pad(value) {
@@ -15,56 +16,25 @@ function parseDate(value) {
   if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
   const [year, month, day] = value.split("-").map(Number);
   const date = new Date(year, month - 1, day);
-  if (
-    date.getFullYear() !== year ||
-    date.getMonth() !== month - 1 ||
-    date.getDate() !== day
-  ) {
+  if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
     return null;
   }
   return date;
 }
 
-function getMonthMatrix(baseDate) {
-  const year = baseDate.getFullYear();
-  const month = baseDate.getMonth();
-  const firstDay = new Date(year, month, 1);
-  const startWeekday = firstDay.getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const daysInPrevMonth = new Date(year, month, 0).getDate();
-
-  const cells = [];
-
-  for (let i = startWeekday - 1; i >= 0; i -= 1) {
-    cells.push({
-      date: new Date(year, month - 1, daysInPrevMonth - i),
-      inMonth: false,
-    });
-  }
-
-  for (let day = 1; day <= daysInMonth; day += 1) {
-    cells.push({
-      date: new Date(year, month, day),
-      inMonth: true,
-    });
-  }
-
-  while (cells.length % 7 !== 0) {
-    const nextDay = cells.length - (startWeekday + daysInMonth) + 1;
-    cells.push({
-      date: new Date(year, month + 1, nextDay),
-      inMonth: false,
-    });
-  }
-
-  const weeks = [];
-  for (let index = 0; index < cells.length; index += 7) {
-    weeks.push(cells.slice(index, index + 7));
-  }
-  return weeks;
+function clampDay(year, month, day) {
+  const maxDay = new Date(year, month, 0).getDate();
+  return Math.min(day, maxDay);
 }
 
-const weekdayLabels = ["S", "M", "T", "W", "T", "F", "S"];
+function updateDatePart(date, part, value) {
+  const year = part === "year" ? value : date.getFullYear();
+  const month = part === "month" ? value : date.getMonth() + 1;
+  const day = clampDay(year, month, part === "day" ? value : date.getDate());
+  return new Date(year, month - 1, day);
+}
+
+const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 export default function DatePicker({
   label,
@@ -74,7 +44,7 @@ export default function DatePicker({
   success,
   validationState = "default",
   validationMessage,
-  before = "📅",
+  before,
   size = "md",
   variant = "default",
   className = "",
@@ -84,35 +54,40 @@ export default function DatePicker({
   onChange,
   placeholder = "YYYY-MM-DD",
   disabled = false,
+  minYear = 2000,
+  maxYear = 2035,
   ...props
 }) {
   const controlled = value !== undefined;
-  const initialDate = parseDate(controlled ? value : defaultValue);
+  const initialDate = parseDate(controlled ? value : defaultValue) ?? new Date();
   const [internalValue, setInternalValue] = useState(controlled ? value : defaultValue);
   const [open, setOpen] = useState(false);
-  const [viewDate, setViewDate] = useState(initialDate ?? new Date());
-  const [focusedDate, setFocusedDate] = useState(initialDate ?? new Date());
+  const [draftDate, setDraftDate] = useState(initialDate);
   const rootRef = useRef(null);
 
   const currentValue = controlled ? value : internalValue;
   const selectedDate = parseDate(currentValue);
-  const resolvedState =
-    error ? "error" : warning ? "warning" : success ? "success" : validationState;
-  const resolvedMessage =
-    error ?? warning ?? success ?? validationMessage ?? hint;
+  const resolvedState = error ? "error" : warning ? "warning" : success ? "success" : validationState;
+  const resolvedMessage = error ?? warning ?? success ?? validationMessage ?? hint;
+
+  const years = useMemo(() => {
+    const items = [];
+    for (let year = minYear; year <= maxYear; year += 1) {
+      items.push(year);
+    }
+    return items;
+  }, [minYear, maxYear]);
+
+  const days = useMemo(() => {
+    const maxDay = new Date(draftDate.getFullYear(), draftDate.getMonth() + 1, 0).getDate();
+    return Array.from({ length: maxDay }, (_, index) => index + 1);
+  }, [draftDate]);
 
   useEffect(() => {
     if (selectedDate) {
-      setViewDate(selectedDate);
-      setFocusedDate(selectedDate);
+      setDraftDate(selectedDate);
     }
   }, [currentValue]);
-
-  useEffect(() => {
-    if (open) {
-      setFocusedDate(selectedDate ?? new Date(viewDate));
-    }
-  }, [open, selectedDate, viewDate]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -131,15 +106,16 @@ export default function DatePicker({
 
     document.addEventListener("mousedown", handlePointerDown);
     window.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
     return () => {
       document.removeEventListener("mousedown", handlePointerDown);
       window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
     };
   }, [open]);
 
-  const weeks = useMemo(() => getMonthMatrix(viewDate), [viewDate]);
-
-  const commitDate = (nextDate) => {
+  const commitValue = (nextDate) => {
     const nextValue = formatDate(nextDate);
     if (!controlled) {
       setInternalValue(nextValue);
@@ -151,14 +127,20 @@ export default function DatePicker({
     setOpen(false);
   };
 
-  const moveFocusedDate = (days) => {
-    setFocusedDate((prev) => {
-      const next = new Date(prev);
-      next.setDate(next.getDate() + days);
-      setViewDate(new Date(next.getFullYear(), next.getMonth(), 1));
-      return next;
+  const clearValue = () => {
+    if (!controlled) {
+      setInternalValue("");
+    }
+    onChange?.({
+      target: { value: "", name: props.name },
+      currentTarget: { value: "", name: props.name },
     });
+    setOpen(false);
   };
+
+  const pickerLabel = selectedDate
+    ? selectedDate.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
+    : placeholder;
 
   return (
     <div className={cx("rpl-input-field", "rpl-datepicker", className)} ref={rootRef}>
@@ -180,140 +162,134 @@ export default function DatePicker({
         )}
         onClick={() => {
           if (!disabled) {
-            setOpen((prev) => !prev);
+            setDraftDate(selectedDate ?? new Date());
+            setOpen(true);
           }
         }}
         disabled={disabled}
         aria-haspopup="dialog"
         aria-expanded={open}
       >
-        <span className="rpl-input-leading" aria-hidden="true">{before}</span>
-        <span className={cx("rpl-datepicker-value", !currentValue && "is-placeholder", inputClassName)}>
-          {currentValue || placeholder}
+        <span className="rpl-input-leading" aria-hidden="true">
+          {before ?? <Icon name="calendar" size={18} />}
         </span>
-        <span className="rpl-datepicker-calendar-button" aria-hidden="true">🗓</span>
+        <span className={cx("rpl-datepicker-value", !currentValue && "is-placeholder", inputClassName)}>
+          {pickerLabel}
+        </span>
+        <span className="rpl-datepicker-calendar-button" aria-hidden="true">
+          <Icon name="chevronDown" size={16} />
+        </span>
       </button>
       {resolvedMessage ? (
         <Text
           as="span"
           variant="caption"
-          className={cx(
-            "rpl-input-message",
-            resolvedState !== "default" && `rpl-input-message-${resolvedState}`,
-          )}
+          className={cx("rpl-input-message", resolvedState !== "default" && `rpl-input-message-${resolvedState}`)}
         >
           {resolvedMessage}
         </Text>
       ) : null}
-      {open ? (
-        <div
-          className="rpl-datepicker-popover"
-          role="dialog"
-          aria-modal="false"
-          onKeyDown={(event) => {
-            if (event.key === "ArrowLeft") {
-              event.preventDefault();
-              moveFocusedDate(-1);
-            } else if (event.key === "ArrowRight") {
-              event.preventDefault();
-              moveFocusedDate(1);
-            } else if (event.key === "ArrowUp") {
-              event.preventDefault();
-              moveFocusedDate(-7);
-            } else if (event.key === "ArrowDown") {
-              event.preventDefault();
-              moveFocusedDate(7);
-            } else if (event.key === "PageUp") {
-              event.preventDefault();
-              setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1));
-            } else if (event.key === "PageDown") {
-              event.preventDefault();
-              setViewDate((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1));
-            } else if (event.key === "Enter") {
-              event.preventDefault();
-              commitDate(focusedDate);
-            }
-          }}
-        >
-          <div className="rpl-datepicker-header">
-            <button
-              type="button"
-              className="rpl-datepicker-nav"
-              onClick={() => setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() - 1, 1))}
-              aria-label="Previous month"
-            >
-              ‹
-            </button>
-            <div className="rpl-datepicker-title">
-              {viewDate.toLocaleString("en-US", { month: "long", year: "numeric" })}
-            </div>
-            <button
-              type="button"
-              className="rpl-datepicker-nav"
-              onClick={() => setViewDate(new Date(viewDate.getFullYear(), viewDate.getMonth() + 1, 1))}
-              aria-label="Next month"
-            >
-              ›
-            </button>
-          </div>
-          <div className="rpl-datepicker-weekdays">
-            {weekdayLabels.map((labelText) => (
-              <span key={labelText} className="rpl-datepicker-weekday">
-                {labelText}
-              </span>
-            ))}
-          </div>
-          <div className="rpl-datepicker-grid">
-            {weeks.flat().map(({ date, inMonth }) => {
-              const dateValue = formatDate(date);
-              const isSelected = currentValue === dateValue;
-              const isToday = formatDate(new Date()) === dateValue;
-              const isFocused = formatDate(focusedDate) === dateValue;
 
-              return (
-                <button
-                  key={dateValue}
-                  type="button"
-                  className={cx(
-                    "rpl-datepicker-day",
-                    !inMonth && "is-muted",
-                    isSelected && "is-selected",
-                    isToday && "is-today",
-                    isFocused && "is-focused",
-                  )}
-                  onClick={() => {
-                    setFocusedDate(date);
-                    commitDate(date);
-                  }}
-                  onMouseEnter={() => setFocusedDate(date)}
-                >
-                  {date.getDate()}
-                </button>
-              );
-            })}
-          </div>
-          <div className="rpl-datepicker-footer">
-            <button type="button" className="rpl-datepicker-footer-button" onClick={() => commitDate(new Date())}>
-              Today
-            </button>
-            {currentValue ? (
-              <button
-                type="button"
-                className="rpl-datepicker-footer-button"
-                onClick={() => {
-                  if (!controlled) {
-                    setInternalValue("");
-                  }
-                  onChange?.({
-                    target: { value: "", name: props.name },
-                    currentTarget: { value: "", name: props.name },
-                  });
-                  setOpen(false);
-                }}
-              >
-                Clear
+      {open ? (
+        <div className="rpl-datepicker-sheet" role="dialog" aria-modal="true">
+          <button type="button" className="rpl-datepicker-backdrop" aria-label="Close date picker" onClick={() => setOpen(false)} />
+          <div className="rpl-datepicker-panel">
+            <div className="rpl-datepicker-panel-handle" />
+            <div className="rpl-datepicker-panel-header">
+              <div>
+                <Text variant="label" className="rpl-datepicker-panel-eyebrow">Date picker</Text>
+                <Text variant="title">Choose a date</Text>
+              </div>
+              <button type="button" className="rpl-datepicker-icon-button" onClick={() => setOpen(false)} aria-label="Close date picker">
+                <Icon name="close" size={18} />
               </button>
-            ) : null}
+            </div>
+
+            <div className="rpl-datepicker-summary">
+              {draftDate.toLocaleDateString("en-US", {
+                weekday: "short",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </div>
+
+            <div className="rpl-datepicker-wheels">
+              <div className="rpl-datepicker-wheel">
+                <span className="rpl-datepicker-wheel-label">Month</span>
+                <div className="rpl-datepicker-wheel-list">
+                  {monthLabels.map((month, index) => {
+                    const monthNumber = index + 1;
+                    const selected = draftDate.getMonth() + 1 === monthNumber;
+                    return (
+                      <button
+                        key={month}
+                        type="button"
+                        className={cx("rpl-datepicker-wheel-option", selected && "is-selected")}
+                        onClick={() => setDraftDate((prev) => updateDatePart(prev, "month", monthNumber))}
+                      >
+                        {month}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="rpl-datepicker-wheel">
+                <span className="rpl-datepicker-wheel-label">Day</span>
+                <div className="rpl-datepicker-wheel-list">
+                  {days.map((day) => {
+                    const selected = draftDate.getDate() === day;
+                    return (
+                      <button
+                        key={day}
+                        type="button"
+                        className={cx("rpl-datepicker-wheel-option", selected && "is-selected")}
+                        onClick={() => setDraftDate((prev) => updateDatePart(prev, "day", day))}
+                      >
+                        {day}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="rpl-datepicker-wheel">
+                <span className="rpl-datepicker-wheel-label">Year</span>
+                <div className="rpl-datepicker-wheel-list">
+                  {years.map((year) => {
+                    const selected = draftDate.getFullYear() === year;
+                    return (
+                      <button
+                        key={year}
+                        type="button"
+                        className={cx("rpl-datepicker-wheel-option", selected && "is-selected")}
+                        onClick={() => setDraftDate((prev) => updateDatePart(prev, "year", year))}
+                      >
+                        {year}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="rpl-datepicker-panel-footer">
+              <Button variant="ghost" onClick={() => setDraftDate(new Date())}>
+                Today
+              </Button>
+              <Inline gap={10}>
+                {currentValue ? (
+                  <Button variant="ghost" onClick={clearValue}>
+                    Clear
+                  </Button>
+                ) : null}
+                <Button variant="weak" onClick={() => setOpen(false)}>
+                  Cancel
+                </Button>
+                <Button onClick={() => commitValue(draftDate)}>Apply</Button>
+              </Inline>
+            </div>
           </div>
         </div>
       ) : null}

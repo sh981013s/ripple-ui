@@ -12,11 +12,9 @@ import {
 } from "react-router-dom";
 import {
   Banner,
-  BottomSheet,
   Button,
   Card,
   Chip,
-  Dialog,
   Inline,
   SearchField,
   SectionHeader,
@@ -246,8 +244,6 @@ function DocsContent() {
 function DocsShell() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [sheetOpen, setSheetOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
 
@@ -360,10 +356,6 @@ function DocsShell() {
                   <span className="demo-sidebar-meta-label">Coverage</span>
                   <strong className="demo-sidebar-meta-value">{catalog.length} sections · {totalComponents} components</strong>
                 </div>
-                <Inline gap={10} wrap>
-                  <Button variant="ghost" size="large" onClick={() => setDialogOpen(true)}>Dialog</Button>
-                  <Button variant="weak" size="large" onClick={() => setSheetOpen(true)}>Sheet</Button>
-                </Inline>
               </Stack>
             </div>
           </aside>
@@ -373,31 +365,6 @@ function DocsShell() {
           </main>
         </div>
       </div>
-
-      <Dialog
-        open={dialogOpen}
-        onClose={() => setDialogOpen(false)}
-        title="Review dialog"
-        description="Dialogs and sheets are controlled from the docs shell so examples do not hijack component pages."
-        footer={<Button display="block" onClick={() => setDialogOpen(false)}>Close</Button>}
-      >
-        <Stack gap={16}>
-          <p className="demo-overlay-copy">Use this surface to validate spacing, typography and CTA density inside a constrained modal layout.</p>
-        </Stack>
-      </Dialog>
-
-      <BottomSheet
-        open={sheetOpen}
-        onClose={() => setSheetOpen(false)}
-        size="lg"
-        header="Bottom sheet example"
-        description="Live overlay sample from the generated docs shell."
-        footer={<Button display="block" onClick={() => setSheetOpen(false)}>Done</Button>}
-      >
-        <Stack gap={16}>
-          <p className="demo-overlay-copy">The sheet should feel anchored, breathable, and more action-oriented than the centered dialog.</p>
-        </Stack>
-      </BottomSheet>
 
     </div>
   );

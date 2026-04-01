@@ -16,7 +16,9 @@ import {
   Dialog,
   Divider,
   EmptyState,
+  Icon,
   IconButton,
+  iconNames,
   InfoRow,
   Inline,
   Input,
@@ -101,6 +103,19 @@ function InteractiveSelectorPreview() {
         Filter
       </Selector>
     </Inline>
+  );
+}
+
+function InteractiveIconsPreview() {
+  return (
+    <div className="docs-icon-grid">
+      {iconNames.slice(0, 24).map((name) => (
+        <div key={name} className="docs-icon-card">
+          <Icon name={name} size={20} />
+          <span>{name}</span>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -457,6 +472,17 @@ const docs = [
         ),
       },
       {
+        name: "Icon",
+        eyebrow: "identity",
+        description: "System icon set for navigation, product actions, and feedback states.",
+        props: [
+          { name: "name", type: "string", defaultValue: "-", description: "Icon glyph name." },
+          { name: "size", type: "number", defaultValue: "20", description: "Rendered icon size." },
+          { name: "className", type: "string", defaultValue: "-", description: "Additional styling hook." },
+        ],
+        preview: () => <InteractiveIconsPreview />,
+      },
+      {
         name: "Badge",
         eyebrow: "status",
         description: "Compact count or status indicator.",
@@ -692,6 +718,7 @@ const docs = [
         props: [
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Field size." },
           { name: "variant", type: `"default" | "filled" | "quiet"`, defaultValue: `"default"`, description: "Visual treatment." },
+          { name: "searchable", type: "boolean", defaultValue: "true", description: "Show typeahead search in the dropdown." },
           { name: "placeholder", type: "string", defaultValue: "-", description: "Optional placeholder option text." },
           { name: "validationState / validationMessage", type: "state + message", defaultValue: "-", description: "Semantic validation feedback." },
         ],
@@ -700,11 +727,12 @@ const docs = [
       {
         name: "DatePicker",
         eyebrow: "form",
-        description: "Date input variant sharing the same input field system.",
+        description: "Bottom-sheet date picker with wheel-style month, day, and year selection.",
         props: [
           { name: "label", type: "ReactNode", defaultValue: "-", description: "Field label." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Field size." },
           { name: "variant", type: `"default" | "filled" | "quiet"`, defaultValue: `"default"`, description: "Visual treatment." },
+          { name: "minYear / maxYear", type: "number", defaultValue: "2000 / 2035", description: "Year range for the wheel selector." },
           { name: "validationState / validationMessage", type: "state + message", defaultValue: "-", description: "Semantic validation feedback." },
         ],
         preview: () => <InteractiveDatePickerPreview />,
