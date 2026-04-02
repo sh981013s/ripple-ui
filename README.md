@@ -187,5 +187,6 @@ npm run build:demo
 ## Release Flow
 
 - docs deploy to GitHub Pages on pushes to `main`
-- npm publishing runs from GitHub Actions on version tags
+- npm publishing runs automatically from GitHub Actions on pushes to `main`
+- the release workflow auto-increments the package patch version, commits it back to `main`, creates a git tag, publishes to npm, and creates a GitHub Release
 - package publishing requires `NPM_TOKEN` in repository secrets
