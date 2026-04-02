@@ -28,9 +28,17 @@ export {
 } from "./components/TextField.jsx";
 export { default as TextArea } from "./components/TextArea.jsx";
 export { default as SearchBar } from "./components/SearchBar.jsx";
-export { default as SearchField } from "./components/SearchField.jsx";
-export { default as DatePicker } from "./components/DatePicker.jsx";
-export { default as Select } from "./components/Select.jsx";
+export {
+  default as SearchField,
+  SearchFieldResult,
+  SearchFieldSuggest,
+} from "./components/SearchField.jsx";
+export { default as DatePicker, DatePickerCompact } from "./components/DatePicker.jsx";
+export {
+  default as Select,
+  SelectQuiet,
+  SelectSearchable,
+} from "./components/Select.jsx";
 export { default as Selector } from "./components/Selector.jsx";
 export { default as Switch } from "./components/Switch.jsx";
 export { default as Toast } from "./components/Toast.jsx";

@@ -929,6 +929,43 @@
   line-height: 1;
 }
 
+.rpl-search-field {
+  display: grid;
+  gap: 8px;
+}
+
+.rpl-search-field-panel {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid #e8eef5;
+  border-radius: 16px;
+  background: #fbfdff;
+}
+
+.rpl-search-field-result-count {
+  color: var(--rpl-color-text-tertiary);
+}
+
+.rpl-search-field-suggestions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.rpl-search-field-suggestion {
+  min-height: 28px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 999px;
+  background: #edf4ff;
+  color: var(--rpl-color-accent-strong);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .rpl-icon {
   display: inline-block;
   flex: 0 0 auto;
@@ -996,6 +1033,14 @@
   background: rgba(255, 255, 255, 0.98);
   box-shadow: 0 26px 60px rgba(15, 23, 42, 0.22), var(--rpl-shadow-inset);
   animation: rpl-sheet-in 220ms var(--rpl-ease-standard);
+}
+
+.rpl-datepicker-panel-compact .rpl-datepicker-wheels {
+  gap: 8px;
+}
+
+.rpl-datepicker-panel-compact .rpl-datepicker-wheel-list {
+  max-height: 180px;
 }
 
 .rpl-datepicker-panel-handle {
@@ -1149,6 +1194,14 @@
   box-shadow: var(--rpl-shadow-card), var(--rpl-shadow-inset);
   backdrop-filter: blur(16px);
   animation: rpl-popover-in 180ms var(--rpl-ease-standard);
+}
+
+.rpl-select-header {
+  padding: 4px 8px 10px;
+  color: var(--rpl-color-text-tertiary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .rpl-select-search {

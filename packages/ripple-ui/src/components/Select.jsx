@@ -27,6 +27,9 @@ export default function Select({
   validationMessage,
   placeholder,
   searchable = true,
+  searchPlaceholder = "Search options",
+  emptyMessage = "No matching options.",
+  header,
   size = "md",
   variant = "default",
   className = "",
@@ -195,6 +198,7 @@ export default function Select({
       ) : null}
       {open ? (
         <div className="rpl-select-popover" role="listbox" aria-label={typeof label === "string" ? label : "Select options"}>
+          {header ? <div className="rpl-select-header">{header}</div> : null}
           {searchable ? (
             <div className="rpl-select-search">
               <Icon name="search" size={16} className="rpl-select-search-icon" />
@@ -202,7 +206,7 @@ export default function Select({
                 className="rpl-select-search-input"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search options"
+                placeholder={searchPlaceholder}
                 autoFocus
               />
             </div>
@@ -238,11 +242,19 @@ export default function Select({
                 );
               })
             ) : (
-              <div className="rpl-select-empty">No matching options.</div>
+              <div className="rpl-select-empty">{emptyMessage}</div>
             )}
           </div>
         </div>
       ) : null}
     </div>
   );
+}
+
+export function SelectSearchable(props) {
+  return <Select searchable {...props} />;
+}
+
+export function SelectQuiet(props) {
+  return <Select variant="quiet" {...props} />;
 }

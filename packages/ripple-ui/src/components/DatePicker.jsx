@@ -56,6 +56,13 @@ export default function DatePicker({
   disabled = false,
   minYear = 2000,
   maxYear = 2035,
+  sheetTitle = "Choose a date",
+  sheetEyebrow = "Date picker",
+  confirmLabel = "Apply",
+  cancelLabel = "Cancel",
+  clearLabel = "Clear",
+  todayLabel = "Today",
+  compact = false,
   ...props
 }) {
   const controlled = value !== undefined;
@@ -193,12 +200,12 @@ export default function DatePicker({
       {open ? (
         <div className="rpl-datepicker-sheet" role="dialog" aria-modal="true">
           <button type="button" className="rpl-datepicker-backdrop" aria-label="Close date picker" onClick={() => setOpen(false)} />
-          <div className="rpl-datepicker-panel">
+          <div className={cx("rpl-datepicker-panel", compact && "rpl-datepicker-panel-compact")}>
             <div className="rpl-datepicker-panel-handle" />
             <div className="rpl-datepicker-panel-header">
               <div>
-                <Text variant="label" className="rpl-datepicker-panel-eyebrow">Date picker</Text>
-                <Text variant="title">Choose a date</Text>
+                <Text variant="label" className="rpl-datepicker-panel-eyebrow">{sheetEyebrow}</Text>
+                <Text variant="title">{sheetTitle}</Text>
               </div>
               <button type="button" className="rpl-datepicker-icon-button" onClick={() => setOpen(false)} aria-label="Close date picker">
                 <Icon name="close" size={18} />
@@ -275,19 +282,19 @@ export default function DatePicker({
             </div>
 
             <div className="rpl-datepicker-panel-footer">
-              <Button variant="ghost" onClick={() => setDraftDate(new Date())}>
-                Today
-              </Button>
+                <Button variant="ghost" onClick={() => setDraftDate(new Date())}>
+                  {todayLabel}
+                </Button>
               <Inline gap={10}>
                 {currentValue ? (
                   <Button variant="ghost" onClick={clearValue}>
-                    Clear
+                    {clearLabel}
                   </Button>
                 ) : null}
                 <Button variant="weak" onClick={() => setOpen(false)}>
-                  Cancel
+                  {cancelLabel}
                 </Button>
-                <Button onClick={() => commitValue(draftDate)}>Apply</Button>
+                <Button onClick={() => commitValue(draftDate)}>{confirmLabel}</Button>
               </Inline>
             </div>
           </div>
@@ -295,4 +302,8 @@ export default function DatePicker({
       ) : null}
     </div>
   );
+}
+
+export function DatePickerCompact(props) {
+  return <DatePicker compact size={props.size ?? "sm"} {...props} />;
 }

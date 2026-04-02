@@ -14,6 +14,7 @@ import {
   CommandPalette,
   ConfirmDialog,
   DatePicker,
+  DatePickerCompact,
   Dialog,
   Dropdown,
   Divider,
@@ -36,10 +37,14 @@ import {
   Radio,
   SearchBar,
   SearchField,
+  SearchFieldResult,
+  SearchFieldSuggest,
   Selector,
   SegmentedControl,
   SectionHeader,
   Select,
+  SelectQuiet,
+  SelectSearchable,
   Skeleton,
   Snackbar,
   Stack,
@@ -767,6 +772,38 @@ function SelectPlayground() {
   );
 }
 
+function SelectQuietPlayground() {
+  const [value, setValue] = React.useState("review");
+
+  return (
+    <SelectQuiet label="Stage" value={value} onChange={(event) => setValue(event.target.value)} placeholder="Choose stage">
+      <option value="draft">Draft</option>
+      <option value="review">Review</option>
+      <option value="published">Published</option>
+    </SelectQuiet>
+  );
+}
+
+function SelectSearchablePlayground() {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <SelectSearchable
+      label="Workspace"
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      placeholder="Choose workspace"
+      header="Recent workspaces"
+      searchPlaceholder="Search workspaces"
+      emptyMessage="No workspaces found."
+    >
+      <option value="ops">Operations</option>
+      <option value="payments">Payments</option>
+      <option value="growth">Growth</option>
+    </SelectSearchable>
+  );
+}
+
 function TabsPlayground() {
   const [value, setValue] = React.useState("overview");
 
@@ -931,6 +968,53 @@ function DatePickerPlayground() {
         validationMessage={`${state} state message`}
       />
     </Stack>
+  );
+}
+
+function DatePickerCompactPlayground() {
+  const [value, setValue] = React.useState("2026-04-01");
+
+  return (
+    <DatePickerCompact
+      label="Billing date"
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      sheetTitle="Choose billing date"
+      confirmLabel="Save"
+      cancelLabel="Close"
+    />
+  );
+}
+
+function SearchFieldResultPlayground() {
+  const [value, setValue] = React.useState("workspace");
+
+  return (
+    <SearchFieldResult
+      label="Search docs"
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      onClear={() => setValue("")}
+      resultCount={4}
+      validationState="success"
+      validationMessage="Search ready."
+    />
+  );
+}
+
+function SearchFieldSuggestPlayground() {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <SearchFieldSuggest
+      label="Search docs"
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      onClear={() => setValue("")}
+      suggestions={["Button", "BottomSheet", "Badge"]}
+      onSuggestionSelect={(next) => setValue(next)}
+      hint="Try a suggested component name."
+    />
   );
 }
 
@@ -1178,6 +1262,16 @@ export default function Example() {
 export default function Example() {
   return <SearchField label="Search docs" defaultValue="button" validationState="success" validationMessage="1 exact match." />;
 }`,
+  "SearchField.Result": `import { SearchFieldResult } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <SearchFieldResult label="Search docs" defaultValue="workspace" resultCount={4} />;
+}`,
+  "SearchField.Suggest": `import { SearchFieldSuggest } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <SearchFieldSuggest label="Search docs" suggestions={["Button", "BottomSheet", "Badge"]} />;
+}`,
   TextField: `import { TextField } from "@sh981013s/ripple-ui";
 
 export default function Example() {
@@ -1239,10 +1333,37 @@ export default function Example() {
     </Select>
   );
 }`,
+  "Select.Quiet": `import { SelectQuiet } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <SelectQuiet label="Stage" placeholder="Choose stage">
+      <option value="draft">Draft</option>
+      <option value="review">Review</option>
+      <option value="published">Published</option>
+    </SelectQuiet>
+  );
+}`,
+  "Select.Searchable": `import { SelectSearchable } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <SelectSearchable label="Workspace" header="Recent workspaces" searchPlaceholder="Search workspaces">
+      <option value="ops">Operations</option>
+      <option value="payments">Payments</option>
+      <option value="growth">Growth</option>
+    </SelectSearchable>
+  );
+}`,
   DatePicker: `import { DatePicker } from "@sh981013s/ripple-ui";
 
 export default function Example() {
   return <DatePicker label="Launch date" validationState="success" validationMessage="Date confirmed." />;
+}`,
+  "DatePicker.Compact": `import { DatePickerCompact } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <DatePickerCompact label="Billing date" confirmLabel="Save" cancelLabel="Close" />;
 }`,
   Switch: `import { Switch } from "@sh981013s/ripple-ui";
 
@@ -1552,15 +1673,20 @@ function Playground({ component }) {
     "TextField.Password": <TextFieldPasswordPlayground />,
     "TextField.Button": <TextFieldButtonPlayground />,
     Select: <SelectPlayground />,
+    "Select.Quiet": <SelectQuietPlayground />,
+    "Select.Searchable": <SelectSearchablePlayground />,
     "Tabs / Tab": <TabsPlayground />,
     SegmentedControl: <SegmentedPlayground />,
     Snackbar: <SnackbarPlayground />,
     DatePicker: <DatePickerPlayground />,
+    "DatePicker.Compact": <DatePickerCompactPlayground />,
     TextButton: <TextButtonPlayground />,
     Modal: <ModalPlayground />,
     "List / ListHeader / ListFooter": <ListHeaderPlayground />,
     ListRow: <ListRowPlayground />,
     Menu: <InteractiveMenuPreview />,
+    "SearchField.Result": <SearchFieldResultPlayground />,
+    "SearchField.Suggest": <SearchFieldSuggestPlayground />,
   };
 
   const content = map[component.name];
@@ -2007,6 +2133,26 @@ const docs = [
         ),
       },
       {
+        name: "SearchField.Result",
+        eyebrow: "form",
+        description: "Search field variant that surfaces result count below the field.",
+        props: [
+          { name: "resultCount", type: "number", defaultValue: "0", description: "Count summary shown under the field." },
+          { name: "clearable", type: "boolean", defaultValue: "true", description: "Show clear control." },
+        ],
+        preview: () => <SearchFieldResultPlayground />,
+      },
+      {
+        name: "SearchField.Suggest",
+        eyebrow: "form",
+        description: "Search field variant that shows lightweight suggestion chips.",
+        props: [
+          { name: "suggestions", type: "string[]", defaultValue: "[]", description: "Suggested search terms." },
+          { name: "onSuggestionSelect", type: "(value) => void", defaultValue: "-", description: "Suggestion click handler." },
+        ],
+        preview: () => <SearchFieldSuggestPlayground />,
+      },
+      {
         name: "TextField",
         eyebrow: "form",
         description: "Product-flavored text field alias built on the shared input system.",
@@ -2074,6 +2220,27 @@ const docs = [
         preview: () => <InteractiveSelectPreview />,
       },
       {
+        name: "Select.Quiet",
+        eyebrow: "form",
+        description: "Quiet select variant for tighter inline filter and settings rows.",
+        props: [
+          { name: "variant", type: "\"quiet\"", defaultValue: "\"quiet\"", description: "Minimal field chrome." },
+          { name: "placeholder", type: "string", defaultValue: "-", description: "Optional placeholder option text." },
+        ],
+        preview: () => <SelectQuietPlayground />,
+      },
+      {
+        name: "Select.Searchable",
+        eyebrow: "form",
+        description: "Searchable select variant with a header and explicit empty/search copy.",
+        props: [
+          { name: "header", type: "ReactNode", defaultValue: "-", description: "Popover heading." },
+          { name: "searchPlaceholder", type: "string", defaultValue: "\"Search options\"", description: "Input placeholder inside the popover." },
+          { name: "emptyMessage", type: "string", defaultValue: "\"No matching options.\"", description: "Empty state copy." },
+        ],
+        preview: () => <SelectSearchablePlayground />,
+      },
+      {
         name: "DatePicker",
         eyebrow: "form",
         description: "Bottom-sheet date picker with wheel-style month, day, and year selection.",
@@ -2085,6 +2252,16 @@ const docs = [
           { name: "validationState / validationMessage", type: "state + message", defaultValue: "-", description: "Semantic validation feedback." },
         ],
         preview: () => <InteractiveDatePickerPreview />,
+      },
+      {
+        name: "DatePicker.Compact",
+        eyebrow: "form",
+        description: "Compact date picker variant for denser forms and settings surfaces.",
+        props: [
+          { name: "compact", type: "boolean", defaultValue: "true", description: "Uses a tighter wheel layout." },
+          { name: "sheetTitle / confirmLabel / cancelLabel", type: "string", defaultValue: "-", description: "Structured sheet copy." },
+        ],
+        preview: () => <DatePickerCompactPlayground />,
       },
       {
         name: "Switch",
