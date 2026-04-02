@@ -17,7 +17,7 @@ export default function ThemeProvider({
   return (
     <Component
       data-rpl-theme={"id" in theme ? theme.id : "custom"}
-      style={{ ...buildRippleThemeVars(theme), ...style }}
+      style={{ fontFamily: "var(--rpl-font-family)", ...buildRippleThemeVars(theme), ...style }}
       {...props}
     >
       {children}

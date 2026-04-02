@@ -1,6 +1,20 @@
 :root {
   color-scheme: light;
 
+  --rpl-font-family:
+    "Toss Product Sans",
+    "Pretendard Variable",
+    Pretendard,
+    "SF Pro Text",
+    "SF Pro Display",
+    "Apple SD Gothic Neo",
+    "Noto Sans KR",
+    "Malgun Gothic",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
   --rpl-seed-accent: #3182f6;
   --rpl-seed-ink: #191f28;
   --rpl-seed-bg: #f6f8fb;

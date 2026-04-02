@@ -12,7 +12,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Toss Product Sans", "Apple SD Gothic Neo", "SF Pro Display", "SF Pro KR", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--rpl-font-family);
   background: var(--rpl-color-bg);
   color: var(--rpl-color-text-primary);
 }
