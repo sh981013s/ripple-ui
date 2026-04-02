@@ -434,12 +434,98 @@ function InteractiveMenuPreview() {
           </Button>
         }
         items={[
-          { label: "Rename workspace", icon: "edit", onSelect: () => setMessage("Rename action selected.") },
-          { label: "Duplicate", icon: "copy", onSelect: () => setMessage("Duplicate action selected.") },
-          { label: "Delete", icon: "alert", tone: "danger", onSelect: () => setMessage("Delete action selected.") },
+          { type: "header", label: "Workspace actions" },
+          { label: "Rename workspace", icon: "edit", description: "Update title and slug", onSelect: () => setMessage("Rename action selected.") },
+          { label: "Pinned", icon: "bookmark", checked: true, shortcut: "⌘P", onSelect: () => setMessage("Pinned state toggled.") },
+          { type: "divider" },
+          { label: "Duplicate", icon: "copy", shortcut: "⌘D", onSelect: () => setMessage("Duplicate action selected.") },
+          { label: "Delete", icon: "alert", tone: "danger", description: "Remove this workspace permanently", onSelect: () => setMessage("Delete action selected.") },
         ]}
       />
       <Text variant="caption">{message}</Text>
+    </Stack>
+  );
+}
+
+function TopBarPlayground() {
+  const [mode, setMode] = React.useState("badges");
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["badges", "selector", "action"].map((item) => (
+          <Selector key={item} selected={mode === item} onClick={() => setMode(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <TopBar
+        leading={<IconButton aria-label="Back"><Icon name="chevronLeft" size={16} /></IconButton>}
+        title="Workspace"
+        subtitleTop="Operations"
+        subtitleBottom="Review queue"
+        align="left"
+        badges={mode === "badges" ? <><Badge tone="accent">Live</Badge><Badge tone="neutral">12 members</Badge></> : null}
+        titleSelector={mode === "selector" ? <Selector selected size="sm">All</Selector> : null}
+        subtitleSelector={mode === "selector" ? <Selector type="arrow" size="sm">Status</Selector> : null}
+        rightButton={mode === "action" ? <IconButton tone="accent" aria-label="More"><Icon name="more" size={16} /></IconButton> : null}
+        rightArrow={mode !== "action"}
+      />
+    </Stack>
+  );
+}
+
+function ListHeaderPlayground() {
+  const [mode, setMode] = React.useState("rightText");
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["rightText", "button", "selector"].map((item) => (
+          <Selector key={item} selected={mode === item} onClick={() => setMode(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <List>
+        <ListHeader
+          eyebrow="Workspace"
+          title="Team access"
+          description="Manage the primary review surfaces."
+          badges={mode === "rightText" ? <Badge tone="accent">Live</Badge> : null}
+          rightText={mode === "rightText" ? "Updated now" : undefined}
+          rightButton={mode === "button" ? <TextButton tone="neutral" icon="externalLink">Open</TextButton> : undefined}
+          selector={mode === "selector" ? <Selector type="arrow" selected>All</Selector> : undefined}
+          rightArrow={mode !== "button"}
+        />
+      </List>
+    </Stack>
+  );
+}
+
+function ListRowPlayground() {
+  const [mode, setMode] = React.useState("icon");
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["icon", "image", "action"].map((item) => (
+          <Selector key={item} selected={mode === item} onClick={() => setMode(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <ListRow
+        interactive
+        eyebrow="Workspace"
+        title="Marketing Ops"
+        description="12 members · synced 2m ago"
+        meta="Live"
+        icon={mode === "icon" ? <Icon name="layers" size={18} /> : undefined}
+        image={mode === "image" ? "https://placehold.co/84x84/png" : undefined}
+        action={mode === "action" ? <TextButton size="sm" tone="neutral">Manage</TextButton> : undefined}
+        rightArrow={mode !== "action"}
+      />
     </Stack>
   );
 }
@@ -961,17 +1047,19 @@ export default function Example() {
     </Stack>
   );
 }`,
-  TopBar: `import { IconButton, TopBar } from "@sh981013s/ripple-ui";
+  TopBar: `import { Badge, Icon, IconButton, Selector, TopBar } from "@sh981013s/ripple-ui";
 
 export default function Example() {
   return (
     <TopBar
-      title="Project detail"
-      subtitleTop="Workspace"
-      subtitleBottom="Review channel"
+      title="Workspace"
+      subtitleTop="Operations"
+      subtitleBottom="Review queue"
       align="left"
-      leading={<IconButton aria-label="Back">←</IconButton>}
-      trailing={<IconButton tone="accent" aria-label="More">⋯</IconButton>}
+      leading={<IconButton aria-label="Back"><Icon name="chevronLeft" size={16} /></IconButton>}
+      badges={<><Badge tone="accent">Live</Badge><Badge tone="neutral">12 members</Badge></>}
+      subtitleSelector={<Selector type="arrow" size="sm">Status</Selector>}
+      rightArrow
     />
   );
 }`,
@@ -1303,7 +1391,13 @@ export default function Example() {
 export default function Example() {
   return (
     <List>
-      <ListHeader>Workspace members</ListHeader>
+      <ListHeader
+        eyebrow="Workspace"
+        title="Team access"
+        description="Manage the primary review surfaces."
+        rightText="Updated now"
+        rightArrow
+      />
       <ListRow title="Design" description="3 active reviewers" />
       <ListFooter>Updated 2 minutes ago</ListFooter>
     </List>
@@ -1329,7 +1423,7 @@ export default function Example() {
   ListRow: `import { Badge, ListRow } from "@sh981013s/ripple-ui";
 
 export default function Example() {
-  return <ListRow eyebrow="Workspace" title="Marketing Ops" description="12 members" meta="Updated 2m ago" trailing={<Badge tone="accent">Live</Badge>} interactive />;
+  return <ListRow eyebrow="Workspace" title="Marketing Ops" description="12 members" meta="Updated 2m ago" icon={<Badge tone="accent">M</Badge>} action={<Badge tone="accent">Live</Badge>} rightArrow interactive />;
 }`,
   Table: `import { Table } from "@sh981013s/ripple-ui";
 
@@ -1372,8 +1466,11 @@ export default function Example() {
       open
       trigger={<Button variant="weak">Open menu</Button>}
       items={[
-        { label: "Rename workspace", icon: "copy" },
-        { label: "Delete", icon: "alert", tone: "danger" },
+        { type: "header", label: "Workspace actions" },
+        { label: "Rename workspace", icon: "edit", description: "Update title and slug" },
+        { label: "Pinned", icon: "bookmark", checked: true, shortcut: "⌘P" },
+        { type: "divider" },
+        { label: "Delete", icon: "alert", description: "Remove this workspace permanently", tone: "danger" },
       ]}
     />
   );
@@ -1448,6 +1545,7 @@ function Playground({ component }) {
     Button: <ButtonPlayground />,
     Badge: <BadgePlayground />,
     Icon: <IconPlayground />,
+    TopBar: <TopBarPlayground />,
     Input: <InputPlayground />,
     TextField: <TextFieldPlayground />,
     "TextField.Clearable": <TextFieldClearablePlayground />,
@@ -1460,6 +1558,9 @@ function Playground({ component }) {
     DatePicker: <DatePickerPlayground />,
     TextButton: <TextButtonPlayground />,
     Modal: <ModalPlayground />,
+    "List / ListHeader / ListFooter": <ListHeaderPlayground />,
+    ListRow: <ListRowPlayground />,
+    Menu: <InteractiveMenuPreview />,
   };
 
   const content = map[component.name];
@@ -1652,13 +1753,15 @@ const docs = [
           { name: "leading", type: "ReactNode", defaultValue: "-", description: "Left accessory." },
           { name: "title", type: "ReactNode", defaultValue: "-", description: "Primary title." },
           { name: "subtitleTop / subtitleBottom", type: "ReactNode", defaultValue: "-", description: "Upper and lower supporting copy." },
-          { name: "trailing / right", type: "ReactNode", defaultValue: "-", description: "Right accessory." },
+          { name: "trailing / right / rightButton", type: "ReactNode", defaultValue: "-", description: "Right accessory or compact CTA." },
+          { name: "badges / titleSelector / subtitleSelector", type: "ReactNode", defaultValue: "-", description: "Structured supporting affordances." },
+          { name: "rightArrow", type: "boolean", defaultValue: "false", description: "Show navigation arrow affordance." },
           { name: "align", type: "\"center\" | \"left\"", defaultValue: "\"center\"", description: "Copy alignment." },
           { name: "rightVerticalAlign", type: "\"top\" | \"center\" | \"bottom\"", defaultValue: "\"center\"", description: "Trailing content alignment." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Bar height scale." },
           { name: "variant", type: `"floating" | "flat"`, defaultValue: `"floating"`, description: "Surface treatment." },
         ],
-        preview: () => <TopBar title="Project detail" subtitleTop="Workspace" subtitleBottom="Review channel" align="left" leading={<IconButton aria-label="back">←</IconButton>} trailing={<IconButton tone="accent" aria-label="more">⋯</IconButton>} />,
+        preview: () => <TopBarPlayground />,
       },
       {
         name: "Tabs / Tab",
@@ -1736,7 +1839,7 @@ const docs = [
         props: [
           { name: "open", type: "boolean", defaultValue: "false", description: "Visibility state." },
           { name: "trigger", type: "ReactNode", defaultValue: "-", description: "Trigger element." },
-          { name: "items", type: "Array<{ label, icon?, tone?, onSelect? }>", defaultValue: "[]", description: "Menu actions." },
+          { name: "items", type: "Array<{ type?, label, icon?, description?, shortcut?, checked?, tone?, onSelect? }>", defaultValue: "[]", description: "Menu actions and structural rows." },
         ],
         preview: () => <InteractiveMenuPreview />,
       },
@@ -2233,15 +2336,9 @@ const docs = [
         props: [
           { name: "inset", type: "boolean", defaultValue: "false", description: "Larger outer rounding." },
           { name: "divided", type: "boolean", defaultValue: "true", description: "Show row separators." },
+          { name: "ListHeader title / rightText / rightArrow / rightButton / selector", type: "structured props", defaultValue: "-", description: "Product-style heading affordances for grouped lists." },
         ],
-        preview: () => (
-          <List>
-            <ListHeader>Workspace members</ListHeader>
-            <ListRow title="Design" description="3 active reviewers" />
-            <ListRow title="Engineering" description="5 active reviewers" />
-            <ListFooter>Updated 2 minutes ago</ListFooter>
-          </List>
-        ),
+        preview: () => <ListHeaderPlayground />,
       },
       {
         name: "InfoRow",
@@ -2273,25 +2370,16 @@ const docs = [
         description: "Structured row for navigation lists or summary blocks.",
         props: [
           { name: "leading", type: "ReactNode", defaultValue: "-", description: "Leading slot." },
+          { name: "image / icon", type: "string | ReactNode", defaultValue: "-", description: "Recommended media affordances." },
           { name: "eyebrow", type: "ReactNode", defaultValue: "-", description: "Small supporting label above the title." },
           { name: "meta", type: "ReactNode", defaultValue: "-", description: "Secondary value in trailing column." },
-          { name: "trailing", type: "ReactNode", defaultValue: "-", description: "Trailing slot." },
+          { name: "trailing / action", type: "ReactNode", defaultValue: "-", description: "Trailing slot or inline action." },
+          { name: "rightArrow", type: "boolean", defaultValue: "false", description: "Show navigation arrow affordance." },
           { name: "interactive", type: "boolean", defaultValue: "false", description: "Uses button semantics and hover behavior." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Padding scale." },
           { name: "variant", type: `"default" | "muted" | "accent"`, defaultValue: `"default"`, description: "Background treatment." },
         ],
-        preview: () => (
-          <ListRow
-            interactive
-            variant="accent"
-            leading={<Chip tone="warning">!</Chip>}
-            eyebrow="submission"
-            title="Review required"
-            description="A manual approval is waiting in the queue."
-            meta="now"
-            trailing={<Text variant="caption">Open</Text>}
-          />
-        ),
+        preview: () => <ListRowPlayground />,
       },
       {
         name: "Table",

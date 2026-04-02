@@ -4,10 +4,14 @@ import Text from "./Text.jsx";
 
 export default function ListRow({
   leading,
+  image,
+  icon,
   title,
   description,
   eyebrow,
   meta,
+  action,
+  rightArrow = false,
   trailing,
   interactive = false,
   size = "md",
@@ -30,7 +34,13 @@ export default function ListRow({
       )}
       {...props}
     >
-      {leading ? <div className="rpl-list-row-leading">{leading}</div> : null}
+      {leading || image || icon ? (
+        <div className="rpl-list-row-leading">
+          {image ? <img src={image} alt="" className="rpl-list-row-image" /> : null}
+          {!image && icon ? <div className="rpl-list-row-icon">{icon}</div> : null}
+          {!image && !icon ? leading : null}
+        </div>
+      ) : null}
       <div className="rpl-list-row-copy">
         {eyebrow ? (
           <Text as="div" variant="label" className="rpl-list-row-eyebrow">
@@ -54,6 +64,13 @@ export default function ListRow({
             </Text>
           ) : null}
           {trailing}
+          {action}
+          {rightArrow ? <span className="rpl-list-row-arrow" aria-hidden="true">→</span> : null}
+        </div>
+      ) : action || rightArrow ? (
+        <div className="rpl-list-row-trailing">
+          {action}
+          {rightArrow ? <span className="rpl-list-row-arrow" aria-hidden="true">→</span> : null}
         </div>
       ) : null}
     </Component>

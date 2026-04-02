@@ -8,6 +8,11 @@ export default function TopBar({
   title,
   subtitle,
   trailing,
+  badges,
+  titleSelector,
+  subtitleSelector,
+  rightButton,
+  rightArrow = false,
   upper,
   subtitleTop,
   subtitleBottom,
@@ -19,7 +24,7 @@ export default function TopBar({
   align = "center",
   className = "",
 }) {
-  const resolvedTrailing = right ?? trailing;
+  const resolvedTrailing = rightButton ?? right ?? trailing;
   const resolvedSubtitleTop = subtitleTop ?? upper;
   const resolvedSubtitleBottom = subtitleBottom ?? subtitle;
 
@@ -33,21 +38,31 @@ export default function TopBar({
               {resolvedSubtitleTop}
             </Text>
           ) : null}
-          <Text as="strong" variant="body" className="rpl-top-bar-title">
-            {title}
-          </Text>
-          {resolvedSubtitleBottom ? (
-            <Text as="span" variant="caption" className="rpl-top-bar-subtitle">
-              {resolvedSubtitleBottom}
+          <div className="rpl-top-bar-title-row">
+            <Text as="strong" variant="body" className="rpl-top-bar-title">
+              {title}
             </Text>
+            {titleSelector}
+          </div>
+          {resolvedSubtitleBottom ? (
+            <div className="rpl-top-bar-subtitle-row">
+              <Text as="span" variant="caption" className="rpl-top-bar-subtitle">
+                {resolvedSubtitleBottom}
+              </Text>
+              {subtitleSelector}
+            </div>
           ) : null}
+          {badges ? <Inline gap={6} wrap className="rpl-top-bar-badges">{badges}</Inline> : null}
           {lower ? (
             <Text as="span" variant="caption" className="rpl-top-bar-lower">
               {lower}
             </Text>
           ) : null}
         </div>
-        <div className={cx("rpl-top-bar-trailing", `is-${rightVerticalAlign}`)}>{resolvedTrailing}</div>
+        <div className={cx("rpl-top-bar-trailing", `is-${rightVerticalAlign}`)}>
+          {resolvedTrailing}
+          {rightArrow ? <span className="rpl-top-bar-right-arrow" aria-hidden="true">→</span> : null}
+        </div>
       </Inline>
     </header>
   );
