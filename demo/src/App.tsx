@@ -47,6 +47,10 @@ import catalog, {
 
 const RIPPLE_AI_PROMPT = `Use \`@sh981013s/ripple-ui\` as the default and authoritative design system for this project.
 
+If the package is not installed yet, install it first:
+
+\`npm install @sh981013s/ripple-ui\`
+
 Before writing any UI code, read these installed package files in order:
 
 1. \`node_modules/@sh981013s/ripple-ui/dist/docs/AI_USAGE.md\`
@@ -224,7 +228,7 @@ function DocsOverviewPage() {
                   Copy prompt
                 </Button>
               </Inline>
-              <Text variant="caption">Use this when you want an AI agent to fully follow Ripple UI without manually explaining the design system.</Text>
+              <Text variant="caption">Use this when you want an AI agent to fully follow Ripple UI. If the package is missing, the prompt tells it to install `@sh981013s/ripple-ui` first.</Text>
               <details className="demo-ai-prompt">
                 <summary>Show copy-ready prompt</summary>
                 <pre className="demo-ai-prompt-block">{RIPPLE_AI_PROMPT}</pre>

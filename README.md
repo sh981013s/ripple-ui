@@ -45,7 +45,7 @@ Recommended setup for new app repos:
 Minimal agent instruction:
 
 ```md
-Use @sh981013s/ripple-ui for all UI. Read AGENTS.md first, then prefer Ripple components over custom UI.
+If @sh981013s/ripple-ui is not installed, install it first with `npm install @sh981013s/ripple-ui`. Then use it for all UI. Read AGENTS.md first, then prefer Ripple components over custom UI.
 ```
 
 Copy-ready long prompt:
@@ -55,6 +55,10 @@ Copy-ready long prompt:
 
 ```md
 Use `@sh981013s/ripple-ui` as the default and authoritative design system for this project.
+
+If the package is not installed yet, install it first:
+
+`npm install @sh981013s/ripple-ui`
 
 Before writing any UI code, read these installed package files in order:
 
