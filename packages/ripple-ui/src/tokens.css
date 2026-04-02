@@ -1,8 +1,9 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard.css");
+
 :root {
   color-scheme: light;
 
   --rpl-font-family:
-    "Toss Product Sans",
     "Pretendard Variable",
     Pretendard,
     "SF Pro Text",
