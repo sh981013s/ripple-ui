@@ -36,6 +36,8 @@ import {
   ProgressBar,
   Radio,
   Result,
+  ResultButton,
+  Rating,
   SearchBar,
   SearchField,
   SearchFieldResult,
@@ -68,6 +70,8 @@ import {
   TopBar,
   Pagination,
   Modal,
+  FullScreenLoader,
+  LoadingCompleteView,
 } from "@sh981013s/ripple-ui";
 
 function useCopyFeedback() {
@@ -956,6 +960,57 @@ function ResultPlayground() {
   );
 }
 
+function RatingPlayground() {
+  const [value, setValue] = React.useState(4);
+
+  return (
+    <Stack gap={12}>
+      <Rating value={value} onChange={setValue} showValue />
+    </Stack>
+  );
+}
+
+function FullScreenLoaderPlayground() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <div className="docs-inline-surface">
+      <Button onClick={() => setOpen(true)}>Open full screen loader</Button>
+      <FullScreenLoader
+        open={open}
+        title="Preparing workspace"
+        description="We are loading the latest settings and activity."
+      />
+      {open ? (
+        <Button variant="ghost" onClick={() => setOpen(false)}>Close loader</Button>
+      ) : null}
+    </div>
+  );
+}
+
+function LoadingCompleteViewPlayground() {
+  const [tone, setTone] = React.useState("success");
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["success", "warning", "danger"].map((item) => (
+          <Selector key={item} selected={tone === item} onClick={() => setTone(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <LoadingCompleteView
+        tone={tone}
+        title={tone === "success" ? "Transfer complete" : tone === "warning" ? "Review required" : "Transfer failed"}
+        description="Use this for loading completion states with immediate next actions."
+        secondaryAction={{ label: "Dismiss", variant: "ghost" }}
+        primaryAction={{ label: "View details", tone: tone === "danger" ? "danger" : "primary" }}
+      />
+    </Stack>
+  );
+}
+
 function TextButtonPlayground() {
   const [tone, setTone] = React.useState("default");
   const [underline, setUnderline] = React.useState(false);
@@ -1525,6 +1580,40 @@ export default function Example() {
     />
   );
 }`,
+  ResultButton: `import { ResultButton } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <ResultButton>View details</ResultButton>;
+}`,
+  Rating: `import { Rating } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <Rating value={4} showValue />;
+}`,
+  FullScreenLoader: `import { FullScreenLoader } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <FullScreenLoader
+      open
+      title="Preparing workspace"
+      description="We are loading the latest settings and activity."
+    />
+  );
+}`,
+  LoadingCompleteView: `import { LoadingCompleteView } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <LoadingCompleteView
+      tone="success"
+      title="Transfer complete"
+      description="Funds were moved successfully."
+      secondaryAction={{ label: "Dismiss", variant: "ghost" }}
+      primaryAction={{ label: "View details" }}
+    />
+  );
+}`,
   "NoticeBanner / Banner": `import { Banner, Button } from "@sh981013s/ripple-ui";
 
 export default function Example() {
@@ -1777,6 +1866,9 @@ function Playground({ component }) {
     Badge: <BadgePlayground />,
     Loader: <LoaderPlayground />,
     Toast: <ToastPlayground />,
+    Rating: <RatingPlayground />,
+    FullScreenLoader: <FullScreenLoaderPlayground />,
+    LoadingCompleteView: <LoadingCompleteViewPlayground />,
     Icon: <IconPlayground />,
     TopBar: <TopBarPlayground />,
     Input: <InputPlayground />,
@@ -1791,6 +1883,11 @@ function Playground({ component }) {
     SegmentedControl: <SegmentedPlayground />,
     Snackbar: <SnackbarPlayground />,
     Result: <ResultPlayground />,
+    ResultButton: (
+      <div className="docs-inline-surface">
+        <ResultButton>View details</ResultButton>
+      </div>
+    ),
     DatePicker: <DatePickerPlayground />,
     "DatePicker.Compact": <DatePickerCompactPlayground />,
     TextButton: <TextButtonPlayground />,
@@ -2502,6 +2599,58 @@ const docs = [
             primaryAction={{ label: "View details" }}
           />
         ),
+      },
+      {
+        name: "ResultButton",
+        eyebrow: "feedback",
+        description: "CTA button tuned for result and completion states.",
+        props: [
+          { name: "tone", type: `"primary" | "neutral" | "danger"`, defaultValue: `"primary"`, description: "Semantic button tone." },
+          { name: "variant", type: `"primary" | "weak" | "ghost"`, defaultValue: `"primary"`, description: "Button treatment." },
+          { name: "size", type: `"small" | "medium" | "large"`, defaultValue: `"large"`, description: "Button size scale." },
+        ],
+        preview: () => (
+          <Inline gap={10} wrap>
+            <ResultButton>View details</ResultButton>
+            <ResultButton tone="neutral" variant="ghost">Dismiss</ResultButton>
+          </Inline>
+        ),
+      },
+      {
+        name: "Rating",
+        eyebrow: "feedback",
+        description: "Interactive star rating control for reviews and satisfaction flows.",
+        props: [
+          { name: "value", type: "number", defaultValue: "0", description: "Current rating value." },
+          { name: "max", type: "number", defaultValue: "5", description: "Maximum number of stars." },
+          { name: "showValue", type: "boolean", defaultValue: "false", description: "Display the numeric score." },
+        ],
+        preview: () => <RatingPlayground />,
+      },
+      {
+        name: "FullScreenLoader",
+        eyebrow: "feedback",
+        description: "Full-screen blocking loading state for high-importance transitions.",
+        props: [
+          { name: "open", type: "boolean", defaultValue: "false", description: "Visibility state." },
+          { name: "title", type: "ReactNode", defaultValue: "\"Loading\"", description: "Primary loading message." },
+          { name: "description", type: "ReactNode", defaultValue: "-", description: "Secondary context." },
+          { name: "tone", type: `"accent" | "success" | "warning" | "danger"`, defaultValue: `"accent"`, description: "Loader tone." },
+        ],
+        preview: () => <FullScreenLoaderPlayground />,
+      },
+      {
+        name: "LoadingCompleteView",
+        eyebrow: "feedback",
+        description: "Centered completion surface for successful, warning, or failed finishes.",
+        props: [
+          { name: "tone", type: `"success" | "warning" | "danger"`, defaultValue: `"success"`, description: "Semantic completion tone." },
+          { name: "title", type: "ReactNode", defaultValue: "\"Completed\"", description: "Primary completion title." },
+          { name: "description", type: "ReactNode", defaultValue: "-", description: "Supporting detail copy." },
+          { name: "primaryAction", type: "{ label, onClick, variant?, tone? }", defaultValue: "-", description: "Primary follow-up action." },
+          { name: "secondaryAction", type: "{ label, onClick, variant?, tone? }", defaultValue: "-", description: "Secondary follow-up action." },
+        ],
+        preview: () => <LoadingCompleteViewPlayground />,
       },
       {
         name: "NoticeBanner / Banner",
