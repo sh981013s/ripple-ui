@@ -27,6 +27,16 @@ const classByDisplay = {
   block: "rpl-button-block",
 };
 
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: keyof typeof classByVariant;
+  color?: keyof typeof classByColor;
+  size?: keyof typeof classBySize;
+  display?: keyof typeof classByDisplay;
+  className?: string;
+  children?: React.ReactNode;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
+}
+
 export default function Button({
   variant = "primary",
   color = "primary",
@@ -36,7 +46,7 @@ export default function Button({
   children,
   type = "button",
   ...props
-}) {
+}: ButtonProps) {
   return (
     <button
       type={type}

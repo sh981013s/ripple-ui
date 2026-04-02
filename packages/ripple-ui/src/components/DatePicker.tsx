@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { cx } from "../utils/cx.js";
+import Inline from "../primitives/Inline.js";
+import Button from "./Button.js";
 import Icon from "./Icon.js";
 import Text from "./Text.js";
 

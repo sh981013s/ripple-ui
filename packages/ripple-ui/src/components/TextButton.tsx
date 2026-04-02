@@ -2,6 +2,19 @@ import React from "react";
 import { cx } from "../utils/cx.js";
 import Icon from "./Icon.js";
 
+export interface TextButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  tone?: "default" | "neutral" | "danger";
+  size?: "sm" | "md" | "lg";
+  icon?: React.ReactNode | string;
+  iconPosition?: "leading" | "trailing";
+  leading?: React.ReactNode;
+  trailing?: React.ReactNode;
+  underline?: boolean;
+  className?: string;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  children?: React.ReactNode;
+}
+
 export default function TextButton({
   tone = "default",
   size = "md",
@@ -14,7 +27,7 @@ export default function TextButton({
   type = "button",
   children,
   ...props
-}) {
+}: TextButtonProps) {
   return (
     <button
       type={type}

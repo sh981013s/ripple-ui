@@ -1,11 +1,18 @@
 import React, { cloneElement, isValidElement, useId, useState } from "react";
 import { cx } from "../utils/cx.js";
 
-export default function Tooltip({ content, position = "top", className = "", children }) {
+export interface TooltipProps {
+  content: React.ReactNode;
+  position?: "top" | "bottom";
+  className?: string;
+  children?: React.ReactNode;
+}
+
+export default function Tooltip({ content, position = "top", className = "", children }: TooltipProps) {
   const tooltipId = useId();
   const [open, setOpen] = useState(false);
   const child = isValidElement(children)
-    ? cloneElement(children, { "aria-describedby": tooltipId })
+    ? cloneElement(children as React.ReactElement<any>, { "aria-describedby": tooltipId } as Record<string, unknown>)
     : children;
 
   return (

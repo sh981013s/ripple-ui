@@ -1,6 +1,18 @@
 import React, { cloneElement, isValidElement, useEffect, useId, useRef } from "react";
 import { cx } from "../utils/cx.js";
 
+export interface PopoverProps {
+  open?: boolean;
+  onClose?: () => void;
+  trigger: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
+  panelClassName?: string;
+  panelStyle?: React.CSSProperties;
+  placement?: "top" | "bottom";
+  align?: "start" | "center" | "end";
+}
+
 export default function Popover({
   open = false,
   onClose,
@@ -11,7 +23,7 @@ export default function Popover({
   panelStyle,
   placement = "bottom",
   align = "start",
-}) {
+}: PopoverProps) {
   const rootRef = useRef(null);
   const panelId = useId();
 
@@ -43,7 +55,7 @@ export default function Popover({
     ? cloneElement(trigger, {
         "aria-expanded": open,
         "aria-controls": panelId,
-      })
+      } as Record<string, unknown>)
     : trigger;
 
   return (

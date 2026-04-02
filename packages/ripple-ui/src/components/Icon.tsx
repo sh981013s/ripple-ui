@@ -301,13 +301,20 @@ const ICONS = {
 
 export const iconNames = Object.keys(ICONS);
 
+export interface IconProps extends React.SVGProps<SVGSVGElement> {
+  name: string;
+  size?: number;
+  className?: string;
+  strokeWidth?: number;
+}
+
 export default function Icon({
   name,
   size = 20,
   className = "",
   strokeWidth,
   ...props
-}) {
+}: IconProps) {
   const glyph = ICONS[name] ?? ICONS.info;
 
   return (

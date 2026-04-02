@@ -7,6 +7,14 @@ const toneClass = {
   subtle: "rpl-icon-button-subtle",
 };
 
+export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  tone?: keyof typeof toneClass;
+  size?: "sm" | "md" | "lg";
+  className?: string;
+  children?: React.ReactNode;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
+}
+
 export default function IconButton({
   tone = "default",
   size = "md",
@@ -14,7 +22,7 @@ export default function IconButton({
   children,
   type = "button",
   ...props
-}) {
+}: IconButtonProps) {
   return (
     <button
       type={type}

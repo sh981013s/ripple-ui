@@ -9,7 +9,14 @@ const classByVariant = {
   caption: "rpl-text-caption",
 };
 
-export default function Text({ as: Component = "p", variant = "body", className = "", children, ...props }) {
+export interface TextProps extends React.HTMLAttributes<HTMLElement> {
+  as?: React.ElementType;
+  variant?: keyof typeof classByVariant;
+  className?: string;
+  children?: React.ReactNode;
+}
+
+export default function Text({ as: Component = "p", variant = "body", className = "", children, ...props }: TextProps) {
   return (
     <Component className={cx("rpl-text", classByVariant[variant] || classByVariant.body, className)} {...props}>
       {children}

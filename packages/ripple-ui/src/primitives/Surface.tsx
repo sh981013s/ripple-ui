@@ -16,6 +16,14 @@ const radiusClass = {
   xl: "rpl-radius-xl",
 };
 
+export interface SurfaceProps extends React.HTMLAttributes<HTMLElement> {
+  as?: React.ElementType;
+  tone?: keyof typeof toneClass;
+  radius?: keyof typeof radiusClass;
+  className?: string;
+  children?: React.ReactNode;
+}
+
 export default function Surface({
   as: Component = "div",
   tone = "default",
@@ -23,7 +31,7 @@ export default function Surface({
   className = "",
   children,
   ...props
-}) {
+}: SurfaceProps) {
   return (
     <Component
       className={cx("rpl-surface", toneClass[tone] || "", radiusClass[radius] || "rpl-radius-lg", className)}

@@ -1,6 +1,19 @@
 import React, { useEffect } from "react";
 import { cx } from "../utils/cx.js";
 
+export interface DialogProps {
+  open: boolean;
+  onClose?: () => void;
+  closeOnBackdrop?: boolean;
+  size?: "sm" | "md" | "lg";
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  footer?: React.ReactNode;
+  className?: string;
+  panelClassName?: string;
+  children?: React.ReactNode;
+}
+
 export default function Dialog({
   open,
   onClose,
@@ -12,7 +25,7 @@ export default function Dialog({
   className = "",
   panelClassName = "",
   children,
-}) {
+}: DialogProps) {
   useEffect(() => {
     if (!open) return undefined;
 

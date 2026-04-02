@@ -30,7 +30,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -p tsconfig.json && cp src/styles.css dist/styles.css && cp src/tokens.css dist/tokens.css",
+    "build": "rm -rf dist && tsc -p tsconfig.json && cp src/styles.css dist/styles.css && cp src/tokens.css dist/tokens.css && cp types/index.d.ts dist/index.d.ts",
     "clean": "rm -rf dist"
   },
   "exports": {

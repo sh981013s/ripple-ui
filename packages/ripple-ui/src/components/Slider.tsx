@@ -2,6 +2,17 @@ import React from "react";
 import { cx } from "../utils/cx.js";
 import Text from "./Text.js";
 
+export interface SliderProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "type"> {
+  label?: React.ReactNode;
+  value?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  tone?: "accent" | "success" | "warning" | "danger";
+  showValue?: boolean;
+  className?: string;
+}
+
 export default function Slider({
   label,
   value = 0,
@@ -12,7 +23,7 @@ export default function Slider({
   showValue = true,
   className = "",
   ...props
-}) {
+}: SliderProps) {
   const ratio = max > min ? ((value - min) / (max - min)) * 100 : 0;
 
   return (
@@ -30,7 +41,7 @@ export default function Slider({
         max={max}
         step={step}
         value={value}
-        style={{ ["--rpl-slider-ratio"]: `${ratio}%` }}
+        style={{ ["--rpl-slider-ratio" as string]: `${ratio}%` } as React.CSSProperties}
         {...props}
       />
     </label>

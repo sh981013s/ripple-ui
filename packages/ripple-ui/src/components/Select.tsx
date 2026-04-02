@@ -3,18 +3,25 @@ import { cx } from "../utils/cx.js";
 import Icon from "./Icon.js";
 import Text from "./Text.js";
 
-function normalizeOptions(children) {
+type SelectOption = {
+  value: string;
+  label: React.ReactNode;
+  disabled: boolean;
+};
+
+function normalizeOptions(children: React.ReactNode): SelectOption[] {
   return Children.toArray(children)
     .filter(Boolean)
     .map((child) => {
       if (!React.isValidElement(child)) return null;
+      const element = child as React.ReactElement<{ value?: string; disabled?: boolean; children?: React.ReactNode }>;
       return {
-        value: child.props.value,
-        label: child.props.children,
-        disabled: Boolean(child.props.disabled),
+        value: element.props.value ?? "",
+        label: element.props.children,
+        disabled: Boolean(element.props.disabled),
       };
     })
-    .filter(Boolean);
+    .filter(Boolean) as SelectOption[];
 }
 
 export default function Select({

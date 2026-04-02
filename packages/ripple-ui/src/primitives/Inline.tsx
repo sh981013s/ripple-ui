@@ -1,5 +1,16 @@
 import React from "react";
 
+export interface InlineProps extends React.HTMLAttributes<HTMLElement> {
+  as?: React.ElementType;
+  gap?: number;
+  align?: React.CSSProperties["alignItems"];
+  justify?: React.CSSProperties["justifyContent"];
+  wrap?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
+}
+
 export default function Inline({
   as: Component = "div",
   gap = 12,
@@ -10,7 +21,7 @@ export default function Inline({
   style,
   children,
   ...props
-}) {
+}: InlineProps) {
   return (
     <Component
       className={className}

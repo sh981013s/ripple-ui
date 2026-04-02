@@ -1,15 +1,17 @@
 import React from "react";
 import Input from "./Input.js";
 
-export default function TextField(props) {
+export type TextFieldProps = React.ComponentProps<typeof Input>;
+
+export default function TextField(props: TextFieldProps) {
   return <Input {...props} />;
 }
 
-export function TextFieldClearable(props) {
+export function TextFieldClearable(props: TextFieldProps) {
   return <Input clearable {...props} />;
 }
 
-export function TextFieldButton({ actionLabel = "Action", ...props }) {
+export function TextFieldButton({ actionLabel = "Action", ...props }: TextFieldProps) {
   return <Input actionLabel={actionLabel} {...props} />;
 }
 
@@ -18,7 +20,7 @@ export function TextFieldPassword({
   onToggleReveal,
   type,
   ...props
-}) {
+}: TextFieldProps) {
   const [internalRevealed, setInternalRevealed] = React.useState(false);
   const revealed = controlledRevealed ?? internalRevealed;
 
