@@ -12,6 +12,10 @@ export interface BottomCTADoubleProps extends React.HTMLAttributes<HTMLDivElemen
   inset?: boolean;
 }
 
+export interface BottomCTANamespace {
+  Double: typeof BottomCTADouble;
+}
+
 function CTAButton({ label, className = "", ...props }: BottomCTAAction) {
   return (
     <Button display="block" className={cx("rpl-bottom-cta-button", className)} {...props}>
@@ -38,5 +42,9 @@ export function BottomCTADouble({
     </div>
   );
 }
+
+export const BottomCTA: BottomCTANamespace = {
+  Double: BottomCTADouble,
+};
 
 export default BottomCTADouble;

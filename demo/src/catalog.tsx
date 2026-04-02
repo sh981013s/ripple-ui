@@ -5,7 +5,12 @@ import {
   AccessoryButton,
   AlertDialog,
   AgreementV4,
+  AgreementModuleContent,
+  AgreementModuleStagger,
+  AgreementModuleTop,
+  AgreementModuleTopTitle,
   AlphabetKeypad,
+  Asset,
   Avatar,
   Badge,
   Banner,
@@ -30,7 +35,10 @@ import {
   EmptyState,
   FadeIn,
   FontScaleLimit,
+  FullPageAgreementModule,
+  FullSecureKeypad,
   FullTooltip,
+  GradientBottomSheetAgreementModule,
   Icon,
   IconCore,
   IconButton,
@@ -62,7 +70,9 @@ import {
   NoticeBanner,
   NumberKeypad,
   NumericSpinner,
+  Paragraph,
   Popover,
+  Post,
   ProgressBar,
   ProgressStep,
   ProgressStepper,
@@ -83,6 +93,9 @@ import {
   Skeleton,
   Snackbar,
   Spacing,
+  SplitTextField,
+  SplitTextFieldRRN13,
+  SplitTextFieldRRNFirst7,
   Stack,
   Stepper,
   StepperRow,
@@ -111,6 +124,8 @@ import {
   TopSubtitleSelector,
   TopTitleSelector,
   Pagination,
+  BottomSheetAgreementModule,
+  FloatButtonAgreementModule,
   Modal,
   ColorSchemeArea,
   FullScreenLoader,
@@ -1570,6 +1585,63 @@ function AgreementV4Playground() {
   );
 }
 
+function SplitTextFieldPlayground() {
+  const [value, setValue] = React.useState("9001011");
+  return <SplitTextFieldRRNFirst7 label="Resident registration" value={value} onChange={setValue} />;
+}
+
+function FullSecureKeypadPlayground() {
+  const [value, setValue] = React.useState("");
+  return <FullSecureKeypad value={value} onChange={setValue} title="Enter account PIN" />;
+}
+
+function AgreementModulePlayground() {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <Stack gap={12}>
+      <AgreementModuleTop
+        title="Required agreements"
+        description="These agreements must be accepted before launch."
+        action={<Button variant="weak" onClick={() => setOpen(true)}>Review</Button>}
+      />
+      <AgreementModuleStagger>
+        <AgreementModuleContent>
+          <AgreementV4Playground />
+        </AgreementModuleContent>
+      </AgreementModuleStagger>
+      <BottomSheetAgreementModule
+        open={open}
+        onClose={() => setOpen(false)}
+        title="Agreement review"
+        description="Inspect the required clauses before continuing."
+        cta={{ label: "Agree", onClick: () => setOpen(false) }}
+      >
+        <AgreementV4Playground />
+      </BottomSheetAgreementModule>
+    </Stack>
+  );
+}
+
+function AssetPlayground() {
+  return (
+    <Inline gap={16} wrap align="center">
+      <Asset.ContentIcon><Icon name="wallet" size={20} /></Asset.ContentIcon>
+      <Asset.ContentLottie><Asset.LottieCore size={64} /></Asset.ContentLottie>
+      <Asset.Lottie size={72} />
+    </Inline>
+  );
+}
+
+function ParagraphPostPlayground() {
+  return (
+    <Post>
+      <Paragraph><Paragraph.Icon>•</Paragraph.Icon>Ripple UI emphasizes calm spacing and restrained motion.</Paragraph>
+      <Post.Hr />
+      <Paragraph><Paragraph.Icon>•</Paragraph.Icon>Use content utilities for editorial or settings help copy.</Paragraph>
+    </Post>
+  );
+}
+
 function PropTable({ props }) {
   return (
     <div className="docs-props-table">
@@ -2458,6 +2530,68 @@ export default function Example() {
     </AgreementV4.Group>
   );
 }`,
+  SplitTextField: `import { SplitTextFieldRRNFirst7 } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <SplitTextFieldRRNFirst7 label="Resident registration" value="9001011" onChange={() => {}} />;
+}`,
+  FullSecureKeypad: `import { FullSecureKeypad } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <FullSecureKeypad value="" onChange={() => {}} title="Enter account PIN" />;
+}`,
+  AgreementModuleContent: `import { AgreementModuleContent, AgreementModuleTop, AgreementV4, Button } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <>
+      <AgreementModuleTop title="Required agreements" action={<Button variant="weak">Review</Button>} />
+      <AgreementModuleContent>
+        <AgreementV4.Group />
+      </AgreementModuleContent>
+    </>
+  );
+}`,
+  BottomSheetAgreementModule: `import { BottomSheetAgreementModule } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <BottomSheetAgreementModule open title="Agreement review" cta={{ label: "Agree" }} />;
+}`,
+  FloatButtonAgreementModule: `import { FloatButtonAgreementModule } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <FloatButtonAgreementModule title="Consent flow" cta={{ label: "Continue" }} />;
+}`,
+  FullPageAgreementModule: `import { FullPageAgreementModule } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <FullPageAgreementModule title="Agreement required" cta={{ label: "Continue" }} />;
+}`,
+  GradientBottomSheetAgreementModule: `import { GradientBottomSheetAgreementModule } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <GradientBottomSheetAgreementModule open title="Consent update" cta={{ label: "Apply" }} />;
+}`,
+  Asset: `import { Asset, Icon, Inline } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <Inline gap={16}>
+      <Asset.ContentIcon><Icon name="wallet" size={20} /></Asset.ContentIcon>
+      <Asset.Lottie size={72} />
+    </Inline>
+  );
+}`,
+  Paragraph: `import { Paragraph, Post } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <Post>
+      <Paragraph><Paragraph.Icon>•</Paragraph.Icon>Ripple UI emphasizes calm spacing and restrained motion.</Paragraph>
+      <Post.Hr />
+    </Post>
+  );
+}`,
   DoughnutChart: `import { DoughnutChart } from "@sh981013s/ripple-ui";
 
 export default function Example() {
@@ -2682,6 +2816,27 @@ function Playground({ component }) {
     AlphabetKeypad: <AlphabetKeypadPlayground />,
     NumericSpinner: <NumericSpinnerPlayground />,
     AgreementV4: <AgreementV4Playground />,
+    SplitTextField: <SplitTextFieldPlayground />,
+    FullSecureKeypad: <FullSecureKeypadPlayground />,
+    AgreementModuleContent: <AgreementModulePlayground />,
+    BottomSheetAgreementModule: <AgreementModulePlayground />,
+    FloatButtonAgreementModule: (
+      <FloatButtonAgreementModule title="Consent flow" description="Sticky CTA module." cta={{ label: "Continue" }}>
+        <AgreementV4Playground />
+      </FloatButtonAgreementModule>
+    ),
+    FullPageAgreementModule: (
+      <FullPageAgreementModule title="Agreement required" description="Full-page consent treatment." cta={{ label: "Continue" }}>
+        <AgreementV4Playground />
+      </FullPageAgreementModule>
+    ),
+    GradientBottomSheetAgreementModule: (
+      <GradientBottomSheetAgreementModule open title="Consent update" description="Gradient bottom-sheet agreement surface." cta={{ label: "Apply" }}>
+        <AgreementV4Playground />
+      </GradientBottomSheetAgreementModule>
+    ),
+    Asset: <AssetPlayground />,
+    Paragraph: <ParagraphPostPlayground />,
     TextButton: <TextButtonPlayground />,
     Modal: <ModalPlayground />,
     "List / ListHeader / ListFooter": <ListHeaderPlayground />,
@@ -3469,6 +3624,28 @@ const docs = [
         preview: () => <AgreementV4Playground />,
       },
       {
+        name: "SplitTextField",
+        eyebrow: "form",
+        description: "Split secure field pattern for resident-registration and masked identity flows.",
+        props: [
+          { name: "value / onChange", type: "string + handler", defaultValue: "-", description: "Controlled raw value." },
+          { name: "SplitTextFieldRRN13", type: "component", defaultValue: "-", description: "13-digit masked variation." },
+          { name: "SplitTextFieldRRNFirst7", type: "component", defaultValue: "-", description: "First-seven-digit variation." },
+        ],
+        preview: () => <SplitTextFieldPlayground />,
+      },
+      {
+        name: "FullSecureKeypad",
+        eyebrow: "form",
+        description: "Shuffled keypad for secure numeric entry and PIN flows.",
+        props: [
+          { name: "value / onChange", type: "string + handler", defaultValue: "-", description: "Controlled code value." },
+          { name: "maxLength", type: "number", defaultValue: "6", description: "Maximum code length." },
+          { name: "masked", type: "boolean", defaultValue: "true", description: "Mask entered digits." },
+        ],
+        preview: () => <FullSecureKeypadPlayground />,
+      },
+      {
         name: "Switch",
         eyebrow: "form",
         description: "Binary toggle for settings surfaces.",
@@ -3798,6 +3975,68 @@ const docs = [
         ],
         preview: () => <InteractiveCommandPalettePreview />,
       },
+      {
+        name: "AgreementModuleContent",
+        eyebrow: "overlay",
+        description: "Composable agreement module building block for content, top area, and staggered disclosure flows.",
+        props: [
+          { name: "AgreementModuleTop / AgreementModuleTopTitle", type: "subcomponents", defaultValue: "-", description: "Top metadata and headings." },
+          { name: "AgreementModuleContent / AgreementModuleStagger", type: "subcomponents", defaultValue: "-", description: "Content wrapper and staggered reveal." },
+        ],
+        preview: () => <AgreementModulePlayground />,
+      },
+      {
+        name: "BottomSheetAgreementModule",
+        eyebrow: "overlay",
+        description: "Agreement module presented as a bottom sheet with CTA wiring.",
+        props: [
+          { name: "open / onClose", type: "state + handler", defaultValue: "-", description: "Visibility control." },
+          { name: "cta", type: "{ label, onClick }", defaultValue: "-", description: "Primary agreement action." },
+        ],
+        preview: () => <AgreementModulePlayground />,
+      },
+      {
+        name: "FloatButtonAgreementModule",
+        eyebrow: "overlay",
+        description: "Agreement container with a sticky floating action button.",
+        props: [
+          { name: "title / description", type: "ReactNode", defaultValue: "-", description: "Primary copy." },
+          { name: "cta", type: "{ label, onClick }", defaultValue: "-", description: "Floating CTA action." },
+        ],
+        preview: () => (
+          <FloatButtonAgreementModule title="Consent flow" description="Sticky CTA module." cta={{ label: "Continue" }}>
+            <AgreementV4Playground />
+          </FloatButtonAgreementModule>
+        ),
+      },
+      {
+        name: "FullPageAgreementModule",
+        eyebrow: "overlay",
+        description: "Full-page agreement treatment for major consent checkpoints.",
+        props: [
+          { name: "title / description", type: "ReactNode", defaultValue: "-", description: "Primary page copy." },
+          { name: "cta", type: "{ label, onClick }", defaultValue: "-", description: "Page-level CTA." },
+        ],
+        preview: () => (
+          <FullPageAgreementModule title="Agreement required" description="Full-page consent treatment." cta={{ label: "Continue" }}>
+            <AgreementV4Playground />
+          </FullPageAgreementModule>
+        ),
+      },
+      {
+        name: "GradientBottomSheetAgreementModule",
+        eyebrow: "overlay",
+        description: "Gradient bottom-sheet consent surface with the same agreement module API.",
+        props: [
+          { name: "open / onClose", type: "state + handler", defaultValue: "-", description: "Visibility control." },
+          { name: "cta", type: "{ label, onClick }", defaultValue: "-", description: "Primary agreement action." },
+        ],
+        preview: () => (
+          <GradientBottomSheetAgreementModule open title="Consent update" description="Gradient bottom-sheet agreement surface." cta={{ label: "Apply" }}>
+            <AgreementV4Playground />
+          </GradientBottomSheetAgreementModule>
+        ),
+      },
     ],
   },
   {
@@ -3934,6 +4173,26 @@ const docs = [
             <Card><Text variant="body">Members</Text></Card>
           </GridList>
         ),
+      },
+      {
+        name: "Asset",
+        eyebrow: "data",
+        description: "Asset namespace for icon-led and lottie-style content blocks.",
+        props: [
+          { name: "Asset.ContentIcon / ContentLottie", type: "subcomponents", defaultValue: "-", description: "Content wrappers for icon and animated assets." },
+          { name: "Asset.Lottie / LottieCore", type: "subcomponents", defaultValue: "-", description: "Decorative animated asset surfaces." },
+        ],
+        preview: () => <AssetPlayground />,
+      },
+      {
+        name: "Paragraph",
+        eyebrow: "data",
+        description: "Editorial paragraph primitive with icon and post helpers.",
+        props: [
+          { name: "Paragraph.Icon", type: "subcomponent", defaultValue: "-", description: "Inline decorative marker." },
+          { name: "Post / Post.Hr", type: "component", defaultValue: "-", description: "Companion editorial wrapper utilities." },
+        ],
+        preview: () => <ParagraphPostPlayground />,
       },
       {
         name: "DoughnutChart",
