@@ -35,6 +35,7 @@ import {
   Popover,
   ProgressBar,
   Radio,
+  Result,
   SearchBar,
   SearchField,
   SearchFieldResult,
@@ -603,6 +604,8 @@ function ButtonPlayground() {
 function BadgePlayground() {
   const [tone, setTone] = React.useState("accent");
   const [variant, setVariant] = React.useState("soft");
+  const [dot, setDot] = React.useState(false);
+  const [count, setCount] = React.useState("3");
 
   return (
     <Stack gap={12}>
@@ -620,7 +623,16 @@ function BadgePlayground() {
           </Selector>
         ))}
       </Inline>
-      <Badge tone={tone} variant={variant}>LIVE</Badge>
+      <Inline gap={8} wrap>
+        <Selector selected={!dot} onClick={() => setDot(false)}>
+          plain
+        </Selector>
+        <Selector selected={dot} onClick={() => setDot(true)}>
+          dot
+        </Selector>
+      </Inline>
+      <Input label="Count" value={count} onChange={(event) => setCount(event.target.value)} variant="quiet" />
+      <Badge tone={tone} variant={variant} dot={dot} count={count ? Number(count) : undefined}>LIVE</Badge>
     </Stack>
   );
 }
@@ -852,10 +864,94 @@ function SnackbarPlayground() {
         <Snackbar
           open={open}
           tone={tone}
+          icon={tone === "success" ? "check" : tone === "warning" ? "bell" : tone === "danger" ? "close" : "info"}
           message="Draft saved successfully."
+          dismissible
+          onDismiss={() => setOpen(false)}
           action={<Button variant="ghost" onClick={() => setOpen(false)}>Dismiss</Button>}
         />
       </div>
+    </Stack>
+  );
+}
+
+function ToastPlayground() {
+  const [tone, setTone] = React.useState("default");
+  const [open, setOpen] = React.useState(true);
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["default", "success", "warning", "danger"].map((item) => (
+          <Selector key={item} selected={tone === item} onClick={() => { setTone(item); setOpen(true); }}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <div className="docs-inline-surface">
+        <Button size="small" variant="weak" onClick={() => setOpen(true)}>Open toast</Button>
+        {open ? (
+          <Toast
+            tone={tone}
+            icon={tone === "success" ? "check" : tone === "warning" ? "bell" : tone === "danger" ? "close" : "info"}
+            title="Deployment completed"
+            badge="Live"
+            description="The latest release is available to all users."
+            dismissible
+            onDismiss={() => setOpen(false)}
+          />
+        ) : null}
+      </div>
+    </Stack>
+  );
+}
+
+function LoaderPlayground() {
+  const [tone, setTone] = React.useState("accent");
+  const [overlay, setOverlay] = React.useState(false);
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["accent", "success", "warning", "danger"].map((item) => (
+          <Selector key={item} selected={tone === item} onClick={() => setTone(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <Inline gap={8} wrap>
+        <Selector selected={!overlay} onClick={() => setOverlay(false)}>
+          inline
+        </Selector>
+        <Selector selected={overlay} onClick={() => setOverlay(true)}>
+          overlay
+        </Selector>
+      </Inline>
+      <Loader tone={tone} overlay={overlay} centered label="Loading data" />
+    </Stack>
+  );
+}
+
+function ResultPlayground() {
+  const [tone, setTone] = React.useState("success");
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["default", "success", "warning", "danger"].map((item) => (
+          <Selector key={item} selected={tone === item} onClick={() => setTone(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <Result
+        tone={tone}
+        icon={<Icon name={tone === "success" ? "check" : tone === "warning" ? "bell" : tone === "danger" ? "close" : "sparkles"} size={20} />}
+        title={tone === "success" ? "Payment completed" : tone === "warning" ? "Review required" : tone === "danger" ? "Action failed" : "Everything is ready"}
+        description="Use result surfaces for strong end states, confirmations, and next actions."
+        secondaryAction={{ label: "Dismiss", variant: "ghost" }}
+        primaryAction={{ label: "View details" }}
+      />
     </Stack>
   );
 }
@@ -1115,8 +1211,8 @@ export default function Example() {
 export default function Example() {
   return (
     <Inline gap={8}>
-      <Badge tone="accent">NEW</Badge>
-      <Badge tone="success" variant="solid">LIVE</Badge>
+      <Badge tone="accent" dot>NEW</Badge>
+      <Badge tone="success" variant="solid" count={3}>LIVE</Badge>
     </Inline>
   );
 }`,
@@ -1390,8 +1486,8 @@ export default function Example() {
 export default function Example() {
   return (
     <Inline gap={14} align="center">
-      <Loader size="sm" />
-      <Loader label="Loading data" />
+      <Loader size="sm" tone="accent" />
+      <Loader label="Loading data" tone="success" />
     </Inline>
   );
 }`,
@@ -1408,12 +1504,26 @@ export default function Example() {
   Toast: `import { Toast } from "@sh981013s/ripple-ui";
 
 export default function Example() {
-  return <Toast title="Deployment completed" badge="Live" description="The production build is now available." />;
+  return <Toast tone="success" icon="check" title="Deployment completed" badge="Live" description="The production build is now available." dismissible />;
 }`,
   Snackbar: `import { Button, Snackbar } from "@sh981013s/ripple-ui";
 
 export default function Example() {
-  return <Snackbar open align="left" message="Draft saved successfully." action={<Button variant="ghost">Dismiss</Button>} />;
+  return <Snackbar open align="left" icon="check" message="Draft saved successfully." dismissible action={<Button variant="ghost">Dismiss</Button>} />;
+}`,
+  Result: `import { Icon, Result } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <Result
+      tone="success"
+      icon={<Icon name="check" size={20} />}
+      title="Payment completed"
+      description="Funds were transferred successfully."
+      secondaryAction={{ label: "Close", variant: "ghost" }}
+      primaryAction={{ label: "View details" }}
+    />
+  );
 }`,
   "NoticeBanner / Banner": `import { Banner, Button } from "@sh981013s/ripple-ui";
 
@@ -1665,6 +1775,8 @@ function Playground({ component }) {
   const map = {
     Button: <ButtonPlayground />,
     Badge: <BadgePlayground />,
+    Loader: <LoaderPlayground />,
+    Toast: <ToastPlayground />,
     Icon: <IconPlayground />,
     TopBar: <TopBarPlayground />,
     Input: <InputPlayground />,
@@ -1678,6 +1790,7 @@ function Playground({ component }) {
     "Tabs / Tab": <TabsPlayground />,
     SegmentedControl: <SegmentedPlayground />,
     Snackbar: <SnackbarPlayground />,
+    Result: <ResultPlayground />,
     DatePicker: <DatePickerPlayground />,
     "DatePicker.Compact": <DatePickerCompactPlayground />,
     TextButton: <TextButtonPlayground />,
@@ -1838,12 +1951,14 @@ const docs = [
           { name: "tone", type: `"neutral" | "accent" | "success" | "warning" | "danger"`, defaultValue: `"neutral"`, description: "Semantic tone." },
           { name: "variant", type: `"soft" | "solid"`, defaultValue: `"soft"`, description: "Fill treatment." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Badge size." },
+          { name: "dot", type: "boolean", defaultValue: "false", description: "Show a leading status dot." },
+          { name: "count", type: "number", defaultValue: "-", description: "Optional inline count token." },
         ],
         preview: () => (
           <Inline gap={8} wrap>
             <Badge>12</Badge>
-            <Badge tone="accent">NEW</Badge>
-            <Badge tone="success" variant="solid">LIVE</Badge>
+            <Badge tone="accent" dot>NEW</Badge>
+            <Badge tone="success" variant="solid" count={3}>LIVE</Badge>
           </Inline>
         ),
       },
@@ -2308,11 +2423,14 @@ const docs = [
         props: [
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Spinner size." },
           { name: "label", type: "ReactNode", defaultValue: "-", description: "Optional inline label." },
+          { name: "tone", type: `"accent" | "success" | "warning" | "danger"`, defaultValue: `"accent"`, description: "Semantic spinner tone." },
+          { name: "centered", type: "boolean", defaultValue: "false", description: "Center the loader within its container." },
+          { name: "overlay", type: "boolean", defaultValue: "false", description: "Render inside a muted loading surface." },
         ],
         preview: () => (
           <Inline gap={14} wrap align="center">
-            <Loader size="sm" />
-            <Loader label="Loading data" />
+            <Loader size="sm" tone="accent" />
+            <Loader label="Loading data" tone="success" />
           </Inline>
         ),
       },
@@ -2342,9 +2460,11 @@ const docs = [
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Spacing scale." },
           { name: "variant", type: `"soft" | "solid"`, defaultValue: `"soft"`, description: "Background treatment." },
           { name: "badge", type: "ReactNode", defaultValue: "-", description: "Optional badge." },
+          { name: "icon", type: "ReactNode | string", defaultValue: "-", description: "Optional leading icon." },
+          { name: "dismissible", type: "boolean", defaultValue: "false", description: "Show a close control." },
           { name: "action", type: "ReactNode", defaultValue: "-", description: "Optional action area." },
         ],
-        preview: () => <Toast title="Deployment completed" badge="Live" description="The production build is now available." />,
+        preview: () => <Toast title="Deployment completed" badge="Live" icon="check" description="The production build is now available." />,
       },
       {
         name: "Snackbar",
@@ -2355,8 +2475,33 @@ const docs = [
           { name: "tone", type: `"default" | "success" | "warning" | "danger"`, defaultValue: `"default"`, description: "Color tone." },
           { name: "message", type: "ReactNode", defaultValue: "-", description: "Primary message." },
           { name: "align", type: "\"center\" | \"left\"", defaultValue: "\"center\"", description: "Horizontal anchor position." },
+          { name: "icon", type: "ReactNode | string", defaultValue: "-", description: "Optional leading icon." },
+          { name: "dismissible", type: "boolean", defaultValue: "false", description: "Show a dismiss control." },
         ],
         preview: () => <InteractiveSnackbarPreview />,
+      },
+      {
+        name: "Result",
+        eyebrow: "feedback",
+        description: "Structured result state for completed flows and strong confirmations.",
+        props: [
+          { name: "tone", type: `"default" | "success" | "warning" | "danger"`, defaultValue: `"default"`, description: "Semantic result tone." },
+          { name: "title", type: "ReactNode", defaultValue: "-", description: "Primary result heading." },
+          { name: "description", type: "ReactNode", defaultValue: "-", description: "Supporting detail copy." },
+          { name: "icon", type: "ReactNode", defaultValue: "-", description: "Top leading icon or asset." },
+          { name: "primaryAction", type: "{ label, onClick, variant?, color? }", defaultValue: "-", description: "Primary call to action." },
+          { name: "secondaryAction", type: "{ label, onClick, variant?, color? }", defaultValue: "-", description: "Secondary call to action." },
+        ],
+        preview: () => (
+          <Result
+            tone="success"
+            icon={<Icon name="check" size={20} />}
+            title="Payment completed"
+            description="Funds were transferred successfully."
+            secondaryAction={{ label: "Close", variant: "ghost" }}
+            primaryAction={{ label: "View details" }}
+          />
+        ),
       },
       {
         name: "NoticeBanner / Banner",

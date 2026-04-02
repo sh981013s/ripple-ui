@@ -5,6 +5,8 @@ export default function Badge({
   tone = "neutral",
   variant = "soft",
   size = "md",
+  dot = false,
+  count,
   className = "",
   children,
   ...props
@@ -16,11 +18,14 @@ export default function Badge({
         `rpl-badge-${tone}`,
         `rpl-badge-${variant}`,
         `rpl-badge-${size}`,
+        dot && "rpl-badge-dot",
         className,
       )}
       {...props}
     >
+      {dot ? <span className="rpl-badge-dot-mark" aria-hidden="true" /> : null}
       {children}
+      {count !== undefined ? <span className="rpl-badge-count">{count}</span> : null}
     </span>
   );
 }

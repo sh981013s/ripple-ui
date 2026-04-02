@@ -43,6 +43,7 @@ export { default as Selector } from "./components/Selector.jsx";
 export { default as Switch } from "./components/Switch.jsx";
 export { default as Toast } from "./components/Toast.jsx";
 export { default as Snackbar } from "./components/Snackbar.jsx";
+export { default as Result } from "./components/Result.jsx";
 export { default as TextButton } from "./components/TextButton.jsx";
 export { default as Loader } from "./components/Loader.jsx";
 export { default as Skeleton } from "./components/Skeleton.jsx";

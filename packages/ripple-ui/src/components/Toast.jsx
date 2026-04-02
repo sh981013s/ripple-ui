@@ -1,6 +1,7 @@
 import React from "react";
 import { cx } from "../utils/cx.js";
 import Chip from "./Chip.jsx";
+import Icon from "./Icon.jsx";
 import Text from "./Text.jsx";
 
 const toneToClass = {
@@ -28,6 +29,9 @@ export default function Toast({
   size = "md",
   variant = "soft",
   badge,
+  icon,
+  dismissible = false,
+  onDismiss,
   action,
   className = "",
 }) {
@@ -44,6 +48,11 @@ export default function Toast({
       aria-live="polite"
     >
       <div className="rpl-toast-main">
+        {icon ? (
+          <div className="rpl-toast-icon">
+            {typeof icon === "string" ? <Icon name={icon} size={18} /> : icon}
+          </div>
+        ) : null}
         <div className="rpl-toast-copy">
           <div className="rpl-toast-title-row">
             {badge ? <Chip tone={tone === "default" ? "neutral" : tone}>{badge}</Chip> : null}
@@ -57,6 +66,11 @@ export default function Toast({
             </Text>
           ) : null}
         </div>
+        {dismissible ? (
+          <button type="button" className="rpl-toast-dismiss" aria-label="Dismiss toast" onClick={onDismiss}>
+            <Icon name="close" size={16} />
+          </button>
+        ) : null}
         {action ? <div className="rpl-toast-action">{action}</div> : null}
       </div>
     </div>
