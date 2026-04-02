@@ -1,0 +1,26 @@
+# Changelog
+
+## 0.1.1
+
+### Added
+
+- Seed-driven theme system with `ThemeProvider`, `rippleThemePresets`, and `buildRippleThemeVars`
+- Docs pages and live playground coverage for the theme API
+- AI-focused docs assets:
+  - `docs/AI_USAGE.md`
+  - `docs/AI_PROMPT_TEMPLATE.md`
+  - `ai/anti-patterns.json`
+- Machine-readable theme metadata in `ai/components.json` and `ai/patterns.json`
+
+### Changed
+
+- Refined docs theme controls so preset switching and custom seed colors are easier to inspect
+- Improved docs search discoverability for theme-related APIs
+- Reworked root README and package README to read like a production UI library
+- Tuned theme-driven styling across high-traffic component surfaces such as buttons, inputs, selects, date pickers, chips, and previews
+
+### Fixed
+
+- Removed stale overlay previews that opened by default in docs
+- Fixed docs navigation/runtime issues around segmented controls and route previews
+- Resolved dev-server friction around docs theme verification and preview behavior
