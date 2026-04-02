@@ -74,7 +74,7 @@ function SidebarNav() {
       {docsCatalog.map((section) => (
         <NavLink
           key={section.id}
-          to={section.path}
+          to={`/components/${section.id}`}
           className={({ isActive }) => `demo-nav-link${isActive ? " is-active" : ""}`}
         >
           <span className="demo-nav-link-content">
@@ -184,12 +184,12 @@ function DocsOverviewPage() {
                 />
                 <div className="demo-overview-links">
                   {section.components.slice(0, 5).map((component) => (
-                    <Link key={component.slug} className="demo-inline-link" to={component.path}>
+                    <Link key={component.slug} className="demo-inline-link" to={`/components/${section.id}/${component.slug}`}>
                       {component.name}
                     </Link>
                   ))}
                 </div>
-                <Button display="block" onClick={() => navigate(section.path)}>
+                <Button display="block" onClick={() => navigate(`/components/${section.id}`)}>
                   Open section
                 </Button>
               </Stack>
@@ -348,7 +348,7 @@ function SectionPage() {
             showPlayground={false}
             footer={
               <Inline gap={10} wrap>
-                <Link className="demo-inline-link" to={component.path}>
+                <Link className="demo-inline-link" to={`/components/${sectionId}/${component.slug}`}>
                   Open component page
                 </Link>
               </Inline>
@@ -373,9 +373,7 @@ function ComponentPage() {
     <section className="demo-section">
       <Stack gap={14}>
         <Inline gap={8} wrap align="center">
-          <Link className="demo-inline-link" to={section.path}>
-            {section.label}
-          </Link>
+          <Link className="demo-inline-link" to={`/components/${sectionId}`}>{section.label}</Link>
           <Text variant="caption" className="demo-breadcrumb-sep">/</Text>
           <Text variant="caption" className="demo-breadcrumb-current">{component.name}</Text>
         </Inline>
@@ -395,6 +393,7 @@ function DocsContent() {
     <Routes>
       <Route path="/" element={<DocsOverviewPage />} />
       <Route path="/components/:sectionId" element={<SectionPage />} />
+      <Route path="/components/:sectionId/index" element={<SectionPage />} />
       <Route path="/components/:sectionId/:componentSlug" element={<ComponentPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

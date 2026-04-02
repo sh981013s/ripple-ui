@@ -1597,6 +1597,7 @@ function FullSecureKeypadPlayground() {
 
 function AgreementModulePlayground() {
   const [open, setOpen] = React.useState(false);
+  const [gradientOpen, setGradientOpen] = React.useState(false);
   return (
     <Stack gap={12}>
       <AgreementModuleTop
@@ -1618,6 +1619,16 @@ function AgreementModulePlayground() {
       >
         <AgreementV4Playground />
       </BottomSheetAgreementModule>
+      <Button variant="weak" onClick={() => setGradientOpen(true)}>Open gradient sheet</Button>
+      <GradientBottomSheetAgreementModule
+        open={gradientOpen}
+        onClose={() => setGradientOpen(false)}
+        title="Consent update"
+        description="Gradient bottom-sheet agreement surface."
+        cta={{ label: "Apply", onClick: () => setGradientOpen(false) }}
+      >
+        <AgreementV4Playground />
+      </GradientBottomSheetAgreementModule>
     </Stack>
   );
 }
@@ -2555,7 +2566,7 @@ export default function Example() {
   BottomSheetAgreementModule: `import { BottomSheetAgreementModule } from "@sh981013s/ripple-ui";
 
 export default function Example() {
-  return <BottomSheetAgreementModule open title="Agreement review" cta={{ label: "Agree" }} />;
+  return <BottomSheetAgreementModule open={false} title="Agreement review" cta={{ label: "Agree" }} />;
 }`,
   FloatButtonAgreementModule: `import { FloatButtonAgreementModule } from "@sh981013s/ripple-ui";
 
@@ -2570,7 +2581,7 @@ export default function Example() {
   GradientBottomSheetAgreementModule: `import { GradientBottomSheetAgreementModule } from "@sh981013s/ripple-ui";
 
 export default function Example() {
-  return <GradientBottomSheetAgreementModule open title="Consent update" cta={{ label: "Apply" }} />;
+  return <GradientBottomSheetAgreementModule open={false} title="Consent update" cta={{ label: "Apply" }} />;
 }`,
   Asset: `import { Asset, Icon, Inline } from "@sh981013s/ripple-ui";
 
@@ -2830,11 +2841,7 @@ function Playground({ component }) {
         <AgreementV4Playground />
       </FullPageAgreementModule>
     ),
-    GradientBottomSheetAgreementModule: (
-      <GradientBottomSheetAgreementModule open title="Consent update" description="Gradient bottom-sheet agreement surface." cta={{ label: "Apply" }}>
-        <AgreementV4Playground />
-      </GradientBottomSheetAgreementModule>
-    ),
+    GradientBottomSheetAgreementModule: <AgreementModulePlayground />,
     Asset: <AssetPlayground />,
     Paragraph: <ParagraphPostPlayground />,
     TextButton: <TextButtonPlayground />,
