@@ -21,7 +21,7 @@ export default function Menu({
       trigger={trigger}
       className={className}
       panelClassName={cx("rpl-menu-panel", panelClassName)}
-      style={width ? { width } : undefined}
+      panelStyle={width ? { width } : undefined}
       placement="bottom"
       align="end"
     >

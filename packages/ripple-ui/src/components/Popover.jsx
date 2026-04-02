@@ -8,6 +8,7 @@ export default function Popover({
   children,
   className = "",
   panelClassName = "",
+  panelStyle,
   placement = "bottom",
   align = "start",
 }) {
@@ -52,7 +53,7 @@ export default function Popover({
     >
       {triggerNode}
       {open ? (
-        <div id={panelId} className={cx("rpl-popover-panel", panelClassName)} role="dialog" aria-modal="false">
+        <div id={panelId} className={cx("rpl-popover-panel", panelClassName)} style={panelStyle} role="dialog" aria-modal="false">
           {children}
         </div>
       ) : null}

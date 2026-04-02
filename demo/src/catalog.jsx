@@ -2,11 +2,14 @@ import React from "react";
 import {
   Accordion,
   AccordionItem,
+  AccessoryButton,
   AlertDialog,
   Avatar,
   Badge,
   Banner,
   BarChart,
+  Border,
+  BottomInfo,
   BottomSheet,
   Button,
   Card,
@@ -17,9 +20,11 @@ import {
   DatePicker,
   DatePickerCompact,
   Dialog,
+  DoughnutChart,
   Dropdown,
   Divider,
   EmptyState,
+  FadeIn,
   Icon,
   IconButton,
   iconNames,
@@ -29,9 +34,23 @@ import {
   List,
   ListFooter,
   ListHeader,
+  ListHeaderRightArrow,
+  ListHeaderRightText,
+  ListHeaderTitleSelector,
+  ListHeaderTitleTextButton,
   ListRow,
+  ListRowFillIcon,
+  ListRowIcon,
+  ListRowIconButton,
+  ListRowImage,
+  ListRowImageContainer,
   Loader,
   Menu,
+  MenuDropdownCheckItem,
+  MenuDropdownIcon,
+  MenuDropdownItem,
+  MenuHeader,
+  MenuTrigger,
   NoticeBanner,
   Popover,
   ProgressBar,
@@ -53,6 +72,7 @@ import {
   SelectSearchable,
   Skeleton,
   Snackbar,
+  Spacing,
   Stack,
   Stepper,
   Slider,
@@ -71,11 +91,19 @@ import {
   TextArea,
   Toast,
   Tooltip,
+  Top,
   TopBar,
+  TopRightArrow,
+  TopRightButton,
+  TopSubtitleBadges,
+  TopSubtitleSelector,
+  TopTitleSelector,
   Pagination,
   Modal,
   FullScreenLoader,
+  GridList,
   LoadingCompleteView,
+  WheelDatePicker,
 } from "@sh981013s/ripple-ui";
 
 function useCopyFeedback() {
@@ -1276,6 +1304,48 @@ function SearchFieldSuggestPlayground() {
   );
 }
 
+function TopPlayground() {
+  return (
+    <Top
+      title="Workspace"
+      subtitleTop="Operations"
+      subtitleBottom="Live review queue"
+      leading={<TopRightArrow aria-label="Back" />}
+      badges={<TopSubtitleBadges items={[<Badge key="1" tone="accent">Live</Badge>, <Badge key="2">12 members</Badge>]} />}
+      titleSelector={<TopTitleSelector>All workspaces</TopTitleSelector>}
+      subtitleSelector={<TopSubtitleSelector>Status</TopSubtitleSelector>}
+      trailing={<TopRightButton label="Manage" icon="settings" />}
+      divider
+      surface="muted"
+    />
+  );
+}
+
+function DoughnutChartPlayground() {
+  const [value, setValue] = React.useState(72);
+
+  return (
+    <Stack gap={12}>
+      <DoughnutChart value={value} label="Usage" description="Workspace capacity" />
+      <Slider label="Usage" value={value} onChange={(next) => setValue(Number(next.target.value))} />
+    </Stack>
+  );
+}
+
+function WheelDatePickerPlayground() {
+  const [value, setValue] = React.useState("2026-04-02");
+
+  return (
+    <WheelDatePicker
+      label="Settlement date"
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      validationState="success"
+      validationMessage="Wheel selection ready."
+    />
+  );
+}
+
 function PropTable({ props }) {
   return (
     <div className="docs-props-table">
@@ -1347,6 +1417,41 @@ export default function Example() {
     />
   );
 }`,
+  Border: `import { Border, Card, Stack, Text } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <Card>
+      <Stack gap={12}>
+        <Text variant="body">Primary content</Text>
+        <Border />
+        <Text variant="caption">Secondary content</Text>
+      </Stack>
+    </Card>
+  );
+}`,
+  Spacing: `import { Card, Spacing, Stack, Text } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <Card>
+      <Stack gap={0}>
+        <Text variant="body">First block</Text>
+        <Spacing size={20} />
+        <Text variant="body">Second block</Text>
+      </Stack>
+    </Card>
+  );
+}`,
+  FadeIn: `import { FadeIn, Text } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <FadeIn delay={80}>
+      <Text variant="body">Content fades in with a subtle upward motion.</Text>
+    </FadeIn>
+  );
+}`,
   Avatar: `import { Avatar, Inline } from "@sh981013s/ripple-ui";
 
 export default function Example() {
@@ -1403,6 +1508,22 @@ export default function Example() {
       subtitleSelector={<Selector type="arrow" size="sm">Status</Selector>}
       rightArrow
       surface="muted"
+      divider
+    />
+  );
+}`,
+  Top: `import { Badge, Top, TopRightButton, TopSubtitleBadges, TopSubtitleSelector, TopTitleSelector } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <Top
+      title="Workspace"
+      subtitleTop="Operations"
+      subtitleBottom="Review queue"
+      badges={<TopSubtitleBadges items={[<Badge key="1" tone="accent">Live</Badge>]} />}
+      titleSelector={<TopTitleSelector>All</TopTitleSelector>}
+      subtitleSelector={<TopSubtitleSelector>Status</TopSubtitleSelector>}
+      trailing={<TopRightButton label="Manage" icon="settings" />}
       divider
     />
   );
@@ -1944,6 +2065,89 @@ export default function Example() {
     />
   );
 }`,
+  BottomInfo: `import { BottomInfo, Button, Icon } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <BottomInfo
+      icon={<Icon name="wallet" size={18} />}
+      title="Billing account connected"
+      description="Payouts will be sent automatically every week."
+      action={<Button size="small">Review</Button>}
+    />
+  );
+}`,
+  AccessoryButton: `import { AccessoryButton } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <AccessoryButton icon="card" title="Payment method" description="Visa ending in 4242" />;
+}`,
+  GridList: `import { Card, GridList, Text } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <GridList columns={2}>
+      <Card><Text variant="body">Revenue</Text></Card>
+      <Card><Text variant="body">Payouts</Text></Card>
+      <Card><Text variant="body">Alerts</Text></Card>
+      <Card><Text variant="body">Members</Text></Card>
+    </GridList>
+  );
+}`,
+  WheelDatePicker: `import { WheelDatePicker } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <WheelDatePicker label="Settlement date" validationState="success" validationMessage="Date confirmed." />;
+}`,
+  DoughnutChart: `import { DoughnutChart } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <DoughnutChart value={72} label="Usage" description="Workspace capacity" />;
+}`,
+  "ListHeader.RightText": `import { ListHeaderRightText } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <ListHeaderRightText>Updated now</ListHeaderRightText>;
+}`,
+  "ListHeader.RightArrow": `import { ListHeaderRightArrow } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <ListHeaderRightArrow />;
+}`,
+  "ListHeader.TitleSelector": `import { ListHeaderTitleSelector } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <ListHeaderTitleSelector>Workspace</ListHeaderTitleSelector>;
+}`,
+  "ListHeader.TitleTextButton": `import { ListHeaderTitleTextButton } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <ListHeaderTitleTextButton>See all</ListHeaderTitleTextButton>;
+}`,
+  "ListRow.Icon / Image": `import { ListRow, ListRowIcon, ListRowImageContainer, ListRowImage } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <>
+      <ListRow title="Workspace" description="Icon variant" icon={<ListRowIcon name="folder" />} />
+      <ListRow title="Profile" description="Image variant" leading={<ListRowImageContainer><ListRowImage src="https://placehold.co/72x72" alt="" /></ListRowImageContainer>} />
+    </>
+  );
+}`,
+  "Menu Item Variants": `import { Menu, MenuDropdownCheckItem, MenuDropdownItem, MenuHeader } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <Menu
+      open
+      items={[
+        MenuHeader({ label: "Workspace actions" }),
+        MenuDropdownItem({ label: "Rename workspace", icon: "edit" }),
+        MenuDropdownCheckItem({ label: "Pinned", icon: "bookmark", checked: true }),
+      ]}
+    />
+  );
+}`,
   Dropdown: `import { Dropdown } from "@sh981013s/ripple-ui";
 
 export default function Example() {
@@ -2013,6 +2217,7 @@ function Playground({ component }) {
   const map = {
     Button: <ButtonPlayground />,
     Badge: <BadgePlayground />,
+    DoughnutChart: <DoughnutChartPlayground />,
     Loader: <LoaderPlayground />,
     Toast: <ToastPlayground />,
     Rating: <RatingPlayground />,
@@ -2020,6 +2225,7 @@ function Playground({ component }) {
     LoadingCompleteView: <LoadingCompleteViewPlayground />,
     Icon: <IconPlayground />,
     TopBar: <TopBarPlayground />,
+    Top: <TopPlayground />,
     Input: <InputPlayground />,
     TextField: <TextFieldPlayground />,
     "TextField.Clearable": <TextFieldClearablePlayground />,
@@ -2039,6 +2245,7 @@ function Playground({ component }) {
     ),
     DatePicker: <DatePickerPlayground />,
     "DatePicker.Compact": <DatePickerCompactPlayground />,
+    WheelDatePicker: <WheelDatePickerPlayground />,
     TextButton: <TextButtonPlayground />,
     Modal: <ModalPlayground />,
     "List / ListHeader / ListFooter": <ListHeaderPlayground />,
@@ -2167,6 +2374,48 @@ const docs = [
         preview: () => <Divider />,
       },
       {
+        name: "Border",
+        eyebrow: "layout",
+        description: "Structural border primitive for separating or framing content.",
+        props: [
+          { name: "orientation", type: `"horizontal" | "vertical"`, defaultValue: `"horizontal"`, description: "Border direction." },
+          { name: "inset", type: "boolean", defaultValue: "false", description: "Inset horizontal border within the parent width." },
+          { name: "strong", type: "boolean", defaultValue: "false", description: "Uses a stronger neutral stroke." },
+        ],
+        preview: () => <Border />,
+      },
+      {
+        name: "Spacing",
+        eyebrow: "layout",
+        description: "Vertical spacing primitive for layout recipes and composed surfaces.",
+        props: [
+          { name: "size", type: "number", defaultValue: "16", description: "Rendered vertical space in pixels." },
+        ],
+        preview: () => (
+          <Card>
+            <Stack gap={0}>
+              <Text variant="body">First block</Text>
+              <Spacing size={20} />
+              <Text variant="body">Second block</Text>
+            </Stack>
+          </Card>
+        ),
+      },
+      {
+        name: "FadeIn",
+        eyebrow: "motion",
+        description: "Small entrance-motion wrapper for previews, sections, and callouts.",
+        props: [
+          { name: "delay", type: "number", defaultValue: "0", description: "Animation delay in milliseconds." },
+          { name: "as", type: "string | component", defaultValue: `"div"`, description: "Rendered wrapper element." },
+        ],
+        preview: () => (
+          <FadeIn delay={80}>
+            <Card><Text variant="body">Subtle entrance motion for composed content.</Text></Card>
+          </FadeIn>
+        ),
+      },
+      {
         name: "SectionHeader",
         eyebrow: "content",
         description: "Section heading block with optional action slot.",
@@ -2259,6 +2508,56 @@ const docs = [
           { name: "variant", type: `"floating" | "flat"`, defaultValue: `"floating"`, description: "Surface treatment." },
         ],
         preview: () => <TopBarPlayground />,
+      },
+      {
+        name: "Top",
+        eyebrow: "navigation",
+        description: "Product-style top layout built from the shared top bar surface.",
+        props: [
+          { name: "title / subtitleTop / subtitleBottom", type: "ReactNode", defaultValue: "-", description: "Core top copy." },
+          { name: "badges / titleSelector / subtitleSelector", type: "ReactNode", defaultValue: "-", description: "Structured support affordances." },
+          { name: "trailing", type: "ReactNode", defaultValue: "-", description: "Right-side CTA or compact action." },
+        ],
+        preview: () => <TopPlayground />,
+      },
+      {
+        name: "ListHeader.RightText",
+        eyebrow: "navigation",
+        description: "Muted right-aligned caption for list section summaries.",
+        props: [{ name: "children", type: "ReactNode", defaultValue: "-", description: "Displayed caption text." }],
+        preview: () => <ListHeaderRightText>Updated now</ListHeaderRightText>,
+      },
+      {
+        name: "ListHeader.RightArrow",
+        eyebrow: "navigation",
+        description: "Directional affordance for list section titles.",
+        props: [],
+        preview: () => <ListHeaderRightArrow />,
+      },
+      {
+        name: "ListHeader.TitleSelector",
+        eyebrow: "navigation",
+        description: "Selector affordance sized for list header titles.",
+        props: [{ name: "children", type: "ReactNode", defaultValue: "-", description: "Selector label." }],
+        preview: () => <ListHeaderTitleSelector>Workspace</ListHeaderTitleSelector>,
+      },
+      {
+        name: "ListHeader.TitleTextButton",
+        eyebrow: "navigation",
+        description: "Compact text action used beside list header titles.",
+        props: [{ name: "children", type: "ReactNode", defaultValue: "-", description: "Button label." }],
+        preview: () => <ListHeaderTitleTextButton>See all</ListHeaderTitleTextButton>,
+      },
+      {
+        name: "Menu Item Variants",
+        eyebrow: "navigation",
+        description: "Helper creators for menu headers, standard items, and check items.",
+        props: [
+          { name: "MenuHeader", type: "({ label }) => item", defaultValue: "-", description: "Creates a structural header row." },
+          { name: "MenuDropdownItem", type: "({ label, icon, ... }) => item", defaultValue: "-", description: "Creates a standard action row." },
+          { name: "MenuDropdownCheckItem", type: "({ label, checked, ... }) => item", defaultValue: "-", description: "Creates a checkbox-style menu row." },
+        ],
+        preview: () => <InteractiveMenuPreview />,
       },
       {
         name: "Tabs / Tab",
@@ -2426,6 +2725,35 @@ const docs = [
             <TextButton tone="neutral" trailing="→">Neutral</TextButton>
             <TextButton tone="danger" underline>Delete</TextButton>
           </Inline>
+        ),
+      },
+      {
+        name: "AccessoryButton",
+        eyebrow: "action",
+        description: "Dense accessory-style action row for settings and payment surfaces.",
+        props: [
+          { name: "icon", type: "string | ReactNode", defaultValue: "-", description: "Leading icon or custom accessory." },
+          { name: "title / description", type: "ReactNode", defaultValue: "-", description: "Primary and secondary copy." },
+          { name: "trailing", type: "ReactNode", defaultValue: "-", description: "Optional right-side accessory." },
+        ],
+        preview: () => <AccessoryButton icon="card" title="Payment method" description="Visa ending in 4242" />,
+      },
+      {
+        name: "BottomInfo",
+        eyebrow: "action",
+        description: "Bottom-attached informational CTA strip for flows and paywalls.",
+        props: [
+          { name: "icon", type: "ReactNode", defaultValue: "-", description: "Leading accent accessory." },
+          { name: "title / description", type: "ReactNode", defaultValue: "-", description: "Copy shown on the left." },
+          { name: "action", type: "ReactNode", defaultValue: "-", description: "Inline CTA surface." },
+        ],
+        preview: () => (
+          <BottomInfo
+            icon={<Icon name="wallet" size={18} />}
+            title="Billing account connected"
+            description="Payouts will be sent automatically every week."
+            action={<Button size="small">Review</Button>}
+          />
         ),
       },
     ],
@@ -2637,6 +2965,17 @@ const docs = [
           { name: "sheetTitle / confirmLabel / cancelLabel", type: "string", defaultValue: "-", description: "Structured sheet copy." },
         ],
         preview: () => <DatePickerCompactPlayground />,
+      },
+      {
+        name: "WheelDatePicker",
+        eyebrow: "form",
+        description: "Dedicated wheel-style date picker surface with sheet-first behavior.",
+        props: [
+          { name: "label", type: "ReactNode", defaultValue: "-", description: "Field label." },
+          { name: "sheetTitle / sheetEyebrow", type: "string", defaultValue: "-", description: "Sheet copy." },
+          { name: "value / onChange", type: "string + handler", defaultValue: "-", description: "Controlled value handling." },
+        ],
+        preview: () => <WheelDatePickerPlayground />,
       },
       {
         name: "Switch",
@@ -3000,6 +3339,34 @@ const docs = [
         ),
       },
       {
+        name: "ListRow.Icon / Image",
+        eyebrow: "data",
+        description: "Media helpers for icon, fill-icon, and image-led list rows.",
+        props: [
+          { name: "ListRowIcon", type: "component", defaultValue: "-", description: "Neutral icon container." },
+          { name: "ListRowFillIcon", type: "component", defaultValue: "-", description: "Filled icon container." },
+          { name: "ListRowImageContainer", type: "component", defaultValue: "-", description: "Image frame wrapper." },
+          { name: "ListRowImage", type: "component", defaultValue: "-", description: "Image element sized for list rows." },
+          { name: "ListRowIconButton", type: "component", defaultValue: "-", description: "Compact trailing action icon button." },
+        ],
+        preview: () => (
+          <Stack gap={12}>
+            <ListRow
+              title="Folders"
+              description="Icon-led row"
+              icon={<ListRowIcon name="folder" />}
+              action={<ListRowIconButton name="chevronRight" />}
+            />
+            <ListRow
+              title="Workspace avatar"
+              description="Image-led row"
+              leading={<ListRowImageContainer><ListRowImage src="https://placehold.co/64x64/png" alt="" /></ListRowImageContainer>}
+              action={<ListRowFillIcon name="user" />}
+            />
+          </Stack>
+        ),
+      },
+      {
         name: "ListRow",
         eyebrow: "data",
         description: "Structured row for navigation lists or summary blocks.",
@@ -3048,6 +3415,34 @@ const docs = [
           { name: "showValue", type: "boolean", defaultValue: "true", description: "Show numeric value labels." },
         ],
         preview: () => <BarChartPlayground />,
+      },
+      {
+        name: "GridList",
+        eyebrow: "data",
+        description: "Responsive grid primitive for grouped metric or card surfaces.",
+        props: [
+          { name: "columns", type: "number", defaultValue: "2", description: "Grid column count." },
+          { name: "gap", type: "number", defaultValue: "16", description: "Gap between items." },
+        ],
+        preview: () => (
+          <GridList columns={2}>
+            <Card><Text variant="body">Revenue</Text></Card>
+            <Card><Text variant="body">Payouts</Text></Card>
+            <Card><Text variant="body">Alerts</Text></Card>
+            <Card><Text variant="body">Members</Text></Card>
+          </GridList>
+        ),
+      },
+      {
+        name: "DoughnutChart",
+        eyebrow: "data",
+        description: "Circular progress and composition chart for compact summaries.",
+        props: [
+          { name: "value / max", type: "number", defaultValue: "64 / 100", description: "Progress ratio." },
+          { name: "size / stroke", type: "number", defaultValue: "144 / 12", description: "Chart dimensions." },
+          { name: "tone", type: `"accent" | "success" | "warning" | "danger" | "neutral"`, defaultValue: `"accent"`, description: "Progress color tone." },
+        ],
+        preview: () => <DoughnutChartPlayground />,
       },
       {
         name: "Slider",
