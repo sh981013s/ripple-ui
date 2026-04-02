@@ -9,33 +9,33 @@
   --rpl-seed-danger: #d14343;
 
   --rpl-color-bg: var(--rpl-seed-bg);
-  --rpl-color-surface: color-mix(in srgb, white 90%, var(--rpl-seed-bg));
-  --rpl-color-surface-muted: color-mix(in srgb, white 68%, var(--rpl-seed-bg));
-  --rpl-color-surface-accent: color-mix(in srgb, var(--rpl-seed-accent) 10%, white);
-  --rpl-color-surface-success: color-mix(in srgb, var(--rpl-seed-success) 10%, white);
-  --rpl-color-surface-warning: color-mix(in srgb, var(--rpl-seed-warning) 10%, white);
-  --rpl-color-surface-danger: color-mix(in srgb, var(--rpl-seed-danger) 8%, white);
+  --rpl-color-surface: color-mix(in srgb, white 93%, var(--rpl-seed-bg));
+  --rpl-color-surface-muted: color-mix(in srgb, white 74%, var(--rpl-seed-bg));
+  --rpl-color-surface-accent: color-mix(in srgb, var(--rpl-seed-accent) 7%, white);
+  --rpl-color-surface-success: color-mix(in srgb, var(--rpl-seed-success) 8%, white);
+  --rpl-color-surface-warning: color-mix(in srgb, var(--rpl-seed-warning) 8%, white);
+  --rpl-color-surface-danger: color-mix(in srgb, var(--rpl-seed-danger) 6%, white);
 
   --rpl-color-text-primary: var(--rpl-seed-ink);
-  --rpl-color-text-secondary: color-mix(in srgb, var(--rpl-seed-ink) 72%, var(--rpl-seed-bg));
-  --rpl-color-text-tertiary: color-mix(in srgb, var(--rpl-seed-ink) 48%, var(--rpl-seed-bg));
-  --rpl-color-text-disabled: color-mix(in srgb, var(--rpl-seed-ink) 28%, var(--rpl-seed-bg));
+  --rpl-color-text-secondary: color-mix(in srgb, var(--rpl-seed-ink) 67%, var(--rpl-seed-bg));
+  --rpl-color-text-tertiary: color-mix(in srgb, var(--rpl-seed-ink) 42%, var(--rpl-seed-bg));
+  --rpl-color-text-disabled: color-mix(in srgb, var(--rpl-seed-ink) 24%, var(--rpl-seed-bg));
 
-  --rpl-color-line: color-mix(in srgb, var(--rpl-seed-ink) 11%, var(--rpl-seed-bg));
-  --rpl-color-line-strong: color-mix(in srgb, var(--rpl-seed-ink) 16%, var(--rpl-seed-bg));
-  --rpl-color-line-accent: color-mix(in srgb, var(--rpl-seed-accent) 24%, white);
-  --rpl-color-line-success: color-mix(in srgb, var(--rpl-seed-success) 18%, white);
-  --rpl-color-line-warning: color-mix(in srgb, var(--rpl-seed-warning) 22%, white);
-  --rpl-color-line-danger: color-mix(in srgb, var(--rpl-seed-danger) 20%, white);
+  --rpl-color-line: color-mix(in srgb, var(--rpl-seed-ink) 9%, var(--rpl-seed-bg));
+  --rpl-color-line-strong: color-mix(in srgb, var(--rpl-seed-ink) 13%, var(--rpl-seed-bg));
+  --rpl-color-line-accent: color-mix(in srgb, var(--rpl-seed-accent) 18%, white);
+  --rpl-color-line-success: color-mix(in srgb, var(--rpl-seed-success) 14%, white);
+  --rpl-color-line-warning: color-mix(in srgb, var(--rpl-seed-warning) 16%, white);
+  --rpl-color-line-danger: color-mix(in srgb, var(--rpl-seed-danger) 14%, white);
 
   --rpl-color-accent: var(--rpl-seed-accent);
   --rpl-color-accent-strong: color-mix(in srgb, var(--rpl-seed-accent) 82%, black);
-  --rpl-color-accent-soft: color-mix(in srgb, var(--rpl-seed-accent) 14%, white);
-  --rpl-color-accent-soft-strong: color-mix(in srgb, var(--rpl-seed-accent) 18%, white);
+  --rpl-color-accent-soft: color-mix(in srgb, var(--rpl-seed-accent) 10%, white);
+  --rpl-color-accent-soft-strong: color-mix(in srgb, var(--rpl-seed-accent) 14%, white);
   --rpl-color-success: var(--rpl-seed-success);
   --rpl-color-warning: var(--rpl-seed-warning);
   --rpl-color-danger: var(--rpl-seed-danger);
-  --rpl-color-danger-soft: color-mix(in srgb, var(--rpl-seed-danger) 10%, white);
+  --rpl-color-danger-soft: color-mix(in srgb, var(--rpl-seed-danger) 7%, white);
   --rpl-fill-strong: color-mix(in srgb, var(--rpl-seed-ink) 82%, white);
   --rpl-fill-neutral: color-mix(in srgb, var(--rpl-seed-bg) 44%, white);
   --rpl-fill-neutral-soft: color-mix(in srgb, var(--rpl-seed-bg) 62%, white);
@@ -45,10 +45,10 @@
   --rpl-color-inverse-surface: color-mix(in srgb, var(--rpl-seed-ink) 88%, var(--rpl-seed-bg));
   --rpl-focus-ring: 0 0 0 4px color-mix(in srgb, var(--rpl-seed-accent) 16%, transparent);
 
-  --rpl-radius-sm: 10px;
-  --rpl-radius-md: 14px;
-  --rpl-radius-lg: 20px;
-  --rpl-radius-xl: 26px;
+  --rpl-radius-sm: 8px;
+  --rpl-radius-md: 12px;
+  --rpl-radius-lg: 16px;
+  --rpl-radius-xl: 22px;
 
   --rpl-space-1: 4px;
   --rpl-space-2: 8px;
@@ -58,14 +58,14 @@
   --rpl-space-6: 24px;
   --rpl-space-7: 32px;
 
-  --rpl-shadow-card: 0 1px 2px rgba(15, 23, 42, 0.03), 0 10px 24px rgba(15, 23, 42, 0.035);
-  --rpl-shadow-sheet: 0 20px 48px rgba(15, 23, 42, 0.14);
+  --rpl-shadow-card: 0 1px 2px rgba(15, 23, 42, 0.025), 0 6px 16px rgba(15, 23, 42, 0.03);
+  --rpl-shadow-sheet: 0 14px 32px rgba(15, 23, 42, 0.12);
   --rpl-shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.96);
   --rpl-ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --rpl-ease-emphasized: cubic-bezier(0.22, 1, 0.36, 1);
   --rpl-duration-fast: 140ms;
   --rpl-duration-normal: 220ms;
   --rpl-duration-slow: 320ms;
-  --rpl-lift-rest: 0 1px 2px rgba(15, 23, 42, 0.03), 0 10px 24px rgba(15, 23, 42, 0.035);
-  --rpl-lift-hover: 0 1px 2px rgba(15, 23, 42, 0.04), 0 14px 28px rgba(15, 23, 42, 0.065);
+  --rpl-lift-rest: 0 1px 2px rgba(15, 23, 42, 0.025), 0 6px 16px rgba(15, 23, 42, 0.03);
+  --rpl-lift-hover: 0 1px 2px rgba(15, 23, 42, 0.035), 0 10px 20px rgba(15, 23, 42, 0.05);
 }

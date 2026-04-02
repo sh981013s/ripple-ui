@@ -26,7 +26,11 @@ export default function Table({
           {rows.map((row, rowIndex) => (
             <tr key={row.key ?? rowIndex}>
               {columns.map((column) => (
-                <td key={column.key} className={cx(column.align && `is-${column.align}`)}>
+                <td
+                  key={column.key}
+                  className={cx(column.align && `is-${column.align}`)}
+                  data-label={typeof column.title === "string" ? column.title : undefined}
+                >
                   {column.render ? column.render(row[column.key], row) : row[column.key]}
                 </td>
               ))}

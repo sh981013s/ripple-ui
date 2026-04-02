@@ -8,10 +8,17 @@ export default function GridList({
   children,
   ...props
 }) {
+  const tabletColumns = Math.min(Number(columns) || 1, 2);
+  const mobileColumns = 1;
   return (
     <div
       className={cx("rpl-grid-list", className)}
-      style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))`, gap }}
+      style={{
+        ["--rpl-grid-columns"]: String(columns),
+        ["--rpl-grid-columns-tablet"]: String(tabletColumns),
+        ["--rpl-grid-columns-mobile"]: String(mobileColumns),
+        ["--rpl-grid-gap"]: typeof gap === "number" ? `${gap}px` : gap,
+      }}
       {...props}
     >
       {children}
