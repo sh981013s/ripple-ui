@@ -1,6 +1,6 @@
 # Ripple UI
 
-Calm, mobile-first React UI components for structured product surfaces.
+A React UI library and TypeScript design system for calm, mobile-first product surfaces.
 
 [![Deploy Demo](https://github.com/sh981013s/ripple-ui/actions/workflows/deploy-demo.yml/badge.svg)](https://github.com/sh981013s/ripple-ui/actions/workflows/deploy-demo.yml)
 [![Publish Package](https://github.com/sh981013s/ripple-ui/actions/workflows/publish-package.yml/badge.svg)](https://github.com/sh981013s/ripple-ui/actions/workflows/publish-package.yml)
@@ -17,7 +17,22 @@ Ripple UI is a React component library for teams that want:
 - a seed-driven theme system
 - AI-friendly docs and machine-readable component catalogs
 
-It is designed for product UIs, internal tools, fintech-style dashboards, settings flows, and structured workflows.
+It is designed for product UIs, internal tools, fintech-style dashboards, settings flows, structured workflows, and AI-generated app scaffolds.
+
+Ripple UI is a good fit when you are looking for:
+
+- a `react ui library` with strong defaults
+- a `typescript design system` with autocomplete and theme support
+- a `mobile-first component library` for compact product layouts
+- a `toss style ui` direction for calm, neutral-first, product-focused screens
+- a reusable component set for fintech, admin, workspace, and dashboard surfaces
+
+## Why Teams Use Ripple UI
+
+- Faster product UI assembly with forms, overlays, navigation, lists, and charts in one package
+- Better AI-assisted app generation through bundled docs, JSON catalogs, and copy-ready prompts
+- Seed-driven theming without rebuilding every component surface by hand
+- A calmer, more structured alternative to louder marketing-style UI kits
 
 ## Install
 
@@ -131,6 +146,16 @@ export default function Example() {
 }
 ```
 
+## Best Fit
+
+Use Ripple UI when you need a React component library for:
+
+- fintech and payment-adjacent dashboards
+- mobile-first admin panels and internal tools
+- settings, onboarding, and approval flows
+- structured list, form, sheet, and dialog surfaces
+- AI-assisted app generation with stable component primitives
+
 ## Theme System
 
 Ripple UI ships with five preset themes and a custom seed-based theme API.
@@ -190,6 +215,8 @@ The docs site includes:
 - prop tables
 - icon browser
 - theme switching demo
+
+The docs landing page is tuned to explain Ripple UI as a React UI library, a TypeScript design system, and a mobile-first component library before users open individual component pages.
 
 ## AI-First Usage
 

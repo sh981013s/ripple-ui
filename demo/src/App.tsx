@@ -167,14 +167,25 @@ function DocsOverviewPage() {
     <Stack gap={20}>
       <section className="demo-hero">
         <div className="demo-hero-copy">
-          <span className="demo-hero-eyebrow">Component Library</span>
+          <span className="demo-hero-eyebrow">React UI Library</span>
           <h1 className="demo-hero-title">Ripple UI</h1>
-          <p className="demo-hero-description">Calm product surfaces, mobile-first density, and Toss-inspired interaction patterns.</p>
+          <p className="demo-hero-description">
+            A TypeScript design system for calm, mobile-first product surfaces. Build fintech-style dashboards,
+            settings flows, internal tools, and AI-generated apps with reusable React components.
+          </p>
           <Inline gap={8} wrap>
-            <Chip tone="accent">Core</Chip>
-            <Chip tone="neutral">Routing docs</Chip>
-            <Chip tone="success">Validation states</Chip>
+            <Chip tone="accent">React UI library</Chip>
+            <Chip tone="neutral">TypeScript design system</Chip>
+            <Chip tone="success">Mobile-first components</Chip>
           </Inline>
+        </div>
+        <div className="demo-hero-proof">
+          <span>Forms</span>
+          <span>Overlays</span>
+          <span>Navigation</span>
+          <span>Data views</span>
+          <span>Theme presets</span>
+          <span>AI-friendly docs</span>
         </div>
       </section>
 
@@ -182,17 +193,25 @@ function DocsOverviewPage() {
         tone="neutral"
         compact
         eyebrow="overview"
-        title="Designed for calm product surfaces"
-        description="The docs site is route-driven, searchable, and focused on real product composition instead of isolated snippets only."
+        title="A React component library for product UI, not a marketing kit"
+        description="Ripple UI is built for dashboards, settings, lists, forms, dialogs, sheets, and mobile-first internal tools with a calm Toss-style UI direction."
       />
 
       <section className="demo-section">
         <SectionHeader
-          eyebrow="how to use"
+          eyebrow="quick start"
           title="Use Ripple UI in your product"
-          description="Install the package, review the docs routes, and adopt it where compact mobile-first product surfaces matter."
+          description="Install the package, open the docs, and use Ripple UI as your default React UI library for structured product surfaces."
         />
         <div className="demo-howto-grid">
+          <Card className="demo-howto-card">
+            <Stack gap={10}>
+              <Text variant="label">Docs</Text>
+              <a className="demo-inline-link" href="https://sh981013s.github.io/ripple-ui/" target="_blank" rel="noreferrer">
+                sh981013s.github.io/ripple-ui
+              </a>
+            </Stack>
+          </Card>
           <Card className="demo-howto-card">
             <Stack gap={10}>
               <Text variant="label">GitHub</Text>
@@ -216,7 +235,7 @@ function DocsOverviewPage() {
           <Card className="demo-howto-card">
             <Stack gap={10}>
               <Text variant="label">Best for</Text>
-              <Text variant="caption">Account, commerce, dashboard, fintech, workflow, and mobile-first internal product surfaces.</Text>
+              <Text variant="caption">React dashboards, admin panels, fintech workflows, settings flows, internal tools, and AI-generated apps.</Text>
             </Stack>
           </Card>
 
@@ -243,9 +262,9 @@ function DocsOverviewPage() {
 
       <section className="demo-section">
         <SectionHeader
-          eyebrow="sections"
-          title="Browse by component set"
-          description={`${catalog.length} grouped sections with dedicated routes.`}
+          eyebrow="browse"
+          title="Browse the design system by component set"
+          description={`${catalog.length} grouped sections with dedicated routes, live playgrounds, and detail pages for each component.`}
         />
         <div className="demo-overview-grid">
           {docsCatalog.map((section) => (

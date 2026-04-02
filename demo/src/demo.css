@@ -74,10 +74,27 @@ textarea {
 
 .demo-hero-description {
   margin: 0;
-  max-width: 48ch;
+  max-width: 58ch;
   color: var(--rpl-color-text-secondary);
   font-size: 0.96rem;
   line-height: 1.52;
+}
+
+.demo-hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--rpl-color-text-tertiary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.demo-hero-proof span {
+  padding: 7px 10px;
+  border: 1px solid var(--rpl-color-line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--rpl-color-surface) 92%, var(--rpl-color-bg));
 }
 
 .demo-layout {
@@ -272,7 +289,7 @@ textarea {
 
 .demo-howto-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 

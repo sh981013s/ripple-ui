@@ -1,6 +1,6 @@
 # @sh981013s/ripple-ui
 
-Calm, mobile-first React UI components for structured product surfaces.
+A React UI library and TypeScript design system for calm, mobile-first product surfaces.
 
 [Docs](https://sh981013s.github.io/ripple-ui/) · [GitHub](https://github.com/sh981013s/ripple-ui) · [npm](https://www.npmjs.com/package/@sh981013s/ripple-ui)
 
@@ -9,6 +9,16 @@ Calm, mobile-first React UI components for structured product surfaces.
 ```bash
 npm install @sh981013s/ripple-ui
 ```
+
+## What This Package Is For
+
+Use `@sh981013s/ripple-ui` when you need:
+
+- a `react ui library` for product screens instead of marketing pages
+- a `typescript design system` with strong component coverage and autocomplete
+- a `mobile-first component library` for compact, structured interfaces
+- a `toss style ui` direction for calmer, neutral-first layouts
+- reusable surfaces for forms, overlays, lists, navigation, charts, and feedback
 
 ## AI Setup
 
@@ -134,6 +144,8 @@ Use Ripple UI when you need:
 - list-heavy mobile UIs
 - fintech-style overlays and forms
 - AI-generated internal tools with stable component primitives
+
+Ripple UI works especially well for developers searching for a React UI library with mobile-first density, TypeScript-friendly props, and a calm product UI look.
 
 ## Docs
 
