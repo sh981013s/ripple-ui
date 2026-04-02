@@ -21,6 +21,9 @@ export default function TopBar({
   rightVerticalAlign = "center",
   size = "md",
   variant = "floating",
+  surface = "default",
+  divider = false,
+  sticky = false,
   align = "center",
   className = "",
 }) {
@@ -29,7 +32,17 @@ export default function TopBar({
   const resolvedSubtitleBottom = subtitleBottom ?? subtitle;
 
   return (
-    <header className={cx("rpl-top-bar", `rpl-top-bar-${size}`, `rpl-top-bar-${variant}`, className)}>
+    <header
+      className={cx(
+        "rpl-top-bar",
+        `rpl-top-bar-${size}`,
+        `rpl-top-bar-${variant}`,
+        `rpl-top-bar-surface-${surface}`,
+        divider && "rpl-top-bar-divider",
+        sticky && "rpl-top-bar-sticky",
+        className,
+      )}
+    >
       <Inline align="center" justify="space-between" className="rpl-top-bar-inner">
         <div className="rpl-top-bar-leading">{leading}</div>
         <div className={cx("rpl-top-bar-copy", `is-${align}`)}>

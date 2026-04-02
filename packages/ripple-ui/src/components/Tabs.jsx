@@ -1,7 +1,7 @@
 import React, { Children, cloneElement, isValidElement, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { cx } from "../utils/cx.js";
 
-export function Tabs({ className = "", stretch = false, children, ...props }) {
+export function Tabs({ className = "", stretch = false, size = "md", variant = "pill", children, ...props }) {
   const containerRef = useRef(null);
   const [indicatorStyle, setIndicatorStyle] = useState(null);
 
@@ -34,7 +34,7 @@ export function Tabs({ className = "", stretch = false, children, ...props }) {
   return (
     <div
       ref={containerRef}
-      className={cx("rpl-tabs", stretch && "rpl-tabs-stretch", className)}
+      className={cx("rpl-tabs", `rpl-tabs-${size}`, `rpl-tabs-${variant}`, stretch && "rpl-tabs-stretch", className)}
       role="tablist"
       {...props}
     >
@@ -46,6 +46,7 @@ export function Tabs({ className = "", stretch = false, children, ...props }) {
 
 export function Tab({
   active = false,
+  size,
   className = "",
   children,
   ...props
@@ -56,7 +57,7 @@ export function Tab({
       role="tab"
       aria-selected={active}
       tabIndex={active ? 0 : -1}
-      className={cx("rpl-tab", active && "rpl-tab-active", className)}
+      className={cx("rpl-tab", size && `rpl-tab-${size}`, active && "rpl-tab-active", className)}
       {...props}
     >
       {children}

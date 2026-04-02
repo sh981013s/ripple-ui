@@ -14,6 +14,8 @@ export function ListHeader({
   rightArrow = false,
   rightButton,
   titleTextButton,
+  compact = false,
+  divider = false,
   className = "",
   children,
   ...props
@@ -21,7 +23,7 @@ export function ListHeader({
   const hasStructured = eyebrow || title || description || badges || selector || rightText || rightArrow || rightButton || titleTextButton;
 
   return (
-    <div className={cx("rpl-list-header", className)} {...props}>
+    <div className={cx("rpl-list-header", compact && "rpl-list-header-compact", divider && "rpl-list-header-divider", className)} {...props}>
       {hasStructured ? (
         <div className="rpl-list-header-row">
           <div className="rpl-list-header-copy">

@@ -7,6 +7,9 @@ export default function Menu({
   open = false,
   onClose,
   trigger,
+  header,
+  footer,
+  width,
   items = [],
   className = "",
   panelClassName = "",
@@ -18,9 +21,11 @@ export default function Menu({
       trigger={trigger}
       className={className}
       panelClassName={cx("rpl-menu-panel", panelClassName)}
+      style={width ? { width } : undefined}
       placement="bottom"
       align="end"
     >
+      {header ? <div className="rpl-menu-header-block">{header}</div> : null}
       <div className="rpl-menu-list" role="menu">
         {items.map((item, index) => (
           item.type === "divider" ? (
@@ -57,6 +62,7 @@ export default function Menu({
           )
         ))}
       </div>
+      {footer ? <div className="rpl-menu-footer-block">{footer}</div> : null}
     </Popover>
   );
 }

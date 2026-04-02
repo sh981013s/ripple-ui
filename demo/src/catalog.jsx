@@ -6,6 +6,7 @@ import {
   Avatar,
   Badge,
   Banner,
+  BarChart,
   BottomSheet,
   Button,
   Card,
@@ -34,6 +35,8 @@ import {
   NoticeBanner,
   Popover,
   ProgressBar,
+  ProgressStep,
+  ProgressStepper,
   Radio,
   Result,
   ResultButton,
@@ -52,6 +55,7 @@ import {
   Snackbar,
   Stack,
   Stepper,
+  Slider,
   Surface,
   Switch,
   Tab,
@@ -92,19 +96,29 @@ function useCopyFeedback() {
 
 function InteractiveTabsPreview() {
   const [active, setActive] = React.useState("overview");
+  const [variant, setVariant] = React.useState("pill");
 
   return (
-    <Tabs aria-label="views" stretch>
-      {[
-        ["overview", "Overview"],
-        ["traffic", "Traffic"],
-        ["alerts", "Alerts"],
-      ].map(([value, label]) => (
-        <Tab key={value} active={active === value} onClick={() => setActive(value)}>
-          {label}
-        </Tab>
-      ))}
-    </Tabs>
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["pill", "underline"].map((item) => (
+          <Selector key={item} selected={variant === item} onClick={() => setVariant(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <Tabs aria-label="views" stretch variant={variant}>
+        {[
+          ["overview", "Overview"],
+          ["traffic", "Traffic"],
+          ["alerts", "Alerts"],
+        ].map(([value, label]) => (
+          <Tab key={value} active={active === value} onClick={() => setActive(value)}>
+            {label}
+          </Tab>
+        ))}
+      </Tabs>
+    </Stack>
   );
 }
 
@@ -438,6 +452,9 @@ function InteractiveMenuPreview() {
       <Menu
         open={open}
         onClose={() => setOpen(false)}
+        width={280}
+        header={<Text variant="label">Workspace actions</Text>}
+        footer={<Text variant="caption">Choose one action to continue.</Text>}
         trigger={
           <Button size="medium" variant="weak" onClick={() => setOpen((prev) => !prev)}>
             Open menu
@@ -459,12 +476,20 @@ function InteractiveMenuPreview() {
 
 function TopBarPlayground() {
   const [mode, setMode] = React.useState("badges");
+  const [surface, setSurface] = React.useState("default");
 
   return (
     <Stack gap={12}>
       <Inline gap={8} wrap>
         {["badges", "selector", "action"].map((item) => (
           <Selector key={item} selected={mode === item} onClick={() => setMode(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <Inline gap={8} wrap>
+        {["default", "muted", "accent"].map((item) => (
+          <Selector key={item} selected={surface === item} onClick={() => setSurface(item)}>
             {item}
           </Selector>
         ))}
@@ -480,6 +505,8 @@ function TopBarPlayground() {
         subtitleSelector={mode === "selector" ? <Selector type="arrow" size="sm">Status</Selector> : null}
         rightButton={mode === "action" ? <IconButton tone="accent" aria-label="More"><Icon name="more" size={16} /></IconButton> : null}
         rightArrow={mode !== "action"}
+        divider
+        surface={surface}
       />
     </Stack>
   );
@@ -487,6 +514,7 @@ function TopBarPlayground() {
 
 function ListHeaderPlayground() {
   const [mode, setMode] = React.useState("rightText");
+  const [compact, setCompact] = React.useState(false);
 
   return (
     <Stack gap={12}>
@@ -496,6 +524,10 @@ function ListHeaderPlayground() {
             {item}
           </Selector>
         ))}
+      </Inline>
+      <Inline gap={8} wrap>
+        <Selector selected={!compact} onClick={() => setCompact(false)}>default</Selector>
+        <Selector selected={compact} onClick={() => setCompact(true)}>compact</Selector>
       </Inline>
       <List>
         <ListHeader
@@ -507,6 +539,8 @@ function ListHeaderPlayground() {
           rightButton={mode === "button" ? <TextButton tone="neutral" icon="externalLink">Open</TextButton> : undefined}
           selector={mode === "selector" ? <Selector type="arrow" selected>All</Selector> : undefined}
           rightArrow={mode !== "button"}
+          compact={compact}
+          divider
         />
       </List>
     </Stack>
@@ -536,6 +570,79 @@ function ListRowPlayground() {
         action={mode === "action" ? <TextButton size="sm" tone="neutral">Manage</TextButton> : undefined}
         rightArrow={mode !== "action"}
       />
+    </Stack>
+  );
+}
+
+function BarChartPlayground() {
+  const [series, setSeries] = React.useState("revenue");
+  const data =
+    series === "revenue"
+      ? [
+          { label: "Mon", value: 42, tone: "accent" },
+          { label: "Tue", value: 58, tone: "accent" },
+          { label: "Wed", value: 64, tone: "success" },
+          { label: "Thu", value: 49, tone: "warning" },
+        ]
+      : [
+          { label: "Mon", value: 18, tone: "success" },
+          { label: "Tue", value: 22, tone: "success" },
+          { label: "Wed", value: 17, tone: "warning" },
+          { label: "Thu", value: 26, tone: "accent" },
+        ];
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["revenue", "conversions"].map((item) => (
+          <Selector key={item} selected={series === item} onClick={() => setSeries(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <BarChart data={data} />
+    </Stack>
+  );
+}
+
+function SliderPlayground() {
+  const [value, setValue] = React.useState(64);
+  const [tone, setTone] = React.useState("accent");
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["accent", "success", "warning", "danger"].map((item) => (
+          <Selector key={item} selected={tone === item} onClick={() => setTone(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <Slider label="Threshold" value={value} onChange={(event) => setValue(Number(event.target.value))} tone={tone} />
+    </Stack>
+  );
+}
+
+function ProgressStepperPlayground() {
+  const [current, setCurrent] = React.useState(1);
+
+  return (
+    <Stack gap={12}>
+      <ProgressStepper
+        current={current}
+        steps={[
+          { label: "Draft", description: "Basic information" },
+          { label: "Review", description: "Team check" },
+          { label: "Publish", description: "Go live" },
+        ]}
+      />
+      <Inline gap={8} wrap>
+        {[0, 1, 2].map((item) => (
+          <Selector key={item} selected={current === item} onClick={() => setCurrent(item)}>
+            step {item + 1}
+          </Selector>
+        ))}
+      </Inline>
     </Stack>
   );
 }
@@ -1295,6 +1402,8 @@ export default function Example() {
       badges={<><Badge tone="accent">Live</Badge><Badge tone="neutral">12 members</Badge></>}
       subtitleSelector={<Selector type="arrow" size="sm">Status</Selector>}
       rightArrow
+      surface="muted"
+      divider
     />
   );
 }`,
@@ -1302,7 +1411,7 @@ export default function Example() {
 
 export default function Example() {
   return (
-    <Tabs aria-label="Views" stretch>
+    <Tabs aria-label="Views" stretch variant="underline">
       <Tab active>Overview</Tab>
       <Tab>Traffic</Tab>
       <Tab>Alerts</Tab>
@@ -1706,6 +1815,43 @@ export default function Example() {
     />
   );
 }`,
+  ProgressStep: `import { ProgressStep } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <ProgressStep index={2} label="Review" description="Team check" status="current" />;
+}`,
+  ProgressStepper: `import { ProgressStepper } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <ProgressStepper
+      current={1}
+      steps={[
+        { label: "Draft", description: "Basic information" },
+        { label: "Review", description: "Team check" },
+        { label: "Publish", description: "Go live" },
+      ]}
+    />
+  );
+}`,
+  Slider: `import { Slider } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <Slider label="Threshold" value={64} onChange={() => {}} />;
+}`,
+  BarChart: `import { BarChart } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <BarChart
+      data={[
+        { label: "Mon", value: 42, tone: "accent" },
+        { label: "Tue", value: 58, tone: "accent" },
+        { label: "Wed", value: 64, tone: "success" },
+      ]}
+    />
+  );
+}`,
   "List / ListHeader / ListFooter": `import { List, ListFooter, ListHeader, ListRow } from "@sh981013s/ripple-ui";
 
 export default function Example() {
@@ -1784,6 +1930,9 @@ export default function Example() {
   return (
     <Menu
       open
+      width={280}
+      header="Workspace actions"
+      footer="Choose one action to continue."
       trigger={<Button variant="weak">Open menu</Button>}
       items={[
         { type: "header", label: "Workspace actions" },
@@ -1895,6 +2044,14 @@ function Playground({ component }) {
     "List / ListHeader / ListFooter": <ListHeaderPlayground />,
     ListRow: <ListRowPlayground />,
     Menu: <InteractiveMenuPreview />,
+    Slider: <SliderPlayground />,
+    BarChart: <BarChartPlayground />,
+    ProgressStepper: <ProgressStepperPlayground />,
+    ProgressStep: (
+      <div className="docs-inline-surface">
+        <ProgressStep index={2} label="Review" description="Team check" status="current" />
+      </div>
+    ),
     "SearchField.Result": <SearchFieldResultPlayground />,
     "SearchField.Suggest": <SearchFieldSuggestPlayground />,
   };
@@ -2094,6 +2251,8 @@ const docs = [
           { name: "trailing / right / rightButton", type: "ReactNode", defaultValue: "-", description: "Right accessory or compact CTA." },
           { name: "badges / titleSelector / subtitleSelector", type: "ReactNode", defaultValue: "-", description: "Structured supporting affordances." },
           { name: "rightArrow", type: "boolean", defaultValue: "false", description: "Show navigation arrow affordance." },
+          { name: "surface", type: `"default" | "muted" | "accent"`, defaultValue: `"default"`, description: "Background surface tone." },
+          { name: "divider / sticky", type: "boolean", defaultValue: "false / false", description: "Optional page chrome behaviors." },
           { name: "align", type: "\"center\" | \"left\"", defaultValue: "\"center\"", description: "Copy alignment." },
           { name: "rightVerticalAlign", type: "\"top\" | \"center\" | \"bottom\"", defaultValue: "\"center\"", description: "Trailing content alignment." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Bar height scale." },
@@ -2109,6 +2268,8 @@ const docs = [
           { name: "active", type: "boolean", defaultValue: "false", description: "Marks an individual tab active." },
           { name: "aria-label", type: "string", defaultValue: "-", description: "Accessibility label for the tablist." },
           { name: "stretch", type: "boolean", defaultValue: "false", description: "Stretch items to full available width." },
+          { name: "variant", type: `"pill" | "underline"`, defaultValue: `"pill"`, description: "Tabs surface style." },
+          { name: "size", type: `"sm" | "md"`, defaultValue: `"md"`, description: "Tabs density scale." },
         ],
         preview: () => <InteractiveTabsPreview />,
       },
@@ -2178,6 +2339,8 @@ const docs = [
           { name: "open", type: "boolean", defaultValue: "false", description: "Visibility state." },
           { name: "trigger", type: "ReactNode", defaultValue: "-", description: "Trigger element." },
           { name: "items", type: "Array<{ type?, label, icon?, description?, shortcut?, checked?, tone?, onSelect? }>", defaultValue: "[]", description: "Menu actions and structural rows." },
+          { name: "header / footer", type: "ReactNode", defaultValue: "-", description: "Optional supporting blocks around the items list." },
+          { name: "width", type: "number | string", defaultValue: "-", description: "Custom panel width." },
         ],
         preview: () => <InteractiveMenuPreview />,
       },
@@ -2808,6 +2971,7 @@ const docs = [
           { name: "inset", type: "boolean", defaultValue: "false", description: "Larger outer rounding." },
           { name: "divided", type: "boolean", defaultValue: "true", description: "Show row separators." },
           { name: "ListHeader title / rightText / rightArrow / rightButton / selector", type: "structured props", defaultValue: "-", description: "Product-style heading affordances for grouped lists." },
+          { name: "ListHeader compact / divider", type: "boolean", defaultValue: "false / false", description: "Header density and separator options." },
         ],
         preview: () => <ListHeaderPlayground />,
       },
@@ -2873,6 +3037,54 @@ const docs = [
           { name: "onPageChange", type: "(page) => void", defaultValue: "-", description: "Page selection callback." },
         ],
         preview: () => <InteractivePaginationPreview />,
+      },
+      {
+        name: "BarChart",
+        eyebrow: "data",
+        description: "Simple horizontal comparison chart for compact dashboards.",
+        props: [
+          { name: "data", type: "Array<{ label, value, tone? }>", defaultValue: "[]", description: "Bar series values." },
+          { name: "max", type: "number", defaultValue: "-", description: "Optional fixed maximum scale." },
+          { name: "showValue", type: "boolean", defaultValue: "true", description: "Show numeric value labels." },
+        ],
+        preview: () => <BarChartPlayground />,
+      },
+      {
+        name: "Slider",
+        eyebrow: "data",
+        description: "Interactive range control for thresholds and weighted inputs.",
+        props: [
+          { name: "value", type: "number", defaultValue: "0", description: "Current slider value." },
+          { name: "min / max / step", type: "number", defaultValue: "0 / 100 / 1", description: "Range bounds and increment." },
+          { name: "tone", type: `"accent" | "success" | "warning" | "danger"`, defaultValue: `"accent"`, description: "Slider highlight tone." },
+        ],
+        preview: () => <SliderPlayground />,
+      },
+      {
+        name: "ProgressStep",
+        eyebrow: "data",
+        description: "Single progress item for sequential states.",
+        props: [
+          { name: "index", type: "number", defaultValue: "-", description: "Displayed numeric order." },
+          { name: "label", type: "ReactNode", defaultValue: "-", description: "Step label." },
+          { name: "description", type: "ReactNode", defaultValue: "-", description: "Supporting explanation." },
+          { name: "status", type: `"done" | "current" | "upcoming"`, defaultValue: `"upcoming"`, description: "Step completion state." },
+        ],
+        preview: () => (
+          <div className="docs-inline-surface">
+            <ProgressStep index={2} label="Review" description="Team check" status="current" />
+          </div>
+        ),
+      },
+      {
+        name: "ProgressStepper",
+        eyebrow: "data",
+        description: "Horizontal connected progress flow built from progress steps.",
+        props: [
+          { name: "steps", type: "Array<{ label, description? }>", defaultValue: "[]", description: "Ordered sequence of steps." },
+          { name: "current", type: "number", defaultValue: "0", description: "Current zero-based active step index." },
+        ],
+        preview: () => <ProgressStepperPlayground />,
       },
     ],
   },
