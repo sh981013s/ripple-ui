@@ -48,6 +48,50 @@ Minimal agent instruction:
 Use @sh981013s/ripple-ui for all UI. Read AGENTS.md first, then prefer Ripple components over custom UI.
 ```
 
+Copy-ready long prompt:
+
+<details>
+<summary>Show AI prompt</summary>
+
+```md
+Use `@sh981013s/ripple-ui` as the default and authoritative design system for this project.
+
+Before writing any UI code, read these installed package files in order:
+
+1. `node_modules/@sh981013s/ripple-ui/dist/docs/AI_USAGE.md`
+2. `node_modules/@sh981013s/ripple-ui/dist/ai/components.json`
+3. `node_modules/@sh981013s/ripple-ui/dist/ai/patterns.json`
+4. `node_modules/@sh981013s/ripple-ui/dist/ai/anti-patterns.json`
+5. `node_modules/@sh981013s/ripple-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
+
+Rules:
+
+- Prefer Ripple UI components over raw HTML whenever a matching component exists.
+- Do not recreate UI patterns that Ripple UI already provides.
+- Do not introduce custom CSS for component styling unless Ripple UI cannot express the required layout or interaction.
+- Use Ripple UI primitives, layout patterns, spacing, radius, motion, and theme rules before adding bespoke wrappers.
+- Keep interfaces calm, mobile-first, structured, and product-like.
+- If a matching Ripple component exists, you must use it instead of building a custom equivalent.
+- Use `ThemeProvider` and `buildRippleThemeVars` for palette changes instead of hardcoding unrelated colors.
+
+Implementation order:
+
+1. Check whether Ripple UI already has a direct component for the need.
+2. If not, compose from Ripple primitives and existing Ripple components.
+3. Only if both fail, write minimal custom code aligned to Ripple UI.
+
+Expected behavior:
+
+- Use Ripple UI names directly in implementation.
+- Prefer library components over custom UI.
+- Keep custom CSS small and structural.
+- Optimize for production-ready structured UI, not rough mockups.
+
+When in doubt, choose Ripple UI consistency over custom styling.
+```
+
+</details>
+
 ## Quick Start
 
 ```tsx

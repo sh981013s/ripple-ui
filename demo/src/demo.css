@@ -280,6 +280,10 @@ textarea {
   padding: 14px;
 }
 
+.demo-howto-card-wide {
+  grid-column: 1 / -1;
+}
+
 .demo-code-row {
   display: flex;
   align-items: center;
@@ -301,6 +305,37 @@ textarea {
 
 .demo-copy-feedback {
   color: var(--rpl-color-success-strong);
+}
+
+.demo-ai-prompt {
+  border: 1px solid var(--rpl-color-line);
+  border-radius: 14px;
+  background: #f8fafc;
+}
+
+.demo-ai-prompt summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 14px;
+  color: var(--rpl-color-text-secondary);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.demo-ai-prompt summary::-webkit-details-marker {
+  display: none;
+}
+
+.demo-ai-prompt-block {
+  margin: 0;
+  padding: 0 14px 14px;
+  max-height: 240px;
+  overflow: auto;
+  color: #3f4b59;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .demo-overview-links {

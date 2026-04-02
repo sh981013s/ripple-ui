@@ -45,6 +45,41 @@ import catalog, {
   getSectionDocs,
 } from "./catalog.js";
 
+const RIPPLE_AI_PROMPT = `Use \`@sh981013s/ripple-ui\` as the default and authoritative design system for this project.
+
+Before writing any UI code, read these installed package files in order:
+
+1. \`node_modules/@sh981013s/ripple-ui/dist/docs/AI_USAGE.md\`
+2. \`node_modules/@sh981013s/ripple-ui/dist/ai/components.json\`
+3. \`node_modules/@sh981013s/ripple-ui/dist/ai/patterns.json\`
+4. \`node_modules/@sh981013s/ripple-ui/dist/ai/anti-patterns.json\`
+5. \`node_modules/@sh981013s/ripple-ui/dist/docs/AI_PROMPT_TEMPLATE.md\`
+
+Rules:
+
+- Prefer Ripple UI components over raw HTML whenever a matching component exists.
+- Do not recreate UI patterns that Ripple UI already provides.
+- Do not introduce custom CSS for component styling unless Ripple UI cannot express the required layout or interaction.
+- Use Ripple UI primitives, layout patterns, spacing, radius, motion, and theme rules before adding bespoke wrappers.
+- Keep interfaces calm, mobile-first, structured, and product-like.
+- If a matching Ripple component exists, you must use it instead of building a custom equivalent.
+- Use \`ThemeProvider\` and \`buildRippleThemeVars\` for palette changes instead of hardcoding unrelated colors.
+
+Implementation order:
+
+1. Check whether Ripple UI already has a direct component for the need.
+2. If not, compose from Ripple primitives and existing Ripple components.
+3. Only if both fail, write minimal custom code aligned to Ripple UI.
+
+Expected behavior:
+
+- Use Ripple UI names directly in implementation.
+- Prefer library components over custom UI.
+- Keep custom CSS small and structural.
+- Optimize for production-ready structured UI, not rough mockups.
+
+When in doubt, choose Ripple UI consistency over custom styling.`;
+
 function ScrollToTop() {
   const location = useLocation();
 
@@ -95,6 +130,7 @@ function SidebarNav() {
 function DocsOverviewPage() {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
+  const [promptCopied, setPromptCopied] = useState(false);
   const [iconQuery, setIconQuery] = useState("");
 
   const overviewIcons = useMemo(() => {
@@ -110,6 +146,16 @@ function DocsOverviewPage() {
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
       setCopied(false);
+    }
+  };
+
+  const handleCopyPrompt = async () => {
+    try {
+      await navigator.clipboard.writeText(RIPPLE_AI_PROMPT);
+      setPromptCopied(true);
+      window.setTimeout(() => setPromptCopied(false), 1600);
+    } catch {
+      setPromptCopied(false);
     }
   };
 
@@ -167,6 +213,23 @@ function DocsOverviewPage() {
             <Stack gap={10}>
               <Text variant="label">Best for</Text>
               <Text variant="caption">Account, commerce, dashboard, fintech, workflow, and mobile-first internal product surfaces.</Text>
+            </Stack>
+          </Card>
+
+          <Card className="demo-howto-card demo-howto-card-wide">
+            <Stack gap={10}>
+              <Inline gap={8} align="center" justify="between">
+                <Text variant="label">AI prompt</Text>
+                <Button size="small" variant="weak" onClick={handleCopyPrompt}>
+                  Copy prompt
+                </Button>
+              </Inline>
+              <Text variant="caption">Use this when you want an AI agent to fully follow Ripple UI without manually explaining the design system.</Text>
+              <details className="demo-ai-prompt">
+                <summary>Show copy-ready prompt</summary>
+                <pre className="demo-ai-prompt-block">{RIPPLE_AI_PROMPT}</pre>
+              </details>
+              {promptCopied ? <Text variant="caption" className="demo-copy-feedback">Prompt copied to clipboard.</Text> : null}
             </Stack>
           </Card>
         </div>
