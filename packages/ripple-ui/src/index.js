@@ -20,7 +20,12 @@ export { Tabs, Tab } from "./components/Tabs.jsx";
 export { default as InfoRow } from "./components/InfoRow.jsx";
 export { default as SectionHeader } from "./components/SectionHeader.jsx";
 export { default as Input } from "./components/Input.jsx";
-export { default as TextField } from "./components/TextField.jsx";
+export {
+  default as TextField,
+  TextFieldButton,
+  TextFieldClearable,
+  TextFieldPassword,
+} from "./components/TextField.jsx";
 export { default as TextArea } from "./components/TextArea.jsx";
 export { default as SearchBar } from "./components/SearchBar.jsx";
 export { default as SearchField } from "./components/SearchField.jsx";

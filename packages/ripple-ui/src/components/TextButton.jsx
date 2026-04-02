@@ -4,6 +4,9 @@ import { cx } from "../utils/cx.js";
 export default function TextButton({
   tone = "default",
   size = "md",
+  leading,
+  trailing,
+  underline = false,
   className = "",
   type = "button",
   children,
@@ -16,12 +19,14 @@ export default function TextButton({
         "rpl-text-button",
         `rpl-text-button-${tone}`,
         `rpl-text-button-${size}`,
+        underline && "rpl-text-button-underline",
         className,
       )}
       {...props}
     >
-      {children}
+      {leading ? <span className="rpl-text-button-leading">{leading}</span> : null}
+      <span className="rpl-text-button-label">{children}</span>
+      {trailing ? <span className="rpl-text-button-trailing">{trailing}</span> : null}
     </button>
   );
 }
-

@@ -53,6 +53,9 @@ import {
   Text,
   TextButton,
   TextField,
+  TextFieldButton,
+  TextFieldClearable,
+  TextFieldPassword,
   TextArea,
   Toast,
   Tooltip,
@@ -598,6 +601,58 @@ function TextFieldPlayground() {
   );
 }
 
+function TextFieldClearablePlayground() {
+  const [value, setValue] = React.useState("Ripple workspace");
+
+  return (
+    <TextFieldClearable
+      label="Workspace"
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      onClear={() => setValue("")}
+      placeholder="Enter workspace name"
+      validationState={value ? "success" : "default"}
+      validationMessage={value ? "Clearable control is active." : "Value cleared."}
+    />
+  );
+}
+
+function TextFieldPasswordPlayground() {
+  const [value, setValue] = React.useState("ripple-secret");
+
+  return (
+    <TextFieldPassword
+      label="API secret"
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      placeholder="Enter secret"
+      validationState="warning"
+      validationMessage="Keep this hidden outside secure environments."
+    />
+  );
+}
+
+function TextFieldButtonPlayground() {
+  const [value, setValue] = React.useState("");
+  const [checked, setChecked] = React.useState(false);
+
+  return (
+    <TextFieldButton
+      label="Workspace slug"
+      value={value}
+      onChange={(event) => {
+        setValue(event.target.value);
+        setChecked(false);
+      }}
+      placeholder="team-workspace"
+      actionLabel="Check"
+      onActionClick={() => setChecked(true)}
+      validationState={checked ? "success" : "default"}
+      validationMessage={checked ? "Slug format looks available." : "Run a quick availability check."}
+    />
+  );
+}
+
 function SelectPlayground() {
   const [value, setValue] = React.useState("review");
 
@@ -668,6 +723,7 @@ function SnackbarPlayground() {
 
 function TextButtonPlayground() {
   const [tone, setTone] = React.useState("default");
+  const [underline, setUnderline] = React.useState(false);
 
   return (
     <Stack gap={12}>
@@ -678,7 +734,70 @@ function TextButtonPlayground() {
           </Selector>
         ))}
       </Inline>
-      <TextButton tone={tone}>Open details</TextButton>
+      <Inline gap={8} wrap>
+        <Selector selected={!underline} onClick={() => setUnderline(false)}>
+          plain
+        </Selector>
+        <Selector selected={underline} onClick={() => setUnderline(true)}>
+          underline
+        </Selector>
+      </Inline>
+      <Inline gap={16} wrap align="center">
+        <TextButton tone={tone} underline={underline}>
+          Open details
+        </TextButton>
+        <TextButton tone={tone} underline={underline} trailing="→">
+          Review submission
+        </TextButton>
+      </Inline>
+    </Stack>
+  );
+}
+
+function ModalPlayground() {
+  const [tone, setTone] = React.useState("default");
+  const [size, setSize] = React.useState("md");
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <Stack gap={12}>
+      <Inline gap={8} wrap>
+        {["default", "success", "danger"].map((item) => (
+          <Selector key={item} selected={tone === item} onClick={() => setTone(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <Inline gap={8} wrap>
+        {["sm", "md", "lg"].map((item) => (
+          <Selector key={item} selected={size === item} onClick={() => setSize(item)}>
+            {item}
+          </Selector>
+        ))}
+      </Inline>
+      <div className="docs-inline-surface">
+        <Button onClick={() => setOpen(true)}>Open modal</Button>
+        <Modal
+          open={open}
+          onClose={() => setOpen(false)}
+          tone={tone}
+          size={size}
+          headline="Project workspace"
+          subheadline="Review the configuration before continuing."
+          actions={
+            <Inline gap={10}>
+              <Button variant="ghost" display="block" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+              <Button display="block" color={tone === "danger" ? "danger" : "primary"} onClick={() => setOpen(false)}>
+                Confirm
+              </Button>
+            </Inline>
+          }
+        >
+          <Text variant="body">Modal variants adjust density and emphasis without changing the core dialog pattern.</Text>
+        </Modal>
+      </div>
     </Stack>
   );
 }
@@ -909,7 +1028,7 @@ export default function Example() {
   TextButton: `import { TextButton } from "@sh981013s/ripple-ui";
 
 export default function Example() {
-  return <TextButton>See details</TextButton>;
+  return <TextButton trailing="→">See details</TextButton>;
 }`,
   Input: `import { Input } from "@sh981013s/ripple-ui";
 
@@ -958,6 +1077,42 @@ export default function Example() {
       actionLabel="Check"
       validationState="success"
       validationMessage="This name is available."
+    />
+  );
+}`,
+  "TextField.Clearable": `import { TextFieldClearable } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <TextFieldClearable
+      label="Workspace name"
+      defaultValue="Ripple workspace"
+      validationState="success"
+      validationMessage="Use the clear button to reset this field."
+    />
+  );
+}`,
+  "TextField.Password": `import { TextFieldPassword } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <TextFieldPassword
+      label="API secret"
+      defaultValue="ripple-secret"
+      validationState="warning"
+      validationMessage="Keep this hidden outside secure environments."
+    />
+  );
+}`,
+  "TextField.Button": `import { TextFieldButton } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <TextFieldButton
+      label="Workspace slug"
+      placeholder="team-workspace"
+      actionLabel="Check"
+      validationMessage="Run a quick availability check."
     />
   );
 }`,
@@ -1067,6 +1222,7 @@ export default function Example() {
   return (
     <Modal
       open
+      tone="success"
       headline="Project workspace"
       subheadline="Review the current status before continuing."
       actions={<Button display="block">Close</Button>}
@@ -1261,12 +1417,16 @@ function Playground({ component }) {
     Icon: <IconPlayground />,
     Input: <InputPlayground />,
     TextField: <TextFieldPlayground />,
+    "TextField.Clearable": <TextFieldClearablePlayground />,
+    "TextField.Password": <TextFieldPasswordPlayground />,
+    "TextField.Button": <TextFieldButtonPlayground />,
     Select: <SelectPlayground />,
     "Tabs / Tab": <TabsPlayground />,
     SegmentedControl: <SegmentedPlayground />,
     Snackbar: <SnackbarPlayground />,
     DatePicker: <DatePickerPlayground />,
     TextButton: <TextButtonPlayground />,
+    Modal: <ModalPlayground />,
   };
 
   const content = map[component.name];
@@ -1619,12 +1779,14 @@ const docs = [
         props: [
           { name: "tone", type: `"default" | "neutral" | "danger"`, defaultValue: `"default"`, description: "Text emphasis color." },
           { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Text button size." },
+          { name: "leading / trailing", type: "ReactNode", defaultValue: "-", description: "Optional inline icons or affordances." },
+          { name: "underline", type: "boolean", defaultValue: "false", description: "Underline emphasis for link-like actions." },
         ],
         preview: () => (
           <Inline gap={12} wrap align="center">
             <TextButton>Default</TextButton>
-            <TextButton tone="neutral">Neutral</TextButton>
-            <TextButton tone="danger">Delete</TextButton>
+            <TextButton tone="neutral" trailing="→">Neutral</TextButton>
+            <TextButton tone="danger" underline>Delete</TextButton>
           </Inline>
         ),
       },
@@ -1725,6 +1887,39 @@ const docs = [
             validationMessage="This name is available."
           />
         ),
+      },
+      {
+        name: "TextField.Clearable",
+        eyebrow: "form",
+        description: "Text field variant with a built-in clear affordance.",
+        props: [
+          { name: "value / onChange", type: "string + handler", defaultValue: "-", description: "Controlled value handling." },
+          { name: "onClear", type: "() => void", defaultValue: "-", description: "Clear interaction callback." },
+          { name: "validationState / validationMessage", type: "state + message", defaultValue: "-", description: "Semantic validation feedback." },
+        ],
+        preview: () => <TextFieldClearablePlayground />,
+      },
+      {
+        name: "TextField.Password",
+        eyebrow: "form",
+        description: "Password field variant with built-in reveal and hide control.",
+        props: [
+          { name: "value / onChange", type: "string + handler", defaultValue: "-", description: "Controlled value handling." },
+          { name: "revealed / onToggleReveal", type: "boolean + handler", defaultValue: "-", description: "Optional controlled reveal state." },
+          { name: "validationState / validationMessage", type: "state + message", defaultValue: "-", description: "Semantic validation feedback." },
+        ],
+        preview: () => <TextFieldPasswordPlayground />,
+      },
+      {
+        name: "TextField.Button",
+        eyebrow: "form",
+        description: "Field variant with an inline action button attached to the right side.",
+        props: [
+          { name: "actionLabel", type: "string", defaultValue: "\"Action\"", description: "Inline action label." },
+          { name: "onActionClick", type: "() => void", defaultValue: "-", description: "Action click handler." },
+          { name: "validationState / validationMessage", type: "state + message", defaultValue: "-", description: "Semantic validation feedback." },
+        ],
+        preview: () => <TextFieldButtonPlayground />,
       },
       {
         name: "Select",
@@ -1928,8 +2123,10 @@ const docs = [
           { name: "headline", type: "ReactNode", defaultValue: "-", description: "Primary heading." },
           { name: "subheadline", type: "ReactNode", defaultValue: "-", description: "Supporting copy." },
           { name: "actions", type: "ReactNode", defaultValue: "-", description: "Footer action area." },
+          { name: "tone", type: `"default" | "success" | "danger"`, defaultValue: `"default"`, description: "Semantic emphasis treatment." },
+          { name: "showCloseButton", type: "boolean", defaultValue: "true", description: "Show a dismiss button in the upper-right corner." },
         ],
-        preview: () => <InteractiveModalPreview />,
+        preview: () => <ModalPlayground />,
       },
       {
         name: "BottomSheet",

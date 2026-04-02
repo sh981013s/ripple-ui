@@ -349,6 +349,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -393,6 +394,19 @@
 
 .rpl-text-button-danger {
   color: var(--rpl-color-danger);
+}
+
+.rpl-text-button-underline .rpl-text-button-label {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.rpl-text-button-leading,
+.rpl-text-button-trailing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
 }
 
 .rpl-button-icon {
@@ -526,6 +540,55 @@
 
 .rpl-dialog-footer > .rpl-inline .rpl-button {
   flex: 1 1 0;
+}
+
+.rpl-modal-panel {
+  position: relative;
+}
+
+.rpl-modal-panel-default {
+  border-color: var(--rpl-color-line);
+}
+
+.rpl-modal-panel-success {
+  border-color: rgba(22, 135, 90, 0.22);
+  box-shadow: var(--rpl-shadow-sheet), inset 0 0 0 1px rgba(22, 135, 90, 0.05);
+}
+
+.rpl-modal-panel-danger {
+  border-color: rgba(214, 58, 58, 0.2);
+  box-shadow: var(--rpl-shadow-sheet), inset 0 0 0 1px rgba(214, 58, 58, 0.05);
+}
+
+.rpl-modal-content {
+  display: grid;
+  gap: 14px;
+}
+
+.rpl-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 12px;
+  background: #f2f4f6;
+  color: var(--rpl-color-text-secondary);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 140ms var(--rpl-ease-standard), color 140ms var(--rpl-ease-standard), transform 120ms var(--rpl-ease-standard);
+}
+
+.rpl-modal-close:hover {
+  background: #edf1f5;
+  color: var(--rpl-color-text-primary);
+}
+
+.rpl-modal-close:active {
+  transform: scale(0.98);
 }
 
 .rpl-top-bar {
