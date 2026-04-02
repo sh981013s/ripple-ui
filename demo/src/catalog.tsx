@@ -4,6 +4,8 @@ import {
   AccordionItem,
   AccessoryButton,
   AlertDialog,
+  AgreementV4,
+  AlphabetKeypad,
   Avatar,
   Badge,
   Banner,
@@ -58,6 +60,8 @@ import {
   MenuHeader,
   MenuTrigger,
   NoticeBanner,
+  NumberKeypad,
+  NumericSpinner,
   Popover,
   ProgressBar,
   ProgressStep,
@@ -1512,6 +1516,60 @@ function WheelDatePickerPlayground() {
   );
 }
 
+function NumberKeypadPlayground() {
+  const [value, setValue] = React.useState("12800");
+  return (
+    <Stack gap={12}>
+      <Input label="Amount" value={value} readOnly suffix="KRW" />
+      <NumberKeypad value={value} onChange={setValue} />
+    </Stack>
+  );
+}
+
+function AlphabetKeypadPlayground() {
+  const [value, setValue] = React.useState("RIPPLE");
+  return (
+    <Stack gap={12}>
+      <Input label="Workspace tag" value={value} readOnly />
+      <AlphabetKeypad value={value} onChange={setValue} maxLength={12} />
+    </Stack>
+  );
+}
+
+function NumericSpinnerPlayground() {
+  const [value, setValue] = React.useState(8);
+  return <NumericSpinner value={value} min={1} max={20} onChange={setValue} formatter={(next) => `${next} seats`} />;
+}
+
+function AgreementV4Playground() {
+  return (
+    <AgreementV4.Group>
+      <AgreementV4.Header>
+        <Text variant="body">Terms of use</Text>
+        <AgreementV4.Badge tone="accent">Updated</AgreementV4.Badge>
+      </AgreementV4.Header>
+      <AgreementV4.Checkbox checked readOnly label="I agree to the required terms." description="Required for payout processing." />
+      <AgreementV4.Pressable title="Privacy policy" description="Review how workspace data is handled." />
+      <AgreementV4.Collapsible defaultOpen>
+        <AgreementV4.CollapsibleTrigger title="Marketing consent" description="Optional communication preference" />
+        <AgreementV4.CollapsibleContent>
+          <AgreementV4.Description>
+            You can opt in to release notes and campaign updates at any time.
+          </AgreementV4.Description>
+        </AgreementV4.CollapsibleContent>
+      </AgreementV4.Collapsible>
+      <AgreementV4.IndentPushable>
+        <AgreementV4.IndentPushableTrigger title="Partner disclosures" description="Nested details for financial partners" />
+        <AgreementV4.IndentPushableContent>
+          <AgreementV4.Description>
+            Additional partner disclosures become visible in an indented block.
+          </AgreementV4.Description>
+        </AgreementV4.IndentPushableContent>
+      </AgreementV4.IndentPushable>
+    </AgreementV4.Group>
+  );
+}
+
 function PropTable({ props }) {
   return (
     <div className="docs-props-table">
@@ -2331,6 +2389,35 @@ export default function Example() {
 export default function Example() {
   return <WheelDatePicker label="Settlement date" validationState="success" validationMessage="Date confirmed." />;
 }`,
+  NumberKeypad: `import { Input, NumberKeypad, Stack } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  const value = "12800";
+
+  return (
+    <Stack gap={12}>
+      <Input label="Amount" value={value} readOnly suffix="KRW" />
+      <NumberKeypad value={value} onChange={() => {}} />
+    </Stack>
+  );
+}`,
+  AlphabetKeypad: `import { AlphabetKeypad, Input, Stack } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  const value = "RIPPLE";
+
+  return (
+    <Stack gap={12}>
+      <Input label="Workspace tag" value={value} readOnly />
+      <AlphabetKeypad value={value} onChange={() => {}} maxLength={12} />
+    </Stack>
+  );
+}`,
+  NumericSpinner: `import { NumericSpinner } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return <NumericSpinner value={8} min={1} max={20} formatter={(value) => \`\${value} seats\`} />;
+}`,
   Wheel: `import { Wheel } from "@sh981013s/ripple-ui";
 
 export default function Example() {
@@ -2355,6 +2442,20 @@ export default function Example() {
       <Button onClick={sheet.openSheet}>Open wheel date sheet</Button>
       <WheelDateSheet open={sheet.open} onClose={sheet.closeSheet} />
     </>
+  );
+}`,
+  AgreementV4: `import { AgreementV4, Text } from "@sh981013s/ripple-ui";
+
+export default function Example() {
+  return (
+    <AgreementV4.Group>
+      <AgreementV4.Header>
+        <Text variant="body">Terms of use</Text>
+        <AgreementV4.Badge tone="accent">Updated</AgreementV4.Badge>
+      </AgreementV4.Header>
+      <AgreementV4.Checkbox checked readOnly label="I agree to the required terms." />
+      <AgreementV4.Pressable title="Privacy policy" description="Review how workspace data is handled." />
+    </AgreementV4.Group>
   );
 }`,
   DoughnutChart: `import { DoughnutChart } from "@sh981013s/ripple-ui";
@@ -2577,6 +2678,10 @@ function Playground({ component }) {
     DatePicker: <DatePickerPlayground />,
     "DatePicker.Compact": <DatePickerCompactPlayground />,
     WheelDatePicker: <WheelDatePickerPlayground />,
+    NumberKeypad: <NumberKeypadPlayground />,
+    AlphabetKeypad: <AlphabetKeypadPlayground />,
+    NumericSpinner: <NumericSpinnerPlayground />,
+    AgreementV4: <AgreementV4Playground />,
     TextButton: <TextButtonPlayground />,
     Modal: <ModalPlayground />,
     "List / ListHeader / ListFooter": <ListHeaderPlayground />,
@@ -3318,6 +3423,50 @@ const docs = [
           { name: "value / onChange", type: "string + handler", defaultValue: "-", description: "Controlled value handling." },
         ],
         preview: () => <WheelDatePickerPlayground />,
+      },
+      {
+        name: "NumberKeypad",
+        eyebrow: "form",
+        description: "Numeric keypad surface for payment amounts, OTP entry, and calculator-like flows.",
+        props: [
+          { name: "value / onChange", type: "string + handler", defaultValue: "-", description: "Controlled string value." },
+          { name: "allowDecimal", type: "boolean", defaultValue: "true", description: "Enable decimal input." },
+          { name: "maxLength", type: "number", defaultValue: "-", description: "Maximum string length." },
+        ],
+        preview: () => <NumberKeypadPlayground />,
+      },
+      {
+        name: "AlphabetKeypad",
+        eyebrow: "form",
+        description: "Alphabet keypad for code names, tags, and compact input flows on touch devices.",
+        props: [
+          { name: "value / onChange", type: "string + handler", defaultValue: "-", description: "Controlled string value." },
+          { name: "maxLength", type: "number", defaultValue: "-", description: "Maximum string length." },
+          { name: "onKeyPress", type: "(key) => void", defaultValue: "-", description: "Observe individual key presses." },
+        ],
+        preview: () => <AlphabetKeypadPlayground />,
+      },
+      {
+        name: "NumericSpinner",
+        eyebrow: "form",
+        description: "Compact increment/decrement control for quantities and tier selection.",
+        props: [
+          { name: "value / onChange", type: "number + handler", defaultValue: "-", description: "Controlled numeric value." },
+          { name: "min / max / step", type: "number", defaultValue: "-", description: "Range and step size." },
+          { name: "formatter", type: "(value) => ReactNode", defaultValue: "-", description: "Custom display formatting." },
+        ],
+        preview: () => <NumericSpinnerPlayground />,
+      },
+      {
+        name: "AgreementV4",
+        eyebrow: "form",
+        description: "Composable agreement namespace for consent rows, nested disclosures, and required terms.",
+        props: [
+          { name: "Group / Header / Badge", type: "subcomponents", defaultValue: "-", description: "Wrap and label agreement sections." },
+          { name: "Checkbox / Pressable", type: "subcomponents", defaultValue: "-", description: "Main consent rows and document links." },
+          { name: "Collapsible* / IndentPushable*", type: "subcomponents", defaultValue: "-", description: "Nested optional disclosure patterns." },
+        ],
+        preview: () => <AgreementV4Playground />,
       },
       {
         name: "Switch",

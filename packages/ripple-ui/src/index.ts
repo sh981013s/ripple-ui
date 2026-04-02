@@ -24,6 +24,9 @@ export { Tabs, Tab } from "./components/Tabs.js";
 export { default as InfoRow } from "./components/InfoRow.js";
 export { default as SectionHeader } from "./components/SectionHeader.js";
 export { default as Input } from "./components/Input.js";
+export { default as AlphabetKeypad } from "./components/AlphabetKeypad.js";
+export { default as NumberKeypad } from "./components/NumberKeypad.js";
+export { default as NumericSpinner } from "./components/NumericSpinner.js";
 export {
   default as TextField,
   TextFieldButton,
@@ -100,6 +103,23 @@ export { default as Spacing } from "./components/Spacing.js";
 export { default as WheelDatePicker } from "./components/WheelDatePicker.js";
 export { default as Wheel } from "./components/Wheel.js";
 export { default as WheelDateSheet } from "./components/WheelDateSheet.js";
+export {
+  default as AgreementV4,
+  AgreementV4Badge,
+  AgreementV4Checkbox,
+  AgreementV4Collapsible,
+  AgreementV4CollapsibleContent,
+  AgreementV4CollapsibleTrigger,
+  AgreementV4Description,
+  AgreementV4Group,
+  AgreementV4Header,
+  AgreementV4IndentPushable,
+  AgreementV4IndentPushableContent,
+  AgreementV4IndentPushableTrigger,
+  AgreementV4Necessity,
+  AgreementV4Pressable,
+  AgreementV4RightArrow,
+} from "./components/AgreementV4.js";
 export { default as StepperRow } from "./components/StepperRow.js";
 export { default as LoaderAnimation } from "./components/LoaderAnimation.js";
 export {

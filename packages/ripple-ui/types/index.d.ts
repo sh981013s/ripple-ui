@@ -895,6 +895,36 @@ export interface DoughnutChartProps extends React.HTMLAttributes<HTMLDivElement>
 }
 export declare function DoughnutChart(props: DoughnutChartProps): React.JSX.Element;
 
+export interface AlphabetKeypadProps extends React.HTMLAttributes<HTMLDivElement> {
+  value?: string;
+  onChange?: (value: string) => void;
+  onKeyPress?: (key: string) => void;
+  maxLength?: number;
+  disabled?: boolean;
+}
+export declare function AlphabetKeypad(props: AlphabetKeypadProps): React.JSX.Element;
+
+export interface NumberKeypadProps extends React.HTMLAttributes<HTMLDivElement> {
+  value?: string;
+  onChange?: (value: string) => void;
+  onKeyPress?: (key: string) => void;
+  allowDecimal?: boolean;
+  disabled?: boolean;
+  maxLength?: number;
+}
+export declare function NumberKeypad(props: NumberKeypadProps): React.JSX.Element;
+
+export interface NumericSpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
+  value?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  disabled?: boolean;
+  onChange?: (value: number) => void;
+  formatter?: (value: number) => React.ReactNode;
+}
+export declare function NumericSpinner(props: NumericSpinnerProps): React.JSX.Element;
+
 export interface SpacingProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: number;
 }
@@ -912,6 +942,77 @@ export interface LoaderAnimationProps extends React.HTMLAttributes<HTMLDivElemen
   label?: React.ReactNode;
 }
 export declare function LoaderAnimation(props: LoaderAnimationProps): React.JSX.Element;
+
+export interface AgreementV4BadgeProps {
+  tone?: "neutral" | "accent" | "success" | "warning";
+  children?: React.ReactNode;
+  className?: string;
+}
+export interface AgreementV4CheckboxProps extends CheckboxProps {}
+export interface AgreementV4DescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}
+export interface AgreementV4GroupProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AgreementV4HeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AgreementV4PressableProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  badge?: React.ReactNode;
+  right?: React.ReactNode;
+}
+export interface AgreementV4RightArrowProps extends React.HTMLAttributes<HTMLSpanElement> {}
+export interface AgreementV4NecessityProps extends React.HTMLAttributes<HTMLSpanElement> {
+  required?: boolean;
+}
+export interface AgreementV4CollapsibleProps {
+  defaultOpen?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+}
+export interface AgreementV4CollapsibleTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+}
+export interface AgreementV4CollapsibleContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface AgreementV4IndentPushableProps {
+  defaultOpen?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+}
+export interface AgreementV4IndentPushableTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+}
+export interface AgreementV4IndentPushableContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+export declare function AgreementV4Badge(props: AgreementV4BadgeProps): React.JSX.Element;
+export declare function AgreementV4Checkbox(props: AgreementV4CheckboxProps): React.JSX.Element;
+export declare function AgreementV4Description(props: AgreementV4DescriptionProps): React.JSX.Element;
+export declare function AgreementV4Group(props: AgreementV4GroupProps): React.JSX.Element;
+export declare function AgreementV4Header(props: AgreementV4HeaderProps): React.JSX.Element;
+export declare function AgreementV4Pressable(props: AgreementV4PressableProps): React.JSX.Element;
+export declare function AgreementV4RightArrow(props: AgreementV4RightArrowProps): React.JSX.Element;
+export declare function AgreementV4Necessity(props: AgreementV4NecessityProps): React.JSX.Element;
+export declare function AgreementV4Collapsible(props: AgreementV4CollapsibleProps): React.JSX.Element;
+export declare function AgreementV4CollapsibleTrigger(props: AgreementV4CollapsibleTriggerProps): React.JSX.Element;
+export declare function AgreementV4CollapsibleContent(props: AgreementV4CollapsibleContentProps): React.JSX.Element | null;
+export declare function AgreementV4IndentPushable(props: AgreementV4IndentPushableProps): React.JSX.Element;
+export declare function AgreementV4IndentPushableTrigger(props: AgreementV4IndentPushableTriggerProps): React.JSX.Element;
+export declare function AgreementV4IndentPushableContent(props: AgreementV4IndentPushableContentProps): React.JSX.Element | null;
+export interface AgreementV4Namespace {
+  Badge: typeof AgreementV4Badge;
+  Checkbox: typeof AgreementV4Checkbox;
+  Collapsible: typeof AgreementV4Collapsible;
+  CollapsibleContent: typeof AgreementV4CollapsibleContent;
+  CollapsibleTrigger: typeof AgreementV4CollapsibleTrigger;
+  Description: typeof AgreementV4Description;
+  Group: typeof AgreementV4Group;
+  Header: typeof AgreementV4Header;
+  IndentPushable: typeof AgreementV4IndentPushable;
+  IndentPushableContent: typeof AgreementV4IndentPushableContent;
+  IndentPushableTrigger: typeof AgreementV4IndentPushableTrigger;
+  Necessity: typeof AgreementV4Necessity;
+  Pressable: typeof AgreementV4Pressable;
+  RightArrow: typeof AgreementV4RightArrow;
+}
+export declare const AgreementV4: AgreementV4Namespace;
 export interface IOSFontA11yStyleValue extends React.CSSProperties {}
 export declare const IOSFontA11yStyle: IOSFontA11yStyleValue;
 export type SafeAreaEdge = "top" | "right" | "bottom" | "left";

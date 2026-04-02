@@ -4051,3 +4051,183 @@
   object-fit: cover;
   border-radius: inherit;
 }
+
+.rpl-keypad {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.rpl-keypad-row {
+  display: grid;
+  gap: 10px;
+}
+
+.rpl-keypad-alpha .rpl-keypad-row {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.rpl-keypad-number .rpl-keypad-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rpl-keypad-key,
+.rpl-keypad-empty {
+  min-height: 48px;
+  border-radius: 16px;
+}
+
+.rpl-keypad-key {
+  border: 1px solid #e6ebf2;
+  background: #fff;
+  color: var(--rpl-color-text-primary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 160ms var(--rpl-ease-standard), background-color 160ms var(--rpl-ease-standard), border-color 160ms var(--rpl-ease-standard), box-shadow 160ms var(--rpl-ease-standard);
+}
+
+.rpl-keypad-key:hover {
+  background: #f8fafc;
+  border-color: #dbe3ee;
+}
+
+.rpl-keypad-key:active {
+  transform: scale(0.985);
+}
+
+.rpl-keypad-key:disabled {
+  cursor: not-allowed;
+  opacity: 0.56;
+}
+
+.rpl-keypad-key-wide {
+  font-size: 13px;
+}
+
+.rpl-keypad-key-utility {
+  color: var(--rpl-color-text-secondary);
+}
+
+.rpl-keypad-empty {
+  display: block;
+}
+
+.rpl-numeric-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border: 1px solid #e6ebf2;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.rpl-numeric-spinner.is-disabled {
+  opacity: 0.52;
+}
+
+.rpl-numeric-spinner-value {
+  min-width: 44px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.rpl-agreement-group {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e7ecf3;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.rpl-agreement-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rpl-agreement-badge {
+  flex: 0 0 auto;
+}
+
+.rpl-agreement-description {
+  color: var(--rpl-color-text-secondary);
+}
+
+.rpl-agreement-necessity {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #f2f4f8;
+  color: var(--rpl-color-text-secondary);
+}
+
+.rpl-agreement-necessity.is-required {
+  background: #eef5ff;
+  color: var(--rpl-color-accent-strong);
+}
+
+.rpl-agreement-right-arrow {
+  color: var(--rpl-color-text-tertiary);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.rpl-agreement-pressable,
+.rpl-agreement-collapsible-trigger,
+.rpl-agreement-indent-trigger {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rpl-agreement-pressable-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rpl-agreement-pressable-title-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rpl-agreement-collapsible,
+.rpl-agreement-indent-pushable {
+  border-top: 1px solid #eef2f6;
+}
+
+.rpl-agreement-disclosure-caret {
+  color: var(--rpl-color-text-tertiary);
+  transition: transform 180ms var(--rpl-ease-standard);
+}
+
+.rpl-agreement-disclosure-caret.is-open {
+  transform: rotate(180deg);
+}
+
+.rpl-agreement-collapsible-content {
+  padding: 0 0 14px;
+  color: var(--rpl-color-text-secondary);
+}
+
+.rpl-agreement-indent-content {
+  margin-left: 18px;
+  padding: 0 0 14px;
+  color: var(--rpl-color-text-secondary);
+}
