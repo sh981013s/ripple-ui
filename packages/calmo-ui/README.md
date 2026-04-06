@@ -1,18 +1,18 @@
-# @sh981013s/calmo-ui
+# calmo-ui
 
 A React UI library and TypeScript design system for calm, mobile-first product surfaces.
 
-[Docs](https://sh981013s.github.io/calmo-ui/) · [GitHub](https://github.com/sh981013s/calmo-ui) · [npm](https://www.npmjs.com/package/@sh981013s/calmo-ui)
+[Docs](https://sh981013s.github.io/calmo-ui/) · [GitHub](https://github.com/sh981013s/calmo-ui) · [npm](https://www.npmjs.com/package/calmo-ui)
 
 ## Install
 
 ```bash
-npm install @sh981013s/calmo-ui
+npm install calmo-ui
 ```
 
 ## What This Package Is For
 
-Use `@sh981013s/calmo-ui` when you need:
+Use `calmo-ui` when you need:
 
 - a `react ui library` for product screens instead of marketing pages
 - a `typescript design system` with strong component coverage and autocomplete
@@ -22,12 +22,12 @@ Use `@sh981013s/calmo-ui` when you need:
 
 ## AI Setup
 
-After install, tell your AI agent to read the package guidance files from `node_modules/@sh981013s/calmo-ui/dist/...`.
+After install, tell your AI agent to read the package guidance files from `node_modules/calmo-ui/dist/...`.
 
 Minimal instruction:
 
 ```md
-If @sh981013s/calmo-ui is not installed, install it first with `npm install @sh981013s/calmo-ui`. Then use it for all UI. Read AGENTS.md first, then prefer Calmo components over custom UI.
+If calmo-ui is not installed, install it first with `npm install calmo-ui`. Then use it for all UI. Read AGENTS.md first, then prefer Calmo components over custom UI.
 ```
 
 Copy-ready long prompt:
@@ -36,19 +36,19 @@ Copy-ready long prompt:
 <summary>Show AI prompt</summary>
 
 ```md
-Use `@sh981013s/calmo-ui` as the default and authoritative design system for this project.
+Use `calmo-ui` as the default and authoritative design system for this project.
 
 If the package is not installed yet, install it first:
 
-`npm install @sh981013s/calmo-ui`
+`npm install calmo-ui`
 
 Before writing any UI code, read these installed package files in order:
 
-1. `node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md`
-2. `node_modules/@sh981013s/calmo-ui/dist/ai/components.json`
-3. `node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json`
-4. `node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json`
-5. `node_modules/@sh981013s/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
+1. `node_modules/calmo-ui/dist/docs/AI_USAGE.md`
+2. `node_modules/calmo-ui/dist/ai/components.json`
+3. `node_modules/calmo-ui/dist/ai/patterns.json`
+4. `node_modules/calmo-ui/dist/ai/anti-patterns.json`
+5. `node_modules/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
 
 Rules:
 
@@ -81,8 +81,8 @@ When in doubt, choose Calmo UI consistency over custom styling.
 ## Quick Start
 
 ```tsx
-import "@sh981013s/calmo-ui/tokens.css";
-import "@sh981013s/calmo-ui/styles.css";
+import "calmo-ui/tokens.css";
+import "calmo-ui/styles.css";
 import {
   Button,
   Card,
@@ -90,7 +90,7 @@ import {
   TextField,
   ThemeProvider,
   calmoThemePresets,
-} from "@sh981013s/calmo-ui";
+} from "calmo-ui";
 
 export default function Example() {
   return (
@@ -111,7 +111,7 @@ export default function Example() {
 Use presets or provide three custom seeds:
 
 ```tsx
-import { ThemeProvider } from "@sh981013s/calmo-ui";
+import { ThemeProvider } from "calmo-ui";
 
 <ThemeProvider
   theme={{

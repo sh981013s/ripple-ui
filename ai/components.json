@@ -1,6 +1,6 @@
 {
   "library": "Calmo UI",
-  "package": "@sh981013s/calmo-ui",
+  "package": "calmo-ui",
   "version": "0.1.0",
   "purpose": "Calm mobile-first component library for product surfaces.",
   "recommended_read_order": [

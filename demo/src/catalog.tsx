@@ -142,7 +142,7 @@ import {
   buildCalmoThemeVars,
   defaultCalmoTheme,
   calmoThemePresets,
-} from "@sh981013s/calmo-ui";
+} from "calmo-ui";
 
 function useCopyFeedback() {
   const [copied, setCopied] = React.useState(false);
@@ -1823,12 +1823,12 @@ function PropTable({ props }) {
 }
 
 const componentExamples = {
-  Surface: `import { Surface } from "@sh981013s/calmo-ui";
+  Surface: `import { Surface } from "calmo-ui";
 
 export default function Example() {
   return <Surface tone="accent" radius="lg">Accent surface</Surface>;
 }`,
-  Card: `import { Card, Text } from "@sh981013s/calmo-ui";
+  Card: `import { Card, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1837,7 +1837,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  Stack: `import { Stack, Chip } from "@sh981013s/calmo-ui";
+  Stack: `import { Stack, Chip } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1848,7 +1848,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  Inline: `import { Inline, Chip } from "@sh981013s/calmo-ui";
+  Inline: `import { Inline, Chip } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1858,12 +1858,12 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Divider: `import { Divider } from "@sh981013s/calmo-ui";
+  Divider: `import { Divider } from "calmo-ui";
 
 export default function Example() {
   return <Divider />;
 }`,
-  SectionHeader: `import { SectionHeader, Chip } from "@sh981013s/calmo-ui";
+  SectionHeader: `import { SectionHeader, Chip } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1875,7 +1875,7 @@ export default function Example() {
     />
   );
 }`,
-  Border: `import { Border, Card, Stack, Text } from "@sh981013s/calmo-ui";
+  Border: `import { Border, Card, Stack, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1888,7 +1888,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  Spacing: `import { Card, Spacing, Stack, Text } from "@sh981013s/calmo-ui";
+  Spacing: `import { Card, Spacing, Stack, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1901,7 +1901,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  FadeIn: `import { FadeIn, Text } from "@sh981013s/calmo-ui";
+  FadeIn: `import { FadeIn, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1910,7 +1910,7 @@ export default function Example() {
     </FadeIn>
   );
 }`,
-  Avatar: `import { Avatar, Inline } from "@sh981013s/calmo-ui";
+  Avatar: `import { Avatar, Inline } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1920,7 +1920,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Icon: `import { Icon, Inline, iconNames } from "@sh981013s/calmo-ui";
+  Icon: `import { Icon, Inline, iconNames } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1931,7 +1931,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Badge: `import { Badge, Inline } from "@sh981013s/calmo-ui";
+  Badge: `import { Badge, Inline } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1941,7 +1941,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Text: `import { Stack, Text } from "@sh981013s/calmo-ui";
+  Text: `import { Stack, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1952,7 +1952,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  TopBar: `import { Badge, Icon, IconButton, Selector, TopBar } from "@sh981013s/calmo-ui";
+  TopBar: `import { Badge, Icon, IconButton, Selector, TopBar } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1970,7 +1970,7 @@ export default function Example() {
     />
   );
 }`,
-  Top: `import { Badge, Top, TopRightButton, TopSubtitleBadges, TopSubtitleSelector, TopTitleSelector } from "@sh981013s/calmo-ui";
+  Top: `import { Badge, Top, TopRightButton, TopSubtitleBadges, TopSubtitleSelector, TopTitleSelector } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1986,7 +1986,7 @@ export default function Example() {
     />
   );
 }`,
-  "Tabs / Tab": `import { Tab, Tabs } from "@sh981013s/calmo-ui";
+  "Tabs / Tab": `import { Tab, Tabs } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -1997,7 +1997,7 @@ export default function Example() {
     </Tabs>
   );
 }`,
-  SegmentedControl: `import { SegmentedControl } from "@sh981013s/calmo-ui";
+  SegmentedControl: `import { SegmentedControl } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2012,7 +2012,7 @@ export default function Example() {
     />
   );
 }`,
-  Selector: `import { Inline, Selector } from "@sh981013s/calmo-ui";
+  Selector: `import { Inline, Selector } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2023,12 +2023,12 @@ export default function Example() {
     </Inline>
   );
 }`,
-  IconButton: `import { Icon, IconButton } from "@sh981013s/calmo-ui";
+  IconButton: `import { Icon, IconButton } from "calmo-ui";
 
 export default function Example() {
   return <IconButton tone="accent" aria-label="Share"><Icon name="externalLink" size={16} /></IconButton>;
 }`,
-  Tooltip: `import { Button, Tooltip } from "@sh981013s/calmo-ui";
+  Tooltip: `import { Button, Tooltip } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2037,7 +2037,7 @@ export default function Example() {
     </Tooltip>
   );
 }`,
-  Button: `import { Button, Inline } from "@sh981013s/calmo-ui";
+  Button: `import { Button, Inline } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2048,7 +2048,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Chip: `import { Chip, Inline } from "@sh981013s/calmo-ui";
+  Chip: `import { Chip, Inline } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2058,12 +2058,12 @@ export default function Example() {
     </Inline>
   );
 }`,
-  TextButton: `import { TextButton } from "@sh981013s/calmo-ui";
+  TextButton: `import { TextButton } from "calmo-ui";
 
 export default function Example() {
   return <TextButton icon="externalLink" iconPosition="trailing">See details</TextButton>;
 }`,
-  Input: `import { Input } from "@sh981013s/calmo-ui";
+  Input: `import { Input } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2079,7 +2079,7 @@ export default function Example() {
     />
   );
 }`,
-  TextArea: `import { TextArea } from "@sh981013s/calmo-ui";
+  TextArea: `import { TextArea } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2091,27 +2091,27 @@ export default function Example() {
     />
   );
 }`,
-  SearchBar: `import { SearchBar } from "@sh981013s/calmo-ui";
+  SearchBar: `import { SearchBar } from "calmo-ui";
 
 export default function Example() {
   return <SearchBar label="Search" placeholder="Search components" hint="Search, then refine with filters." />;
 }`,
-  SearchField: `import { SearchField } from "@sh981013s/calmo-ui";
+  SearchField: `import { SearchField } from "calmo-ui";
 
 export default function Example() {
   return <SearchField label="Search docs" defaultValue="button" validationState="success" validationMessage="1 exact match." />;
 }`,
-  "SearchField.Result": `import { SearchFieldResult } from "@sh981013s/calmo-ui";
+  "SearchField.Result": `import { SearchFieldResult } from "calmo-ui";
 
 export default function Example() {
   return <SearchFieldResult label="Search docs" defaultValue="workspace" resultCount={4} />;
 }`,
-  "SearchField.Suggest": `import { SearchFieldSuggest } from "@sh981013s/calmo-ui";
+  "SearchField.Suggest": `import { SearchFieldSuggest } from "calmo-ui";
 
 export default function Example() {
   return <SearchFieldSuggest label="Search docs" suggestions={["Button", "BottomSheet", "Badge"]} />;
 }`,
-  TextField: `import { TextField } from "@sh981013s/calmo-ui";
+  TextField: `import { TextField } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2125,7 +2125,7 @@ export default function Example() {
     />
   );
 }`,
-  "TextField.Clearable": `import { TextFieldClearable } from "@sh981013s/calmo-ui";
+  "TextField.Clearable": `import { TextFieldClearable } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2137,7 +2137,7 @@ export default function Example() {
     />
   );
 }`,
-  "TextField.Password": `import { TextFieldPassword } from "@sh981013s/calmo-ui";
+  "TextField.Password": `import { TextFieldPassword } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2149,7 +2149,7 @@ export default function Example() {
     />
   );
 }`,
-  "TextField.Button": `import { TextFieldButton } from "@sh981013s/calmo-ui";
+  "TextField.Button": `import { TextFieldButton } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2161,7 +2161,7 @@ export default function Example() {
     />
   );
 }`,
-  Select: `import { Select } from "@sh981013s/calmo-ui";
+  Select: `import { Select } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2172,7 +2172,7 @@ export default function Example() {
     </Select>
   );
 }`,
-  "Select.Quiet": `import { SelectQuiet } from "@sh981013s/calmo-ui";
+  "Select.Quiet": `import { SelectQuiet } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2183,7 +2183,7 @@ export default function Example() {
     </SelectQuiet>
   );
 }`,
-  "Select.Searchable": `import { SelectSearchable } from "@sh981013s/calmo-ui";
+  "Select.Searchable": `import { SelectSearchable } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2194,27 +2194,27 @@ export default function Example() {
     </SelectSearchable>
   );
 }`,
-  DatePicker: `import { DatePicker } from "@sh981013s/calmo-ui";
+  DatePicker: `import { DatePicker } from "calmo-ui";
 
 export default function Example() {
   return <DatePicker label="Launch date" validationState="success" validationMessage="Date confirmed." />;
 }`,
-  "DatePicker.Compact": `import { DatePickerCompact } from "@sh981013s/calmo-ui";
+  "DatePicker.Compact": `import { DatePickerCompact } from "calmo-ui";
 
 export default function Example() {
   return <DatePickerCompact label="Billing date" confirmLabel="Save" cancelLabel="Close" />;
 }`,
-  Switch: `import { Switch } from "@sh981013s/calmo-ui";
+  Switch: `import { Switch } from "calmo-ui";
 
 export default function Example() {
   return <Switch checked label="Realtime alerts" description="Send status changes to connected channels." />;
 }`,
-  Checkbox: `import { Checkbox } from "@sh981013s/calmo-ui";
+  Checkbox: `import { Checkbox } from "calmo-ui";
 
 export default function Example() {
   return <Checkbox checked label="Email notifications" description="Receive billing and release updates." />;
 }`,
-  Radio: `import { Radio, Stack } from "@sh981013s/calmo-ui";
+  Radio: `import { Radio, Stack } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2224,7 +2224,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  Loader: `import { Inline, Loader } from "@sh981013s/calmo-ui";
+  Loader: `import { Inline, Loader } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2234,7 +2234,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  LoaderAnimation: `import { Inline, LoaderAnimation } from "@sh981013s/calmo-ui";
+  LoaderAnimation: `import { Inline, LoaderAnimation } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2244,7 +2244,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Skeleton: `import { Skeleton, Stack } from "@sh981013s/calmo-ui";
+  Skeleton: `import { Skeleton, Stack } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2254,17 +2254,17 @@ export default function Example() {
     </Stack>
   );
 }`,
-  Toast: `import { Toast } from "@sh981013s/calmo-ui";
+  Toast: `import { Toast } from "calmo-ui";
 
 export default function Example() {
   return <Toast tone="success" icon="check" title="Deployment completed" badge="Live" description="The production build is now available." dismissible />;
 }`,
-  Snackbar: `import { Button, Snackbar } from "@sh981013s/calmo-ui";
+  Snackbar: `import { Button, Snackbar } from "calmo-ui";
 
 export default function Example() {
   return <Snackbar open align="left" icon="check" message="Draft saved successfully." dismissible action={<Button variant="ghost">Dismiss</Button>} />;
 }`,
-  Result: `import { Icon, Result } from "@sh981013s/calmo-ui";
+  Result: `import { Icon, Result } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2278,17 +2278,17 @@ export default function Example() {
     />
   );
 }`,
-  ResultButton: `import { ResultButton } from "@sh981013s/calmo-ui";
+  ResultButton: `import { ResultButton } from "calmo-ui";
 
 export default function Example() {
   return <ResultButton>View details</ResultButton>;
 }`,
-  Rating: `import { Rating } from "@sh981013s/calmo-ui";
+  Rating: `import { Rating } from "calmo-ui";
 
 export default function Example() {
   return <Rating value={4} showValue />;
 }`,
-  FullScreenLoader: `import { FullScreenLoader } from "@sh981013s/calmo-ui";
+  FullScreenLoader: `import { FullScreenLoader } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2299,7 +2299,7 @@ export default function Example() {
     />
   );
 }`,
-  LoadingCompleteView: `import { LoadingCompleteView } from "@sh981013s/calmo-ui";
+  LoadingCompleteView: `import { LoadingCompleteView } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2312,32 +2312,32 @@ export default function Example() {
     />
   );
 }`,
-  "NoticeBanner / Banner": `import { Banner, Button } from "@sh981013s/calmo-ui";
+  "NoticeBanner / Banner": `import { Banner, Button } from "calmo-ui";
 
 export default function Example() {
   return <Banner tone="accent" title="Submission assets updated" description="The latest metadata set is ready for review." action={<Button variant="ghost">Open</Button>} />;
 }`,
-  ProgressBar: `import { ProgressBar } from "@sh981013s/calmo-ui";
+  ProgressBar: `import { ProgressBar } from "calmo-ui";
 
 export default function Example() {
   return <ProgressBar value={72} />;
 }`,
-  EmptyState: `import { Button, EmptyState } from "@sh981013s/calmo-ui";
+  EmptyState: `import { Button, EmptyState } from "calmo-ui";
 
 export default function Example() {
   return <EmptyState icon="◌" title="No connected channels" description="Connect at least one channel to receive alerts." action={<Button>Connect</Button>} />;
 }`,
-  AlertDialog: `import { AlertDialog } from "@sh981013s/calmo-ui";
+  AlertDialog: `import { AlertDialog } from "calmo-ui";
 
 export default function Example() {
   return <AlertDialog open title="Session expired" description="Please sign in again to continue." />;
 }`,
-  ConfirmDialog: `import { ConfirmDialog } from "@sh981013s/calmo-ui";
+  ConfirmDialog: `import { ConfirmDialog } from "calmo-ui";
 
 export default function Example() {
   return <ConfirmDialog open title="Delete workspace?" description="This action cannot be undone." tone="danger" />;
 }`,
-  Bubble: `import { Bubble, Inline } from "@sh981013s/calmo-ui";
+  Bubble: `import { Bubble, Inline } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2347,7 +2347,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  FullTooltip: `import { Button, FullTooltip, TextButton } from "@sh981013s/calmo-ui";
+  FullTooltip: `import { Button, FullTooltip, TextButton } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2360,7 +2360,7 @@ export default function Example() {
     </FullTooltip>
   );
 }`,
-  Dialog: `import { Button, Dialog, Text } from "@sh981013s/calmo-ui";
+  Dialog: `import { Button, Dialog, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2369,7 +2369,7 @@ export default function Example() {
     </Dialog>
   );
 }`,
-  Modal: `import { Button, Modal, Text } from "@sh981013s/calmo-ui";
+  Modal: `import { Button, Modal, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2386,7 +2386,7 @@ export default function Example() {
     </Modal>
   );
 }`,
-  BottomSheet: `import { BottomSheet, Button, Text } from "@sh981013s/calmo-ui";
+  BottomSheet: `import { BottomSheet, Button, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2402,7 +2402,7 @@ export default function Example() {
     </BottomSheet>
   );
 }`,
-  "Accordion / AccordionItem": `import { Accordion, AccordionItem, Text } from "@sh981013s/calmo-ui";
+  "Accordion / AccordionItem": `import { Accordion, AccordionItem, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2413,7 +2413,7 @@ export default function Example() {
     </Accordion>
   );
 }`,
-  Stepper: `import { Stepper } from "@sh981013s/calmo-ui";
+  Stepper: `import { Stepper } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2427,12 +2427,12 @@ export default function Example() {
     />
   );
 }`,
-  ProgressStep: `import { ProgressStep } from "@sh981013s/calmo-ui";
+  ProgressStep: `import { ProgressStep } from "calmo-ui";
 
 export default function Example() {
   return <ProgressStep index={2} label="Review" description="Team check" status="current" />;
 }`,
-  ProgressStepper: `import { ProgressStepper } from "@sh981013s/calmo-ui";
+  ProgressStepper: `import { ProgressStepper } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2446,12 +2446,12 @@ export default function Example() {
     />
   );
 }`,
-  Slider: `import { Slider } from "@sh981013s/calmo-ui";
+  Slider: `import { Slider } from "calmo-ui";
 
 export default function Example() {
   return <Slider label="Threshold" value={64} onChange={() => {}} />;
 }`,
-  BarChart: `import { BarChart } from "@sh981013s/calmo-ui";
+  BarChart: `import { BarChart } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2464,7 +2464,7 @@ export default function Example() {
     />
   );
 }`,
-  "List / ListHeader / ListFooter": `import { List, ListFooter, ListHeader, ListRow } from "@sh981013s/calmo-ui";
+  "List / ListHeader / ListFooter": `import { List, ListFooter, ListHeader, ListRow } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2481,7 +2481,7 @@ export default function Example() {
     </List>
   );
 }`,
-  InfoRow: `import { Card, InfoRow, Stack } from "@sh981013s/calmo-ui";
+  InfoRow: `import { Card, InfoRow, Stack } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2493,17 +2493,17 @@ export default function Example() {
     </Card>
   );
 }`,
-  TableRow: `import { TableRow } from "@sh981013s/calmo-ui";
+  TableRow: `import { TableRow } from "calmo-ui";
 
 export default function Example() {
   return <TableRow label="Estimated payout" value="$12,480" description="Updated 2 minutes ago" />;
 }`,
-  ListRow: `import { Badge, ListRow } from "@sh981013s/calmo-ui";
+  ListRow: `import { Badge, ListRow } from "calmo-ui";
 
 export default function Example() {
   return <ListRow eyebrow="Workspace" title="Marketing Ops" description="12 members" meta="Updated 2m ago" icon={<Badge tone="accent">M</Badge>} action={<Badge tone="accent">Live</Badge>} rightArrow interactive />;
 }`,
-  Table: `import { Table } from "@sh981013s/calmo-ui";
+  Table: `import { Table } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2519,12 +2519,12 @@ export default function Example() {
     />
   );
 }`,
-  Pagination: `import { Pagination } from "@sh981013s/calmo-ui";
+  Pagination: `import { Pagination } from "calmo-ui";
 
 export default function Example() {
   return <Pagination page={4} totalPages={9} onPageChange={() => {}} />;
 }`,
-  Popover: `import { Button, Popover, Stack, Text } from "@sh981013s/calmo-ui";
+  Popover: `import { Button, Popover, Stack, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2536,7 +2536,7 @@ export default function Example() {
     </Popover>
   );
 }`,
-  Menu: `import { Button, Menu } from "@sh981013s/calmo-ui";
+  Menu: `import { Button, Menu } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2556,7 +2556,7 @@ export default function Example() {
     />
   );
 }`,
-  BottomInfo: `import { BottomInfo, Button, Icon } from "@sh981013s/calmo-ui";
+  BottomInfo: `import { BottomInfo, Button, Icon } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2568,7 +2568,7 @@ export default function Example() {
     />
   );
 }`,
-  BottomCTADouble: `import { BottomCTADouble } from "@sh981013s/calmo-ui";
+  BottomCTADouble: `import { BottomCTADouble } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2578,12 +2578,12 @@ export default function Example() {
     />
   );
 }`,
-  AccessoryButton: `import { AccessoryButton } from "@sh981013s/calmo-ui";
+  AccessoryButton: `import { AccessoryButton } from "calmo-ui";
 
 export default function Example() {
   return <AccessoryButton icon="card" title="Payment method" description="Visa ending in 4242" />;
 }`,
-  GridList: `import { Card, GridList, Text } from "@sh981013s/calmo-ui";
+  GridList: `import { Card, GridList, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2595,7 +2595,7 @@ export default function Example() {
     </GridList>
   );
 }`,
-  StepperRow: `import { Stack, StepperRow } from "@sh981013s/calmo-ui";
+  StepperRow: `import { Stack, StepperRow } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2605,7 +2605,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  ColorSchemeArea: `import { ColorSchemeArea } from "@sh981013s/calmo-ui";
+  ColorSchemeArea: `import { ColorSchemeArea } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2618,12 +2618,12 @@ export default function Example() {
     />
   );
 }`,
-  WheelDatePicker: `import { WheelDatePicker } from "@sh981013s/calmo-ui";
+  WheelDatePicker: `import { WheelDatePicker } from "calmo-ui";
 
 export default function Example() {
   return <WheelDatePicker label="Settlement date" validationState="success" validationMessage="Date confirmed." />;
 }`,
-  NumberKeypad: `import { Input, NumberKeypad, Stack } from "@sh981013s/calmo-ui";
+  NumberKeypad: `import { Input, NumberKeypad, Stack } from "calmo-ui";
 
 export default function Example() {
   const value = "12800";
@@ -2635,7 +2635,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  AlphabetKeypad: `import { AlphabetKeypad, Input, Stack } from "@sh981013s/calmo-ui";
+  AlphabetKeypad: `import { AlphabetKeypad, Input, Stack } from "calmo-ui";
 
 export default function Example() {
   const value = "RIPPLE";
@@ -2647,12 +2647,12 @@ export default function Example() {
     </Stack>
   );
 }`,
-  NumericSpinner: `import { NumericSpinner } from "@sh981013s/calmo-ui";
+  NumericSpinner: `import { NumericSpinner } from "calmo-ui";
 
 export default function Example() {
   return <NumericSpinner value={8} min={1} max={20} formatter={(value) => \`\${value} seats\`} />;
 }`,
-  Wheel: `import { Wheel } from "@sh981013s/calmo-ui";
+  Wheel: `import { Wheel } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2666,7 +2666,7 @@ export default function Example() {
     />
   );
 }`,
-  WheelDateSheet: `import { Button, WheelDateSheet, useBottomSheet } from "@sh981013s/calmo-ui";
+  WheelDateSheet: `import { Button, WheelDateSheet, useBottomSheet } from "calmo-ui";
 
 export default function Example() {
   const sheet = useBottomSheet(false);
@@ -2678,7 +2678,7 @@ export default function Example() {
     </>
   );
 }`,
-  AgreementV4: `import { AgreementV4, Text } from "@sh981013s/calmo-ui";
+  AgreementV4: `import { AgreementV4, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2692,17 +2692,17 @@ export default function Example() {
     </AgreementV4.Group>
   );
 }`,
-  SplitTextField: `import { SplitTextFieldRRNFirst7 } from "@sh981013s/calmo-ui";
+  SplitTextField: `import { SplitTextFieldRRNFirst7 } from "calmo-ui";
 
 export default function Example() {
   return <SplitTextFieldRRNFirst7 label="Resident registration" value="9001011" onChange={() => {}} />;
 }`,
-  FullSecureKeypad: `import { FullSecureKeypad } from "@sh981013s/calmo-ui";
+  FullSecureKeypad: `import { FullSecureKeypad } from "calmo-ui";
 
 export default function Example() {
   return <FullSecureKeypad value="" onChange={() => {}} title="Enter account PIN" />;
 }`,
-  AgreementModuleContent: `import { AgreementModuleContent, AgreementModuleTop, AgreementV4, Button } from "@sh981013s/calmo-ui";
+  AgreementModuleContent: `import { AgreementModuleContent, AgreementModuleTop, AgreementV4, Button } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2714,27 +2714,27 @@ export default function Example() {
     </>
   );
 }`,
-  BottomSheetAgreementModule: `import { BottomSheetAgreementModule } from "@sh981013s/calmo-ui";
+  BottomSheetAgreementModule: `import { BottomSheetAgreementModule } from "calmo-ui";
 
 export default function Example() {
   return <BottomSheetAgreementModule open={false} title="Agreement review" cta={{ label: "Agree" }} />;
 }`,
-  FloatButtonAgreementModule: `import { FloatButtonAgreementModule } from "@sh981013s/calmo-ui";
+  FloatButtonAgreementModule: `import { FloatButtonAgreementModule } from "calmo-ui";
 
 export default function Example() {
   return <FloatButtonAgreementModule title="Consent flow" cta={{ label: "Continue" }} />;
 }`,
-  FullPageAgreementModule: `import { FullPageAgreementModule } from "@sh981013s/calmo-ui";
+  FullPageAgreementModule: `import { FullPageAgreementModule } from "calmo-ui";
 
 export default function Example() {
   return <FullPageAgreementModule title="Agreement required" cta={{ label: "Continue" }} />;
 }`,
-  GradientBottomSheetAgreementModule: `import { GradientBottomSheetAgreementModule } from "@sh981013s/calmo-ui";
+  GradientBottomSheetAgreementModule: `import { GradientBottomSheetAgreementModule } from "calmo-ui";
 
 export default function Example() {
   return <GradientBottomSheetAgreementModule open={false} title="Consent update" cta={{ label: "Apply" }} />;
 }`,
-  Asset: `import { Asset, Icon, Inline } from "@sh981013s/calmo-ui";
+  Asset: `import { Asset, Icon, Inline } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2744,7 +2744,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Paragraph: `import { Paragraph, Post } from "@sh981013s/calmo-ui";
+  Paragraph: `import { Paragraph, Post } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2754,12 +2754,12 @@ export default function Example() {
     </Post>
   );
 }`,
-  DoughnutChart: `import { DoughnutChart } from "@sh981013s/calmo-ui";
+  DoughnutChart: `import { DoughnutChart } from "calmo-ui";
 
 export default function Example() {
   return <DoughnutChart value={72} label="Usage" description="Workspace capacity" />;
 }`,
-  SliderTooltip: `import { Slider, SliderTooltip, Stack } from "@sh981013s/calmo-ui";
+  SliderTooltip: `import { Slider, SliderTooltip, Stack } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2769,7 +2769,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  FontScaleLimit: `import { Card, FontScaleLimit, Text } from "@sh981013s/calmo-ui";
+  FontScaleLimit: `import { Card, FontScaleLimit, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2780,7 +2780,7 @@ export default function Example() {
     </FontScaleLimit>
   );
 }`,
-  Highlight: `import { Highlight, Text } from "@sh981013s/calmo-ui";
+  Highlight: `import { Highlight, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2789,7 +2789,7 @@ export default function Example() {
     </Text>
   );
 }`,
-  IconCore: `import { IconCore, Inline } from "@sh981013s/calmo-ui";
+  IconCore: `import { IconCore, Inline } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2800,7 +2800,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  IOSFontA11yStyle: `import { Card, IOSFontA11yStyle, Text } from "@sh981013s/calmo-ui";
+  IOSFontA11yStyle: `import { Card, IOSFontA11yStyle, Text } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2809,7 +2809,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  safeAreaInset: `import { Card, Text, safeAreaInset } from "@sh981013s/calmo-ui";
+  safeAreaInset: `import { Card, Text, safeAreaInset } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2818,7 +2818,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  useBottomSheet: `import { BottomSheet, Button, Text, useBottomSheet } from "@sh981013s/calmo-ui";
+  useBottomSheet: `import { BottomSheet, Button, Text, useBottomSheet } from "calmo-ui";
 
 export default function Example() {
   const sheet = useBottomSheet(false);
@@ -2832,7 +2832,7 @@ export default function Example() {
     </>
   );
 }`,
-  ThemeProvider: `import { Button, ThemeProvider } from "@sh981013s/calmo-ui";
+  ThemeProvider: `import { Button, ThemeProvider } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2841,12 +2841,12 @@ export default function Example() {
     </ThemeProvider>
   );
 }`,
-  calmoThemePresets: `import { calmoThemePresets } from "@sh981013s/calmo-ui";
+  calmoThemePresets: `import { calmoThemePresets } from "calmo-ui";
 
 export default function Example() {
   return calmoThemePresets.map((theme) => theme.label).join(", ");
 }`,
-  buildCalmoThemeVars: `import { buildCalmoThemeVars } from "@sh981013s/calmo-ui";
+  buildCalmoThemeVars: `import { buildCalmoThemeVars } from "calmo-ui";
 
 export default function Example() {
   return buildCalmoThemeVars({
@@ -2855,27 +2855,27 @@ export default function Example() {
     bg: "#F8FAFC",
   });
 }`,
-  "ListHeader.RightText": `import { ListHeaderRightText } from "@sh981013s/calmo-ui";
+  "ListHeader.RightText": `import { ListHeaderRightText } from "calmo-ui";
 
 export default function Example() {
   return <ListHeaderRightText>Updated now</ListHeaderRightText>;
 }`,
-  "ListHeader.RightArrow": `import { ListHeaderRightArrow } from "@sh981013s/calmo-ui";
+  "ListHeader.RightArrow": `import { ListHeaderRightArrow } from "calmo-ui";
 
 export default function Example() {
   return <ListHeaderRightArrow />;
 }`,
-  "ListHeader.TitleSelector": `import { ListHeaderTitleSelector } from "@sh981013s/calmo-ui";
+  "ListHeader.TitleSelector": `import { ListHeaderTitleSelector } from "calmo-ui";
 
 export default function Example() {
   return <ListHeaderTitleSelector>Workspace</ListHeaderTitleSelector>;
 }`,
-  "ListHeader.TitleTextButton": `import { ListHeaderTitleTextButton } from "@sh981013s/calmo-ui";
+  "ListHeader.TitleTextButton": `import { ListHeaderTitleTextButton } from "calmo-ui";
 
 export default function Example() {
   return <ListHeaderTitleTextButton>See all</ListHeaderTitleTextButton>;
 }`,
-  "ListRow.Icon / Image": `import { ListRow, ListRowIcon, ListRowImageContainer, ListRowImage } from "@sh981013s/calmo-ui";
+  "ListRow.Icon / Image": `import { ListRow, ListRowIcon, ListRowImageContainer, ListRowImage } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2885,7 +2885,7 @@ export default function Example() {
     </>
   );
 }`,
-  "Menu Item Variants": `import { Menu, MenuDropdownCheckItem, MenuDropdownItem, MenuHeader } from "@sh981013s/calmo-ui";
+  "Menu Item Variants": `import { Menu, MenuDropdownCheckItem, MenuDropdownItem, MenuHeader } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2899,7 +2899,7 @@ export default function Example() {
     />
   );
 }`,
-  Dropdown: `import { Dropdown } from "@sh981013s/calmo-ui";
+  Dropdown: `import { Dropdown } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2914,7 +2914,7 @@ export default function Example() {
     />
   );
 }`,
-  CommandPalette: `import { CommandPalette } from "@sh981013s/calmo-ui";
+  CommandPalette: `import { CommandPalette } from "calmo-ui";
 
 export default function Example() {
   return (
@@ -2932,7 +2932,7 @@ export default function Example() {
 function getExampleCode(component) {
   return (
     componentExamples[component.name] ??
-    `import { ${component.name.split("/")[0].trim()} } from "@sh981013s/calmo-ui";
+    `import { ${component.name.split("/")[0].trim()} } from "calmo-ui";
 
 export default function Example() {
   return <${component.name.split("/")[0].trim()} />;

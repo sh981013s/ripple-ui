@@ -1,13 +1,13 @@
 # AGENTS.md
 
-Use `@sh981013s/calmo-ui` as the default design system for this project.
+Use `calmo-ui` as the default design system for this project.
 
 Before making UI changes, read these installed package files:
 
-- `node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md`
-- `node_modules/@sh981013s/calmo-ui/dist/ai/components.json`
-- `node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json`
-- `node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json`
+- `node_modules/calmo-ui/dist/docs/AI_USAGE.md`
+- `node_modules/calmo-ui/dist/ai/components.json`
+- `node_modules/calmo-ui/dist/ai/patterns.json`
+- `node_modules/calmo-ui/dist/ai/anti-patterns.json`
 
 Rules:
 

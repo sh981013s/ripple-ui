@@ -12,7 +12,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@sh981013s/calmo-ui": path.resolve(__dirname, "../packages/calmo-ui/src"),
+      "calmo-ui": path.resolve(__dirname, "../packages/calmo-ui/src"),
     },
   },
   build: {

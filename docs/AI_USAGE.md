@@ -1,6 +1,6 @@
 # Calmo UI for AI Coding
 
-This guide is for agents, code generators, and vibe-coding workflows that need to produce UI using `@sh981013s/calmo-ui`.
+This guide is for agents, code generators, and vibe-coding workflows that need to produce UI using `calmo-ui`.
 
 ## Goal
 
@@ -172,12 +172,12 @@ Do not generate:
 
 ## Imports
 
-Always prefer explicit imports from `@sh981013s/calmo-ui`.
+Always prefer explicit imports from `calmo-ui`.
 
 Example:
 
 ```jsx
-import { Button, Card, SectionHeader, Stack, Text } from "@sh981013s/calmo-ui";
+import { Button, Card, SectionHeader, Stack, Text } from "calmo-ui";
 ```
 
 ## AI Output Expectations

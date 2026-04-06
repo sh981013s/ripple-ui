@@ -5,7 +5,7 @@ Use this as the starting point when asking an AI system to generate screens with
 ## Base Prompt
 
 ```md
-Build this UI using only `@sh981013s/calmo-ui` components where possible.
+Build this UI using only `calmo-ui` components where possible.
 
 Follow these rules:
 - Prefer calm, neutral-first surfaces.
@@ -27,7 +27,7 @@ When choosing components:
 
 Output:
 - React code
-- imports from `@sh981013s/calmo-ui`
+- imports from `calmo-ui`
 - no nested bullet explanations
 - minimal custom CSS
 ```

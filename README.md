@@ -5,7 +5,7 @@ A React UI library and TypeScript design system for calm, mobile-first product s
 [![Deploy Demo](https://github.com/sh981013s/calmo-ui/actions/workflows/deploy-demo.yml/badge.svg)](https://github.com/sh981013s/calmo-ui/actions/workflows/deploy-demo.yml)
 [![Publish Package](https://github.com/sh981013s/calmo-ui/actions/workflows/publish-package.yml/badge.svg)](https://github.com/sh981013s/calmo-ui/actions/workflows/publish-package.yml)
 
-[Documentation](https://sh981013s.github.io/calmo-ui/) · [npm package](https://www.npmjs.com/package/@sh981013s/calmo-ui) · [GitHub](https://github.com/sh981013s/calmo-ui)
+[Documentation](https://sh981013s.github.io/calmo-ui/) · [npm package](https://www.npmjs.com/package/calmo-ui) · [GitHub](https://github.com/sh981013s/calmo-ui)
 
 ## What It Is
 
@@ -37,30 +37,30 @@ Calmo UI is a good fit when you are looking for:
 ## Install
 
 ```bash
-npm install @sh981013s/calmo-ui
+npm install calmo-ui
 ```
 
 ## AI Setup After npm Install
 
 Calmo UI now ships AI-readable metadata inside the published package. After installing, an agent can read:
 
-- `node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md`
-- `node_modules/@sh981013s/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
-- `node_modules/@sh981013s/calmo-ui/dist/ai/components.json`
-- `node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json`
-- `node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json`
-- `node_modules/@sh981013s/calmo-ui/dist/templates/AGENTS.md`
+- `node_modules/calmo-ui/dist/docs/AI_USAGE.md`
+- `node_modules/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
+- `node_modules/calmo-ui/dist/ai/components.json`
+- `node_modules/calmo-ui/dist/ai/patterns.json`
+- `node_modules/calmo-ui/dist/ai/anti-patterns.json`
+- `node_modules/calmo-ui/dist/templates/AGENTS.md`
 
 Recommended setup for new app repos:
 
-1. Copy `node_modules/@sh981013s/calmo-ui/dist/templates/AGENTS.md` to your project root as `AGENTS.md`.
+1. Copy `node_modules/calmo-ui/dist/templates/AGENTS.md` to your project root as `AGENTS.md`.
 2. Tell your AI agent to read that file before writing UI code.
 3. Keep Calmo UI as the default UI layer and only add custom CSS where the library cannot express the layout.
 
 Minimal agent instruction:
 
 ```md
-If @sh981013s/calmo-ui is not installed, install it first with `npm install @sh981013s/calmo-ui`. Then use it for all UI. Read AGENTS.md first, then prefer Calmo components over custom UI.
+If calmo-ui is not installed, install it first with `npm install calmo-ui`. Then use it for all UI. Read AGENTS.md first, then prefer Calmo components over custom UI.
 ```
 
 Copy-ready long prompt:
@@ -69,19 +69,19 @@ Copy-ready long prompt:
 <summary>Show AI prompt</summary>
 
 ```md
-Use `@sh981013s/calmo-ui` as the default and authoritative design system for this project.
+Use `calmo-ui` as the default and authoritative design system for this project.
 
 If the package is not installed yet, install it first:
 
-`npm install @sh981013s/calmo-ui`
+`npm install calmo-ui`
 
 Before writing any UI code, read these installed package files in order:
 
-1. `node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md`
-2. `node_modules/@sh981013s/calmo-ui/dist/ai/components.json`
-3. `node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json`
-4. `node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json`
-5. `node_modules/@sh981013s/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
+1. `node_modules/calmo-ui/dist/docs/AI_USAGE.md`
+2. `node_modules/calmo-ui/dist/ai/components.json`
+3. `node_modules/calmo-ui/dist/ai/patterns.json`
+4. `node_modules/calmo-ui/dist/ai/anti-patterns.json`
+5. `node_modules/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
 
 Rules:
 
@@ -114,8 +114,8 @@ When in doubt, choose Calmo UI consistency over custom styling.
 ## Quick Start
 
 ```tsx
-import "@sh981013s/calmo-ui/tokens.css";
-import "@sh981013s/calmo-ui/styles.css";
+import "calmo-ui/tokens.css";
+import "calmo-ui/styles.css";
 import {
   Badge,
   Button,
@@ -124,7 +124,7 @@ import {
   TextField,
   ThemeProvider,
   calmoThemePresets,
-} from "@sh981013s/calmo-ui";
+} from "calmo-ui";
 
 export default function Example() {
   return (
@@ -168,7 +168,7 @@ Calmo UI ships with five preset themes and a custom seed-based theme API.
 import {
   ThemeProvider,
   buildCalmoThemeVars,
-} from "@sh981013s/calmo-ui";
+} from "calmo-ui";
 
 const vars = buildCalmoThemeVars({
   accent: "#0EA5E9",

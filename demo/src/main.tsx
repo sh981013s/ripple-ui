@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.js";
-import "@sh981013s/calmo-ui/tokens.css";
-import "@sh981013s/calmo-ui/styles.css";
+import "calmo-ui/tokens.css";
+import "calmo-ui/styles.css";
 import "./demo.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

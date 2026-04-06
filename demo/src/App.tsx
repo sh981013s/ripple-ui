@@ -36,7 +36,7 @@ import {
   buildCalmoThemeVars,
   defaultCalmoTheme,
   calmoThemePresets,
-} from "@sh981013s/calmo-ui";
+} from "calmo-ui";
 import catalog, {
   ComponentDocCard,
   docsCatalog,
@@ -45,19 +45,19 @@ import catalog, {
   getSectionDocs,
 } from "./catalog.js";
 
-const CALMO_AI_PROMPT = `Use \`@sh981013s/calmo-ui\` as the default and authoritative design system for this project.
+const CALMO_AI_PROMPT = `Use \`calmo-ui\` as the default and authoritative design system for this project.
 
 If the package is not installed yet, install it first:
 
-\`npm install @sh981013s/calmo-ui\`
+\`npm install calmo-ui\`
 
 Before writing any UI code, read these installed package files in order:
 
-1. \`node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md\`
-2. \`node_modules/@sh981013s/calmo-ui/dist/ai/components.json\`
-3. \`node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json\`
-4. \`node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json\`
-5. \`node_modules/@sh981013s/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md\`
+1. \`node_modules/calmo-ui/dist/docs/AI_USAGE.md\`
+2. \`node_modules/calmo-ui/dist/ai/components.json\`
+3. \`node_modules/calmo-ui/dist/ai/patterns.json\`
+4. \`node_modules/calmo-ui/dist/ai/anti-patterns.json\`
+5. \`node_modules/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md\`
 
 Rules:
 
@@ -145,7 +145,7 @@ function DocsOverviewPage() {
 
   const handleCopyInstall = async () => {
     try {
-      await navigator.clipboard.writeText("npm install @sh981013s/calmo-ui");
+      await navigator.clipboard.writeText("npm install calmo-ui");
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
@@ -224,7 +224,7 @@ function DocsOverviewPage() {
             <Stack gap={10}>
               <Text variant="label">Install</Text>
               <div className="demo-code-row">
-                <pre className="demo-code-block">npm install @sh981013s/calmo-ui</pre>
+                <pre className="demo-code-block">npm install calmo-ui</pre>
                 <Button size="small" variant="weak" onClick={handleCopyInstall}>
                   Copy
                 </Button>
@@ -247,7 +247,7 @@ function DocsOverviewPage() {
                   Copy prompt
                 </Button>
               </Inline>
-              <Text variant="caption">Use this when you want an AI agent to fully follow Calmo UI. If the package is missing, the prompt tells it to install `@sh981013s/calmo-ui` first.</Text>
+              <Text variant="caption">Use this when you want an AI agent to fully follow Calmo UI. If the package is missing, the prompt tells it to install `calmo-ui` first.</Text>
               <details className="demo-ai-prompt">
                 <summary>Show copy-ready prompt</summary>
                 <pre className="demo-ai-prompt-block">{CALMO_AI_PROMPT}</pre>

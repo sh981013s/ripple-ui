@@ -1,6 +1,6 @@
 {
   "library": "Calmo UI",
-  "package": "@sh981013s/calmo-ui",
+  "package": "calmo-ui",
   "anti_patterns": [
     {
       "id": "multiple-primary-cta",
