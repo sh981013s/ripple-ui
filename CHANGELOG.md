@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.14 - 2026-04-06
+
+### Changed
+
+- Automated release from the latest `main` branch changes.
+
 ## 0.1.13 - 2026-04-06
 
 ### Changed
