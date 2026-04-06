@@ -221,6 +221,10 @@ textarea {
   top: 96px;
 }
 
+.demo-nav-toggle {
+  display: none;
+}
+
 .demo-sidebar-card {
   padding: 16px;
   border: 1px solid var(--rpl-color-line);
@@ -363,6 +367,17 @@ textarea {
 .demo-search-suggestion-meta {
   color: var(--rpl-color-text-secondary);
   font-size: 0.78rem;
+}
+
+.demo-mobile-nav-sheet {
+  display: grid;
+  gap: 14px;
+}
+
+.demo-mobile-nav-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .demo-tooltip-trigger {
@@ -805,6 +820,10 @@ textarea {
     order: 1;
   }
 
+  .demo-nav-toggle {
+    display: inline-flex;
+  }
+
   .demo-hero-grid {
     grid-template-columns: 1fr;
   }
@@ -826,7 +845,7 @@ textarea {
   }
 
   .demo-sidebar-card {
-    padding: 14px;
+    display: none;
   }
 
   .demo-topbar-search {

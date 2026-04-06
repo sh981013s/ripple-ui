@@ -17,7 +17,9 @@ import {
   Button,
   Card,
   Chip,
+  Dialog,
   Icon,
+  IconButton,
   iconNames,
   Input,
   Inline,
@@ -691,6 +693,7 @@ function DocsShell() {
   const [searchValue, setSearchValue] = useState("");
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
   const [themeId, setThemeId] = useState(defaultCalmoTheme.id);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const entries = useMemo(() => getAllDocEntries(), []);
   const totalComponents = entries.length;
@@ -744,6 +747,10 @@ function DocsShell() {
     setActiveSuggestion(suggestions.length ? 0 : -1);
   }, [suggestions]);
 
+  useEffect(() => {
+    setIsNavOpen(false);
+  }, [location.pathname]);
+
   const handleSelectSuggestion = (path) => {
     navigate(path);
     setSearchValue("");
@@ -756,6 +763,15 @@ function DocsShell() {
       <ScrollToTop />
       <div className="demo-shell">
         <TopBar
+          leading={
+            <IconButton
+              aria-label="Open docs navigation"
+              className="demo-nav-toggle"
+              onClick={() => setIsNavOpen(true)}
+            >
+              <Icon name="more" size={16} />
+            </IconButton>
+          }
           title="Calmo UI"
           subtitleTop="Design System"
           subtitleBottom={routeLabel}
@@ -850,6 +866,40 @@ function DocsShell() {
           </main>
         </div>
       </div>
+      <Dialog
+        open={isNavOpen}
+        onClose={() => setIsNavOpen(false)}
+        title="Documentation"
+        description="Browse sections, switch theme, and jump between component pages."
+        size="sm"
+      >
+        <div className="demo-mobile-nav-sheet">
+          <SidebarNav />
+          <div className="demo-sidebar-meta">
+            <span className="demo-sidebar-meta-label">Theme</span>
+            <select
+              aria-label="Select theme preset"
+              className="demo-theme-select"
+              value={themeId}
+              onChange={(event) => setThemeId(event.target.value)}
+            >
+              {calmoThemePresets.map((theme) => (
+                <option key={theme.id} value={theme.id}>
+                  {theme.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="demo-mobile-nav-actions">
+            <a className="demo-inline-link" href="https://www.npmjs.com/package/calmo-ui" target="_blank" rel="noreferrer">
+              npm package
+            </a>
+            <a className="demo-inline-link" href="https://github.com/sh981013s/calmo-ui" target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          </div>
+        </div>
+      </Dialog>
       </div>
     </ThemeProvider>
   );
