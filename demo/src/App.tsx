@@ -136,6 +136,8 @@ function DocsOverviewPage() {
   const [copied, setCopied] = useState(false);
   const [promptCopied, setPromptCopied] = useState(false);
   const [iconQuery, setIconQuery] = useState("");
+  const totalSections = docsCatalog.length;
+  const totalComponents = docsCatalog.reduce((count, section) => count + section.components.length, 0);
 
   const overviewIcons = useMemo(() => {
     const q = iconQuery.trim().toLowerCase();
@@ -166,50 +168,127 @@ function DocsOverviewPage() {
   return (
     <Stack gap={20}>
       <section className="demo-hero">
-        <div className="demo-hero-copy">
-          <span className="demo-hero-eyebrow">React UI Library</span>
-          <h1 className="demo-hero-title">Calmo UI</h1>
-          <p className="demo-hero-description">
-            A TypeScript design system for calm, mobile-first product surfaces. Build fintech-style dashboards,
-            settings flows, internal tools, and AI-generated apps with reusable React components.
-          </p>
-          <Inline gap={8} wrap>
-            <Chip tone="accent">React UI library</Chip>
-            <Chip tone="neutral">TypeScript design system</Chip>
-            <Chip tone="success">Mobile-first components</Chip>
-          </Inline>
+        <div className="demo-hero-links">
+          <a className="demo-top-link" href="https://sh981013s.github.io/calmo-ui/" target="_blank" rel="noreferrer">Docs</a>
+          <a className="demo-top-link" href="https://github.com/sh981013s/calmo-ui" target="_blank" rel="noreferrer">GitHub</a>
+          <a className="demo-top-link" href="https://www.npmjs.com/package/calmo-ui" target="_blank" rel="noreferrer">npm</a>
+          <a className="demo-top-link demo-top-link-strong" href="https://github.com/sh981013s/calmo-ui/stargazers" target="_blank" rel="noreferrer">
+            Star on GitHub
+          </a>
         </div>
-        <div className="demo-hero-proof">
-          <span>Forms</span>
-          <span>Overlays</span>
-          <span>Navigation</span>
-          <span>Data views</span>
-          <span>Theme presets</span>
-          <span>AI-friendly docs</span>
+        <div className="demo-hero-grid">
+          <div className="demo-hero-copy">
+            <span className="demo-hero-eyebrow">React UI library</span>
+            <h1 className="demo-hero-title">The React component library for calm product surfaces.</h1>
+            <p className="demo-hero-description">
+              Calmo UI is a TypeScript design system for mobile-first dashboards, settings flows, internal tools,
+              fintech-style screens, and AI-generated apps that need structured product UI instead of marketing-style kits.
+            </p>
+            <div className="demo-hero-actions">
+              <a className="demo-hero-button demo-hero-button-primary" href="https://sh981013s.github.io/calmo-ui/" target="_blank" rel="noreferrer">
+                Explore docs
+              </a>
+              <a className="demo-hero-button" href="https://www.npmjs.com/package/calmo-ui" target="_blank" rel="noreferrer">
+                npm package
+              </a>
+              <a className="demo-hero-button" href="https://github.com/sh981013s/calmo-ui/stargazers" target="_blank" rel="noreferrer">
+                Star on GitHub
+              </a>
+            </div>
+            <div className="demo-hero-proof">
+              <span>TypeScript autocomplete</span>
+              <span>Seed-driven theming</span>
+              <span>AI-ready metadata</span>
+              <span>{totalComponents}+ components</span>
+              <span>{totalSections} grouped sections</span>
+            </div>
+          </div>
+
+          <Card className="demo-hero-panel">
+            <Stack gap={16}>
+              <div className="demo-hero-panel-block">
+                <Text variant="label">Install</Text>
+                <div className="demo-code-row">
+                  <pre className="demo-code-block">npm install calmo-ui</pre>
+                  <Button size="small" variant="weak" onClick={handleCopyInstall}>
+                    Copy
+                  </Button>
+                </div>
+                {copied ? <Text variant="caption" className="demo-copy-feedback">Copied to clipboard.</Text> : null}
+              </div>
+              <div className="demo-hero-metrics">
+                <div className="demo-hero-metric">
+                  <span className="demo-hero-metric-value">{totalComponents}+</span>
+                  <span className="demo-hero-metric-label">documented components</span>
+                </div>
+                <div className="demo-hero-metric">
+                  <span className="demo-hero-metric-value">5</span>
+                  <span className="demo-hero-metric-label">theme presets</span>
+                </div>
+                <div className="demo-hero-metric">
+                  <span className="demo-hero-metric-value">AI</span>
+                  <span className="demo-hero-metric-label">prompt + metadata bundle</span>
+                </div>
+              </div>
+              <div className="demo-hero-note">
+                <Text variant="label">Best fit</Text>
+                <Text variant="caption">
+                  Build settings, sheets, dialogs, forms, tables, lists, and structured product UI with a calm, neutral-first visual direction.
+                </Text>
+              </div>
+            </Stack>
+          </Card>
         </div>
       </section>
 
-      <Banner
-        tone="neutral"
-        compact
-        eyebrow="overview"
-        title="A React component library for product UI, not a marketing kit"
-        description="Calmo UI is built for dashboards, settings, lists, forms, dialogs, sheets, and mobile-first internal tools with a calm Toss-style UI direction."
-      />
+      <section className="demo-section">
+        <SectionHeader
+          eyebrow="why calmo"
+          title="Move faster with structured React UI"
+          description="Calmo UI gives product teams a TypeScript design system for forms, overlays, navigation, feedback, and data surfaces without rebuilding the same app shell every time."
+        />
+        <div className="demo-feature-grid">
+          <Card className="demo-feature-card">
+            <Stack gap={10}>
+              <Text variant="label">Production UI coverage</Text>
+              <Text variant="body">Forms, dialogs, sheets, lists, tables, navigation, charts, loaders, toasts, and structured layout primitives in one package.</Text>
+            </Stack>
+          </Card>
+          <Card className="demo-feature-card">
+            <Stack gap={10}>
+              <Text variant="label">TypeScript-first ergonomics</Text>
+              <Text variant="body">Autocomplete, deep import support, theme helpers, and stable component APIs tuned for real product work.</Text>
+            </Stack>
+          </Card>
+          <Card className="demo-feature-card">
+            <Stack gap={10}>
+              <Text variant="label">AI-friendly by default</Text>
+              <Text variant="body">Bundled prompts, AGENTS template, JSON catalogs, and docs metadata help AI agents stay inside the design system.</Text>
+            </Stack>
+          </Card>
+          <Card className="demo-feature-card">
+            <Stack gap={10}>
+              <Text variant="label">Calm product direction</Text>
+              <Text variant="body">A restrained, mobile-first visual language for internal tools, fintech flows, dashboards, and configuration surfaces.</Text>
+            </Stack>
+          </Card>
+        </div>
+      </section>
 
       <section className="demo-section">
         <SectionHeader
-          eyebrow="quick start"
-          title="Use Calmo UI in your product"
-          description="Install the package, open the docs, and use Calmo UI as your default React UI library for structured product surfaces."
+          eyebrow="get started"
+          title="Open docs, install once, then stay inside the system"
+          description="Use the docs, npm package, and AI prompt together so product screens stay consistent without drifting into custom one-off UI."
         />
-        <div className="demo-howto-grid">
+        <div className="demo-get-started-grid">
           <Card className="demo-howto-card">
             <Stack gap={10}>
               <Text variant="label">Docs</Text>
               <a className="demo-inline-link" href="https://sh981013s.github.io/calmo-ui/" target="_blank" rel="noreferrer">
                 sh981013s.github.io/calmo-ui
               </a>
+              <Text variant="caption">Browse sections, component pages, live playgrounds, and theme examples.</Text>
             </Stack>
           </Card>
           <Card className="demo-howto-card">
@@ -218,36 +297,20 @@ function DocsOverviewPage() {
               <a className="demo-inline-link" href="https://github.com/sh981013s/calmo-ui" target="_blank" rel="noreferrer">
                 github.com/sh981013s/calmo-ui
               </a>
+              <Text variant="caption">Source, releases, changelog, and issues. If Calmo helps, star the repo.</Text>
             </Stack>
           </Card>
-          <Card className="demo-howto-card">
-            <Stack gap={10}>
-              <Text variant="label">Install</Text>
-              <div className="demo-code-row">
-                <pre className="demo-code-block">npm install calmo-ui</pre>
-                <Button size="small" variant="weak" onClick={handleCopyInstall}>
-                  Copy
-                </Button>
-              </div>
-              {copied ? <Text variant="caption" className="demo-copy-feedback">Copied to clipboard.</Text> : null}
-            </Stack>
-          </Card>
-          <Card className="demo-howto-card">
-            <Stack gap={10}>
-              <Text variant="label">Best for</Text>
-              <Text variant="caption">React dashboards, admin panels, fintech workflows, settings flows, internal tools, and AI-generated apps.</Text>
-            </Stack>
-          </Card>
-
           <Card className="demo-howto-card demo-howto-card-wide">
             <Stack gap={10}>
               <Inline gap={8} align="center" justify="between">
-                <Text variant="label">AI prompt</Text>
+                <Text variant="label">Copy-ready AI prompt</Text>
                 <Button size="small" variant="weak" onClick={handleCopyPrompt}>
                   Copy prompt
                 </Button>
               </Inline>
-              <Text variant="caption">Use this when you want an AI agent to fully follow Calmo UI. If the package is missing, the prompt tells it to install `calmo-ui` first.</Text>
+              <Text variant="caption">
+                Use this when you want an AI agent to follow Calmo UI closely. The prompt includes install guidance, package metadata paths, and component-first rules.
+              </Text>
               <details className="demo-ai-prompt">
                 <summary>Show copy-ready prompt</summary>
                 <pre className="demo-ai-prompt-block">{CALMO_AI_PROMPT}</pre>

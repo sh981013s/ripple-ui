@@ -46,14 +46,44 @@ textarea {
 
 .demo-hero {
   display: grid;
-  gap: 16px;
-  padding: 4px 4px 2px;
+  gap: 18px;
+  padding: 8px 4px 10px;
+}
+
+.demo-hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.demo-top-link {
+  color: var(--rpl-color-text-secondary);
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.demo-top-link:hover {
+  color: var(--rpl-color-text-primary);
+}
+
+.demo-top-link-strong {
+  color: var(--rpl-color-accent-strong);
+}
+
+.demo-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+  gap: 24px;
+  align-items: start;
 }
 
 .demo-hero-copy {
   display: grid;
-  gap: 12px;
-  max-width: 640px;
+  gap: 14px;
+  max-width: 720px;
 }
 
 .demo-hero-eyebrow {
@@ -74,16 +104,53 @@ textarea {
 
 .demo-hero-description {
   margin: 0;
-  max-width: 58ch;
+  max-width: 62ch;
   color: var(--rpl-color-text-secondary);
-  font-size: 0.96rem;
-  line-height: 1.52;
+  font-size: 1rem;
+  line-height: 1.58;
+}
+
+.demo-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.demo-hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--rpl-color-line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--rpl-color-surface) 92%, white);
+  color: var(--rpl-color-text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  box-shadow: var(--rpl-shadow-inset);
+}
+
+.demo-hero-button:hover {
+  border-color: color-mix(in srgb, var(--rpl-color-line) 70%, var(--rpl-color-accent));
+}
+
+.demo-hero-button-primary {
+  border-color: color-mix(in srgb, var(--rpl-color-accent) 32%, var(--rpl-color-line));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--rpl-color-accent) 12%, white) 0%,
+    color-mix(in srgb, var(--rpl-color-accent) 7%, white) 100%
+  );
+  color: var(--rpl-color-accent-strong);
 }
 
 .demo-hero-proof {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 9px;
   color: var(--rpl-color-text-tertiary);
   font-size: 0.78rem;
   font-weight: 700;
@@ -95,6 +162,51 @@ textarea {
   border: 1px solid var(--rpl-color-line);
   border-radius: 999px;
   background: color-mix(in srgb, var(--rpl-color-surface) 92%, var(--rpl-color-bg));
+}
+
+.demo-hero-panel {
+  padding: 18px;
+  border-radius: 24px;
+}
+
+.demo-hero-panel-block {
+  display: grid;
+  gap: 10px;
+}
+
+.demo-hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.demo-hero-metric {
+  display: grid;
+  gap: 4px;
+  padding: 12px 12px 10px;
+  border: 1px solid var(--rpl-color-line);
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--rpl-color-surface) 92%, var(--rpl-color-bg));
+}
+
+.demo-hero-metric-value {
+  color: var(--rpl-color-text-primary);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.demo-hero-metric-label {
+  color: var(--rpl-color-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.demo-hero-note {
+  display: grid;
+  gap: 8px;
+  padding-top: 2px;
 }
 
 .demo-layout {
@@ -290,6 +402,22 @@ textarea {
 .demo-howto-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.demo-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.demo-feature-card {
+  padding: 16px;
+}
+
+.demo-get-started-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -664,6 +792,10 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .demo-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
   .demo-sidebar {
     position: static;
   }
@@ -674,9 +806,15 @@ textarea {
 }
 
 @media (max-width: 720px) {
+  .demo-feature-grid,
+  .demo-get-started-grid,
   .demo-howto-grid,
   .demo-overview-grid,
   .demo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-hero-metrics {
     grid-template-columns: 1fr;
   }
 
