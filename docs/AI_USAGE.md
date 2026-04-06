@@ -1,10 +1,10 @@
-# Ripple UI for AI Coding
+# Calmo UI for AI Coding
 
-This guide is for agents, code generators, and vibe-coding workflows that need to produce UI using `@sh981013s/ripple-ui`.
+This guide is for agents, code generators, and vibe-coding workflows that need to produce UI using `@sh981013s/calmo-ui`.
 
 ## Goal
 
-Use Ripple UI to generate calm, mobile-first product surfaces with a fintech-friendly interaction model.
+Use Calmo UI to generate calm, mobile-first product surfaces with a fintech-friendly interaction model.
 
 The target feel is:
 
@@ -129,7 +129,7 @@ Use these defaults unless the prompt strongly implies otherwise:
 
 Do not generate:
 
-- random custom CSS for buttons when a Ripple UI button exists
+- random custom CSS for buttons when a Calmo UI button exists
 - ad hoc modal layouts when `Dialog` or `BottomSheet` fits
 - icon-only controls without `aria-label`
 - more than one stacked persistent banner in the same section
@@ -172,39 +172,39 @@ Do not generate:
 
 ## Imports
 
-Always prefer explicit imports from `@sh981013s/ripple-ui`.
+Always prefer explicit imports from `@sh981013s/calmo-ui`.
 
 Example:
 
 ```jsx
-import { Button, Card, SectionHeader, Stack, Text } from "@sh981013s/ripple-ui";
+import { Button, Card, SectionHeader, Stack, Text } from "@sh981013s/calmo-ui";
 ```
 
 ## AI Output Expectations
 
-When generating UI with Ripple UI:
+When generating UI with Calmo UI:
 
 1. Prefer existing primitives over custom wrappers.
 2. Use the machine-readable catalog in `/ai/components.json`.
 3. Use the page patterns in `/ai/patterns.json`.
 4. Use `/ai/anti-patterns.json` to avoid invalid compositions.
-4. If a requested design conflicts with Ripple UI principles, produce the closest calm, structured alternative.
+4. If a requested design conflicts with Calmo UI principles, produce the closest calm, structured alternative.
 5. If uncertain between two components, choose the simpler one.
 
 ## Theme Rules
 
-- Prefer `rippleThemePresets` before inventing a new palette.
+- Prefer `calmoThemePresets` before inventing a new palette.
 - If a custom theme is needed, use only `ThemeProvider` with `accent`, `ink`, and `bg`.
 - Keep success, warning, and danger semantic colors distinct.
 - Do not hardcode random brand colors into component-level CSS.
 
 ## Preferred Delivery Format For AI
 
-When producing code with Ripple UI, the best output is:
+When producing code with Calmo UI, the best output is:
 
 1. imports
 2. one React component
 3. only minimal custom CSS
-4. clear component composition using Ripple primitives
+4. clear component composition using Calmo primitives
 
 Avoid long prose inside the generated answer unless the user explicitly asks for explanation.

@@ -1,9 +1,9 @@
 {
-  "name": "ripple-ui-repo",
+  "name": "calmo-ui-repo",
   "private": true,
   "type": "module",
   "scripts": {
-    "build:core": "cd packages/ripple-ui && npm run build",
+    "build:core": "cd packages/calmo-ui && npm run build",
     "dev:demo": "vite --config demo/vite.config.js --host localhost --port 4176 --strictPort",
     "build:demo": "vite build --config demo/vite.config.js",
     "preview:demo": "vite preview --config demo/vite.config.js --host localhost --port 4176 --strictPort"

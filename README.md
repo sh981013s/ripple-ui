@@ -1,15 +1,15 @@
-# Ripple UI
+# Calmo UI
 
 A React UI library and TypeScript design system for calm, mobile-first product surfaces.
 
-[![Deploy Demo](https://github.com/sh981013s/ripple-ui/actions/workflows/deploy-demo.yml/badge.svg)](https://github.com/sh981013s/ripple-ui/actions/workflows/deploy-demo.yml)
-[![Publish Package](https://github.com/sh981013s/ripple-ui/actions/workflows/publish-package.yml/badge.svg)](https://github.com/sh981013s/ripple-ui/actions/workflows/publish-package.yml)
+[![Deploy Demo](https://github.com/sh981013s/calmo-ui/actions/workflows/deploy-demo.yml/badge.svg)](https://github.com/sh981013s/calmo-ui/actions/workflows/deploy-demo.yml)
+[![Publish Package](https://github.com/sh981013s/calmo-ui/actions/workflows/publish-package.yml/badge.svg)](https://github.com/sh981013s/calmo-ui/actions/workflows/publish-package.yml)
 
-[Documentation](https://sh981013s.github.io/ripple-ui/) · [npm package](https://www.npmjs.com/package/@sh981013s/ripple-ui) · [GitHub](https://github.com/sh981013s/ripple-ui)
+[Documentation](https://sh981013s.github.io/calmo-ui/) · [npm package](https://www.npmjs.com/package/@sh981013s/calmo-ui) · [GitHub](https://github.com/sh981013s/calmo-ui)
 
 ## What It Is
 
-Ripple UI is a React component library for teams that want:
+Calmo UI is a React component library for teams that want:
 
 - calm, neutral-first interfaces
 - mobile-first density without looking cramped
@@ -19,7 +19,7 @@ Ripple UI is a React component library for teams that want:
 
 It is designed for product UIs, internal tools, fintech-style dashboards, settings flows, structured workflows, and AI-generated app scaffolds.
 
-Ripple UI is a good fit when you are looking for:
+Calmo UI is a good fit when you are looking for:
 
 - a `react ui library` with strong defaults
 - a `typescript design system` with autocomplete and theme support
@@ -27,7 +27,7 @@ Ripple UI is a good fit when you are looking for:
 - a `toss style ui` direction for calm, neutral-first, product-focused screens
 - a reusable component set for fintech, admin, workspace, and dashboard surfaces
 
-## Why Teams Use Ripple UI
+## Why Teams Use Calmo UI
 
 - Faster product UI assembly with forms, overlays, navigation, lists, and charts in one package
 - Better AI-assisted app generation through bundled docs, JSON catalogs, and copy-ready prompts
@@ -37,30 +37,30 @@ Ripple UI is a good fit when you are looking for:
 ## Install
 
 ```bash
-npm install @sh981013s/ripple-ui
+npm install @sh981013s/calmo-ui
 ```
 
 ## AI Setup After npm Install
 
-Ripple UI now ships AI-readable metadata inside the published package. After installing, an agent can read:
+Calmo UI now ships AI-readable metadata inside the published package. After installing, an agent can read:
 
-- `node_modules/@sh981013s/ripple-ui/dist/docs/AI_USAGE.md`
-- `node_modules/@sh981013s/ripple-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
-- `node_modules/@sh981013s/ripple-ui/dist/ai/components.json`
-- `node_modules/@sh981013s/ripple-ui/dist/ai/patterns.json`
-- `node_modules/@sh981013s/ripple-ui/dist/ai/anti-patterns.json`
-- `node_modules/@sh981013s/ripple-ui/dist/templates/AGENTS.md`
+- `node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md`
+- `node_modules/@sh981013s/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
+- `node_modules/@sh981013s/calmo-ui/dist/ai/components.json`
+- `node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json`
+- `node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json`
+- `node_modules/@sh981013s/calmo-ui/dist/templates/AGENTS.md`
 
 Recommended setup for new app repos:
 
-1. Copy `node_modules/@sh981013s/ripple-ui/dist/templates/AGENTS.md` to your project root as `AGENTS.md`.
+1. Copy `node_modules/@sh981013s/calmo-ui/dist/templates/AGENTS.md` to your project root as `AGENTS.md`.
 2. Tell your AI agent to read that file before writing UI code.
-3. Keep Ripple UI as the default UI layer and only add custom CSS where the library cannot express the layout.
+3. Keep Calmo UI as the default UI layer and only add custom CSS where the library cannot express the layout.
 
 Minimal agent instruction:
 
 ```md
-If @sh981013s/ripple-ui is not installed, install it first with `npm install @sh981013s/ripple-ui`. Then use it for all UI. Read AGENTS.md first, then prefer Ripple components over custom UI.
+If @sh981013s/calmo-ui is not installed, install it first with `npm install @sh981013s/calmo-ui`. Then use it for all UI. Read AGENTS.md first, then prefer Calmo components over custom UI.
 ```
 
 Copy-ready long prompt:
@@ -69,44 +69,44 @@ Copy-ready long prompt:
 <summary>Show AI prompt</summary>
 
 ```md
-Use `@sh981013s/ripple-ui` as the default and authoritative design system for this project.
+Use `@sh981013s/calmo-ui` as the default and authoritative design system for this project.
 
 If the package is not installed yet, install it first:
 
-`npm install @sh981013s/ripple-ui`
+`npm install @sh981013s/calmo-ui`
 
 Before writing any UI code, read these installed package files in order:
 
-1. `node_modules/@sh981013s/ripple-ui/dist/docs/AI_USAGE.md`
-2. `node_modules/@sh981013s/ripple-ui/dist/ai/components.json`
-3. `node_modules/@sh981013s/ripple-ui/dist/ai/patterns.json`
-4. `node_modules/@sh981013s/ripple-ui/dist/ai/anti-patterns.json`
-5. `node_modules/@sh981013s/ripple-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
+1. `node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md`
+2. `node_modules/@sh981013s/calmo-ui/dist/ai/components.json`
+3. `node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json`
+4. `node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json`
+5. `node_modules/@sh981013s/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md`
 
 Rules:
 
-- Prefer Ripple UI components over raw HTML whenever a matching component exists.
-- Do not recreate UI patterns that Ripple UI already provides.
-- Do not introduce custom CSS for component styling unless Ripple UI cannot express the required layout or interaction.
-- Use Ripple UI primitives, layout patterns, spacing, radius, motion, and theme rules before adding bespoke wrappers.
+- Prefer Calmo UI components over raw HTML whenever a matching component exists.
+- Do not recreate UI patterns that Calmo UI already provides.
+- Do not introduce custom CSS for component styling unless Calmo UI cannot express the required layout or interaction.
+- Use Calmo UI primitives, layout patterns, spacing, radius, motion, and theme rules before adding bespoke wrappers.
 - Keep interfaces calm, mobile-first, structured, and product-like.
-- If a matching Ripple component exists, you must use it instead of building a custom equivalent.
-- Use `ThemeProvider` and `buildRippleThemeVars` for palette changes instead of hardcoding unrelated colors.
+- If a matching Calmo component exists, you must use it instead of building a custom equivalent.
+- Use `ThemeProvider` and `buildCalmoThemeVars` for palette changes instead of hardcoding unrelated colors.
 
 Implementation order:
 
-1. Check whether Ripple UI already has a direct component for the need.
-2. If not, compose from Ripple primitives and existing Ripple components.
-3. Only if both fail, write minimal custom code aligned to Ripple UI.
+1. Check whether Calmo UI already has a direct component for the need.
+2. If not, compose from Calmo primitives and existing Calmo components.
+3. Only if both fail, write minimal custom code aligned to Calmo UI.
 
 Expected behavior:
 
-- Use Ripple UI names directly in implementation.
+- Use Calmo UI names directly in implementation.
 - Prefer library components over custom UI.
 - Keep custom CSS small and structural.
 - Optimize for production-ready structured UI, not rough mockups.
 
-When in doubt, choose Ripple UI consistency over custom styling.
+When in doubt, choose Calmo UI consistency over custom styling.
 ```
 
 </details>
@@ -114,8 +114,8 @@ When in doubt, choose Ripple UI consistency over custom styling.
 ## Quick Start
 
 ```tsx
-import "@sh981013s/ripple-ui/tokens.css";
-import "@sh981013s/ripple-ui/styles.css";
+import "@sh981013s/calmo-ui/tokens.css";
+import "@sh981013s/calmo-ui/styles.css";
 import {
   Badge,
   Button,
@@ -123,12 +123,12 @@ import {
   Stack,
   TextField,
   ThemeProvider,
-  rippleThemePresets,
-} from "@sh981013s/ripple-ui";
+  calmoThemePresets,
+} from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
-    <ThemeProvider theme={rippleThemePresets[1]}>
+    <ThemeProvider theme={calmoThemePresets[1]}>
       <Card>
         <Stack gap={20}>
           <Badge tone="accent">Jade theme</Badge>
@@ -148,7 +148,7 @@ export default function Example() {
 
 ## Best Fit
 
-Use Ripple UI when you need a React component library for:
+Use Calmo UI when you need a React component library for:
 
 - fintech and payment-adjacent dashboards
 - mobile-first admin panels and internal tools
@@ -158,19 +158,19 @@ Use Ripple UI when you need a React component library for:
 
 ## Theme System
 
-Ripple UI ships with five preset themes and a custom seed-based theme API.
+Calmo UI ships with five preset themes and a custom seed-based theme API.
 
-- presets: `rippleThemePresets`
+- presets: `calmoThemePresets`
 - scoped theming: `ThemeProvider`
-- custom CSS variable generation: `buildRippleThemeVars`
+- custom CSS variable generation: `buildCalmoThemeVars`
 
 ```tsx
 import {
   ThemeProvider,
-  buildRippleThemeVars,
-} from "@sh981013s/ripple-ui";
+  buildCalmoThemeVars,
+} from "@sh981013s/calmo-ui";
 
-const vars = buildRippleThemeVars({
+const vars = buildCalmoThemeVars({
   accent: "#0EA5E9",
   ink: "#0F172A",
   bg: "#F8FAFC",
@@ -189,7 +189,7 @@ Semantic colors are kept separate from the three main seeds so success, warning,
 
 ## Component Coverage
 
-Ripple UI currently covers:
+Calmo UI currently covers:
 
 - Layout: `Surface`, `Card`, `Stack`, `Inline`, `Spacing`, `Border`, `GridList`
 - Navigation: `TopBar`, `Top`, `Tabs`, `SegmentedControl`, `Selector`, `Pagination`
@@ -204,7 +204,7 @@ Ripple UI currently covers:
 
 Docs are published at:
 
-- [https://sh981013s.github.io/ripple-ui/](https://sh981013s.github.io/ripple-ui/)
+- [https://sh981013s.github.io/calmo-ui/](https://sh981013s.github.io/calmo-ui/)
 
 The docs site includes:
 
@@ -216,11 +216,11 @@ The docs site includes:
 - icon browser
 - theme switching demo
 
-The docs landing page is tuned to explain Ripple UI as a React UI library, a TypeScript design system, and a mobile-first component library before users open individual component pages.
+The docs landing page is tuned to explain Calmo UI as a React UI library, a TypeScript design system, and a mobile-first component library before users open individual component pages.
 
 ## AI-First Usage
 
-Ripple UI is intentionally tuned for vibe coding and agent-driven UI generation.
+Calmo UI is intentionally tuned for vibe coding and agent-driven UI generation.
 
 Start here:
 
@@ -242,7 +242,7 @@ When installed from npm, the same AI metadata is available from the package `dis
 
 ## Repository Structure
 
-- `packages/ripple-ui`: publishable core package
+- `packages/calmo-ui`: publishable core package
 - `demo`: docs site
 - `docs/AI_USAGE.md`: AI generation guidance
 - `docs/AI_PROMPT_TEMPLATE.md`: reusable prompt starter

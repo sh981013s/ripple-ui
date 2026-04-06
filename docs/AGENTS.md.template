@@ -1,24 +1,24 @@
 # AGENTS.md
 
-Use `@sh981013s/ripple-ui` as the default design system for this project.
+Use `@sh981013s/calmo-ui` as the default design system for this project.
 
 Before making UI changes, read these installed package files:
 
-- `node_modules/@sh981013s/ripple-ui/dist/docs/AI_USAGE.md`
-- `node_modules/@sh981013s/ripple-ui/dist/ai/components.json`
-- `node_modules/@sh981013s/ripple-ui/dist/ai/patterns.json`
-- `node_modules/@sh981013s/ripple-ui/dist/ai/anti-patterns.json`
+- `node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md`
+- `node_modules/@sh981013s/calmo-ui/dist/ai/components.json`
+- `node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json`
+- `node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json`
 
 Rules:
 
-- Prefer Ripple UI components over custom HTML/CSS.
-- If a matching Ripple component exists, do not recreate it.
-- Use the Ripple theme system before introducing custom color values.
+- Prefer Calmo UI components over custom HTML/CSS.
+- If a matching Calmo component exists, do not recreate it.
+- Use the Calmo theme system before introducing custom color values.
 - Keep layouts calm, mobile-first, and spacing-driven.
 - Only add custom CSS for layout gaps the library cannot express.
 
 When building screens:
 
-- Use existing Ripple primitives and component variants first.
+- Use existing Calmo primitives and component variants first.
 - Favor `TopBar`, `List`, `ListRow`, `TextField`, `Input`, `Select`, `DatePicker`, `BottomSheet`, `Dialog`, and `Button` for common app flows.
-- Use `ThemeProvider` or `buildRippleThemeVars` when the project needs a custom palette.
+- Use `ThemeProvider` or `buildCalmoThemeVars` when the project needs a custom palette.

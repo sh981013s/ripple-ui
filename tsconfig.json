@@ -16,5 +16,5 @@
     "verbatimModuleSyntax": true,
     "types": ["node", "react", "react-dom"]
   },
-  "include": ["demo/src", "packages/ripple-ui/src"]
+  "include": ["demo/src", "packages/calmo-ui/src"]
 }

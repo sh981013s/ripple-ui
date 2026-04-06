@@ -33,10 +33,10 @@ import {
   TextField,
   ThemeProvider,
   TopBar,
-  buildRippleThemeVars,
-  defaultRippleTheme,
-  rippleThemePresets,
-} from "@sh981013s/ripple-ui";
+  buildCalmoThemeVars,
+  defaultCalmoTheme,
+  calmoThemePresets,
+} from "@sh981013s/calmo-ui";
 import catalog, {
   ComponentDocCard,
   docsCatalog,
@@ -45,44 +45,44 @@ import catalog, {
   getSectionDocs,
 } from "./catalog.js";
 
-const RIPPLE_AI_PROMPT = `Use \`@sh981013s/ripple-ui\` as the default and authoritative design system for this project.
+const CALMO_AI_PROMPT = `Use \`@sh981013s/calmo-ui\` as the default and authoritative design system for this project.
 
 If the package is not installed yet, install it first:
 
-\`npm install @sh981013s/ripple-ui\`
+\`npm install @sh981013s/calmo-ui\`
 
 Before writing any UI code, read these installed package files in order:
 
-1. \`node_modules/@sh981013s/ripple-ui/dist/docs/AI_USAGE.md\`
-2. \`node_modules/@sh981013s/ripple-ui/dist/ai/components.json\`
-3. \`node_modules/@sh981013s/ripple-ui/dist/ai/patterns.json\`
-4. \`node_modules/@sh981013s/ripple-ui/dist/ai/anti-patterns.json\`
-5. \`node_modules/@sh981013s/ripple-ui/dist/docs/AI_PROMPT_TEMPLATE.md\`
+1. \`node_modules/@sh981013s/calmo-ui/dist/docs/AI_USAGE.md\`
+2. \`node_modules/@sh981013s/calmo-ui/dist/ai/components.json\`
+3. \`node_modules/@sh981013s/calmo-ui/dist/ai/patterns.json\`
+4. \`node_modules/@sh981013s/calmo-ui/dist/ai/anti-patterns.json\`
+5. \`node_modules/@sh981013s/calmo-ui/dist/docs/AI_PROMPT_TEMPLATE.md\`
 
 Rules:
 
-- Prefer Ripple UI components over raw HTML whenever a matching component exists.
-- Do not recreate UI patterns that Ripple UI already provides.
-- Do not introduce custom CSS for component styling unless Ripple UI cannot express the required layout or interaction.
-- Use Ripple UI primitives, layout patterns, spacing, radius, motion, and theme rules before adding bespoke wrappers.
+- Prefer Calmo UI components over raw HTML whenever a matching component exists.
+- Do not recreate UI patterns that Calmo UI already provides.
+- Do not introduce custom CSS for component styling unless Calmo UI cannot express the required layout or interaction.
+- Use Calmo UI primitives, layout patterns, spacing, radius, motion, and theme rules before adding bespoke wrappers.
 - Keep interfaces calm, mobile-first, structured, and product-like.
-- If a matching Ripple component exists, you must use it instead of building a custom equivalent.
-- Use \`ThemeProvider\` and \`buildRippleThemeVars\` for palette changes instead of hardcoding unrelated colors.
+- If a matching Calmo component exists, you must use it instead of building a custom equivalent.
+- Use \`ThemeProvider\` and \`buildCalmoThemeVars\` for palette changes instead of hardcoding unrelated colors.
 
 Implementation order:
 
-1. Check whether Ripple UI already has a direct component for the need.
-2. If not, compose from Ripple primitives and existing Ripple components.
-3. Only if both fail, write minimal custom code aligned to Ripple UI.
+1. Check whether Calmo UI already has a direct component for the need.
+2. If not, compose from Calmo primitives and existing Calmo components.
+3. Only if both fail, write minimal custom code aligned to Calmo UI.
 
 Expected behavior:
 
-- Use Ripple UI names directly in implementation.
+- Use Calmo UI names directly in implementation.
 - Prefer library components over custom UI.
 - Keep custom CSS small and structural.
 - Optimize for production-ready structured UI, not rough mockups.
 
-When in doubt, choose Ripple UI consistency over custom styling.`;
+When in doubt, choose Calmo UI consistency over custom styling.`;
 
 function ScrollToTop() {
   const location = useLocation();
@@ -145,7 +145,7 @@ function DocsOverviewPage() {
 
   const handleCopyInstall = async () => {
     try {
-      await navigator.clipboard.writeText("npm install @sh981013s/ripple-ui");
+      await navigator.clipboard.writeText("npm install @sh981013s/calmo-ui");
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
@@ -155,7 +155,7 @@ function DocsOverviewPage() {
 
   const handleCopyPrompt = async () => {
     try {
-      await navigator.clipboard.writeText(RIPPLE_AI_PROMPT);
+      await navigator.clipboard.writeText(CALMO_AI_PROMPT);
       setPromptCopied(true);
       window.setTimeout(() => setPromptCopied(false), 1600);
     } catch {
@@ -168,7 +168,7 @@ function DocsOverviewPage() {
       <section className="demo-hero">
         <div className="demo-hero-copy">
           <span className="demo-hero-eyebrow">React UI Library</span>
-          <h1 className="demo-hero-title">Ripple UI</h1>
+          <h1 className="demo-hero-title">Calmo UI</h1>
           <p className="demo-hero-description">
             A TypeScript design system for calm, mobile-first product surfaces. Build fintech-style dashboards,
             settings flows, internal tools, and AI-generated apps with reusable React components.
@@ -194,29 +194,29 @@ function DocsOverviewPage() {
         compact
         eyebrow="overview"
         title="A React component library for product UI, not a marketing kit"
-        description="Ripple UI is built for dashboards, settings, lists, forms, dialogs, sheets, and mobile-first internal tools with a calm Toss-style UI direction."
+        description="Calmo UI is built for dashboards, settings, lists, forms, dialogs, sheets, and mobile-first internal tools with a calm Toss-style UI direction."
       />
 
       <section className="demo-section">
         <SectionHeader
           eyebrow="quick start"
-          title="Use Ripple UI in your product"
-          description="Install the package, open the docs, and use Ripple UI as your default React UI library for structured product surfaces."
+          title="Use Calmo UI in your product"
+          description="Install the package, open the docs, and use Calmo UI as your default React UI library for structured product surfaces."
         />
         <div className="demo-howto-grid">
           <Card className="demo-howto-card">
             <Stack gap={10}>
               <Text variant="label">Docs</Text>
-              <a className="demo-inline-link" href="https://sh981013s.github.io/ripple-ui/" target="_blank" rel="noreferrer">
-                sh981013s.github.io/ripple-ui
+              <a className="demo-inline-link" href="https://sh981013s.github.io/calmo-ui/" target="_blank" rel="noreferrer">
+                sh981013s.github.io/calmo-ui
               </a>
             </Stack>
           </Card>
           <Card className="demo-howto-card">
             <Stack gap={10}>
               <Text variant="label">GitHub</Text>
-              <a className="demo-inline-link" href="https://github.com/sh981013s/ripple-ui" target="_blank" rel="noreferrer">
-                github.com/sh981013s/ripple-ui
+              <a className="demo-inline-link" href="https://github.com/sh981013s/calmo-ui" target="_blank" rel="noreferrer">
+                github.com/sh981013s/calmo-ui
               </a>
             </Stack>
           </Card>
@@ -224,7 +224,7 @@ function DocsOverviewPage() {
             <Stack gap={10}>
               <Text variant="label">Install</Text>
               <div className="demo-code-row">
-                <pre className="demo-code-block">npm install @sh981013s/ripple-ui</pre>
+                <pre className="demo-code-block">npm install @sh981013s/calmo-ui</pre>
                 <Button size="small" variant="weak" onClick={handleCopyInstall}>
                   Copy
                 </Button>
@@ -247,10 +247,10 @@ function DocsOverviewPage() {
                   Copy prompt
                 </Button>
               </Inline>
-              <Text variant="caption">Use this when you want an AI agent to fully follow Ripple UI. If the package is missing, the prompt tells it to install `@sh981013s/ripple-ui` first.</Text>
+              <Text variant="caption">Use this when you want an AI agent to fully follow Calmo UI. If the package is missing, the prompt tells it to install `@sh981013s/calmo-ui` first.</Text>
               <details className="demo-ai-prompt">
                 <summary>Show copy-ready prompt</summary>
-                <pre className="demo-ai-prompt-block">{RIPPLE_AI_PROMPT}</pre>
+                <pre className="demo-ai-prompt-block">{CALMO_AI_PROMPT}</pre>
               </details>
               {promptCopied ? <Text variant="caption" className="demo-copy-feedback">Prompt copied to clipboard.</Text> : null}
             </Stack>
@@ -320,7 +320,7 @@ function DocsOverviewPage() {
         <SectionHeader
           eyebrow="patterns"
           title="Complex composition demos"
-          description="Larger product compositions using multiple Ripple UI surfaces together, closer to how real screens are assembled."
+          description="Larger product compositions using multiple Calmo UI surfaces together, closer to how real screens are assembled."
         />
         <div className="demo-pattern-grid">
           <Card className="demo-pattern-card">
@@ -331,8 +331,8 @@ function DocsOverviewPage() {
                 rightButton={<Button variant="ghost" size="small">Save</Button>}
               />
               <Stack gap={12}>
-                <TextField label="Workspace name" defaultValue="Ripple Labs" hint="Visible across shared spaces." />
-                <Input label="Billing email" type="email" defaultValue="team@ripple-ui.dev" trailing="mail" />
+                <TextField label="Workspace name" defaultValue="Calmo Labs" hint="Visible across shared spaces." />
+                <Input label="Billing email" type="email" defaultValue="team@calmo-ui.dev" trailing="mail" />
                 <Select label="Region" defaultValue="de">
                   <option value="de">Germany</option>
                   <option value="uk">United Kingdom</option>
@@ -418,13 +418,13 @@ function DocsOverviewPage() {
 }
 
 function DocsThemeShowcase() {
-  const [presetId, setPresetId] = useState(defaultRippleTheme.id);
-  const [accent, setAccent] = useState(defaultRippleTheme.accent);
-  const [ink, setInk] = useState(defaultRippleTheme.ink);
-  const [bg, setBg] = useState(defaultRippleTheme.bg);
+  const [presetId, setPresetId] = useState(defaultCalmoTheme.id);
+  const [accent, setAccent] = useState(defaultCalmoTheme.accent);
+  const [ink, setInk] = useState(defaultCalmoTheme.ink);
+  const [bg, setBg] = useState(defaultCalmoTheme.bg);
 
   const presetTheme = useMemo(
-    () => rippleThemePresets.find((theme) => theme.id === presetId) ?? defaultRippleTheme,
+    () => calmoThemePresets.find((theme) => theme.id === presetId) ?? defaultCalmoTheme,
     [presetId],
   );
 
@@ -435,7 +435,7 @@ function DocsThemeShowcase() {
   }, [presetTheme]);
 
   const customVars = useMemo(
-    () => buildRippleThemeVars({ accent, ink, bg }),
+    () => buildCalmoThemeVars({ accent, ink, bg }),
     [accent, ink, bg],
   );
 
@@ -456,14 +456,14 @@ function DocsThemeShowcase() {
               value={presetId}
               onChange={(event) => setPresetId(event.target.value)}
             >
-              {rippleThemePresets.map((theme) => (
+              {calmoThemePresets.map((theme) => (
                 <option key={theme.id} value={theme.id}>
                   {theme.label}
                 </option>
               ))}
             </select>
             <Inline gap={8} wrap>
-              {rippleThemePresets.map((theme) => (
+              {calmoThemePresets.map((theme) => (
                 <Chip key={theme.id} tone={theme.id === presetId ? "accent" : "neutral"}>
                   {theme.label}
                 </Chip>
@@ -501,8 +501,8 @@ function DocsThemeShowcase() {
           <Stack gap={12}>
             <Text variant="label">Theme API</Text>
             <Link className="demo-inline-link" to="/components/utilities/themeprovider">ThemeProvider</Link>
-            <Link className="demo-inline-link" to="/components/utilities/ripplethemepresets">rippleThemePresets</Link>
-            <Link className="demo-inline-link" to="/components/utilities/buildripplethemevars">buildRippleThemeVars</Link>
+            <Link className="demo-inline-link" to="/components/utilities/ripplethemepresets">calmoThemePresets</Link>
+            <Link className="demo-inline-link" to="/components/utilities/buildripplethemevars">buildCalmoThemeVars</Link>
           </Stack>
         </Card>
       </div>
@@ -627,18 +627,18 @@ function DocsShell() {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const [activeSuggestion, setActiveSuggestion] = useState(-1);
-  const [themeId, setThemeId] = useState(defaultRippleTheme.id);
+  const [themeId, setThemeId] = useState(defaultCalmoTheme.id);
 
   const entries = useMemo(() => getAllDocEntries(), []);
   const totalComponents = entries.length;
   const activeTheme = useMemo(
-    () => rippleThemePresets.find((theme) => theme.id === themeId) ?? defaultRippleTheme,
+    () => calmoThemePresets.find((theme) => theme.id === themeId) ?? defaultCalmoTheme,
     [themeId],
   );
 
   useEffect(() => {
     const root = document.documentElement;
-    const vars = buildRippleThemeVars(activeTheme);
+    const vars = buildCalmoThemeVars(activeTheme);
     const entries = Object.entries(vars);
 
     entries.forEach(([key, value]) => {
@@ -693,7 +693,7 @@ function DocsShell() {
       <ScrollToTop />
       <div className="demo-shell">
         <TopBar
-          title="Ripple UI"
+          title="Calmo UI"
           subtitleTop="Design System"
           subtitleBottom={routeLabel}
           align="left"
@@ -763,7 +763,7 @@ function DocsShell() {
                     value={themeId}
                     onChange={(event) => setThemeId(event.target.value)}
                   >
-                    {rippleThemePresets.map((theme) => (
+                    {calmoThemePresets.map((theme) => (
                       <option key={theme.id} value={theme.id}>
                         {theme.label}
                       </option>

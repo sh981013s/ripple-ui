@@ -8,11 +8,11 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   root: __dirname,
-  base: "/ripple-ui/",
+  base: "/calmo-ui/",
   plugins: [react()],
   resolve: {
     alias: {
-      "@sh981013s/ripple-ui": path.resolve(__dirname, "../packages/ripple-ui/src"),
+      "@sh981013s/calmo-ui": path.resolve(__dirname, "../packages/calmo-ui/src"),
     },
   },
   build: {

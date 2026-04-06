@@ -1,4 +1,4 @@
-# Ripple UI Behavior Parity Audit
+# Calmo UI Behavior Parity Audit
 
 ## Scope
 

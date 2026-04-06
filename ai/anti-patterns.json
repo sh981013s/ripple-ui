@@ -1,6 +1,6 @@
 {
-  "library": "Ripple UI",
-  "package": "@sh981013s/ripple-ui",
+  "library": "Calmo UI",
+  "package": "@sh981013s/calmo-ui",
   "anti_patterns": [
     {
       "id": "multiple-primary-cta",
@@ -14,7 +14,7 @@
     },
     {
       "id": "custom-form-controls",
-      "rule": "Do not generate custom buttons, fields, selects, or toggles if a Ripple UI component exists.",
+      "rule": "Do not generate custom buttons, fields, selects, or toggles if a Calmo UI component exists.",
       "prefer": "Use `Button`, `TextField`, `Input`, `Select`, `DatePicker`, `Switch`, `Checkbox`, or `Radio`."
     },
     {
@@ -29,8 +29,8 @@
     },
     {
       "id": "theme-bypass",
-      "rule": "Do not hardcode brand colors directly into custom CSS for screens built with Ripple UI.",
-      "prefer": "Use `ThemeProvider`, `rippleThemePresets`, or `buildRippleThemeVars`."
+      "rule": "Do not hardcode brand colors directly into custom CSS for screens built with Calmo UI.",
+      "prefer": "Use `ThemeProvider`, `calmoThemePresets`, or `buildCalmoThemeVars`."
     }
   ]
 }

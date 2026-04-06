@@ -139,10 +139,10 @@ import {
   WheelDateSheet,
   safeAreaInset,
   useBottomSheet,
-  buildRippleThemeVars,
-  defaultRippleTheme,
-  rippleThemePresets,
-} from "@sh981013s/ripple-ui";
+  buildCalmoThemeVars,
+  defaultCalmoTheme,
+  calmoThemePresets,
+} from "@sh981013s/calmo-ui";
 
 function useCopyFeedback() {
   const [copied, setCopied] = React.useState(false);
@@ -340,26 +340,26 @@ function UtilitySurfacePlayground() {
         <Text variant="body">IOSFontA11yStyle exposes a stable text-size-adjust helper object.</Text>
       </Card>
       <Text variant="body">
-        Search for <Highlight text="Ripple UI gives AI-friendly building blocks." query="AI" /> in a content surface.
+        Search for <Highlight text="Calmo UI gives AI-friendly building blocks." query="AI" /> in a content surface.
       </Text>
     </Stack>
   );
 }
 
 function ThemeSystemPlayground() {
-  const [presetId, setPresetId] = React.useState(defaultRippleTheme.id);
-  const [accent, setAccent] = React.useState(defaultRippleTheme.accent);
-  const [ink, setInk] = React.useState(defaultRippleTheme.ink);
-  const [bg, setBg] = React.useState(defaultRippleTheme.bg);
+  const [presetId, setPresetId] = React.useState(defaultCalmoTheme.id);
+  const [accent, setAccent] = React.useState(defaultCalmoTheme.accent);
+  const [ink, setInk] = React.useState(defaultCalmoTheme.ink);
+  const [bg, setBg] = React.useState(defaultCalmoTheme.bg);
 
   const presetTheme = React.useMemo(
-    () => rippleThemePresets.find((theme) => theme.id === presetId) ?? defaultRippleTheme,
+    () => calmoThemePresets.find((theme) => theme.id === presetId) ?? defaultCalmoTheme,
     [presetId],
   );
 
   const customTheme = React.useMemo(() => ({ accent, ink, bg }), [accent, ink, bg]);
   const computedVars = React.useMemo(
-    () => buildRippleThemeVars(customTheme),
+    () => buildCalmoThemeVars(customTheme),
     [customTheme],
   );
 
@@ -381,7 +381,7 @@ function ThemeSystemPlayground() {
               value={presetId}
               onChange={(event) => setPresetId(event.target.value)}
             >
-              {rippleThemePresets.map((theme) => (
+              {calmoThemePresets.map((theme) => (
                 <option key={theme.id} value={theme.id}>
                   {theme.label}
                 </option>
@@ -389,7 +389,7 @@ function ThemeSystemPlayground() {
             </select>
           </label>
           <Inline gap={8} wrap>
-            {rippleThemePresets.map((theme) => (
+            {calmoThemePresets.map((theme) => (
               <Chip key={theme.id} tone={theme.id === presetId ? "accent" : "neutral"}>
                 {theme.label}
               </Chip>
@@ -684,7 +684,7 @@ function InteractiveSelectPreview() {
 function InteractiveAccordionPreview() {
   return (
     <Accordion>
-      <AccordionItem title="What is Ripple UI?" description="Short answer for product teams." defaultOpen>
+      <AccordionItem title="What is Calmo UI?" description="Short answer for product teams." defaultOpen>
         <Text variant="body">A self-authored design library focused on calm, structured product surfaces.</Text>
       </AccordionItem>
       <AccordionItem title="Why route-based docs?" description="Direct links for review and component inspection.">
@@ -1173,7 +1173,7 @@ function TextFieldPlayground() {
 }
 
 function TextFieldClearablePlayground() {
-  const [value, setValue] = React.useState("Ripple workspace");
+  const [value, setValue] = React.useState("Calmo workspace");
 
   return (
     <TextFieldClearable
@@ -1797,7 +1797,7 @@ function AssetPlayground() {
 function ParagraphPostPlayground() {
   return (
     <Post>
-      <Paragraph><Paragraph.Icon>•</Paragraph.Icon>Ripple UI emphasizes calm spacing and restrained motion.</Paragraph>
+      <Paragraph><Paragraph.Icon>•</Paragraph.Icon>Calmo UI emphasizes calm spacing and restrained motion.</Paragraph>
       <Post.Hr />
       <Paragraph><Paragraph.Icon>•</Paragraph.Icon>Use content utilities for editorial or settings help copy.</Paragraph>
     </Post>
@@ -1823,12 +1823,12 @@ function PropTable({ props }) {
 }
 
 const componentExamples = {
-  Surface: `import { Surface } from "@sh981013s/ripple-ui";
+  Surface: `import { Surface } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Surface tone="accent" radius="lg">Accent surface</Surface>;
 }`,
-  Card: `import { Card, Text } from "@sh981013s/ripple-ui";
+  Card: `import { Card, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1837,7 +1837,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  Stack: `import { Stack, Chip } from "@sh981013s/ripple-ui";
+  Stack: `import { Stack, Chip } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1848,7 +1848,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  Inline: `import { Inline, Chip } from "@sh981013s/ripple-ui";
+  Inline: `import { Inline, Chip } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1858,12 +1858,12 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Divider: `import { Divider } from "@sh981013s/ripple-ui";
+  Divider: `import { Divider } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Divider />;
 }`,
-  SectionHeader: `import { SectionHeader, Chip } from "@sh981013s/ripple-ui";
+  SectionHeader: `import { SectionHeader, Chip } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1875,7 +1875,7 @@ export default function Example() {
     />
   );
 }`,
-  Border: `import { Border, Card, Stack, Text } from "@sh981013s/ripple-ui";
+  Border: `import { Border, Card, Stack, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1888,7 +1888,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  Spacing: `import { Card, Spacing, Stack, Text } from "@sh981013s/ripple-ui";
+  Spacing: `import { Card, Spacing, Stack, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1901,7 +1901,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  FadeIn: `import { FadeIn, Text } from "@sh981013s/ripple-ui";
+  FadeIn: `import { FadeIn, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1910,17 +1910,17 @@ export default function Example() {
     </FadeIn>
   );
 }`,
-  Avatar: `import { Avatar, Inline } from "@sh981013s/ripple-ui";
+  Avatar: `import { Avatar, Inline } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
     <Inline gap={12} align="center">
-      <Avatar name="Ripple UI" size="sm" />
+      <Avatar name="Calmo UI" size="sm" />
       <Avatar name="Design Team" tone="success" status="online" />
     </Inline>
   );
 }`,
-  Icon: `import { Icon, Inline, iconNames } from "@sh981013s/ripple-ui";
+  Icon: `import { Icon, Inline, iconNames } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1931,7 +1931,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Badge: `import { Badge, Inline } from "@sh981013s/ripple-ui";
+  Badge: `import { Badge, Inline } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1941,7 +1941,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Text: `import { Stack, Text } from "@sh981013s/ripple-ui";
+  Text: `import { Stack, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1952,7 +1952,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  TopBar: `import { Badge, Icon, IconButton, Selector, TopBar } from "@sh981013s/ripple-ui";
+  TopBar: `import { Badge, Icon, IconButton, Selector, TopBar } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1970,7 +1970,7 @@ export default function Example() {
     />
   );
 }`,
-  Top: `import { Badge, Top, TopRightButton, TopSubtitleBadges, TopSubtitleSelector, TopTitleSelector } from "@sh981013s/ripple-ui";
+  Top: `import { Badge, Top, TopRightButton, TopSubtitleBadges, TopSubtitleSelector, TopTitleSelector } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1986,7 +1986,7 @@ export default function Example() {
     />
   );
 }`,
-  "Tabs / Tab": `import { Tab, Tabs } from "@sh981013s/ripple-ui";
+  "Tabs / Tab": `import { Tab, Tabs } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -1997,7 +1997,7 @@ export default function Example() {
     </Tabs>
   );
 }`,
-  SegmentedControl: `import { SegmentedControl } from "@sh981013s/ripple-ui";
+  SegmentedControl: `import { SegmentedControl } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2012,7 +2012,7 @@ export default function Example() {
     />
   );
 }`,
-  Selector: `import { Inline, Selector } from "@sh981013s/ripple-ui";
+  Selector: `import { Inline, Selector } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2023,12 +2023,12 @@ export default function Example() {
     </Inline>
   );
 }`,
-  IconButton: `import { Icon, IconButton } from "@sh981013s/ripple-ui";
+  IconButton: `import { Icon, IconButton } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <IconButton tone="accent" aria-label="Share"><Icon name="externalLink" size={16} /></IconButton>;
 }`,
-  Tooltip: `import { Button, Tooltip } from "@sh981013s/ripple-ui";
+  Tooltip: `import { Button, Tooltip } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2037,7 +2037,7 @@ export default function Example() {
     </Tooltip>
   );
 }`,
-  Button: `import { Button, Inline } from "@sh981013s/ripple-ui";
+  Button: `import { Button, Inline } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2048,7 +2048,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Chip: `import { Chip, Inline } from "@sh981013s/ripple-ui";
+  Chip: `import { Chip, Inline } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2058,12 +2058,12 @@ export default function Example() {
     </Inline>
   );
 }`,
-  TextButton: `import { TextButton } from "@sh981013s/ripple-ui";
+  TextButton: `import { TextButton } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <TextButton icon="externalLink" iconPosition="trailing">See details</TextButton>;
 }`,
-  Input: `import { Input } from "@sh981013s/ripple-ui";
+  Input: `import { Input } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2079,7 +2079,7 @@ export default function Example() {
     />
   );
 }`,
-  TextArea: `import { TextArea } from "@sh981013s/ripple-ui";
+  TextArea: `import { TextArea } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2091,27 +2091,27 @@ export default function Example() {
     />
   );
 }`,
-  SearchBar: `import { SearchBar } from "@sh981013s/ripple-ui";
+  SearchBar: `import { SearchBar } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <SearchBar label="Search" placeholder="Search components" hint="Search, then refine with filters." />;
 }`,
-  SearchField: `import { SearchField } from "@sh981013s/ripple-ui";
+  SearchField: `import { SearchField } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <SearchField label="Search docs" defaultValue="button" validationState="success" validationMessage="1 exact match." />;
 }`,
-  "SearchField.Result": `import { SearchFieldResult } from "@sh981013s/ripple-ui";
+  "SearchField.Result": `import { SearchFieldResult } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <SearchFieldResult label="Search docs" defaultValue="workspace" resultCount={4} />;
 }`,
-  "SearchField.Suggest": `import { SearchFieldSuggest } from "@sh981013s/ripple-ui";
+  "SearchField.Suggest": `import { SearchFieldSuggest } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <SearchFieldSuggest label="Search docs" suggestions={["Button", "BottomSheet", "Badge"]} />;
 }`,
-  TextField: `import { TextField } from "@sh981013s/ripple-ui";
+  TextField: `import { TextField } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2125,19 +2125,19 @@ export default function Example() {
     />
   );
 }`,
-  "TextField.Clearable": `import { TextFieldClearable } from "@sh981013s/ripple-ui";
+  "TextField.Clearable": `import { TextFieldClearable } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
     <TextFieldClearable
       label="Workspace name"
-      defaultValue="Ripple workspace"
+      defaultValue="Calmo workspace"
       validationState="success"
       validationMessage="Use the clear button to reset this field."
     />
   );
 }`,
-  "TextField.Password": `import { TextFieldPassword } from "@sh981013s/ripple-ui";
+  "TextField.Password": `import { TextFieldPassword } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2149,7 +2149,7 @@ export default function Example() {
     />
   );
 }`,
-  "TextField.Button": `import { TextFieldButton } from "@sh981013s/ripple-ui";
+  "TextField.Button": `import { TextFieldButton } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2161,7 +2161,7 @@ export default function Example() {
     />
   );
 }`,
-  Select: `import { Select } from "@sh981013s/ripple-ui";
+  Select: `import { Select } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2172,7 +2172,7 @@ export default function Example() {
     </Select>
   );
 }`,
-  "Select.Quiet": `import { SelectQuiet } from "@sh981013s/ripple-ui";
+  "Select.Quiet": `import { SelectQuiet } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2183,7 +2183,7 @@ export default function Example() {
     </SelectQuiet>
   );
 }`,
-  "Select.Searchable": `import { SelectSearchable } from "@sh981013s/ripple-ui";
+  "Select.Searchable": `import { SelectSearchable } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2194,27 +2194,27 @@ export default function Example() {
     </SelectSearchable>
   );
 }`,
-  DatePicker: `import { DatePicker } from "@sh981013s/ripple-ui";
+  DatePicker: `import { DatePicker } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <DatePicker label="Launch date" validationState="success" validationMessage="Date confirmed." />;
 }`,
-  "DatePicker.Compact": `import { DatePickerCompact } from "@sh981013s/ripple-ui";
+  "DatePicker.Compact": `import { DatePickerCompact } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <DatePickerCompact label="Billing date" confirmLabel="Save" cancelLabel="Close" />;
 }`,
-  Switch: `import { Switch } from "@sh981013s/ripple-ui";
+  Switch: `import { Switch } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Switch checked label="Realtime alerts" description="Send status changes to connected channels." />;
 }`,
-  Checkbox: `import { Checkbox } from "@sh981013s/ripple-ui";
+  Checkbox: `import { Checkbox } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Checkbox checked label="Email notifications" description="Receive billing and release updates." />;
 }`,
-  Radio: `import { Radio, Stack } from "@sh981013s/ripple-ui";
+  Radio: `import { Radio, Stack } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2224,7 +2224,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  Loader: `import { Inline, Loader } from "@sh981013s/ripple-ui";
+  Loader: `import { Inline, Loader } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2234,7 +2234,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  LoaderAnimation: `import { Inline, LoaderAnimation } from "@sh981013s/ripple-ui";
+  LoaderAnimation: `import { Inline, LoaderAnimation } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2244,7 +2244,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Skeleton: `import { Skeleton, Stack } from "@sh981013s/ripple-ui";
+  Skeleton: `import { Skeleton, Stack } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2254,17 +2254,17 @@ export default function Example() {
     </Stack>
   );
 }`,
-  Toast: `import { Toast } from "@sh981013s/ripple-ui";
+  Toast: `import { Toast } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Toast tone="success" icon="check" title="Deployment completed" badge="Live" description="The production build is now available." dismissible />;
 }`,
-  Snackbar: `import { Button, Snackbar } from "@sh981013s/ripple-ui";
+  Snackbar: `import { Button, Snackbar } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Snackbar open align="left" icon="check" message="Draft saved successfully." dismissible action={<Button variant="ghost">Dismiss</Button>} />;
 }`,
-  Result: `import { Icon, Result } from "@sh981013s/ripple-ui";
+  Result: `import { Icon, Result } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2278,17 +2278,17 @@ export default function Example() {
     />
   );
 }`,
-  ResultButton: `import { ResultButton } from "@sh981013s/ripple-ui";
+  ResultButton: `import { ResultButton } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ResultButton>View details</ResultButton>;
 }`,
-  Rating: `import { Rating } from "@sh981013s/ripple-ui";
+  Rating: `import { Rating } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Rating value={4} showValue />;
 }`,
-  FullScreenLoader: `import { FullScreenLoader } from "@sh981013s/ripple-ui";
+  FullScreenLoader: `import { FullScreenLoader } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2299,7 +2299,7 @@ export default function Example() {
     />
   );
 }`,
-  LoadingCompleteView: `import { LoadingCompleteView } from "@sh981013s/ripple-ui";
+  LoadingCompleteView: `import { LoadingCompleteView } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2312,32 +2312,32 @@ export default function Example() {
     />
   );
 }`,
-  "NoticeBanner / Banner": `import { Banner, Button } from "@sh981013s/ripple-ui";
+  "NoticeBanner / Banner": `import { Banner, Button } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Banner tone="accent" title="Submission assets updated" description="The latest metadata set is ready for review." action={<Button variant="ghost">Open</Button>} />;
 }`,
-  ProgressBar: `import { ProgressBar } from "@sh981013s/ripple-ui";
+  ProgressBar: `import { ProgressBar } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ProgressBar value={72} />;
 }`,
-  EmptyState: `import { Button, EmptyState } from "@sh981013s/ripple-ui";
+  EmptyState: `import { Button, EmptyState } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <EmptyState icon="◌" title="No connected channels" description="Connect at least one channel to receive alerts." action={<Button>Connect</Button>} />;
 }`,
-  AlertDialog: `import { AlertDialog } from "@sh981013s/ripple-ui";
+  AlertDialog: `import { AlertDialog } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <AlertDialog open title="Session expired" description="Please sign in again to continue." />;
 }`,
-  ConfirmDialog: `import { ConfirmDialog } from "@sh981013s/ripple-ui";
+  ConfirmDialog: `import { ConfirmDialog } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ConfirmDialog open title="Delete workspace?" description="This action cannot be undone." tone="danger" />;
 }`,
-  Bubble: `import { Bubble, Inline } from "@sh981013s/ripple-ui";
+  Bubble: `import { Bubble, Inline } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2347,7 +2347,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  FullTooltip: `import { Button, FullTooltip, TextButton } from "@sh981013s/ripple-ui";
+  FullTooltip: `import { Button, FullTooltip, TextButton } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2360,7 +2360,7 @@ export default function Example() {
     </FullTooltip>
   );
 }`,
-  Dialog: `import { Button, Dialog, Text } from "@sh981013s/ripple-ui";
+  Dialog: `import { Button, Dialog, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2369,7 +2369,7 @@ export default function Example() {
     </Dialog>
   );
 }`,
-  Modal: `import { Button, Modal, Text } from "@sh981013s/ripple-ui";
+  Modal: `import { Button, Modal, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2386,7 +2386,7 @@ export default function Example() {
     </Modal>
   );
 }`,
-  BottomSheet: `import { BottomSheet, Button, Text } from "@sh981013s/ripple-ui";
+  BottomSheet: `import { BottomSheet, Button, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2402,18 +2402,18 @@ export default function Example() {
     </BottomSheet>
   );
 }`,
-  "Accordion / AccordionItem": `import { Accordion, AccordionItem, Text } from "@sh981013s/ripple-ui";
+  "Accordion / AccordionItem": `import { Accordion, AccordionItem, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
     <Accordion>
-      <AccordionItem title="What is Ripple UI?" description="Short answer for product teams." defaultOpen>
+      <AccordionItem title="What is Calmo UI?" description="Short answer for product teams." defaultOpen>
         <Text variant="body">A self-authored design library focused on calm, structured product surfaces.</Text>
       </AccordionItem>
     </Accordion>
   );
 }`,
-  Stepper: `import { Stepper } from "@sh981013s/ripple-ui";
+  Stepper: `import { Stepper } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2427,12 +2427,12 @@ export default function Example() {
     />
   );
 }`,
-  ProgressStep: `import { ProgressStep } from "@sh981013s/ripple-ui";
+  ProgressStep: `import { ProgressStep } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ProgressStep index={2} label="Review" description="Team check" status="current" />;
 }`,
-  ProgressStepper: `import { ProgressStepper } from "@sh981013s/ripple-ui";
+  ProgressStepper: `import { ProgressStepper } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2446,12 +2446,12 @@ export default function Example() {
     />
   );
 }`,
-  Slider: `import { Slider } from "@sh981013s/ripple-ui";
+  Slider: `import { Slider } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Slider label="Threshold" value={64} onChange={() => {}} />;
 }`,
-  BarChart: `import { BarChart } from "@sh981013s/ripple-ui";
+  BarChart: `import { BarChart } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2464,7 +2464,7 @@ export default function Example() {
     />
   );
 }`,
-  "List / ListHeader / ListFooter": `import { List, ListFooter, ListHeader, ListRow } from "@sh981013s/ripple-ui";
+  "List / ListHeader / ListFooter": `import { List, ListFooter, ListHeader, ListRow } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2481,29 +2481,29 @@ export default function Example() {
     </List>
   );
 }`,
-  InfoRow: `import { Card, InfoRow, Stack } from "@sh981013s/ripple-ui";
+  InfoRow: `import { Card, InfoRow, Stack } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
     <Card>
       <Stack gap={4}>
-        <InfoRow label="Owner" value="Ripple team" />
+        <InfoRow label="Owner" value="Calmo team" />
         <InfoRow label="Status" value="Live" />
       </Stack>
     </Card>
   );
 }`,
-  TableRow: `import { TableRow } from "@sh981013s/ripple-ui";
+  TableRow: `import { TableRow } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <TableRow label="Estimated payout" value="$12,480" description="Updated 2 minutes ago" />;
 }`,
-  ListRow: `import { Badge, ListRow } from "@sh981013s/ripple-ui";
+  ListRow: `import { Badge, ListRow } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ListRow eyebrow="Workspace" title="Marketing Ops" description="12 members" meta="Updated 2m ago" icon={<Badge tone="accent">M</Badge>} action={<Badge tone="accent">Live</Badge>} rightArrow interactive />;
 }`,
-  Table: `import { Table } from "@sh981013s/ripple-ui";
+  Table: `import { Table } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2519,12 +2519,12 @@ export default function Example() {
     />
   );
 }`,
-  Pagination: `import { Pagination } from "@sh981013s/ripple-ui";
+  Pagination: `import { Pagination } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <Pagination page={4} totalPages={9} onPageChange={() => {}} />;
 }`,
-  Popover: `import { Button, Popover, Stack, Text } from "@sh981013s/ripple-ui";
+  Popover: `import { Button, Popover, Stack, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2536,7 +2536,7 @@ export default function Example() {
     </Popover>
   );
 }`,
-  Menu: `import { Button, Menu } from "@sh981013s/ripple-ui";
+  Menu: `import { Button, Menu } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2556,7 +2556,7 @@ export default function Example() {
     />
   );
 }`,
-  BottomInfo: `import { BottomInfo, Button, Icon } from "@sh981013s/ripple-ui";
+  BottomInfo: `import { BottomInfo, Button, Icon } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2568,7 +2568,7 @@ export default function Example() {
     />
   );
 }`,
-  BottomCTADouble: `import { BottomCTADouble } from "@sh981013s/ripple-ui";
+  BottomCTADouble: `import { BottomCTADouble } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2578,12 +2578,12 @@ export default function Example() {
     />
   );
 }`,
-  AccessoryButton: `import { AccessoryButton } from "@sh981013s/ripple-ui";
+  AccessoryButton: `import { AccessoryButton } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <AccessoryButton icon="card" title="Payment method" description="Visa ending in 4242" />;
 }`,
-  GridList: `import { Card, GridList, Text } from "@sh981013s/ripple-ui";
+  GridList: `import { Card, GridList, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2595,7 +2595,7 @@ export default function Example() {
     </GridList>
   );
 }`,
-  StepperRow: `import { Stack, StepperRow } from "@sh981013s/ripple-ui";
+  StepperRow: `import { Stack, StepperRow } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2605,7 +2605,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  ColorSchemeArea: `import { ColorSchemeArea } from "@sh981013s/ripple-ui";
+  ColorSchemeArea: `import { ColorSchemeArea } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2618,12 +2618,12 @@ export default function Example() {
     />
   );
 }`,
-  WheelDatePicker: `import { WheelDatePicker } from "@sh981013s/ripple-ui";
+  WheelDatePicker: `import { WheelDatePicker } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <WheelDatePicker label="Settlement date" validationState="success" validationMessage="Date confirmed." />;
 }`,
-  NumberKeypad: `import { Input, NumberKeypad, Stack } from "@sh981013s/ripple-ui";
+  NumberKeypad: `import { Input, NumberKeypad, Stack } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   const value = "12800";
@@ -2635,7 +2635,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  AlphabetKeypad: `import { AlphabetKeypad, Input, Stack } from "@sh981013s/ripple-ui";
+  AlphabetKeypad: `import { AlphabetKeypad, Input, Stack } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   const value = "RIPPLE";
@@ -2647,12 +2647,12 @@ export default function Example() {
     </Stack>
   );
 }`,
-  NumericSpinner: `import { NumericSpinner } from "@sh981013s/ripple-ui";
+  NumericSpinner: `import { NumericSpinner } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <NumericSpinner value={8} min={1} max={20} formatter={(value) => \`\${value} seats\`} />;
 }`,
-  Wheel: `import { Wheel } from "@sh981013s/ripple-ui";
+  Wheel: `import { Wheel } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2666,7 +2666,7 @@ export default function Example() {
     />
   );
 }`,
-  WheelDateSheet: `import { Button, WheelDateSheet, useBottomSheet } from "@sh981013s/ripple-ui";
+  WheelDateSheet: `import { Button, WheelDateSheet, useBottomSheet } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   const sheet = useBottomSheet(false);
@@ -2678,7 +2678,7 @@ export default function Example() {
     </>
   );
 }`,
-  AgreementV4: `import { AgreementV4, Text } from "@sh981013s/ripple-ui";
+  AgreementV4: `import { AgreementV4, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2692,17 +2692,17 @@ export default function Example() {
     </AgreementV4.Group>
   );
 }`,
-  SplitTextField: `import { SplitTextFieldRRNFirst7 } from "@sh981013s/ripple-ui";
+  SplitTextField: `import { SplitTextFieldRRNFirst7 } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <SplitTextFieldRRNFirst7 label="Resident registration" value="9001011" onChange={() => {}} />;
 }`,
-  FullSecureKeypad: `import { FullSecureKeypad } from "@sh981013s/ripple-ui";
+  FullSecureKeypad: `import { FullSecureKeypad } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <FullSecureKeypad value="" onChange={() => {}} title="Enter account PIN" />;
 }`,
-  AgreementModuleContent: `import { AgreementModuleContent, AgreementModuleTop, AgreementV4, Button } from "@sh981013s/ripple-ui";
+  AgreementModuleContent: `import { AgreementModuleContent, AgreementModuleTop, AgreementV4, Button } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2714,27 +2714,27 @@ export default function Example() {
     </>
   );
 }`,
-  BottomSheetAgreementModule: `import { BottomSheetAgreementModule } from "@sh981013s/ripple-ui";
+  BottomSheetAgreementModule: `import { BottomSheetAgreementModule } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <BottomSheetAgreementModule open={false} title="Agreement review" cta={{ label: "Agree" }} />;
 }`,
-  FloatButtonAgreementModule: `import { FloatButtonAgreementModule } from "@sh981013s/ripple-ui";
+  FloatButtonAgreementModule: `import { FloatButtonAgreementModule } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <FloatButtonAgreementModule title="Consent flow" cta={{ label: "Continue" }} />;
 }`,
-  FullPageAgreementModule: `import { FullPageAgreementModule } from "@sh981013s/ripple-ui";
+  FullPageAgreementModule: `import { FullPageAgreementModule } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <FullPageAgreementModule title="Agreement required" cta={{ label: "Continue" }} />;
 }`,
-  GradientBottomSheetAgreementModule: `import { GradientBottomSheetAgreementModule } from "@sh981013s/ripple-ui";
+  GradientBottomSheetAgreementModule: `import { GradientBottomSheetAgreementModule } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <GradientBottomSheetAgreementModule open={false} title="Consent update" cta={{ label: "Apply" }} />;
 }`,
-  Asset: `import { Asset, Icon, Inline } from "@sh981013s/ripple-ui";
+  Asset: `import { Asset, Icon, Inline } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2744,22 +2744,22 @@ export default function Example() {
     </Inline>
   );
 }`,
-  Paragraph: `import { Paragraph, Post } from "@sh981013s/ripple-ui";
+  Paragraph: `import { Paragraph, Post } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
     <Post>
-      <Paragraph><Paragraph.Icon>•</Paragraph.Icon>Ripple UI emphasizes calm spacing and restrained motion.</Paragraph>
+      <Paragraph><Paragraph.Icon>•</Paragraph.Icon>Calmo UI emphasizes calm spacing and restrained motion.</Paragraph>
       <Post.Hr />
     </Post>
   );
 }`,
-  DoughnutChart: `import { DoughnutChart } from "@sh981013s/ripple-ui";
+  DoughnutChart: `import { DoughnutChart } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <DoughnutChart value={72} label="Usage" description="Workspace capacity" />;
 }`,
-  SliderTooltip: `import { Slider, SliderTooltip, Stack } from "@sh981013s/ripple-ui";
+  SliderTooltip: `import { Slider, SliderTooltip, Stack } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2769,7 +2769,7 @@ export default function Example() {
     </Stack>
   );
 }`,
-  FontScaleLimit: `import { Card, FontScaleLimit, Text } from "@sh981013s/ripple-ui";
+  FontScaleLimit: `import { Card, FontScaleLimit, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2780,16 +2780,16 @@ export default function Example() {
     </FontScaleLimit>
   );
 }`,
-  Highlight: `import { Highlight, Text } from "@sh981013s/ripple-ui";
+  Highlight: `import { Highlight, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
     <Text variant="body">
-      Search for <Highlight text="Ripple UI gives AI-friendly building blocks." query="AI" /> in a content surface.
+      Search for <Highlight text="Calmo UI gives AI-friendly building blocks." query="AI" /> in a content surface.
     </Text>
   );
 }`,
-  IconCore: `import { IconCore, Inline } from "@sh981013s/ripple-ui";
+  IconCore: `import { IconCore, Inline } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2800,7 +2800,7 @@ export default function Example() {
     </Inline>
   );
 }`,
-  IOSFontA11yStyle: `import { Card, IOSFontA11yStyle, Text } from "@sh981013s/ripple-ui";
+  IOSFontA11yStyle: `import { Card, IOSFontA11yStyle, Text } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2809,7 +2809,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  safeAreaInset: `import { Card, Text, safeAreaInset } from "@sh981013s/ripple-ui";
+  safeAreaInset: `import { Card, Text, safeAreaInset } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2818,7 +2818,7 @@ export default function Example() {
     </Card>
   );
 }`,
-  useBottomSheet: `import { BottomSheet, Button, Text, useBottomSheet } from "@sh981013s/ripple-ui";
+  useBottomSheet: `import { BottomSheet, Button, Text, useBottomSheet } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   const sheet = useBottomSheet(false);
@@ -2832,7 +2832,7 @@ export default function Example() {
     </>
   );
 }`,
-  ThemeProvider: `import { Button, ThemeProvider } from "@sh981013s/ripple-ui";
+  ThemeProvider: `import { Button, ThemeProvider } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2841,41 +2841,41 @@ export default function Example() {
     </ThemeProvider>
   );
 }`,
-  rippleThemePresets: `import { rippleThemePresets } from "@sh981013s/ripple-ui";
+  calmoThemePresets: `import { calmoThemePresets } from "@sh981013s/calmo-ui";
 
 export default function Example() {
-  return rippleThemePresets.map((theme) => theme.label).join(", ");
+  return calmoThemePresets.map((theme) => theme.label).join(", ");
 }`,
-  buildRippleThemeVars: `import { buildRippleThemeVars } from "@sh981013s/ripple-ui";
+  buildCalmoThemeVars: `import { buildCalmoThemeVars } from "@sh981013s/calmo-ui";
 
 export default function Example() {
-  return buildRippleThemeVars({
+  return buildCalmoThemeVars({
     accent: "#0EA5E9",
     ink: "#0F172A",
     bg: "#F8FAFC",
   });
 }`,
-  "ListHeader.RightText": `import { ListHeaderRightText } from "@sh981013s/ripple-ui";
+  "ListHeader.RightText": `import { ListHeaderRightText } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ListHeaderRightText>Updated now</ListHeaderRightText>;
 }`,
-  "ListHeader.RightArrow": `import { ListHeaderRightArrow } from "@sh981013s/ripple-ui";
+  "ListHeader.RightArrow": `import { ListHeaderRightArrow } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ListHeaderRightArrow />;
 }`,
-  "ListHeader.TitleSelector": `import { ListHeaderTitleSelector } from "@sh981013s/ripple-ui";
+  "ListHeader.TitleSelector": `import { ListHeaderTitleSelector } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ListHeaderTitleSelector>Workspace</ListHeaderTitleSelector>;
 }`,
-  "ListHeader.TitleTextButton": `import { ListHeaderTitleTextButton } from "@sh981013s/ripple-ui";
+  "ListHeader.TitleTextButton": `import { ListHeaderTitleTextButton } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <ListHeaderTitleTextButton>See all</ListHeaderTitleTextButton>;
 }`,
-  "ListRow.Icon / Image": `import { ListRow, ListRowIcon, ListRowImageContainer, ListRowImage } from "@sh981013s/ripple-ui";
+  "ListRow.Icon / Image": `import { ListRow, ListRowIcon, ListRowImageContainer, ListRowImage } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2885,7 +2885,7 @@ export default function Example() {
     </>
   );
 }`,
-  "Menu Item Variants": `import { Menu, MenuDropdownCheckItem, MenuDropdownItem, MenuHeader } from "@sh981013s/ripple-ui";
+  "Menu Item Variants": `import { Menu, MenuDropdownCheckItem, MenuDropdownItem, MenuHeader } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2899,7 +2899,7 @@ export default function Example() {
     />
   );
 }`,
-  Dropdown: `import { Dropdown } from "@sh981013s/ripple-ui";
+  Dropdown: `import { Dropdown } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2914,7 +2914,7 @@ export default function Example() {
     />
   );
 }`,
-  CommandPalette: `import { CommandPalette } from "@sh981013s/ripple-ui";
+  CommandPalette: `import { CommandPalette } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return (
@@ -2932,7 +2932,7 @@ export default function Example() {
 function getExampleCode(component) {
   return (
     componentExamples[component.name] ??
-    `import { ${component.name.split("/")[0].trim()} } from "@sh981013s/ripple-ui";
+    `import { ${component.name.split("/")[0].trim()} } from "@sh981013s/calmo-ui";
 
 export default function Example() {
   return <${component.name.split("/")[0].trim()} />;
@@ -3019,8 +3019,8 @@ function Playground({ component }) {
     Asset: <AssetPlayground />,
     Paragraph: <ParagraphPostPlayground />,
     ThemeProvider: <ThemeSystemPlayground />,
-    rippleThemePresets: <ThemeSystemPlayground />,
-    buildRippleThemeVars: <ThemeSystemPlayground />,
+    calmoThemePresets: <ThemeSystemPlayground />,
+    buildCalmoThemeVars: <ThemeSystemPlayground />,
     TextButton: <TextButtonPlayground />,
     Modal: <ModalPlayground />,
     "List / ListHeader / ListFooter": <ListHeaderPlayground />,
@@ -3215,7 +3215,7 @@ const docs = [
         ],
         preview: () => (
           <Inline gap={12} align="center">
-            <Avatar name="Ripple UI" size="sm" />
+            <Avatar name="Calmo UI" size="sm" />
             <Avatar name="Review Bot" tone="accent" status="online" />
             <Avatar name="Design Team" size="lg" tone="success" />
           </Inline>
@@ -4531,14 +4531,14 @@ const docs = [
         aliases: ["theme", "theming", "provider", "brand", "palette", "color system"],
         description: "Scopes a seed-driven theme to any subtree and recalculates component tokens from accent, ink, and background.",
         props: [
-          { name: "theme", type: "RippleThemeDefinition", defaultValue: "defaultRippleTheme", description: "Preset or custom seed object." },
+          { name: "theme", type: "CalmoThemeDefinition", defaultValue: "defaultCalmoTheme", description: "Preset or custom seed object." },
           { name: "as", type: "ElementType", defaultValue: `"div"`, description: "Rendered wrapper element." },
           { name: "children", type: "ReactNode", defaultValue: "-", description: "Themed subtree." },
         ],
         preview: () => <ThemeSystemPlayground />,
       },
       {
-        name: "rippleThemePresets",
+        name: "calmoThemePresets",
         eyebrow: "utility",
         aliases: ["theme presets", "preset themes", "colors", "brand presets", "palette presets"],
         description: "Five built-in theme presets for quick brand switching inside docs and product shells.",
@@ -4550,7 +4550,7 @@ const docs = [
         preview: () => <ThemeSystemPlayground />,
       },
       {
-        name: "buildRippleThemeVars",
+        name: "buildCalmoThemeVars",
         eyebrow: "utility",
         aliases: ["theme vars", "css variables", "tokens", "seed colors", "custom theme"],
         description: "Converts three seed colors plus optional semantic colors into CSS custom properties used by all components.",

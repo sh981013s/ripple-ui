@@ -58,7 +58,7 @@
 
 ### Added
 
-- Seed-driven theme system with `ThemeProvider`, `rippleThemePresets`, and `buildRippleThemeVars`
+- Seed-driven theme system with `ThemeProvider`, `calmoThemePresets`, and `buildCalmoThemeVars`
 - Docs pages and live playground coverage for the theme API
 - AI-focused docs assets:
   - `docs/AI_USAGE.md`

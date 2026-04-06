@@ -1,0 +1,96 @@
+{
+  "name": "@sh981013s/calmo-ui",
+  "version": "0.1.11",
+  "description": "Calm, mobile-first React UI components for structured product surfaces.",
+  "private": false,
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sh981013s/calmo-ui.git",
+    "directory": "packages/calmo-ui"
+  },
+  "homepage": "https://sh981013s.github.io/calmo-ui/",
+  "bugs": {
+    "url": "https://github.com/sh981013s/calmo-ui/issues"
+  },
+  "keywords": [
+    "react",
+    "design-system",
+    "component-library",
+    "ui",
+    "calmo-ui",
+    "mobile-first",
+    "themeable",
+    "fintech-ui",
+    "vibe-coding",
+    "ai-ui"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node ./scripts/generate-deep-types.mjs && rm -rf dist && tsc -p tsconfig.json && cp src/styles.css dist/styles.css && cp src/tokens.css dist/tokens.css && cp types/index.d.ts dist/index.d.ts && mkdir -p dist/components dist/primitives dist/ai dist/docs dist/templates dist/fonts && cp types/components/*.d.ts dist/components/ && cp types/primitives/*.d.ts dist/primitives/ && cp ../../ai/*.json dist/ai/ && cp ../../docs/AI_USAGE.md dist/docs/AI_USAGE.md && cp ../../docs/AI_PROMPT_TEMPLATE.md dist/docs/AI_PROMPT_TEMPLATE.md && cp ../../docs/AGENTS.md.template dist/templates/AGENTS.md && cp src/fonts/PretendardVariable.woff2 dist/fonts/PretendardVariable.woff2",
+    "clean": "rm -rf dist"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components/*": {
+      "types": "./dist/components/*.d.ts",
+      "import": "./dist/components/*.js"
+    },
+    "./primitives/*": {
+      "types": "./dist/primitives/*.d.ts",
+      "import": "./dist/primitives/*.js"
+    },
+    "./hooks/*": {
+      "types": "./dist/hooks/*.d.ts",
+      "import": "./dist/hooks/*.js"
+    },
+    "./utils/*": {
+      "types": "./dist/utils/*.d.ts",
+      "import": "./dist/utils/*.js"
+    },
+    "./ai/components.json": "./dist/ai/components.json",
+    "./ai/patterns.json": "./dist/ai/patterns.json",
+    "./ai/anti-patterns.json": "./dist/ai/anti-patterns.json",
+    "./docs/AI_USAGE.md": "./dist/docs/AI_USAGE.md",
+    "./docs/AI_PROMPT_TEMPLATE.md": "./dist/docs/AI_PROMPT_TEMPLATE.md",
+    "./templates/AGENTS.md": "./dist/templates/AGENTS.md",
+    "./styles.css": "./dist/styles.css",
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "typesVersions": {
+    "*": {
+      "components/*": [
+        "dist/components/*"
+      ],
+      "primitives/*": [
+        "dist/primitives/*"
+      ],
+      "hooks/*": [
+        "dist/hooks/*"
+      ],
+      "utils/*": [
+        "dist/utils/*"
+      ]
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "pretendard": "^1.3.9"
+  }
+}

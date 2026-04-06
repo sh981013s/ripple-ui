@@ -1,11 +1,11 @@
-# Ripple UI Prompt Template
+# Calmo UI Prompt Template
 
-Use this as the starting point when asking an AI system to generate screens with Ripple UI.
+Use this as the starting point when asking an AI system to generate screens with Calmo UI.
 
 ## Base Prompt
 
 ```md
-Build this UI using only `@sh981013s/ripple-ui` components where possible.
+Build this UI using only `@sh981013s/calmo-ui` components where possible.
 
 Follow these rules:
 - Prefer calm, neutral-first surfaces.
@@ -13,8 +13,8 @@ Follow these rules:
 - Prefer `TopBar`, `SectionHeader`, `List`, `ListRow`, `Banner`, `Dialog`, `BottomSheet`, `TextField`, and `Button` over custom wrappers.
 - Avoid nested elevated cards unless the interaction truly requires it.
 - Keep copy short and product-oriented.
-- Use the theme system only through `ThemeProvider` or `rippleThemePresets`.
-- Do not invent custom buttons, form fields, or modal layouts if a Ripple UI component exists.
+- Use the theme system only through `ThemeProvider` or `calmoThemePresets`.
+- Do not invent custom buttons, form fields, or modal layouts if a Calmo UI component exists.
 
 When choosing components:
 - page header: `TopBar`
@@ -27,7 +27,7 @@ When choosing components:
 
 Output:
 - React code
-- imports from `@sh981013s/ripple-ui`
+- imports from `@sh981013s/calmo-ui`
 - no nested bullet explanations
 - minimal custom CSS
 ```
@@ -71,6 +71,6 @@ Use:
 ## Hard Constraints
 
 - No custom modal structure if `Dialog`, `Modal`, or `BottomSheet` fits.
-- No custom theme tokens outside the Ripple theme API.
+- No custom theme tokens outside the Calmo theme API.
 - No more than one primary CTA in a compact viewport section.
 - No giant hero marketing sections unless explicitly requested.

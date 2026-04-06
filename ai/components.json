@@ -1,6 +1,6 @@
 {
-  "library": "Ripple UI",
-  "package": "@sh981013s/ripple-ui",
+  "library": "Calmo UI",
+  "package": "@sh981013s/calmo-ui",
   "version": "0.1.0",
   "purpose": "Calm mobile-first component library for product surfaces.",
   "recommended_read_order": [
@@ -319,19 +319,19 @@
       "aliases": ["theme", "theme wrapper", "brand provider"],
       "when_to_use": ["scope a preset theme", "scope custom accent/ink/bg seeds", "theme a subtree"],
       "avoid_when": ["you only need a one-off custom inline color tweak"],
-      "defaults": { "theme": "defaultRippleTheme" }
+      "defaults": { "theme": "defaultCalmoTheme" }
     },
     {
-      "name": "rippleThemePresets",
+      "name": "calmoThemePresets",
       "category": "theming",
       "aliases": ["theme presets", "preset palette", "brand presets"],
       "when_to_use": ["quick theme switching", "brand selection", "docs/demo theme controls"]
     },
     {
-      "name": "buildRippleThemeVars",
+      "name": "buildCalmoThemeVars",
       "category": "theming",
       "aliases": ["theme vars", "css variables", "token builder"],
-      "when_to_use": ["derive CSS variables from seed colors", "inspect generated theme tokens", "bridge Ripple theme values into host CSS"]
+      "when_to_use": ["derive CSS variables from seed colors", "inspect generated theme tokens", "bridge Calmo theme values into host CSS"]
     },
     {
       "name": "Table",
