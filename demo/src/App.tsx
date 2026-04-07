@@ -177,8 +177,8 @@ function DocsOverviewPage() {
           <a className="demo-top-link" href="https://calmo.booung.org/" target="_blank" rel="noreferrer">Docs</a>
           <a className="demo-top-link" href="https://github.com/sh981013s/calmo-ui" target="_blank" rel="noreferrer">GitHub</a>
           <a className="demo-top-link" href="https://www.npmjs.com/package/calmo-ui" target="_blank" rel="noreferrer">npm</a>
-          <a className="demo-top-link demo-top-link-strong" href="https://github.com/sh981013s/calmo-ui/stargazers" target="_blank" rel="noreferrer">
-            Star on GitHub
+          <a className="demo-top-link demo-top-link-strong" href="https://github.com/sh981013s/calmo-ui" target="_blank" rel="noreferrer">
+            Star this repo ★
           </a>
         </div>
         <div className="demo-hero-grid">
@@ -196,8 +196,8 @@ function DocsOverviewPage() {
               <a className="demo-hero-button" href="https://www.npmjs.com/package/calmo-ui" target="_blank" rel="noreferrer">
                 npm package
               </a>
-              <a className="demo-hero-button" href="https://github.com/sh981013s/calmo-ui/stargazers" target="_blank" rel="noreferrer">
-                Star on GitHub
+              <a className="demo-hero-button" href="https://github.com/sh981013s/calmo-ui" target="_blank" rel="noreferrer">
+                Star this repo ★
               </a>
             </div>
             <div className="demo-hero-proof">
