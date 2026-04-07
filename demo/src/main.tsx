@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Analytics } from "@vercel/analytics/react";
 import App from "./App.js";
 import "calmo-ui/tokens.css";
 import "calmo-ui/styles.css";
@@ -18,6 +19,9 @@ if (import.meta.env.PROD && cloudflareAnalyticsToken && !document.querySelector(
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <>
+      <App />
+      <Analytics />
+    </>
   </React.StrictMode>,
 );
