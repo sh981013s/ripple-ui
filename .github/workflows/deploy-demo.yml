@@ -36,6 +36,7 @@ jobs:
 
       - name: Build demo
         env:
+          CALMO_BASE_PATH: /calmo-ui/
           VITE_CF_WEB_ANALYTICS_TOKEN: ${{ secrets.CF_WEB_ANALYTICS_TOKEN }}
         run: npm run build:demo
 

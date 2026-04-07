@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   root: __dirname,
-  base: "/calmo-ui/",
+  base: process.env.CALMO_BASE_PATH ?? (process.env.VERCEL ? "/" : "/"),
   plugins: [react()],
   resolve: {
     alias: {
