@@ -2,7 +2,7 @@
 
 A React UI library and TypeScript design system for calm, mobile-first product surfaces, structured dashboards, settings flows, overlays, and internal tools.
 
-[Docs](https://sh981013s.github.io/calmo-ui/) · [GitHub](https://github.com/sh981013s/calmo-ui) · [npm](https://www.npmjs.com/package/calmo-ui) · [Star on GitHub](https://github.com/sh981013s/calmo-ui/stargazers)
+[Docs](https://calmo.booung.org/) · [GitHub](https://github.com/sh981013s/calmo-ui) · [npm](https://www.npmjs.com/package/calmo-ui) · [Star on GitHub](https://github.com/sh981013s/calmo-ui/stargazers)
 
 If Calmo UI helps you ship product UI faster, [star the repo](https://github.com/sh981013s/calmo-ui/stargazers).
 
@@ -379,4 +379,4 @@ Calmo UI works especially well for developers searching for a React UI library w
 
 ## Docs
 
-- [https://sh981013s.github.io/calmo-ui/](https://sh981013s.github.io/calmo-ui/)
+- [https://calmo.booung.org/](https://calmo.booung.org/)

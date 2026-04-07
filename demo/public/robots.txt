@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sh981013s.github.io/calmo-ui/sitemap.xml
+Sitemap: https://calmo.booung.org/sitemap.xml

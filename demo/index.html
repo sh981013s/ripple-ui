@@ -3,6 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        var locationInfo = window.location;
+        if (locationInfo.hostname !== "sh981013s.github.io") return;
+
+        var pathname = locationInfo.pathname.replace(/^\/calmo-ui/, "") || "/";
+        var target =
+          "https://calmo.booung.org" +
+          pathname +
+          locationInfo.search +
+          locationInfo.hash;
+
+        locationInfo.replace(target);
+      })();
+    </script>
     <title>Calmo UI: The React component library for dashboards, settings, overlays, and calm product surfaces</title>
     <meta name="application-name" content="Calmo UI" />
     <meta
@@ -15,8 +30,8 @@
     />
     <meta name="robots" content="index,follow" />
     <meta name="theme-color" content="#3B82F6" />
-    <link rel="canonical" href="https://sh981013s.github.io/calmo-ui/" />
-    <link rel="alternate" hreflang="en" href="https://sh981013s.github.io/calmo-ui/" />
+    <link rel="canonical" href="https://calmo.booung.org/" />
+    <link rel="alternate" hreflang="en" href="https://calmo.booung.org/" />
     <link rel="icon" type="image/svg+xml" href="./calmo-ui-icon.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Calmo UI" />
@@ -25,8 +40,8 @@
       property="og:description"
       content="A mobile-first React component library and TypeScript design system for dashboards, settings pages, bottom sheets, dialogs, internal tools, and AI-friendly product UI."
     />
-    <meta property="og:url" content="https://sh981013s.github.io/calmo-ui/" />
-    <meta property="og:image" content="https://sh981013s.github.io/calmo-ui/calmo-ui-icon.svg" />
+    <meta property="og:url" content="https://calmo.booung.org/" />
+    <meta property="og:image" content="https://calmo.booung.org/calmo-ui-icon.svg" />
     <meta property="og:image:alt" content="Calmo UI logo" />
     <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -36,7 +51,7 @@
       name="twitter:description"
       content="Ship calm, structured React product UI faster with TypeScript-ready dashboards, settings flows, bottom sheets, dialogs, overlays, forms, and mobile-first surfaces."
     />
-    <meta name="twitter:image" content="https://sh981013s.github.io/calmo-ui/calmo-ui-icon.svg" />
+    <meta name="twitter:image" content="https://calmo.booung.org/calmo-ui-icon.svg" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -46,7 +61,7 @@
         "operatingSystem": "Web",
         "softwareVersion": "0.1.19+",
         "description": "A React component library and TypeScript design system for dashboards, settings flows, bottom sheets, dialogs, internal tools, and calm mobile-first product surfaces.",
-        "url": "https://sh981013s.github.io/calmo-ui/",
+        "url": "https://calmo.booung.org/",
         "downloadUrl": "https://www.npmjs.com/package/calmo-ui",
         "codeRepository": "https://github.com/sh981013s/calmo-ui",
         "keywords": "react ui library, react dashboard component library, react bottom sheet, typescript design system, mobile-first component library, product ui components, settings page ui, internal tools ui",
@@ -66,11 +81,11 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Calmo UI",
-        "url": "https://sh981013s.github.io/calmo-ui/",
+        "url": "https://calmo.booung.org/",
         "description": "Documentation and component playgrounds for Calmo UI, a React component library and TypeScript design system for dashboards, settings, overlays, and calm product surfaces.",
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://sh981013s.github.io/calmo-ui/?search={search_term_string}",
+          "target": "https://calmo.booung.org/?search={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       }

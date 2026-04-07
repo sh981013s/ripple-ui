@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/</loc>
+    <loc>https://calmo.booung.org/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/components/actions</loc>
+    <loc>https://calmo.booung.org/components/actions</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/components/forms</loc>
+    <loc>https://calmo.booung.org/components/forms</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/components/navigation</loc>
+    <loc>https://calmo.booung.org/components/navigation</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/components/overlays</loc>
+    <loc>https://calmo.booung.org/components/overlays</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/components/data</loc>
+    <loc>https://calmo.booung.org/components/data</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/components/overlays/bottomsheet</loc>
+    <loc>https://calmo.booung.org/components/overlays/bottomsheet</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/components/actions/button</loc>
+    <loc>https://calmo.booung.org/components/actions/button</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://sh981013s.github.io/calmo-ui/components/utilities/themeprovider</loc>
+    <loc>https://calmo.booung.org/components/utilities/themeprovider</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -174,7 +174,7 @@ function DocsOverviewPage() {
     <Stack gap={20}>
       <section className="demo-hero">
         <div className="demo-hero-links">
-          <a className="demo-top-link" href="https://sh981013s.github.io/calmo-ui/" target="_blank" rel="noreferrer">Docs</a>
+          <a className="demo-top-link" href="https://calmo.booung.org/" target="_blank" rel="noreferrer">Docs</a>
           <a className="demo-top-link" href="https://github.com/sh981013s/calmo-ui" target="_blank" rel="noreferrer">GitHub</a>
           <a className="demo-top-link" href="https://www.npmjs.com/package/calmo-ui" target="_blank" rel="noreferrer">npm</a>
           <a className="demo-top-link demo-top-link-strong" href="https://github.com/sh981013s/calmo-ui/stargazers" target="_blank" rel="noreferrer">
@@ -190,7 +190,7 @@ function DocsOverviewPage() {
               fintech-style screens, and AI-generated apps that need structured product UI instead of marketing-style kits.
             </p>
             <div className="demo-hero-actions">
-              <a className="demo-hero-button demo-hero-button-primary" href="https://sh981013s.github.io/calmo-ui/" target="_blank" rel="noreferrer">
+              <a className="demo-hero-button demo-hero-button-primary" href="https://calmo.booung.org/" target="_blank" rel="noreferrer">
                 Explore docs
               </a>
               <a className="demo-hero-button" href="https://www.npmjs.com/package/calmo-ui" target="_blank" rel="noreferrer">
@@ -290,8 +290,8 @@ function DocsOverviewPage() {
           <Card className="demo-howto-card">
             <Stack gap={10}>
               <Text variant="label">Docs</Text>
-              <a className="demo-inline-link" href="https://sh981013s.github.io/calmo-ui/" target="_blank" rel="noreferrer">
-                sh981013s.github.io/calmo-ui
+              <a className="demo-inline-link" href="https://calmo.booung.org/" target="_blank" rel="noreferrer">
+                calmo.booung.org
               </a>
               <Text variant="caption">Browse sections, component pages, live playgrounds, and theme examples.</Text>
             </Stack>
@@ -615,7 +615,7 @@ function DocsContent() {
 
 function updateHeadMeta({ title, description, path }) {
   const fullTitle = title ? `${title} | Calmo UI` : "Calmo UI";
-  const fullUrl = `https://sh981013s.github.io/calmo-ui${path === "/" ? "/" : path}`;
+  const fullUrl = `https://calmo.booung.org${path === "/" ? "/" : path}`;
 
   document.title = fullTitle;
 

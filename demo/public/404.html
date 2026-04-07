@@ -6,6 +6,16 @@
     <script>
       (function () {
         var locationInfo = window.location;
+        if (locationInfo.hostname === "sh981013s.github.io") {
+          var redirectedPathname = locationInfo.pathname.replace(/^\/calmo-ui/, "") || "/";
+          locationInfo.replace(
+            "https://calmo.booung.org" +
+              redirectedPathname +
+              locationInfo.search +
+              locationInfo.hash
+          );
+          return;
+        }
         var base = locationInfo.pathname.split("/").slice(0, 2).join("/") || "";
         var redirectedPath = locationInfo.pathname.slice(base.length) || "/";
         var redirectedQuery = locationInfo.search ? locationInfo.search.slice(1) : "";
