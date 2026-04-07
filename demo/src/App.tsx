@@ -623,8 +623,8 @@ function DocsOverviewPage() {
   );
 }
 
-function DiscoveryPage() {
-  const { kind, slug } = useParams();
+function DiscoveryPage({ kind }) {
+  const { slug } = useParams();
   const page = discoveryPages.find((entry) => entry.kind === kind && entry.slug === slug);
 
   if (!page) {
@@ -849,9 +849,9 @@ function DocsContent() {
   return (
     <Routes>
       <Route path="/" element={<DocsOverviewPage />} />
-      <Route path="/solution/:slug" element={<DiscoveryPage />} />
-      <Route path="/guide/:slug" element={<DiscoveryPage />} />
-      <Route path="/compare/:slug" element={<DiscoveryPage />} />
+      <Route path="/solution/:slug" element={<DiscoveryPage kind="solution" />} />
+      <Route path="/guide/:slug" element={<DiscoveryPage kind="guide" />} />
+      <Route path="/compare/:slug" element={<DiscoveryPage kind="compare" />} />
       <Route path="/components/:sectionId" element={<SectionPage />} />
       <Route path="/components/:sectionId/index" element={<SectionPage />} />
       <Route path="/components/:sectionId/:componentSlug" element={<ComponentPage />} />
