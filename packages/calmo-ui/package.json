@@ -1,6 +1,6 @@
 {
   "name": "calmo-ui",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "Calm, mobile-first React UI components for structured product surfaces.",
   "bin": {
     "calmo-ui": "./bin/calmo-ui.mjs"
