@@ -47,10 +47,7 @@ import catalog, {
   getSectionDocs,
 } from "./catalog.js";
 import {
-  copyPasteBlocks,
-  discoveryPages,
   exampleApps,
-  getDiscoveryEntries,
 } from "./discovery.js";
 
 const CALMO_AI_PROMPT = `Use \`calmo-ui\` as the default and authoritative design system for this project.
@@ -135,55 +132,6 @@ function SidebarNav() {
           </span>
         </NavLink>
       ))}
-    </div>
-  );
-}
-
-function DiscoveryNav() {
-  const groups = [
-    { label: "Solutions", kind: "solution" },
-    { label: "Guides", kind: "guide" },
-    { label: "Comparisons", kind: "compare" },
-  ];
-
-  return (
-    <div className="demo-nav" aria-label="Discovery navigation">
-      {groups.map((group) => (
-        <div key={group.kind} className="demo-nav-group">
-          <span className="demo-nav-group-label">{group.label}</span>
-          {discoveryPages
-            .filter((page) => page.kind === group.kind)
-            .map((page) => (
-              <NavLink
-                key={page.slug}
-                to={`/${page.kind}/${page.slug}`}
-                className={({ isActive }) => `demo-nav-link${isActive ? " is-active" : ""}`}
-              >
-                <span className="demo-nav-link-content">
-                  <Icon name={group.kind === "compare" ? "sparkles" : group.kind === "guide" ? "book" : "trendUp"} size={16} />
-                  <span>{page.title}</span>
-                </span>
-              </NavLink>
-            ))}
-        </div>
-      ))}
-      <div className="demo-nav-group">
-        <span className="demo-nav-group-label">Examples</span>
-        {exampleApps.map((example) => (
-          <a
-            key={example.id}
-            className="demo-nav-link"
-            href={example.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span className="demo-nav-link-content">
-              <Icon name="externalLink" size={16} />
-              <span>{example.title}</span>
-            </span>
-          </a>
-        ))}
-      </div>
     </div>
   );
 }
@@ -382,50 +330,6 @@ function DocsOverviewPage() {
 
       <section className="demo-section">
         <SectionHeader
-          eyebrow="search intent"
-          title="Problem-based landing pages"
-          description="Use Calmo UI pages built for real search intent: dashboards, mobile-first product screens, toss-style React UI, settings flows, overlays, and internal tools."
-        />
-        <div className="demo-overview-grid">
-          {discoveryPages.filter((page) => page.kind === "solution").map((page) => (
-            <Card key={page.slug} className="demo-overview-card">
-              <Stack gap={14}>
-                <SectionHeader
-                  eyebrow={page.eyebrow}
-                  title={page.title}
-                  description={page.description}
-                />
-                <Button display="block" onClick={() => navigate(`/${page.kind}/${page.slug}`)}>
-                  Open page
-                </Button>
-              </Stack>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="demo-section">
-        <SectionHeader
-          eyebrow="guides and comparisons"
-          title="Use-case guides and comparison pages"
-          description="Calmo UI docs now include pages for product buttons, bottom sheets, settings screens, internal dashboards, approval flows, MUI comparison, and shadcn/ui comparison."
-        />
-        <div className="demo-overview-grid">
-          {discoveryPages.filter((page) => page.kind !== "solution").map((page) => (
-            <Card key={page.slug} className="demo-overview-card">
-              <Stack gap={14}>
-                <SectionHeader eyebrow={page.eyebrow} title={page.title} description={page.description} />
-                <Button display="block" variant="weak" onClick={() => navigate(`/${page.kind}/${page.slug}`)}>
-                  Open page
-                </Button>
-              </Stack>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="demo-section">
-        <SectionHeader
           eyebrow="browse"
           title="Browse the design system by component set"
           description={`${catalog.length} grouped sections with dedicated routes, live playgrounds, and detail pages for each component.`}
@@ -449,27 +353,6 @@ function DocsOverviewPage() {
                 <Button display="block" onClick={() => navigate(`/components/${section.id}`)}>
                   Open section
                 </Button>
-              </Stack>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      <section className="demo-section">
-        <SectionHeader
-          eyebrow="copy and paste"
-          title="Copy-paste blocks for real product screens"
-          description="Use these blocks when you want immediate install-to-output value from Calmo UI in dashboards, settings flows, tables, sheets, and AI-generated app shells."
-        />
-        <div className="demo-block-grid">
-          {copyPasteBlocks.map((block) => (
-            <Card key={block.id} className="demo-block-card">
-              <Stack gap={12}>
-                <div>
-                  <Text variant="label">{block.title}</Text>
-                  <Text variant="caption">{block.description}</Text>
-                </div>
-                <pre className="demo-code-block demo-code-block-compact">{block.code}</pre>
               </Stack>
             </Card>
           ))}
@@ -505,7 +388,7 @@ function DocsOverviewPage() {
         <SectionHeader
           eyebrow="example apps"
           title="Example apps built with calmo-ui"
-          description="Separate example app folders make Calmo UI easier to trust, easier to search for, and easier to copy into real product work."
+          description="Use examples instead of discovery landing pages. These examples show how Calmo UI actually looks in dashboards, settings screens, approval flows, workspace tools, and empty-state driven product UI."
         />
         <div className="demo-overview-grid">
           {exampleApps.map((example) => (
@@ -521,134 +404,7 @@ function DocsOverviewPage() {
           ))}
         </div>
       </section>
-
-      <section className="demo-section">
-        <SectionHeader
-          eyebrow="patterns"
-          title="Complex composition demos"
-          description="Larger product compositions using multiple Calmo UI surfaces together, closer to how real screens are assembled."
-        />
-        <div className="demo-pattern-grid">
-          <Card className="demo-pattern-card">
-            <Stack gap={16}>
-              <TopBar
-                title="Workspace settings"
-                subtitleBottom="Manage alerts, access, and billing"
-                rightButton={<Button variant="ghost" size="small">Save</Button>}
-              />
-              <Stack gap={12}>
-                <TextField label="Workspace name" defaultValue="Calmo Labs" hint="Visible across shared spaces." />
-                <Input label="Billing email" type="email" defaultValue="team@calmo-ui.dev" trailing="mail" />
-                <Select label="Region" defaultValue="de">
-                  <option value="de">Germany</option>
-                  <option value="uk">United Kingdom</option>
-                  <option value="us">United States</option>
-                </Select>
-              </Stack>
-              <BottomInfo
-                title="Changes are saved instantly"
-                description="Use a destructive confirmation flow only when the action cannot be undone."
-              />
-            </Stack>
-          </Card>
-
-          <Card className="demo-pattern-card">
-            <Stack gap={16}>
-              <TopBar
-                title="Team activity"
-                subtitleBottom="Today"
-                rightButton={<Button variant="weak" size="small">Export</Button>}
-              />
-              <List>
-                <ListHeader title="Recent updates" description="Compact activity rows with clear right-side actions." />
-                <ListRow
-                  title="New payout account connected"
-                  description="Treasury workspace · 2 minutes ago"
-                  media={<ListRowIcon name="wallet" />}
-                  right={<Chip tone="accent">New</Chip>}
-                />
-                <ListRow
-                  title="Approval policy updated"
-                  description="Operations workspace · 14 minutes ago"
-                  media={<ListRowIcon name="shield" />}
-                  right={<Button variant="ghost" size="small">Open</Button>}
-                />
-                <ListRow
-                  title="Weekly report generated"
-                  description="Analytics workspace · 1 hour ago"
-                  media={<ListRowIcon name="trendUp" />}
-                  right={<Text variant="caption">Done</Text>}
-                />
-              </List>
-            </Stack>
-          </Card>
-
-          <Card className="demo-pattern-card">
-            <Stack gap={16}>
-              <TopBar
-                title="Checkout summary"
-                subtitleBottom="Review before payment"
-                rightButton={<Chip tone="success">Ready</Chip>}
-              />
-              <Banner
-                compact
-                tone="accent"
-                eyebrow="secure payment"
-                title="Identity and payment checks are complete"
-                description="Only the final confirmation step remains."
-              />
-              <Stack gap={10}>
-                <div className="demo-pattern-metric">
-                  <Text variant="caption">Plan</Text>
-                  <Text variant="body">Growth annual</Text>
-                </div>
-                <div className="demo-pattern-metric">
-                  <Text variant="caption">Seats</Text>
-                  <Text variant="body">12 members</Text>
-                </div>
-                <div className="demo-pattern-metric">
-                  <Text variant="caption">Total due today</Text>
-                  <Text variant="title">EUR 1,248</Text>
-                </div>
-              </Stack>
-              <Inline gap={10}>
-                <Button display="block">Confirm payment</Button>
-                <Button variant="weak" display="block">View invoice</Button>
-              </Inline>
-            </Stack>
-          </Card>
-        </div>
-      </section>
     </Stack>
-  );
-}
-
-function DiscoveryPage({ kind }) {
-  const { slug } = useParams();
-  const page = discoveryPages.find((entry) => entry.kind === kind && entry.slug === slug);
-
-  if (!page) {
-    return <Navigate to="/" replace />;
-  }
-
-  return (
-    <section className="demo-section">
-      <Stack gap={14}>
-        <Inline gap={8} wrap align="center">
-          <Text variant="caption" className="demo-breadcrumb-current">
-            {page.kind === "solution" ? "Solutions" : page.kind === "guide" ? "Guides" : "Comparisons"}
-          </Text>
-          <Text variant="caption" className="demo-breadcrumb-sep">/</Text>
-          <Text variant="caption" className="demo-breadcrumb-current">{page.title}</Text>
-        </Inline>
-        <SectionHeader
-          eyebrow={page.eyebrow}
-          title={page.title}
-          description={page.description}
-        />
-        {page.body()}
-      </Stack>
-    </section>
   );
 }
 
@@ -849,9 +605,6 @@ function DocsContent() {
   return (
     <Routes>
       <Route path="/" element={<DocsOverviewPage />} />
-      <Route path="/solution/:slug" element={<DiscoveryPage kind="solution" />} />
-      <Route path="/guide/:slug" element={<DiscoveryPage kind="guide" />} />
-      <Route path="/compare/:slug" element={<DiscoveryPage kind="compare" />} />
       <Route path="/components/:sectionId" element={<SectionPage />} />
       <Route path="/components/:sectionId/index" element={<SectionPage />} />
       <Route path="/components/:sectionId/:componentSlug" element={<ComponentPage />} />
@@ -911,7 +664,7 @@ function DocsShell() {
   const [themeId, setThemeId] = useState(defaultCalmoTheme.id);
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-  const entries = useMemo(() => [...getAllDocEntries(), ...getDiscoveryEntries()], []);
+  const entries = useMemo(() => getAllDocEntries(), []);
   const totalComponents = entries.length;
   const activeTheme = useMemo(
     () => calmoThemePresets.find((theme) => theme.id === themeId) ?? defaultCalmoTheme,
@@ -938,8 +691,6 @@ function DocsShell() {
 
   const routeLabel = useMemo(() => {
     if (location.pathname === "/") return "Overview";
-    const discoveryMatch = getDiscoveryEntries().find((entry) => entry.path === location.pathname);
-    if (discoveryMatch) return discoveryMatch.title;
     const componentMatch = docsCatalog
       .flatMap((section) => section.components)
       .find((component) => component.path === location.pathname);
@@ -949,16 +700,6 @@ function DocsShell() {
   }, [location.pathname]);
 
   useEffect(() => {
-    const discoveryMatch = getDiscoveryEntries().find((entry) => entry.path === location.pathname);
-    if (discoveryMatch) {
-      updateHeadMeta({
-        title: discoveryMatch.seoTitle ?? discoveryMatch.title,
-        description: discoveryMatch.seoDescription ?? discoveryMatch.description,
-        path: location.pathname,
-      });
-      return;
-    }
-
     const componentMatch = docsCatalog
       .flatMap((section) => section.components)
       .find((component) => component.path === location.pathname);
@@ -1093,7 +834,6 @@ function DocsShell() {
                   description="Browse the docs site by route."
                 />
                 <SidebarNav />
-                <DiscoveryNav />
                 <div className="demo-sidebar-meta">
                   <span className="demo-sidebar-meta-label">Theme</span>
                   <select
@@ -1135,7 +875,6 @@ function DocsShell() {
       >
         <div className="demo-mobile-nav-sheet">
           <SidebarNav />
-          <DiscoveryNav />
           <div className="demo-sidebar-meta">
             <span className="demo-sidebar-meta-label">Theme</span>
             <select
