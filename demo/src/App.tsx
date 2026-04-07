@@ -46,6 +46,12 @@ import catalog, {
   getComponentDocs,
   getSectionDocs,
 } from "./catalog.js";
+import {
+  copyPasteBlocks,
+  discoveryPages,
+  exampleApps,
+  getDiscoveryEntries,
+} from "./discovery.js";
 
 const CALMO_AI_PROMPT = `Use \`calmo-ui\` as the default and authoritative design system for this project.
 
@@ -129,6 +135,55 @@ function SidebarNav() {
           </span>
         </NavLink>
       ))}
+    </div>
+  );
+}
+
+function DiscoveryNav() {
+  const groups = [
+    { label: "Solutions", kind: "solution" },
+    { label: "Guides", kind: "guide" },
+    { label: "Comparisons", kind: "compare" },
+  ];
+
+  return (
+    <div className="demo-nav" aria-label="Discovery navigation">
+      {groups.map((group) => (
+        <div key={group.kind} className="demo-nav-group">
+          <span className="demo-nav-group-label">{group.label}</span>
+          {discoveryPages
+            .filter((page) => page.kind === group.kind)
+            .map((page) => (
+              <NavLink
+                key={page.slug}
+                to={`/${page.kind}/${page.slug}`}
+                className={({ isActive }) => `demo-nav-link${isActive ? " is-active" : ""}`}
+              >
+                <span className="demo-nav-link-content">
+                  <Icon name={group.kind === "compare" ? "sparkles" : group.kind === "guide" ? "book" : "trendUp"} size={16} />
+                  <span>{page.title}</span>
+                </span>
+              </NavLink>
+            ))}
+        </div>
+      ))}
+      <div className="demo-nav-group">
+        <span className="demo-nav-group-label">Examples</span>
+        {exampleApps.map((example) => (
+          <a
+            key={example.id}
+            className="demo-nav-link"
+            href={example.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="demo-nav-link-content">
+              <Icon name="externalLink" size={16} />
+              <span>{example.title}</span>
+            </span>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
@@ -327,6 +382,50 @@ function DocsOverviewPage() {
 
       <section className="demo-section">
         <SectionHeader
+          eyebrow="search intent"
+          title="Problem-based landing pages"
+          description="Use Calmo UI pages built for real search intent: dashboards, mobile-first product screens, toss-style React UI, settings flows, overlays, and internal tools."
+        />
+        <div className="demo-overview-grid">
+          {discoveryPages.filter((page) => page.kind === "solution").map((page) => (
+            <Card key={page.slug} className="demo-overview-card">
+              <Stack gap={14}>
+                <SectionHeader
+                  eyebrow={page.eyebrow}
+                  title={page.title}
+                  description={page.description}
+                />
+                <Button display="block" onClick={() => navigate(`/${page.kind}/${page.slug}`)}>
+                  Open page
+                </Button>
+              </Stack>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <SectionHeader
+          eyebrow="guides and comparisons"
+          title="Use-case guides and comparison pages"
+          description="Calmo UI docs now include pages for product buttons, bottom sheets, settings screens, internal dashboards, approval flows, MUI comparison, and shadcn/ui comparison."
+        />
+        <div className="demo-overview-grid">
+          {discoveryPages.filter((page) => page.kind !== "solution").map((page) => (
+            <Card key={page.slug} className="demo-overview-card">
+              <Stack gap={14}>
+                <SectionHeader eyebrow={page.eyebrow} title={page.title} description={page.description} />
+                <Button display="block" variant="weak" onClick={() => navigate(`/${page.kind}/${page.slug}`)}>
+                  Open page
+                </Button>
+              </Stack>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <SectionHeader
           eyebrow="browse"
           title="Browse the design system by component set"
           description={`${catalog.length} grouped sections with dedicated routes, live playgrounds, and detail pages for each component.`}
@@ -358,6 +457,27 @@ function DocsOverviewPage() {
 
       <section className="demo-section">
         <SectionHeader
+          eyebrow="copy and paste"
+          title="Copy-paste blocks for real product screens"
+          description="Use these blocks when you want immediate install-to-output value from Calmo UI in dashboards, settings flows, tables, sheets, and AI-generated app shells."
+        />
+        <div className="demo-block-grid">
+          {copyPasteBlocks.map((block) => (
+            <Card key={block.id} className="demo-block-card">
+              <Stack gap={12}>
+                <div>
+                  <Text variant="label">{block.title}</Text>
+                  <Text variant="caption">{block.description}</Text>
+                </div>
+                <pre className="demo-code-block demo-code-block-compact">{block.code}</pre>
+              </Stack>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <SectionHeader
           eyebrow="icons"
           title="System icons"
           description="A reusable icon set for navigation, actions, and feedback surfaces."
@@ -376,6 +496,27 @@ function DocsOverviewPage() {
             <Card key={name} className="docs-icon-card">
               <Icon name={name} size={20} />
               <span>{name}</span>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="demo-section">
+        <SectionHeader
+          eyebrow="example apps"
+          title="Example apps built with calmo-ui"
+          description="Separate example app folders make Calmo UI easier to trust, easier to search for, and easier to copy into real product work."
+        />
+        <div className="demo-overview-grid">
+          {exampleApps.map((example) => (
+            <Card key={example.id} className="demo-overview-card">
+              <Stack gap={14}>
+                <SectionHeader eyebrow="example" title={example.title} description={example.description} />
+                <a className="demo-inline-link" href={example.href} target="_blank" rel="noreferrer">
+                  Open example repo folder
+                </a>
+                <Text variant="caption">{example.repoPath}</Text>
+              </Stack>
             </Card>
           ))}
         </div>
@@ -479,6 +620,35 @@ function DocsOverviewPage() {
         </div>
       </section>
     </Stack>
+  );
+}
+
+function DiscoveryPage() {
+  const { kind, slug } = useParams();
+  const page = discoveryPages.find((entry) => entry.kind === kind && entry.slug === slug);
+
+  if (!page) {
+    return <Navigate to="/" replace />;
+  }
+
+  return (
+    <section className="demo-section">
+      <Stack gap={14}>
+        <Inline gap={8} wrap align="center">
+          <Text variant="caption" className="demo-breadcrumb-current">
+            {page.kind === "solution" ? "Solutions" : page.kind === "guide" ? "Guides" : "Comparisons"}
+          </Text>
+          <Text variant="caption" className="demo-breadcrumb-sep">/</Text>
+          <Text variant="caption" className="demo-breadcrumb-current">{page.title}</Text>
+        </Inline>
+        <SectionHeader
+          eyebrow={page.eyebrow}
+          title={page.title}
+          description={page.description}
+        />
+        {page.body()}
+      </Stack>
+    </section>
   );
 }
 
@@ -679,12 +849,58 @@ function DocsContent() {
   return (
     <Routes>
       <Route path="/" element={<DocsOverviewPage />} />
+      <Route path="/solution/:slug" element={<DiscoveryPage />} />
+      <Route path="/guide/:slug" element={<DiscoveryPage />} />
+      <Route path="/compare/:slug" element={<DiscoveryPage />} />
       <Route path="/components/:sectionId" element={<SectionPage />} />
       <Route path="/components/:sectionId/index" element={<SectionPage />} />
       <Route path="/components/:sectionId/:componentSlug" element={<ComponentPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
+}
+
+function updateHeadMeta({ title, description, path }) {
+  const fullTitle = title ? `${title} | Calmo UI` : "Calmo UI";
+  const fullUrl = `https://sh981013s.github.io/calmo-ui${path === "/" ? "/" : path}`;
+
+  document.title = fullTitle;
+
+  const setMeta = (selector, attrs) => {
+    let el = document.head.querySelector(selector);
+    if (!el) {
+      el = document.createElement("meta");
+      Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+      document.head.appendChild(el);
+    }
+    el.setAttribute("content", description);
+  };
+
+  setMeta('meta[name="description"]', { name: "description" });
+  setMeta('meta[property="og:description"]', { property: "og:description" });
+  setMeta('meta[name="twitter:description"]', { name: "twitter:description" });
+
+  const setNamedValue = (selector, attrs, value) => {
+    let el = document.head.querySelector(selector);
+    if (!el) {
+      el = document.createElement("meta");
+      Object.entries(attrs).forEach(([key, attrValue]) => el.setAttribute(key, attrValue));
+      document.head.appendChild(el);
+    }
+    el.setAttribute("content", value);
+  };
+
+  setNamedValue('meta[property="og:title"]', { property: "og:title" }, fullTitle);
+  setNamedValue('meta[name="twitter:title"]', { name: "twitter:title" }, fullTitle);
+  setNamedValue('meta[property="og:url"]', { property: "og:url" }, fullUrl);
+
+  let canonical = document.head.querySelector('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.setAttribute("rel", "canonical");
+    document.head.appendChild(canonical);
+  }
+  canonical.setAttribute("href", fullUrl);
 }
 
 function DocsShell() {
@@ -695,7 +911,7 @@ function DocsShell() {
   const [themeId, setThemeId] = useState(defaultCalmoTheme.id);
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-  const entries = useMemo(() => getAllDocEntries(), []);
+  const entries = useMemo(() => [...getAllDocEntries(), ...getDiscoveryEntries()], []);
   const totalComponents = entries.length;
   const activeTheme = useMemo(
     () => calmoThemePresets.find((theme) => theme.id === themeId) ?? defaultCalmoTheme,
@@ -722,12 +938,55 @@ function DocsShell() {
 
   const routeLabel = useMemo(() => {
     if (location.pathname === "/") return "Overview";
+    const discoveryMatch = getDiscoveryEntries().find((entry) => entry.path === location.pathname);
+    if (discoveryMatch) return discoveryMatch.title;
     const componentMatch = docsCatalog
       .flatMap((section) => section.components)
       .find((component) => component.path === location.pathname);
     if (componentMatch) return componentMatch.name;
     const sectionMatch = docsCatalog.find((section) => section.path === location.pathname);
     return sectionMatch?.label ?? "Docs";
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const discoveryMatch = getDiscoveryEntries().find((entry) => entry.path === location.pathname);
+    if (discoveryMatch) {
+      updateHeadMeta({
+        title: discoveryMatch.seoTitle ?? discoveryMatch.title,
+        description: discoveryMatch.seoDescription ?? discoveryMatch.description,
+        path: location.pathname,
+      });
+      return;
+    }
+
+    const componentMatch = docsCatalog
+      .flatMap((section) => section.components)
+      .find((component) => component.path === location.pathname);
+
+    if (componentMatch) {
+      updateHeadMeta({
+        title: `${componentMatch.name} component`,
+        description: componentMatch.description,
+        path: location.pathname,
+      });
+      return;
+    }
+
+    const sectionMatch = docsCatalog.find((section) => section.path === location.pathname);
+    if (sectionMatch) {
+      updateHeadMeta({
+        title: `${sectionMatch.label} components`,
+        description: `${sectionMatch.label} components in Calmo UI with live playgrounds, prop tables, and product-focused React examples.`,
+        path: location.pathname,
+      });
+      return;
+    }
+
+    updateHeadMeta({
+      title: "Calmo UI docs",
+      description: "Calmo UI is a React UI library and TypeScript design system for calm product surfaces, dashboards, settings flows, overlays, and internal tools.",
+      path: location.pathname,
+    });
   }, [location.pathname]);
 
   const suggestions = useMemo(() => {
@@ -834,6 +1093,7 @@ function DocsShell() {
                   description="Browse the docs site by route."
                 />
                 <SidebarNav />
+                <DiscoveryNav />
                 <div className="demo-sidebar-meta">
                   <span className="demo-sidebar-meta-label">Theme</span>
                   <select
@@ -875,6 +1135,7 @@ function DocsShell() {
       >
         <div className="demo-mobile-nav-sheet">
           <SidebarNav />
+          <DiscoveryNav />
           <div className="demo-sidebar-meta">
             <span className="demo-sidebar-meta-label">Theme</span>
             <select

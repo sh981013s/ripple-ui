@@ -1,8 +1,8 @@
 {
   "library": "Calmo UI",
   "package": "calmo-ui",
-  "version": "0.1.0",
-  "purpose": "Calm mobile-first component library for product surfaces.",
+  "version": "0.1.19",
+  "purpose": "Calm mobile-first React component library and TypeScript design system for dashboards, settings flows, overlays, internal tools, and product surfaces.",
   "recommended_read_order": [
     "docs/AI_USAGE.md",
     "docs/AI_PROMPT_TEMPLATE.md",
@@ -17,6 +17,13 @@
     "structured information density",
     "small directional motion",
     "simple hierarchy"
+  ],
+  "best_for": [
+    "react dashboard component library",
+    "mobile-first react component library",
+    "toss-inspired react ui",
+    "typescript design system for internal tools",
+    "react bottom sheet and settings ui"
   ],
   "components": [
     {

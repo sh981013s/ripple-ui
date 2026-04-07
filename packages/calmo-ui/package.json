@@ -2,6 +2,9 @@
   "name": "calmo-ui",
   "version": "0.1.20",
   "description": "Calm, mobile-first React UI components for structured product surfaces.",
+  "bin": {
+    "calmo-ui": "./bin/calmo-ui.mjs"
+  },
   "private": false,
   "license": "MIT",
   "type": "module",
@@ -33,6 +36,11 @@
     "dashboard-ui",
     "internal-tools-ui",
     "settings-ui",
+    "react-dashboard-component-library",
+    "react-bottom-sheet",
+    "approval-flow-ui",
+    "product-surfaces-ui",
+    "toss-inspired-react-ui",
     "overlay-components",
     "form-components",
     "product-ui",
@@ -41,7 +49,8 @@
   ],
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "bin"
   ],
   "scripts": {
     "build": "node ./scripts/generate-deep-types.mjs && rm -rf dist && tsc -p tsconfig.json && cp src/styles.css dist/styles.css && cp src/tokens.css dist/tokens.css && cp types/index.d.ts dist/index.d.ts && mkdir -p dist/components dist/primitives dist/ai dist/docs dist/templates dist/fonts && cp types/components/*.d.ts dist/components/ && cp types/primitives/*.d.ts dist/primitives/ && cp ../../ai/*.json dist/ai/ && cp ../../docs/AI_USAGE.md dist/docs/AI_USAGE.md && cp ../../docs/AI_PROMPT_TEMPLATE.md dist/docs/AI_PROMPT_TEMPLATE.md && cp ../../docs/AGENTS.md.template dist/templates/AGENTS.md && cp src/fonts/PretendardVariable.woff2 dist/fonts/PretendardVariable.woff2",

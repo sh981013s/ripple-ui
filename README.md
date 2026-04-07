@@ -9,7 +9,7 @@ A React UI library and TypeScript design system for calm, mobile-first product s
 
 If Calmo UI saves your team time, [give the repo a star](https://github.com/sh981013s/calmo-ui/stargazers). It helps more developers discover the library.
 
-Calmo UI is built for developers searching for a `react ui library`, a `typescript design system`, a `mobile-first component library`, or a calm `toss style ui` direction for product surfaces.
+Calmo UI is built for developers searching for a `react ui library`, a `typescript design system`, a `mobile-first component library`, a `react dashboard component library`, a `react bottom sheet` solution, or a calm `toss style ui` direction for product surfaces.
 
 It is especially relevant if you are searching for a React component library for dashboards, a TypeScript design system for internal tools, a mobile-first UI kit for settings flows, or reusable overlay and form components for product teams.
 
@@ -45,6 +45,19 @@ Calmo UI is a good fit when you are looking for:
 ```bash
 npm install calmo-ui
 ```
+
+## CLI
+
+Calmo UI includes a small install-time CLI to reduce setup friction.
+
+```bash
+npx calmo-ui init
+npx calmo-ui add app-shell
+npx calmo-ui add settings-screen
+npx calmo-ui add table-filters
+```
+
+Use `init` to create `AGENTS.md` in a new repo. Use `add` to create copy-paste snippet files in `./calmo-snippets`.
 
 ## AI Setup After npm Install
 
@@ -169,6 +182,66 @@ Typical use cases:
 - approval flows with banners, dialogs, bottom sheets, and progress surfaces
 - internal tools with tables, pagination, search, and structured navigation
 - AI-generated product UIs that should stay inside one consistent design system
+
+## When Not To Use Calmo UI
+
+Calmo UI is a weaker fit when you need:
+
+- a marketing website UI kit with heavy visual storytelling
+- an exact Material Design implementation
+- a low-level unstyled primitive system where your team wants to define every visual rule from scratch
+- a massive enterprise ecosystem with many third-party MUI-style integrations
+
+## Problem-Based Pages
+
+Calmo UI docs include search-oriented pages for:
+
+- React dashboard component library
+- Mobile-first React component library
+- Toss-style UI for React
+- TypeScript design system for internal tools
+- React bottom sheet, dialog, and settings UI
+
+The docs also include guides for:
+
+- Button for product UIs
+- Bottom sheet for React
+- Settings page example
+- Internal tool dashboard example
+- Approval flow UI example
+
+And comparisons for:
+
+- Calmo UI vs MUI
+- Calmo UI vs shadcn/ui
+- React UI library for product surfaces
+- Toss-inspired React UI library
+
+## Example Apps
+
+Example folders live in:
+
+- [examples](./examples)
+- [examples/dashboard-starter](./examples/dashboard-starter)
+- [examples/settings-account-app](./examples/settings-account-app)
+- [examples/finance-sheet-flow](./examples/finance-sheet-flow)
+
+Each example is labeled `Built with calmo-ui` and is designed to be copied into real dashboards, settings surfaces, and product overlay flows.
+
+## Used In
+
+Current public example usage:
+
+- dashboard starter built with calmo-ui
+- settings and account app built with calmo-ui
+- finance sheet flow built with calmo-ui
+
+## Roadmap
+
+- expand example apps into runnable starters
+- add more problem-based landing pages and comparison content
+- strengthen `npx calmo-ui add` with more product blocks
+- keep docs, npm README, AI metadata, and theme guidance aligned
 
 ## Theme System
 
