@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.30 - 2026-04-09
+
+### Changed
+
+- Added compact utility primitives for upload, preview, result, and action-dock flows.
+- Refined utility APIs with preview sizing, rail controls, sticky safe-area docks, auto-expiring result highlights, and dropzone drag helpers.
+- Stabilized navigation shell behavior for hover-open, click-pin, and outside-close product menus.
+
 ## 0.1.29 - 2026-04-07
 
 ### Changed

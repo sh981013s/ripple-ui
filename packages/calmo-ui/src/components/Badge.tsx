@@ -17,7 +17,7 @@ export default function Badge({
         "rpl-badge",
         `rpl-badge-${tone}`,
         `rpl-badge-${variant}`,
-        `rpl-badge-${size}`,
+        size !== "md" && `rpl-badge-${size}`,
         dot && "rpl-badge-dot",
         className,
       )}

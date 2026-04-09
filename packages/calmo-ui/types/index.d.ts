@@ -74,7 +74,10 @@ export interface ThemeProviderProps extends React.HTMLAttributes<HTMLDivElement>
 }
 export declare function ThemeProvider(props: ThemeProviderProps): React.JSX.Element;
 
-export interface CardProps extends SurfaceProps {}
+export interface CardProps extends SurfaceProps {
+  density?: "default" | "compact" | "spacious";
+  padded?: boolean;
+}
 export declare function Card(props: CardProps): React.JSX.Element;
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -89,8 +92,8 @@ export declare function Avatar(props: AvatarProps): React.JSX.Element;
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   tone?: CalmoTone;
-  variant?: "soft" | "solid";
-  size?: CalmoSize;
+  variant?: "soft" | "solid" | "status";
+  size?: "xs" | CalmoSize;
   dot?: boolean;
   count?: number;
   children?: React.ReactNode;
@@ -850,6 +853,11 @@ export interface SliderProps extends Omit<React.InputHTMLAttributes<HTMLInputEle
   step?: number;
   tone?: "accent" | "success" | "warning" | "danger";
   showValue?: boolean;
+  size?: "default" | "compact";
+  showLimits?: boolean;
+  minLabel?: React.ReactNode;
+  maxLabel?: React.ReactNode;
+  valueFormatter?: (value: number) => React.ReactNode;
   className?: string;
 }
 export declare function Slider(props: SliderProps): React.JSX.Element;
@@ -892,6 +900,109 @@ export interface BottomInfoProps extends React.HTMLAttributes<HTMLDivElement> {
   action?: React.ReactNode;
 }
 export declare function BottomInfo(props: BottomInfoProps): React.JSX.Element;
+export interface ActionDockProps extends React.HTMLAttributes<HTMLDivElement> {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  action?: React.ReactNode;
+  hidden?: boolean;
+  sticky?: boolean;
+  insetSafeArea?: boolean;
+}
+export declare function ActionDock(props: ActionDockProps): React.JSX.Element | null;
+export interface LoadedStateBarProps extends React.HTMLAttributes<HTMLElement> {
+  title: React.ReactNode;
+  meta?: React.ReactNode;
+  actions?: React.ReactNode;
+  tone?: "default" | "accent" | "success" | "warning";
+  compact?: boolean;
+}
+export declare function LoadedStateBar(props: LoadedStateBarProps): React.JSX.Element;
+export interface MetricCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  label: React.ReactNode;
+  value: React.ReactNode;
+  note?: React.ReactNode;
+  tone?: "default" | "accent" | "success" | "warning" | "danger";
+  compact?: boolean;
+}
+export declare function MetricCard(props: MetricCardProps): React.JSX.Element;
+export interface PreviewCardProps extends React.HTMLAttributes<HTMLElement> {
+  title: React.ReactNode;
+  meta?: React.ReactNode;
+  sizeLabel?: React.ReactNode;
+  badge?: React.ReactNode;
+  media: React.ReactNode;
+  href?: string;
+  active?: boolean;
+  compact?: boolean;
+  aspectRatio?: number | `${number}/${number}`;
+  imageFit?: React.CSSProperties["objectFit"];
+}
+export declare function PreviewCard(props: PreviewCardProps): React.JSX.Element;
+export interface PreviewRailProps extends React.HTMLAttributes<HTMLElement> {
+  title?: React.ReactNode;
+  meta?: React.ReactNode;
+  badge?: React.ReactNode;
+  action?: React.ReactNode;
+  children?: React.ReactNode;
+  snap?: "none" | "proximity" | "mandatory";
+  controls?: boolean;
+}
+export declare function PreviewRail(props: PreviewRailProps): React.JSX.Element;
+export interface ResultSpotlightProps extends React.HTMLAttributes<HTMLElement> {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  badge?: React.ReactNode;
+  actions?: React.ReactNode;
+  highlighted?: boolean;
+  children?: React.ReactNode;
+  highlightDuration?: number;
+}
+export declare function ResultSpotlight(props: ResultSpotlightProps): React.JSX.Element;
+export interface DropzonePanelProps extends React.HTMLAttributes<HTMLElement> {
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  activeLabel?: React.ReactNode;
+  dragging?: boolean;
+  status?: "idle" | "active" | "success" | "processing";
+  actions?: React.ReactNode;
+  children?: React.ReactNode;
+  onFilesDrop?: (files: File[], event: React.DragEvent<HTMLElement>) => void;
+  onDragStateChange?: (dragging: boolean, event: React.DragEvent<HTMLElement>) => void;
+}
+export declare function DropzonePanel(props: DropzonePanelProps): React.JSX.Element;
+export interface MegaMenuShellProps extends React.HTMLAttributes<HTMLDivElement> {
+  trigger: React.ReactNode;
+  children?: React.ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  interactionMode?: "click" | "hover" | "hybrid";
+  align?: "start" | "center" | "end";
+  width?: number | string;
+  closeDelay?: number;
+  panelClassName?: string;
+}
+export declare function MegaMenuShell(props: MegaMenuShellProps): React.JSX.Element;
+export interface LocaleSwitcherOption {
+  label: React.ReactNode;
+  value: string;
+  active?: boolean;
+  onSelect?: (value: string) => void;
+}
+export interface LocaleSwitcherShellProps extends React.HTMLAttributes<HTMLDivElement> {
+  currentLabel: React.ReactNode;
+  options: LocaleSwitcherOption[];
+  triggerLabel?: string;
+}
+export declare function LocaleSwitcherShell(props: LocaleSwitcherShellProps): React.JSX.Element;
+export interface LiveCounterShellProps extends React.HTMLAttributes<HTMLDivElement> {
+  scopeLabel: React.ReactNode;
+  valueLabel?: React.ReactNode;
+  value: React.ReactNode;
+  suffix?: React.ReactNode;
+  compact?: boolean;
+}
+export declare function LiveCounterShell(props: LiveCounterShellProps): React.JSX.Element;
 export interface BottomCTAAction extends Omit<ButtonProps, "children"> {
   label: React.ReactNode;
 }

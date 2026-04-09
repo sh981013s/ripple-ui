@@ -3,6 +3,7 @@ import {
   Accordion,
   AccordionItem,
   AccessoryButton,
+  ActionDock,
   AlertDialog,
   AgreementV4,
   AgreementModuleContent,
@@ -32,6 +33,7 @@ import {
   DoughnutChart,
   Dropdown,
   Divider,
+  DropzonePanel,
   EmptyState,
   FadeIn,
   FontScaleLimit,
@@ -61,7 +63,10 @@ import {
   ListRowImageContainer,
   Loader,
   LoaderAnimation,
+  LoadedStateBar,
+  LiveCounterShell,
   Menu,
+  MegaMenuShell,
   MenuDropdownCheckItem,
   MenuDropdownIcon,
   MenuDropdownItem,
@@ -79,6 +84,7 @@ import {
   Radio,
   Result,
   ResultButton,
+  ResultSpotlight,
   Rating,
   SearchBar,
   SearchField,
@@ -125,8 +131,12 @@ import {
   TopSubtitleSelector,
   TopTitleSelector,
   Pagination,
+  PreviewCard,
+  PreviewRail,
   BottomSheetAgreementModule,
   FloatButtonAgreementModule,
+  LocaleSwitcherShell,
+  MetricCard,
   Modal,
   ColorSchemeArea,
   FullScreenLoader,
@@ -158,6 +168,124 @@ function useCopyFeedback() {
   };
 
   return { copied, copy };
+}
+
+function ToolPrimitivesPreview() {
+  return (
+    <Stack gap={14}>
+      <LoadedStateBar
+        title="3 files loaded"
+        meta="Dropzone replaced with the compact working state."
+        actions={
+          <>
+            <Button size="small">Process</Button>
+            <Button size="small" variant="ghost">Replace</Button>
+          </>
+        }
+      />
+      <PreviewRail
+        title="Upload preview"
+        meta="Compact rail for image, PDF, and result thumbnails."
+        badge={<Badge variant="status" size="xs">3 files</Badge>}
+        controls
+        snap="mandatory"
+      >
+        {["Cover page", "Receipt", "Invoice"].map((item, index) => (
+          <PreviewCard
+            key={item}
+            title={item}
+            meta={index === 0 ? "Selected" : "Preview"}
+            sizeLabel="144 KB"
+            active={index === 0}
+            aspectRatio={index === 2 ? "1 / 1" : "3 / 4"}
+            imageFit={index === 1 ? "contain" : "cover"}
+            media={<img src={`https://picsum.photos/seed/calmo-${index}/320/420`} alt={item} />}
+          />
+        ))}
+      </PreviewRail>
+      <ResultSpotlight
+        highlighted
+        highlightDuration={2600}
+        title="Results ready"
+        description="Use the same shell for conversion output, extracted pages, or generated assets."
+        badge={<Badge tone="accent" variant="status">Live</Badge>}
+        actions={<Button size="small">Download all</Button>}
+      >
+        <Inline gap={10} wrap>
+          <MetricCard label="Output" value="3 PNG" note="Ready below" compact />
+          <MetricCard label="Saved" value="4.2 MB" note="Compared to source" compact />
+        </Inline>
+      </ResultSpotlight>
+      <ActionDock
+        title="Run the main action from a stable bottom dock"
+        description="Useful when the preview rail and controls push the action below the fold."
+        action={<Button size="medium">Start conversion</Button>}
+        sticky
+        insetSafeArea
+        style={{ paddingLeft: 0, paddingRight: 0 }}
+      />
+    </Stack>
+  );
+}
+
+function DropzonePanelPreview() {
+  const [dragging, setDragging] = React.useState(false);
+  const [droppedLabel, setDroppedLabel] = React.useState("Waiting for a drop");
+
+  return (
+    <DropzonePanel
+      title="Drop files here"
+      description="Use this for upload-first tools that should stay compact after the first action."
+      activeLabel="Release to add files"
+      dragging={dragging}
+      actions={
+        <>
+          <Button size="small">Choose files</Button>
+          <Button size="small" variant="ghost">Paste image</Button>
+        </>
+      }
+      onDragStateChange={setDragging}
+      onFilesDrop={(files) => setDroppedLabel(`${files.length} file${files.length > 1 ? "s" : ""} received`)}
+    >
+      <Inline gap={8} wrap>
+        <Badge variant="status" tone="accent">Browser-only</Badge>
+        <Badge variant="status" size="xs">No upload</Badge>
+        <Badge variant="status" size="xs" tone="success">{droppedLabel}</Badge>
+      </Inline>
+    </DropzonePanel>
+  );
+}
+
+function NavShellsPreview() {
+  return (
+    <Stack gap={14}>
+      <Inline gap={10} wrap align="center">
+        <MegaMenuShell
+          trigger={<Button variant="ghost" size="small">All tools</Button>}
+          interactionMode="hybrid"
+          width={320}
+        >
+          <Stack gap={8}>
+            <Text variant="label">Stable mega menu shell</Text>
+            <Inline gap={6} wrap>
+              <Badge variant="status" tone="accent">Hover + click</Badge>
+              <Badge variant="status" size="xs">Pointer-safe</Badge>
+            </Inline>
+            <Text variant="caption">Use grouped navigation content here instead of a fragile basic dropdown.</Text>
+          </Stack>
+        </MegaMenuShell>
+        <LocaleSwitcherShell
+          currentLabel="EN"
+          options={[
+            { label: "English", value: "en", active: true },
+            { label: "Korean", value: "ko" },
+            { label: "German", value: "de" },
+          ]}
+        />
+      </Inline>
+      <LiveCounterShell scopeLabel="Across the platform" valueLabel="Used by" value="12,840,699" />
+    </Stack>
+  );
 }
 
 function InteractiveTabsPreview() {
@@ -3102,8 +3230,16 @@ const docs = [
         props: [
           { name: "tone", type: `"default" | "muted" | "accent" | "success" | "warning"`, defaultValue: `"default"`, description: "Card tone." },
           { name: "radius", type: `"sm" | "md" | "lg" | "xl"`, defaultValue: `"lg"`, description: "Card radius." },
+          { name: "density", type: `"default" | "compact" | "spacious"`, defaultValue: `"default"`, description: "Built-in spacing density for tool surfaces." },
+          { name: "padded", type: "boolean", defaultValue: "true", description: "Disable built-in padding when the card wraps an edge-to-edge custom shell." },
         ],
-        preview: () => <Card><Text variant="body">Card content</Text></Card>,
+        preview: () => (
+          <Inline gap={12} wrap>
+            <Card density="compact"><Text variant="body">Compact card</Text></Card>
+            <Card><Text variant="body">Default card</Text></Card>
+            <Card density="spacious"><Text variant="body">Spacious card</Text></Card>
+          </Inline>
+        ),
       },
       {
         name: "Stack",
@@ -3227,8 +3363,8 @@ const docs = [
         description: "Compact count or status indicator.",
         props: [
           { name: "tone", type: `"neutral" | "accent" | "success" | "warning" | "danger"`, defaultValue: `"neutral"`, description: "Semantic tone." },
-          { name: "variant", type: `"soft" | "solid"`, defaultValue: `"soft"`, description: "Fill treatment." },
-          { name: "size", type: `"sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Badge size." },
+          { name: "variant", type: `"soft" | "solid" | "status"`, defaultValue: `"soft"`, description: "Fill treatment." },
+          { name: "size", type: `"xs" | "sm" | "md" | "lg"`, defaultValue: `"md"`, description: "Badge size." },
           { name: "dot", type: "boolean", defaultValue: "false", description: "Show a leading status dot." },
           { name: "count", type: "number", defaultValue: "-", description: "Optional inline count token." },
         ],
@@ -3237,6 +3373,7 @@ const docs = [
             <Badge>12</Badge>
             <Badge tone="accent" dot>NEW</Badge>
             <Badge tone="success" variant="solid" count={3}>LIVE</Badge>
+            <Badge tone="accent" variant="status" size="xs">ready</Badge>
           </Inline>
         ),
       },
@@ -3333,6 +3470,39 @@ const docs = [
           { name: "MenuDropdownCheckItem", type: "({ label, checked, ... }) => item", defaultValue: "-", description: "Creates a checkbox-style menu row." },
         ],
         preview: () => <InteractiveMenuPreview />,
+      },
+      {
+        name: "MegaMenuShell",
+        eyebrow: "navigation",
+        description: "Stable nav shell for hover, click, and hybrid product menus.",
+        props: [
+          { name: "trigger", type: "ReactNode", defaultValue: "-", description: "Menu trigger element." },
+          { name: "interactionMode", type: `"click" | "hover" | "hybrid"`, defaultValue: `"hybrid"`, description: "Open behavior tuned for product navigation." },
+          { name: "align / width / closeDelay", type: "mixed", defaultValue: `"start" / - / 140`, description: "Panel positioning and close timing." },
+        ],
+        preview: () => <NavShellsPreview />,
+      },
+      {
+        name: "LocaleSwitcherShell",
+        eyebrow: "navigation",
+        description: "Compact locale switcher built on the stable menu shell.",
+        props: [
+          { name: "currentLabel", type: "ReactNode", defaultValue: "-", description: "Currently active locale label." },
+          { name: "options", type: "Array<{ label, value, active?, onSelect? }>", defaultValue: "[]", description: "Locale options." },
+          { name: "triggerLabel", type: "string", defaultValue: `"Language"`, description: "Trigger prefix label." },
+        ],
+        preview: () => <NavShellsPreview />,
+      },
+      {
+        name: "LiveCounterShell",
+        eyebrow: "navigation",
+        description: "Compact live counter surface for nav bars and trust rows.",
+        props: [
+          { name: "scopeLabel / valueLabel", type: "ReactNode", defaultValue: "-", description: "Upper and lower support copy." },
+          { name: "value / suffix", type: "ReactNode", defaultValue: "- / +", description: "Main counter value and suffix." },
+          { name: "compact", type: "boolean", defaultValue: "false", description: "Use tighter spacing in a dense navbar." },
+        ],
+        preview: () => <NavShellsPreview />,
       },
       {
         name: "Tabs / Tab",
@@ -3530,6 +3700,18 @@ const docs = [
             action={<Button size="small">Review</Button>}
           />
         ),
+      },
+      {
+        name: "ActionDock",
+        eyebrow: "action",
+        description: "Sticky bottom action shell for upload-first and preview-heavy flows.",
+        props: [
+          { name: "title / description", type: "ReactNode", defaultValue: "-", description: "Dock copy shown beside the main action." },
+          { name: "action", type: "ReactNode", defaultValue: "-", description: "Primary CTA rendered on the right." },
+          { name: "hidden / sticky", type: "boolean", defaultValue: "false / false", description: "Hide the dock or switch from fixed to in-flow sticky behavior." },
+          { name: "insetSafeArea", type: "boolean", defaultValue: "false", description: "Adds bottom safe-area offset for mobile dock layouts." },
+        ],
+        preview: () => <ToolPrimitivesPreview />,
       },
       {
         name: "BottomCTADouble",
@@ -4414,8 +4596,27 @@ const docs = [
           { name: "value", type: "number", defaultValue: "0", description: "Current slider value." },
           { name: "min / max / step", type: "number", defaultValue: "0 / 100 / 1", description: "Range bounds and increment." },
           { name: "tone", type: `"accent" | "success" | "warning" | "danger"`, defaultValue: `"accent"`, description: "Slider highlight tone." },
+          { name: "size", type: `"default" | "compact"`, defaultValue: `"default"`, description: "Density variant." },
+          { name: "showLimits / minLabel / maxLabel", type: "mixed", defaultValue: "false / - / -", description: "Optional end labels beneath the track." },
+          { name: "valueFormatter", type: "(value) => ReactNode", defaultValue: "-", description: "Custom formatter for the visible value." },
         ],
         preview: () => <SliderPlayground />,
+      },
+      {
+        name: "MetricCard",
+        eyebrow: "data",
+        description: "Compact metric surface tuned for utility rows and tool hero summaries.",
+        props: [
+          { name: "label / value / note", type: "ReactNode", defaultValue: "-", description: "Metric label, primary value, and support copy." },
+          { name: "tone", type: `"default" | "accent" | "success" | "warning" | "danger"`, defaultValue: `"default"`, description: "Card tone." },
+          { name: "compact", type: "boolean", defaultValue: "false", description: "Use tighter spacing for dense panels." },
+        ],
+        preview: () => (
+          <Inline gap={10} wrap>
+            <MetricCard label="Files" value="12" note="Loaded now" compact />
+            <MetricCard label="Saved" value="4.2 MB" note="Estimated reduction" tone="accent" compact />
+          </Inline>
+        ),
       },
       {
         name: "ProgressStep",
@@ -4461,6 +4662,65 @@ const docs = [
     id: "utilities",
     label: "Utilities",
     components: [
+      {
+        name: "DropzonePanel",
+        eyebrow: "utility",
+        description: "Compact upload shell for drag, drop, and first-step actions.",
+        props: [
+          { name: "title / description", type: "ReactNode", defaultValue: "-", description: "Panel copy." },
+          { name: "dragging / activeLabel", type: "boolean / ReactNode", defaultValue: "false / -", description: "Drag-active state and helper text." },
+          { name: "status", type: `"idle" | "active" | "success" | "processing"`, defaultValue: `"idle"`, description: "State tone when not actively dragging." },
+          { name: "actions", type: "ReactNode", defaultValue: "-", description: "CTA group for choose / paste / clear actions." },
+          { name: "onFilesDrop / onDragStateChange", type: "callbacks", defaultValue: "-", description: "Built-in drag event helpers for common file-drop flows." },
+        ],
+        preview: () => <DropzonePanelPreview />,
+      },
+      {
+        name: "LoadedStateBar",
+        eyebrow: "utility",
+        description: "Compact state replacement for large upload shells once files are loaded.",
+        props: [
+          { name: "title / meta", type: "ReactNode", defaultValue: "-", description: "Primary compact state copy." },
+          { name: "actions", type: "ReactNode", defaultValue: "-", description: "Replace, clear, or process controls." },
+          { name: "tone / compact", type: "mixed", defaultValue: `"default" / false`, description: "Surface emphasis and tighter spacing." },
+        ],
+        preview: () => <ToolPrimitivesPreview />,
+      },
+      {
+        name: "PreviewCard",
+        eyebrow: "utility",
+        description: "Compact thumbnail card for upload previews, page thumbs, and output rails.",
+        props: [
+          { name: "title / meta / sizeLabel", type: "ReactNode", defaultValue: "-", description: "Preview metadata." },
+          { name: "media", type: "ReactNode", defaultValue: "-", description: "Image or custom media block." },
+          { name: "href / active / compact", type: "mixed", defaultValue: "- / false / false", description: "Click-through, selected state, and density." },
+          { name: "aspectRatio / imageFit", type: "mixed", defaultValue: `"3/4" / "cover"`, description: "Thumbnail framing and direct img fit behavior." },
+        ],
+        preview: () => <ToolPrimitivesPreview />,
+      },
+      {
+        name: "PreviewRail",
+        eyebrow: "utility",
+        description: "Horizontal preview strip with compact header metadata and trailing controls.",
+        props: [
+          { name: "title / meta", type: "ReactNode", defaultValue: "-", description: "Rail header copy." },
+          { name: "badge / action", type: "ReactNode", defaultValue: "-", description: "Count badge or compact control area." },
+          { name: "children", type: "ReactNode", defaultValue: "-", description: "Usually a row of PreviewCard items." },
+          { name: "snap / controls", type: "mixed", defaultValue: `"proximity" / false`, description: "Scroll snapping behavior and compact rail navigation buttons." },
+        ],
+        preview: () => <ToolPrimitivesPreview />,
+      },
+      {
+        name: "ResultSpotlight",
+        eyebrow: "utility",
+        description: "Result shell with optional highlight pulse for newly generated output.",
+        props: [
+          { name: "title / description", type: "ReactNode", defaultValue: "-", description: "Result section copy." },
+          { name: "badge / actions", type: "ReactNode", defaultValue: "-", description: "Compact status and CTA area." },
+          { name: "highlighted / highlightDuration", type: "mixed", defaultValue: "false / 2800", description: "Enables pulse emphasis and lets it self-expire after new output appears." },
+        ],
+        preview: () => <ToolPrimitivesPreview />,
+      },
       {
         name: "Bubble",
         eyebrow: "utility",
